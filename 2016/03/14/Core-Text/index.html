@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Core Text 基础 | 第欧根尼的小桶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Core Text是和Core Graphics配合使用的，一般是在UIView的drawRect方法中的Graphics Context上进行绘制的。 且Core Text真正负责绘制的是文本部分，图片还是需要自己去手动绘制，所以你必须关注很多绘制的细节部分。
+一.Core Text知识准备   在进入任何一个新的编程领域之前，我们肯定要先接触相关的领域模型的知识。比如你软件是进行科学计算的，那">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Core Text 基础">
+<meta property="og:url" content="http://yoursite.com/2016/03/14/Core-Text/index.html">
+<meta property="og:site_name" content="第欧根尼的小桶">
+<meta property="og:description" content="Core Text是和Core Graphics配合使用的，一般是在UIView的drawRect方法中的Graphics Context上进行绘制的。 且Core Text真正负责绘制的是文本部分，图片还是需要自己去手动绘制，所以你必须关注很多绘制的细节部分。
+一.Core Text知识准备   在进入任何一个新的编程领域之前，我们肯定要先接触相关的领域模型的知识。比如你软件是进行科学计算的，那">
+<meta property="og:image" content="http://yoursite.com/ligatures.png">
+<meta property="og:image" content="http://yoursite.com/metrics.png">
+<meta property="og:image" content="http://yoursite.com/metrics2.png">
+<meta property="og:image" content="http://yoursite.com/drawflout.jpg">
+<meta property="og:image" content="http://yoursite.com/ctstruct.jpg">
+<meta property="og:updated_time" content="2016-03-14T12:57:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Core Text 基础">
+<meta name="twitter:description" content="Core Text是和Core Graphics配合使用的，一般是在UIView的drawRect方法中的Graphics Context上进行绘制的。 且Core Text真正负责绘制的是文本部分，图片还是需要自己去手动绘制，所以你必须关注很多绘制的细节部分。
+一.Core Text知识准备   在进入任何一个新的编程领域之前，我们肯定要先接触相关的领域模型的知识。比如你软件是进行科学计算的，那">
+<meta name="twitter:image" content="http://yoursite.com/ligatures.png">
+  
+    <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/yql.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">第欧根尼的小桶</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Dogndxt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/3096523975/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/yang-ti-zi-79" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/博客，文章/" style="font-size: 10px;">博客，文章</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://stackoverflow.com">stackoverflow</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://bbs.iosre.com">逆向工程</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com">简书</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我就是你平时玩手机时忽视的人呀～ 请放下手机，和我多说说话好么。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">第欧根尼的小桶</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/yql.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">第欧根尼的小桶</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Dogndxt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/3096523975/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/yang-ti-zi-79" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Core-Text" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/14/Core-Text/" class="article-date">
+  	<time datetime="2016-03-14T12:29:28.000Z" itemprop="datePublished">2016-03-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Core Text 基础
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Core Text是和Core Graphics配合使用的，一般是在UIView的drawRect方法中的Graphics Context上进行绘制的。 且Core Text真正负责绘制的是文本部分，图片还是需要自己去手动绘制，所以你必须关注很多绘制的细节部分。</p>
+<h2 id="一-Core-Text知识准备"><a href="#一-Core-Text知识准备" class="headerlink" title="一.Core Text知识准备"></a>一.Core Text知识准备</h2><p>   在进入任何一个新的编程领域之前，我们肯定要先接触相关的领域模型的知识。比如你软件是进行科学计算的，那么你就必须理解大量的数学原理；如果你的软件是搞银行系统，那么你就得事先了解相关的银行的业务知识。这些都是不可避免的事情。通常情况下领域知识具有较高的通用性。但在特定的环境下，某些知识点也会被特殊处理。 Core Text是用来进行文字精细排版的，所以了解文字相关的知识也不可避免。</p>
+<h3 id="1-字符（Character）和字形（Glyphs）"><a href="#1-字符（Character）和字形（Glyphs）" class="headerlink" title="1.字符（Character）和字形（Glyphs）"></a>1.字符（Character）和字形（Glyphs）</h3><p>排版系统中文本显示的一个重要的过程就是字符到字形的转换，字符是信息本身的元素，而字形是字符的图形表征，字符还会有其它表征比如发音。 字符在计算机中其实就是一个编码，某个字符集中的编码，比如Unicode字符集，就囊括了大都数存在的字符。 而字形则是图形，一般都存储在字体文件中，字形也有它的编码，也就是它在字体中的索引。 一个字符可以对应多个字形（不同的字体，或者同种字体的不同样式:粗体斜体等）；多个字符也可能对应一个字形，比如字符的连写（ Ligatures）。</p>
+<p><img src="/ligatures.png" alt=""></p>
+<p>Roman Ligatures</p>
+<p>下面就来详情看看字形的各个参数也就是所谓的字形度量Glyph Metrics</p>
+<p><img src="/metrics.png" alt=""><br><img src="/metrics2.png" alt=""></p>
+<ul>
+<li>bounding box（边界框 bbox），这是一个假想的框子，它尽可能紧密的装入字形。</li>
+<li>baseline（基线），一条假想的线,一行上的字形都以此线作为上下位置的参考，在这条线的左侧存在一个点叫做基线的原点.</li>
+<li>ascent（上行高度）从原点到字体中最高（这里的高深都是以基线为参照线的）的字形的顶部的距离，ascent是一个正值</li>
+<li>descent（下行高度）从原点到字体中最深的字形底部的距离，descent是一个负值（比如一个字体原点到最深的字形的底部的距离为2，那么descent就为-2）</li>
+<li>linegap（行距），linegap也可以称作leading（其实准确点讲应该叫做External leading）,行高lineHeight则可以通过 ascent + descent + linegap 来计算。</li>
+</ul>
+<h3 id="2-坐标系"><a href="#2-坐标系" class="headerlink" title="2.坐标系"></a>2.坐标系</h3><p>首先不得不说 苹果编程中的坐标系花样百出，经常让开发者措手不及。 传统的Mac中的坐标系的原点在左下角，比如NSView默认的坐标系，原点就在左下角。但Mac中有些View为了其实现的便捷将原点变换到左上角，像NSTableView的坐标系坐标原点就在左上角。iOS UIKit的UIView的坐标系原点在左上角。<br>往底层看，Core Graphics的context使用的坐标系的原点是在左下角。而在iOS中的底层界面绘制就是通过Core Graphics进行的，那么坐标系列是如何变换的呢？ 在UIView的drawRect方法中我们可以通过UIGraphicsGetCurrentContext()来获得当前的Graphics Context。drawRect方法在被调用前，这个Graphics Context被创建和配置好，你只管使用便是。如果你细心，通过CGContextGetCTM(CGContextRef c)可以看到其返回的值并不是CGAffineTransformIdentity，通过打印出来看到值为</p>
+<pre><code>Printing description of contextCTM:
+(CGAffineTransform) contextCTM = {
+       a = 1
+       b = 0
+       c = 0
+       d = -1
+      tx = 0
+      ty = 460
+}
+</code></pre><p>这是非retina分辨率下的结果，如果是如果是retina上面的a,d,ty的值将会乘2，如果是iPhone 5，ty的值会再大些。 但是作用都是一样的就是将上下文空间坐标系进行了flip，使得原本左下角原点变到左上角，y轴正方向也变换成向下。</p>
+<p>上面说了一大堆，下面进入正题，Core Text一开始便是定位于桌面的排版系统，使用了传统的原点在左下角的坐标系，所以它在绘制文本的时候都是参照左下角的原点进行绘制的。 但是iOS的UIView的drawRect方法的context被做了次flip，如果你啥也不做处理，直接在这个context上进行Core Text绘制，你会发现文字是镜像且上下颠倒。 </p>
+<p>所以在UIView的drawRect方法中的context上进行Core Text绘制之前需要对context进行一次Flip。</p>
+<p>这里再提及一个函数CGContextSetTextMatrix，它可以用来为每一个显示的字形单独设置变形矩阵。</p>
+<h3 id="3-NSMutableAttributedString-和-CFMutableAttributedStringRef"><a href="#3-NSMutableAttributedString-和-CFMutableAttributedStringRef" class="headerlink" title="3.NSMutableAttributedString 和 CFMutableAttributedStringRef"></a>3.NSMutableAttributedString 和 CFMutableAttributedStringRef</h3><p>Core Foundation和Foundation中的有些数据类型只需要简单的强制类型转换就可以互换使用，这类类型我们叫他们为 Toll-Free Bridged Types。 CFMutableAttributedStringRef和NSMutableAttributedString就是其中的一对，Core Foundation的接口基本是C的接口，功能强大，但是使用起来没有Foundation中提供的Objc的接口简单好使，所以很多时候我们可以使用高层接口组织数据，然后将其传给低层函数接口使用。</p>
+<h2 id="二-Core-Text对象模型"><a href="#二-Core-Text对象模型" class="headerlink" title="二.Core Text对象模型"></a>二.Core Text对象模型</h2><p>这节主要来看看Core Text绘制的一些细节问题了，首先是Core Text绘制的流程：<br><img src="/drawflout.jpg" alt=""><br><img src="/ctstruct.jpg" alt=""></p>
+<ul>
+<li>framesetter framesetter对应的类型是 CTFramesetter，通过CFAttributedString进行初始化，它作为CTFrame对象的生产工厂，负责根据path生产对应的CTFrame</li>
+<li>CTFrame CTFrame是可以通过CTFrameDraw函数直接绘制到context上的，当然你可以在绘制之前，操作CTFrame中的CTLine，进行一些参数的微调</li>
+<li>CTLine 可以看做Core Text绘制中的一行的对象 通过它可以获得当前行的line ascent,line descent ,line leading,还可以获得Line下的所有Glyph Runs</li>
+<li>CTRun 或者叫做 Glyph Run，是一组共享想相同attributes（属性）的字形的集合体</li>
+</ul>
+<p>上面说了这么多对也没一个东西和图片绘制有关系，其实吧，Core Text本身并不支持图片绘制，图片的绘制你还得通过Core Graphics来进行。只是Core Text可以通过CTRun的设置为你的图片在文本绘制的过程中留出适当的空间。这个设置就使用到CTRunDelegate了，看这个名字大概就可以知道什么意思了，CTRunDelegate作为CTRun相关属性或操作扩展的一个入口，使得我们可以对CTRun做一些自定义的行为。为图片留位置的方法就是加入一个空白的CTRun，自定义其ascent，descent，width等参数，使得绘制文本的时候留下空白位置给相应的图片。然后图片在相应的空白位置上使用Core Graphics接口进行绘制。<br>使用CTRunDelegateCreate可以创建一个CTRunDelegate，它接收两个参数，一个是callbacks结构体，一个是所有callback调用的时候需要传入的对象。 callbacks的结构体为CTRunDelegateCallbacks，主要是包含一些回调函数，比如有返回当前run的ascent，descent，width这些值的回调函数，至于函数中如何鉴别当前是哪个run，可以在CTRunDelegateCreate的第二个参数来达到目的，因为CTRunDelegateCreate的第二个参数会作为每一个回调调用时的入参。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/12/my-first-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">my first blog</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Core-Text" data-title="Core Text 基础" data-url="http://yoursite.com/2016/03/14/Core-Text/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 第欧根尼的小桶
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
