@@ -4,21 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Core Text 基础2 | 第欧根尼的小桶</title>
+  <title>iOS 之网络数据请求 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二. Core Text对象模型这节主要来看看Core Text绘制的一些细节问题了，首先是Core Text绘制的流程：">
+  <meta name="description" content="iOS 网络请求主要使用了 HTTP 和 HTTPS 协议。现在主要记录 HTTP 的网络请求方式。那么在讨论网络数据请求之前就必须先了解清楚：HTTP 请求报文和 HTTP 响应报文。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Core Text 基础2">
-<meta property="og:url" content="http://yoursite.com/2016/03/14/Core-Text-基础2/index.html">
+<meta property="og:title" content="iOS 之网络数据请求">
+<meta property="og:url" content="http://yoursite.com/2016/03/15/iOS-之网络数据请求/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="二. Core Text对象模型这节主要来看看Core Text绘制的一些细节问题了，首先是Core Text绘制的流程：">
-<meta property="og:image" content="http://yoursite.com/img/drawflout.jpg">
-<meta property="og:image" content="http://yoursite.com/img/ctstruct.jpg">
-<meta property="og:updated_time" content="2016-03-14T13:51:14.000Z">
+<meta property="og:description" content="iOS 网络请求主要使用了 HTTP 和 HTTPS 协议。现在主要记录 HTTP 的网络请求方式。那么在讨论网络数据请求之前就必须先了解清楚：HTTP 请求报文和 HTTP 响应报文。">
+<meta property="og:updated_time" content="2016-03-15T13:36:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Core Text 基础2">
-<meta name="twitter:description" content="二. Core Text对象模型这节主要来看看Core Text绘制的一些细节问题了，首先是Core Text绘制的流程：">
-<meta name="twitter:image" content="http://yoursite.com/img/drawflout.jpg">
+<meta name="twitter:title" content="iOS 之网络数据请求">
+<meta name="twitter:description" content="iOS 网络请求主要使用了 HTTP 和 HTTPS 协议。现在主要记录 HTTP 的网络请求方式。那么在讨论网络数据请求之前就必须先了解清楚：HTTP 请求报文和 HTTP 响应报文。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -194,11 +191,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Core-Text-基础2" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-iOS-之网络数据请求" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/14/Core-Text-基础2/" class="article-date">
-  	<time datetime="2016-03-14T13:14:41.000Z" itemprop="datePublished">2016-03-14</time>
+      <a href="/2016/03/15/iOS-之网络数据请求/" class="article-date">
+  	<time datetime="2016-03-15T13:25:35.000Z" itemprop="datePublished">2016-03-15</time>
 </a>
     </div>
   
@@ -211,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Core Text 基础2
+      iOS 之网络数据请求
     </h1>
   
 
@@ -220,7 +217,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/informal/">informal</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［http-报文］/">［http 报文］</a></li></ul>
 	</div>
 
         
@@ -231,16 +228,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="二-Core-Text对象模型"><a href="#二-Core-Text对象模型" class="headerlink" title="二. Core Text对象模型"></a>二. Core Text对象模型</h2><p>这节主要来看看Core Text绘制的一些细节问题了，首先是Core Text绘制的流程：</p>
-<p><img src="/img/drawflout.jpg" alt=""><br><a id="more"></a><br><img src="/img/ctstruct.jpg" alt=""></p>
-<ul>
-<li>framesetter framesetter对应的类型是 CTFramesetter，通过CFAttributedString进行初始化，它作为CTFrame对象的生产工厂，负责根据path生产对应的CTFrame</li>
-<li>CTFrame CTFrame是可以通过CTFrameDraw函数直接绘制到context上的，当然你可以在绘制之前，操作CTFrame中的CTLine，进行一些参数的微调</li>
-<li>CTLine 可以看做Core Text绘制中的一行的对象 通过它可以获得当前行的line ascent,line descent ,line leading,还可以获得Line下的所有Glyph Runs</li>
-<li>CTRun 或者叫做 Glyph Run，是一组共享想相同attributes（属性）的字形的集合体</li>
-</ul>
-<p>上面说了这么多对也没一个东西和图片绘制有关系，其实吧，Core Text本身并<strong>不支持图片绘制</strong>，图片的绘制你还得 <strong>通过Core Graphics</strong> 来进行。只是Core Text可以通过CTRun的设置为你的图片在文本绘制的过程中留出适当的空间。这个设置就使用到CTRunDelegate了，看这个名字大概就可以知道什么意思了，CTRunDelegate作为CTRun相关属性或操作扩展的一个入口，使得我们可以对CTRun做一些自定义的行为。为图片留位置的方法就是加入一个空白的CTRun，自定义其ascent，descent，width等参数，使得绘制文本的时候留下空白位置给相应的图片。然后图片在相应的空白位置上使用Core Graphics接口进行绘制。 </p>
-<p>使用CTRunDelegateCreate可以创建一个CTRunDelegate，它接收两个参数，一个是callbacks结构体，一个是所有callback调用的时候需要传入的对象。 callbacks的结构体为CTRunDelegateCallbacks，主要是包含一些回调函数，比如有返回当前run的ascent，descent，width这些值的回调函数，至于函数中如何鉴别当前是哪个run，可以在CTRunDelegateCreate的第二个参数来达到目的，因为CTRunDelegateCreate的第二个参数会作为每一个回调调用时的入参。</p>
+        <p>iOS 网络请求主要使用了 HTTP 和 HTTPS 协议。现在主要记录 HTTP 的网络请求方式。那么在讨论网络数据请求之前就必须先了解清楚：HTTP 请求报文和 HTTP 响应报文。 <a id="more"></a></p>
+<h3 id="HTTP-请求报文"><a href="#HTTP-请求报文" class="headerlink" title="HTTP 请求报文"></a>HTTP 请求报文</h3><p>一个HTTP请求报文由请求行（request line）,请求头部（head）,空行（blank line）和请求数据（request-body）4个部分组成。</p>
+<pre><code>＜request-line＞
+＜headers＞
+＜blank line＞
+[＜request-body＞
+</code></pre><h4 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h4><p>由请求方法字段，URL字段和HTTP协议版本字段 3个字段组成，用空格分隔</p>
+<p>HTTP 协议的请求方法有：GET，POST，HEAD，PUT，DELETE，OPTIONS，TRACE，CONNECT</p>
+<ol>
+<li><p>GET ：最常见的一种请求方式，方法要求服务器将URL定位的资源放在响应报文的数据部分，回送给客户端。请求参数和对应的值附加在URL后面，利用一个问号（“?”）代表URL的结尾与请求参数的开始，传递参数长度受限制。</p>
+</li>
+<li><p>POST ：将请求参数封装在HTTP请求数据中，以名称/值的形式出现，可以传输大量数据，这样POST方式对传送的数据大小没有限制，而且也不会显示在URL中。请求行中不包含数据字符串，这些数据保存在”请求内容”部分，各数据之间也是使用”&amp;”符号隔开。</p>
+</li>
+<li><p>HEAD：像GET，只不过服务端接受到HEAD请求后只返回响应行，而不会发送响应内容。</p>
+</li>
+</ol>
+<h4 id="请求头部"><a href="#请求头部" class="headerlink" title="请求头部"></a>请求头部</h4><p>请求头部由键/值对组成，每行一对，键和值用英文冒号“:”分隔</p>
+<p>请求头部通知服务器有关于客户端请求的信息，典型的请求头有：</p>
+<pre><code>User-Agent：产生请求的客户端类型。
+
+Accept：客户端可识别的内容类型列表。
+
+Host：请求的主机名，允许多个域名同处一个IP地址，即虚拟主机。
+
+Referer：参考者
+
+Accept-Language: 客户端可识别的语言
+
+Accept-Encoding: 客户端可识别的编码方式
+
+Connection: 链接方式
+
+Cookie:
+
+Content-Length: 数据的长度
+
+Content-Type: 数据的类型
+
+Date: 时间 
+</code></pre><h4 id="空行"><a href="#空行" class="headerlink" title="空行"></a>空行</h4><p>最后一个请求头之后是一个空行，发送回车符和换行符，通知服务器以下不再有请求头。</p>
+<h4 id="请求数据"><a href="#请求数据" class="headerlink" title="请求数据"></a>请求数据</h4><p>请求数据不在GET方法中使用，而是在POST方法中使用。POST方法适用于需要客户填写表单的场合。与请求数据相关的最常使用的请求头是Content-Type和Content-Length。</p>
+<h3 id="TTP-响应报文"><a href="#TTP-响应报文" class="headerlink" title="TTP 响应报文"></a>TTP 响应报文</h3><p>HTTP响应也由四个部分组成，分别是：状态行、响应头、空格、响应数据</p>
+<p>如下所示，HTTP响应的格式与请求的格式十分类似：</p>
+<pre><code>＜status-line＞
+＜headers＞
+＜blank line＞
+[＜response-body＞]
+</code></pre><p>状态行（status line）通过提供一个状态码来说明所请求的资源情况。</p>
+<p>状态行格式如下：</p>
+<pre><code>HTTP-Version Status-Code Reason-Phrase CRLF
+</code></pre><p>其中，HTTP-Version表示服务器HTTP协议的版本；Status-Code 表示服务器发回的响应状态代码；Reason-Phrase表示状态代码的文本描述。状态代码由三位数字组成，第一个数字定义了响应的类别，且有五种可能取值。</p>
+<p>  • 1xx：指示信息–表示请求已接收，继续处理。<br>  • 2xx：成功–表示请求已被成功接收、理解、接受。<br>  • 3xx：重定向–要完成请求必须进行更进一步的操作。<br>  • 4xx：客户端错误–请求有语法错误或请求无法实现。<br>  • 5xx：服务器端错误–服务器未能实现合法的请求。</p>
 
       
     </div>
@@ -250,18 +289,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/03/15/iOS-之网络数据请求/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/03/15/NSURLConnection-基本使用/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          iOS 之网络数据请求
+          NSURLConnection 基本使用
         
       </div>
     </a>
   
   
-    <a href="/2016/03/14/Core-Text-基础/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Core Text 基础</div>
+    <a href="/2016/03/14/Core-Text-基础2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Core Text 基础2</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -296,7 +335,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Core-Text-基础2" data-title="Core Text 基础2" data-url="http://yoursite.com/2016/03/14/Core-Text-基础2/"></div>
+	<div class="ds-thread" data-thread-key="iOS-之网络数据请求" data-title="iOS 之网络数据请求" data-url="http://yoursite.com/2016/03/15/iOS-之网络数据请求/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

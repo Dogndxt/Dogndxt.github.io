@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-14T13:51:14.000Z</updated>
+  <updated>2016-03-15T13:57:04.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,129 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NSURLConnection 基本使用</title>
+    <link href="http://yoursite.com/2016/03/15/NSURLConnection-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2016/03/15/NSURLConnection-基本使用/</id>
+    <published>2016-03-15T13:38:59.000Z</published>
+    <updated>2016-03-15T13:57:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。&lt;/p&gt;
+&lt;h3 id=&quot;NSURLConnection-的常用类&quot;&gt;&lt;a href=&quot;#NSURLConnection-的常用类&quot; class=&quot;headerlink&quot; title=&quot;NSURLConnection 的常用类&quot;&gt;&lt;/a&gt;NSURLConnection 的常用类&lt;/h3&gt;&lt;p&gt;· NSURL ：请求地址&lt;/p&gt;
+&lt;p&gt;· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….&lt;/p&gt;
+&lt;p&gt;· NSMutableRequest ：NSURLRequest 的子类&lt;/p&gt;
+&lt;p&gt;· NSURLConnection：负责发送请求，建立客户端和服务器的连接。发送NSURLRequest的数据给服务器，并收集来自服务器的响应数据&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;NSURLConnection的使用&quot;&gt;&lt;a href=&quot;#NSURLConnection的使用&quot; class=&quot;headerlink&quot; title=&quot;NSURLConnection的使用&quot;&gt;&lt;/a&gt;NSURLConnection的使用&lt;/h3&gt;&lt;p&gt;使用 NSURLConnection 这个类的步骤主要有三个：&lt;/p&gt;
+&lt;p&gt;1）创建一个NSURL对象，设置请求路径（设置请求路径）&lt;/p&gt;
+&lt;p&gt;2）传入NSURL创建一个NSURLRequest对象，设置请求头和请求体（创建请求对象）&lt;/p&gt;
+&lt;p&gt;3）使用NSURLConnection发送NSURLRequest（发送请求）&lt;/p&gt;
+&lt;p&gt;在请求数据的过程中根据连接服务器的方式分为&lt;strong&gt;同步请求&lt;/strong&gt;和&lt;strong&gt;异步请求&lt;/strong&gt;这两种。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;同步请求&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;NSData *data=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;异步请求&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;－ 使用 block 回调&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSOperationQueue *queue=[NSOperationQueue mainQueue];
+[NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) { }];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;－ 代理&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSURLConnection *conn=[NSURLConnection connectionWithRequest:request delegate:self];
+[conn start];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后在NSURLConnectionDataDelegate代理方法里面执行事件。&lt;/p&gt;
+&lt;h3 id=&quot;NSMutableURLRequest-的妙用&quot;&gt;&lt;a href=&quot;#NSMutableURLRequest-的妙用&quot; class=&quot;headerlink&quot; title=&quot;NSMutableURLRequest 的妙用&quot;&gt;&lt;/a&gt;NSMutableURLRequest 的妙用&lt;/h3&gt;&lt;p&gt;NSMutableURLRequest是NSURLRequest的子类，常用方法有&lt;/p&gt;
+&lt;p&gt;－ 设置请求超时等待时间（超过这个时间就算超时，请求失败）- (void)setTimeoutInterval:(NSTimeInterval)seconds;&lt;br&gt;－ 设置请求方法（比如GET和POST）- (void)setHTTPMethod:(NSString &lt;em&gt;)method;&lt;br&gt;－ 设置请求体 - (void)setHTTPBody:(NSData &lt;/em&gt;)data;&lt;br&gt;－ 设置请求头 - (void)setValue:(NSString &lt;em&gt;)value forHTTPHeaderField:(NSString &lt;/em&gt;)field;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。&lt;/p&gt;
+&lt;h3 id=&quot;NSURLConnection-的常用类&quot;&gt;&lt;a href=&quot;#NSURLConnection-的常用类&quot; class=&quot;headerlink&quot; title=&quot;NSURLConnection 的常用类&quot;&gt;&lt;/a&gt;NSURLConnection 的常用类&lt;/h3&gt;&lt;p&gt;· NSURL ：请求地址&lt;/p&gt;
+&lt;p&gt;· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….&lt;/p&gt;
+&lt;p&gt;· NSMutableRequest ：NSURLRequest 的子类&lt;/p&gt;
+&lt;p&gt;· NSURLConnection：负责发送请求，建立客户端和服务器的连接。发送NSURLRequest的数据给服务器，并收集来自服务器的响应数据&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="［数据请求］" scheme="http://yoursite.com/tags/%EF%BC%BB%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82%EF%BC%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 之网络数据请求</title>
+    <link href="http://yoursite.com/2016/03/15/iOS-%E4%B9%8B%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82/"/>
+    <id>http://yoursite.com/2016/03/15/iOS-之网络数据请求/</id>
+    <published>2016-03-15T13:25:35.000Z</published>
+    <updated>2016-03-15T13:36:49.000Z</updated>
+    
+    <content type="html">&lt;p&gt;iOS 网络请求主要使用了 HTTP 和 HTTPS 协议。现在主要记录 HTTP 的网络请求方式。那么在讨论网络数据请求之前就必须先了解清楚：HTTP 请求报文和 HTTP 响应报文。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;HTTP-请求报文&quot;&gt;&lt;a href=&quot;#HTTP-请求报文&quot; class=&quot;headerlink&quot; title=&quot;HTTP 请求报文&quot;&gt;&lt;/a&gt;HTTP 请求报文&lt;/h3&gt;&lt;p&gt;一个HTTP请求报文由请求行（request line）,请求头部（head）,空行（blank line）和请求数据（request-body）4个部分组成。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;＜request-line＞
+＜headers＞
+＜blank line＞
+[＜request-body＞
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;请求行&quot;&gt;&lt;a href=&quot;#请求行&quot; class=&quot;headerlink&quot; title=&quot;请求行&quot;&gt;&lt;/a&gt;请求行&lt;/h4&gt;&lt;p&gt;由请求方法字段，URL字段和HTTP协议版本字段 3个字段组成，用空格分隔&lt;/p&gt;
+&lt;p&gt;HTTP 协议的请求方法有：GET，POST，HEAD，PUT，DELETE，OPTIONS，TRACE，CONNECT&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;GET ：最常见的一种请求方式，方法要求服务器将URL定位的资源放在响应报文的数据部分，回送给客户端。请求参数和对应的值附加在URL后面，利用一个问号（“?”）代表URL的结尾与请求参数的开始，传递参数长度受限制。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;POST ：将请求参数封装在HTTP请求数据中，以名称/值的形式出现，可以传输大量数据，这样POST方式对传送的数据大小没有限制，而且也不会显示在URL中。请求行中不包含数据字符串，这些数据保存在”请求内容”部分，各数据之间也是使用”&amp;amp;”符号隔开。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;HEAD：像GET，只不过服务端接受到HEAD请求后只返回响应行，而不会发送响应内容。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;请求头部&quot;&gt;&lt;a href=&quot;#请求头部&quot; class=&quot;headerlink&quot; title=&quot;请求头部&quot;&gt;&lt;/a&gt;请求头部&lt;/h4&gt;&lt;p&gt;请求头部由键/值对组成，每行一对，键和值用英文冒号“:”分隔&lt;/p&gt;
+&lt;p&gt;请求头部通知服务器有关于客户端请求的信息，典型的请求头有：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;User-Agent：产生请求的客户端类型。
+
+Accept：客户端可识别的内容类型列表。
+
+Host：请求的主机名，允许多个域名同处一个IP地址，即虚拟主机。
+
+Referer：参考者
+
+Accept-Language: 客户端可识别的语言
+
+Accept-Encoding: 客户端可识别的编码方式
+
+Connection: 链接方式
+
+Cookie:
+
+Content-Length: 数据的长度
+
+Content-Type: 数据的类型
+
+Date: 时间 
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;空行&quot;&gt;&lt;a href=&quot;#空行&quot; class=&quot;headerlink&quot; title=&quot;空行&quot;&gt;&lt;/a&gt;空行&lt;/h4&gt;&lt;p&gt;最后一个请求头之后是一个空行，发送回车符和换行符，通知服务器以下不再有请求头。&lt;/p&gt;
+&lt;h4 id=&quot;请求数据&quot;&gt;&lt;a href=&quot;#请求数据&quot; class=&quot;headerlink&quot; title=&quot;请求数据&quot;&gt;&lt;/a&gt;请求数据&lt;/h4&gt;&lt;p&gt;请求数据不在GET方法中使用，而是在POST方法中使用。POST方法适用于需要客户填写表单的场合。与请求数据相关的最常使用的请求头是Content-Type和Content-Length。&lt;/p&gt;
+&lt;h3 id=&quot;TTP-响应报文&quot;&gt;&lt;a href=&quot;#TTP-响应报文&quot; class=&quot;headerlink&quot; title=&quot;TTP 响应报文&quot;&gt;&lt;/a&gt;TTP 响应报文&lt;/h3&gt;&lt;p&gt;HTTP响应也由四个部分组成，分别是：状态行、响应头、空格、响应数据&lt;/p&gt;
+&lt;p&gt;如下所示，HTTP响应的格式与请求的格式十分类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;＜status-line＞
+＜headers＞
+＜blank line＞
+[＜response-body＞]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;状态行（status line）通过提供一个状态码来说明所请求的资源情况。&lt;/p&gt;
+&lt;p&gt;状态行格式如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HTTP-Version Status-Code Reason-Phrase CRLF
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中，HTTP-Version表示服务器HTTP协议的版本；Status-Code 表示服务器发回的响应状态代码；Reason-Phrase表示状态代码的文本描述。状态代码由三位数字组成，第一个数字定义了响应的类别，且有五种可能取值。&lt;/p&gt;
+&lt;p&gt;  • 1xx：指示信息–表示请求已接收，继续处理。&lt;br&gt;  • 2xx：成功–表示请求已被成功接收、理解、接受。&lt;br&gt;  • 3xx：重定向–要完成请求必须进行更进一步的操作。&lt;br&gt;  • 4xx：客户端错误–请求有语法错误或请求无法实现。&lt;br&gt;  • 5xx：服务器端错误–服务器未能实现合法的请求。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;iOS 网络请求主要使用了 HTTP 和 HTTPS 协议。现在主要记录 HTTP 的网络请求方式。那么在讨论网络数据请求之前就必须先了解清楚：HTTP 请求报文和 HTTP 响应报文。
+    
+    </summary>
+    
+    
+      <category term="［http 报文］" scheme="http://yoursite.com/tags/%EF%BC%BBhttp-%E6%8A%A5%E6%96%87%EF%BC%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>Core Text 基础2</title>
