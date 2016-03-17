@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-17T12:10:41.000Z</updated>
+  <updated>2016-03-17T14:14:33.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,103 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NSData 的使用</title>
+    <link href="http://yoursite.com/2016/03/17/NSData-%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2016/03/17/NSData-的使用/</id>
+    <published>2016-03-17T14:01:55.000Z</published>
+    <updated>2016-03-17T14:14:33.000Z</updated>
+    
+    <content type="html">&lt;p&gt;应该说在任何网络中，如何使用数据来传递信息，保存和读取信息，并将其变为可以产生价值的东西，而在计算机的世界里面除了0 和 1 ，我们眼中所见的东西在计算机眼里只不过是一堆 0 和 1 数据而已。那么在 iOS 里，又是如何进行数据间的转化的。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;初始化-NSData-类型的对象&quot;&gt;&lt;a href=&quot;#初始化-NSData-类型的对象&quot; class=&quot;headerlink&quot; title=&quot;初始化 NSData 类型的对象&quot;&gt;&lt;/a&gt;初始化 NSData 类型的对象&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//定义一个char类型的字符串  
+const char * string = &amp;quot;Hi there ,this is a C string&amp;quot;; 
+
+//建立缓冲区，把字符串添加进去  
+NSData * data = [NSData dataWithBytes:string length:strlen(string)+1]; 
+
+//获取APP根目录的方法
+NSHomeDirectory()；
+
+//返回 data 的数据长度
+NSLog(@&amp;quot;%ld&amp;quot;, reader.length);
+
+
+//返回data对象的首指针
+NSLog(@&amp;quot;%s&amp;quot;, reader.bytes);
+
+
+//获取data格式的数据
+NSLog(@&amp;quot;%@&amp;quot;, reader.description);
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSString-类型的数据与-NSData-类型之间的转化&quot;&gt;&lt;a href=&quot;#NSString-类型的数据与-NSData-类型之间的转化&quot; class=&quot;headerlink&quot; title=&quot;NSString 类型的数据与 NSData 类型之间的转化&quot;&gt;&lt;/a&gt;NSString 类型的数据与 NSData 类型之间的转化&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSString * str = @&amp;quot;hello, world!&amp;quot;;
+NSData * data = [str dataUsingEncoding:NSUTF8StringEncoding]; //NSString转换成NSData类型
+NSString * newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSData-与-UIImage&quot;&gt;&lt;a href=&quot;#NSData-与-UIImage&quot; class=&quot;headerlink&quot; title=&quot;NSData 与 UIImage&quot;&gt;&lt;/a&gt;NSData 与 UIImage&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//例：从本地文件沙盒中取图片并转换为NSData
+
+NSString *path = [[NSBundle mainBundle] bundlePath];
+NSString *name = [NSString stringWithFormat:@&amp;quot;ceshi.png&amp;quot;];
+NSString *finalPath = [path stringByAppendingPathComponent:name];
+NSData *imageData = [NSData dataWithContentsOfFile: finalPath];
+UIImage *aimage = [UIImage imageWithData: imageData];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;base-64-编码解码&quot;&gt;&lt;a href=&quot;#base-64-编码解码&quot; class=&quot;headerlink&quot; title=&quot;base 64 编码解码&quot;&gt;&lt;/a&gt;base 64 编码解码&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;编码：
+
+NSString * stringExample = [NSString stringWithFormat:@&amp;quot;I Love You&amp;quot;];
+NSData * data1 = [stringExample dataUsingEncoding:NSUTF8StringEncoding];
+NSString * base64String = [data1 base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn]; 
+
+解码：
+
+NSData * dataFromString = [[NSData alloc] initWithBase64EncodedString:base64String options:NSDataBase64DecodingIgnoreUnknownCharacters];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;文件保存和读取&quot;&gt;&lt;a href=&quot;#文件保存和读取&quot; class=&quot;headerlink&quot; title=&quot;文件保存和读取&quot;&gt;&lt;/a&gt;文件保存和读取&lt;/h3&gt;&lt;pre&gt;&lt;code&gt; //定义一个字符串，保存一个路径  
+NSString * path = @&amp;quot;/tmp/ver.txt&amp;quot;; 
+
+//把这个保存路径的字符串保存到另一个文件中  encoding是编码  
+[path writeToFile:@&amp;quot;/tmp/string.txt&amp;quot; atomically:YES encoding:NSASCIIStringEncoding error:nil];
+
+
+//创建文件管理器     
+NSFileManager * fm = [NSFileManager defaultManager]; 
+
+//创建缓冲区，利用NSFileManager对象来获取文件中的内容，也就是这个文件的属性可修改  
+NSData * fileData = [fm contentsAtPath:@&amp;quot;/tmp/ver.txt&amp;quot;];   
+
+//获取上面fileData对象中通过NSFileManager对象获取的文件中的内容，然后再创建一个新的路径，并存储  
+[fm createFileAtPath:@&amp;quot;/tmp/test4.txt&amp;quot; contents:fileData attributes:nil];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;可修改的数据存储器-NSMutableData&quot;&gt;&lt;a href=&quot;#可修改的数据存储器-NSMutableData&quot; class=&quot;headerlink&quot; title=&quot;可修改的数据存储器 NSMutableData&quot;&gt;&lt;/a&gt;可修改的数据存储器 NSMutableData&lt;/h3&gt;&lt;p&gt;   创建的方式： &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString *path = @&amp;quot;/Users/Allen/Desktop/test.dat&amp;quot;;
+NSString *temp = @&amp;quot;Jarod Yv&amp;quot;;
+int i = 100;
+float f = 98.3333f; 
+
+NSMutableData *writer = [[NSMutableData alloc] init];
+
+[writer appendData:[temp dataUsingEncoding:NSUTF8StringEncoding]];
+[writer appendBytes:&amp;amp;i length:sizeof(i)];
+[writer appendBytes:&amp;amp;f length:sizeof(f)];
+
+[writer writeToFile:path atomically:YES]; 
+
+读取：     
+int ii; 
+float ff;
+NSData *reader = [NSData dataWithContentsOfFile:path];
+
+NSString *ttemp = [[NSString alloc] initWithData:[reader subdataWithRange:NSMakeRange(0, [temp length])]encoding:NSUTF8StringEncoding];
+
+[reader getBytes:&amp;amp;ii range:NSMakeRange([temp length], sizeof(ii))];
+[reader getBytes:&amp;amp;ff range:NSMakeRange([temp length] + sizeof(ii), sizeof(ff))]; 
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;应该说在任何网络中，如何使用数据来传递信息，保存和读取信息，并将其变为可以产生价值的东西，而在计算机的世界里面除了0 和 1 ，我们眼中所见的东西在计算机眼里只不过是一堆 0 和 1 数据而已。那么在 iOS 里，又是如何进行数据间的转化的。
+    
+    </summary>
+    
+    
+      <category term="［数据］" scheme="http://yoursite.com/tags/%EF%BC%BB%E6%95%B0%E6%8D%AE%EF%BC%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>NSOperation和NSOperationQueue多线程的使用</title>
