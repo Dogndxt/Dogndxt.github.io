@@ -4,30 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>NSURLConnection 基本使用 | 第欧根尼的小桶</title>
+  <title>NSOperation和NSOperationQueue多线程的使用 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。
-NSURLConnection 的常用类· NSURL ：请求地址
-· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….
-· NSMutableRequest ：NSURLRequest 的子类
-· N">
+  <meta name="description" content="最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了同步／异步，阻塞／非阻塞所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NSURLConnection 基本使用">
-<meta property="og:url" content="http://yoursite.com/2016/03/15/NSURLConnection-基本使用/index.html">
+<meta property="og:title" content="NSOperation和NSOperationQueue多线程的使用">
+<meta property="og:url" content="http://yoursite.com/2016/03/17/NSOperation和NSOperationQueue多线程的使用/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。
-NSURLConnection 的常用类· NSURL ：请求地址
-· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….
-· NSMutableRequest ：NSURLRequest 的子类
-· N">
-<meta property="og:updated_time" content="2016-03-15T13:57:04.000Z">
+<meta property="og:description" content="最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了同步／异步，阻塞／非阻塞所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。">
+<meta property="og:updated_time" content="2016-03-17T12:10:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSURLConnection 基本使用">
-<meta name="twitter:description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。
-NSURLConnection 的常用类· NSURL ：请求地址
-· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….
-· NSMutableRequest ：NSURLRequest 的子类
-· N">
+<meta name="twitter:title" content="NSOperation和NSOperationQueue多线程的使用">
+<meta name="twitter:description" content="最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了同步／异步，阻塞／非阻塞所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -203,11 +191,11 @@ NSURLConnection 的常用类· NSURL ：请求地址
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-NSURLConnection-基本使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-NSOperation和NSOperationQueue多线程的使用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/15/NSURLConnection-基本使用/" class="article-date">
-  	<time datetime="2016-03-15T13:38:59.000Z" itemprop="datePublished">2016-03-15</time>
+      <a href="/2016/03/17/NSOperation和NSOperationQueue多线程的使用/" class="article-date">
+  	<time datetime="2016-03-17T11:37:41.000Z" itemprop="datePublished">2016-03-17</time>
 </a>
     </div>
   
@@ -220,7 +208,7 @@ NSURLConnection 的常用类· NSURL ：请求地址
         
   
     <h1 class="article-title" itemprop="name">
-      NSURLConnection 基本使用
+      NSOperation和NSOperationQueue多线程的使用
     </h1>
   
 
@@ -229,7 +217,7 @@ NSURLConnection 的常用类· NSURL ：请求地址
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［数据请求］/">［数据请求］</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［博客］/">［博客］</a></li></ul>
 	</div>
 
         
@@ -240,34 +228,124 @@ NSURLConnection 的常用类· NSURL ：请求地址
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。</p>
-<h3 id="NSURLConnection-的常用类"><a href="#NSURLConnection-的常用类" class="headerlink" title="NSURLConnection 的常用类"></a>NSURLConnection 的常用类</h3><p>· NSURL ：请求地址</p>
-<p>· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….</p>
-<p>· NSMutableRequest ：NSURLRequest 的子类</p>
-<p>· NSURLConnection：负责发送请求，建立客户端和服务器的连接。发送NSURLRequest的数据给服务器，并收集来自服务器的响应数据</p>
-<a id="more"></a>
-<h3 id="NSURLConnection的使用"><a href="#NSURLConnection的使用" class="headerlink" title="NSURLConnection的使用"></a>NSURLConnection的使用</h3><p>使用 NSURLConnection 这个类的步骤主要有三个：</p>
-<p>1）创建一个NSURL对象，设置请求路径（设置请求路径）</p>
-<p>2）传入NSURL创建一个NSURLRequest对象，设置请求头和请求体（创建请求对象）</p>
-<p>3）使用NSURLConnection发送NSURLRequest（发送请求）</p>
-<p>在请求数据的过程中根据连接服务器的方式分为<strong>同步请求</strong>和<strong>异步请求</strong>这两种。</p>
-<ol>
-<li>同步请求</li>
-</ol>
-<p><code>NSData *data=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];</code></p>
-<ol>
-<li>异步请求</li>
-</ol>
-<p>－ 使用 block 回调</p>
-<pre><code>NSOperationQueue *queue=[NSOperationQueue mainQueue];
-[NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) { }];
-</code></pre><p>－ 代理</p>
-<pre><code>NSURLConnection *conn=[NSURLConnection connectionWithRequest:request delegate:self];
-[conn start];
-</code></pre><p>然后在NSURLConnectionDataDelegate代理方法里面执行事件。</p>
-<h3 id="NSMutableURLRequest-的妙用"><a href="#NSMutableURLRequest-的妙用" class="headerlink" title="NSMutableURLRequest 的妙用"></a>NSMutableURLRequest 的妙用</h3><p>NSMutableURLRequest是NSURLRequest的子类，常用方法有</p>
-<p>－ 设置请求超时等待时间（超过这个时间就算超时，请求失败）- (void)setTimeoutInterval:(NSTimeInterval)seconds;<br>－ 设置请求方法（比如GET和POST）- (void)setHTTPMethod:(NSString <em>)method;<br>－ 设置请求体 - (void)setHTTPBody:(NSData </em>)data;<br>－ 设置请求头 - (void)setValue:(NSString <em>)value forHTTPHeaderField:(NSString </em>)field;</p>
+        <p> 最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了<strong>同步／异步</strong>，<strong>阻塞／非阻塞</strong>所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。 <a id="more"></a></p>
+<p>  现在来讲述一下可以实现多线程的三种方式中的 NSOperation 类。使用NSOperation和NSOperationQueue实现多线程编程，实现步骤大致是这样的：</p>
+<p>  1&gt; 先将需要执行的操作封装到一个NSOperation对象中</p>
+<p>  2&gt; 然后将NSOperation对象添加到NSOperationQueue中</p>
+<p>  3&gt; 系统会自动将NSOperation中封装的操作放到一条新线程中执行</p>
+<p>  而由于  NSOperation 是一个抽象类，所以它的功能只能有其子类 NSBlockOperation 和 SInvocationOperation 来实现。</p>
+<h4 id="NSBlockOperation-的使用"><a href="#NSBlockOperation-的使用" class="headerlink" title="NSBlockOperation 的使用"></a>NSBlockOperation 的使用</h4><pre><code> NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^(){     
+    NSLog(@&quot;*执行第1次操作，线程：%@&quot;, [NSThread currentThread]);       
+   }];
 
+[operation addExecutionBlock:^() {
+
+   NSLog(@&quot;**又执行了1个新的操作，线程：%@&quot;, [NSThread currentThread]);
+
+   }];
+
+// 开始执行任务    
+[operation start];
+</code></pre><p>   注：默认情况下，调用了start方法后并不会开一条新线程去执行操作，而是在当前线程同步执行操作。只有将operation放到一个NSOperationQueue中，才会异步执行操作。</p>
+<h4 id="NSInvocationOperation-的使用"><a href="#NSInvocationOperation-的使用" class="headerlink" title="NSInvocationOperation 的使用"></a>NSInvocationOperation 的使用</h4><pre><code>ration2 = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downLoadImage:) object:URL];
+NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+[queue addOperation:operation2];
+
+如果是有刷新界面的操作，那么必须将这个操作交给主线程来完成。
+</code></pre><h3 id="自定义-NSOperation-类"><a href="#自定义-NSOperation-类" class="headerlink" title="自定义 NSOperation 类"></a>自定义 NSOperation 类</h3><p>由于 NSOperation 类功能比较少， 一般情况下我们可以自定义一个 NSOperation 类。要定制这样的一个操作，可以遵循以下步骤：</p>
+<ol>
+<li>继承 NSOperation 类</li>
+<li>重写“main”方法</li>
+<li>在“main”方法中创建一个“automaticreleasepool“</li>
+<li>将你的代码放在”autoreleasepool“中</li>
+</ol>
+<p>  例子：<br>     <em>*</em> .h 文件</p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+@interface MyLengthyOperation : NSOperation
+@property (nonatomic, strong, readonly) NSString *mark;
+- (instancetype)initWithMark:(NSString *)mark;
+@end 
+</code></pre><p> <em>*</em> .m 文件</p>
+<pre><code>#import &quot;MyLengthyOperation.h&quot;
+@interface MyLengthyOperation ()
+@property (nonatomic, strong, readwrite) NSString *mark;
+@end
+@implementation MyLengthyOperation
+- (instancetype)initWithMark:(NSString *)mark {  
+   self = [super init];
+   if (self) {      
+       self.mark = mark;
+    }
+   return self;
+   }
+- (void)main {
+    @autoreleasepool {
+      for (int i = 0; i &lt; 100; i ++) {
+         if (self.isCancelled) {
+             break;
+         }
+         NSLog(@&quot;%@ - %f&quot;, self.mark, sqrt(i));
+        }
+    }
+}
+
+@end
+</code></pre><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><pre><code>//  初始化任务 
+MyLengthyOperation *operation_1 = [[MyLengthyOperation alloc] initWithMark:@&quot;operation_1&quot;];
+MyLengthyOperation *operation_2 = [[MyLengthyOperation alloc] initWithMark:@&quot;operation_2&quot;];
+
+// 设置任务的优先级
+[operation_1 setQueuePriority:NSOperationQueuePriorityVeryLow];
+[operation_2 setQueuePriority:NSOperationQueuePriorityHigh];
+
+// 添加从属关系
+[operation_2 addDependency:operation_1]; （任务2在任务1结束后才会执行）
+
+// 初始化队列
+NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
+myQueue.name = @&quot;下载队列&quot;;
+
+// 将一个简单的任务队列添加进队列中 （使用 Block 回调方式）      
+    NSURL *aURL = [NSURL URLWithString:URL];
+    NSData *data = [NSData dataWithContentsOfURL:aURL];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+
+        UIImage *image = [[UIImage alloc] initWithData:data];
+        [self performSelectorOnMainThread:@selector(updateUI:) withObject:image waitUntilDone:YES];
+    }];
+}];
+
+// 设置任务队列的最大并发数
+ myQueue.maxConcurrentOperationCount = 4;
+
+// 添加进任务队列中执行
+[myQueue addOperation:operation_1];
+[myQueue addOperation:operation_2];
+
+// 取消所有操作
+[myQueue cancelAllOperations];
+
+// 执行延时的操作（将执行代码放置在 block 中）
+- (void)execute:(dispatch_block_t)block afterDelay:(int64_t)delta {
+
+   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delta), dispatch_get_main_queue(), block);
+ }
+
+// 挂起操作
+[myQueue setSuspended:YES];
+
+// 取消任务
+[operation_1 cancel];
+
+//  任务完成后的回调可以表示任务已经结束
+ [operation_1 setCompletionBlock:^{
+      NSLog(@&quot;任务1结束&quot;);
+  }];
+ [operation_2 setCompletionBlock:^{
+      NSLog(@&quot;任务2结束&quot;);
+ }];
+</code></pre>
       
     </div>
     
@@ -276,18 +354,9 @@ NSURLConnection 的常用类· NSURL ：请求地址
     
 <nav id="article-nav">
   
-    <a href="/2016/03/17/NSOperation和NSOperationQueue多线程的使用/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          NSOperation和NSOperationQueue多线程的使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/03/15/iOS-之网络数据请求/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iOS 之网络数据请求</div>
+    <a href="/2016/03/15/NSURLConnection-基本使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">NSURLConnection 基本使用</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -322,7 +391,7 @@ NSURLConnection 的常用类· NSURL ：请求地址
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="NSURLConnection-基本使用" data-title="NSURLConnection 基本使用" data-url="http://yoursite.com/2016/03/15/NSURLConnection-基本使用/"></div>
+	<div class="ds-thread" data-thread-key="NSOperation和NSOperationQueue多线程的使用" data-title="NSOperation和NSOperationQueue多线程的使用" data-url="http://yoursite.com/2016/03/17/NSOperation和NSOperationQueue多线程的使用/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

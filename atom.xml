@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-15T13:57:04.000Z</updated>
+  <updated>2016-03-17T12:10:41.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,143 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NSOperation和NSOperationQueue多线程的使用</title>
+    <link href="http://yoursite.com/2016/03/17/NSOperation%E5%92%8CNSOperationQueue%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2016/03/17/NSOperation和NSOperationQueue多线程的使用/</id>
+    <published>2016-03-17T11:37:41.000Z</published>
+    <updated>2016-03-17T12:10:41.000Z</updated>
+    
+    <content type="html">&lt;p&gt; 最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了&lt;strong&gt;同步／异步&lt;/strong&gt;，&lt;strong&gt;阻塞／非阻塞&lt;/strong&gt;所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;  现在来讲述一下可以实现多线程的三种方式中的 NSOperation 类。使用NSOperation和NSOperationQueue实现多线程编程，实现步骤大致是这样的：&lt;/p&gt;
+&lt;p&gt;  1&amp;gt; 先将需要执行的操作封装到一个NSOperation对象中&lt;/p&gt;
+&lt;p&gt;  2&amp;gt; 然后将NSOperation对象添加到NSOperationQueue中&lt;/p&gt;
+&lt;p&gt;  3&amp;gt; 系统会自动将NSOperation中封装的操作放到一条新线程中执行&lt;/p&gt;
+&lt;p&gt;  而由于  NSOperation 是一个抽象类，所以它的功能只能有其子类 NSBlockOperation 和 SInvocationOperation 来实现。&lt;/p&gt;
+&lt;h4 id=&quot;NSBlockOperation-的使用&quot;&gt;&lt;a href=&quot;#NSBlockOperation-的使用&quot; class=&quot;headerlink&quot; title=&quot;NSBlockOperation 的使用&quot;&gt;&lt;/a&gt;NSBlockOperation 的使用&lt;/h4&gt;&lt;pre&gt;&lt;code&gt; NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^(){     
+    NSLog(@&amp;quot;*执行第1次操作，线程：%@&amp;quot;, [NSThread currentThread]);       
+   }];
+
+[operation addExecutionBlock:^() {
+
+   NSLog(@&amp;quot;**又执行了1个新的操作，线程：%@&amp;quot;, [NSThread currentThread]);
+
+   }];
+
+// 开始执行任务    
+[operation start];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   注：默认情况下，调用了start方法后并不会开一条新线程去执行操作，而是在当前线程同步执行操作。只有将operation放到一个NSOperationQueue中，才会异步执行操作。&lt;/p&gt;
+&lt;h4 id=&quot;NSInvocationOperation-的使用&quot;&gt;&lt;a href=&quot;#NSInvocationOperation-的使用&quot; class=&quot;headerlink&quot; title=&quot;NSInvocationOperation 的使用&quot;&gt;&lt;/a&gt;NSInvocationOperation 的使用&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;ration2 = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downLoadImage:) object:URL];
+NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+[queue addOperation:operation2];
+
+如果是有刷新界面的操作，那么必须将这个操作交给主线程来完成。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;自定义-NSOperation-类&quot;&gt;&lt;a href=&quot;#自定义-NSOperation-类&quot; class=&quot;headerlink&quot; title=&quot;自定义 NSOperation 类&quot;&gt;&lt;/a&gt;自定义 NSOperation 类&lt;/h3&gt;&lt;p&gt;由于 NSOperation 类功能比较少， 一般情况下我们可以自定义一个 NSOperation 类。要定制这样的一个操作，可以遵循以下步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;继承 NSOperation 类&lt;/li&gt;
+&lt;li&gt;重写“main”方法&lt;/li&gt;
+&lt;li&gt;在“main”方法中创建一个“automaticreleasepool“&lt;/li&gt;
+&lt;li&gt;将你的代码放在”autoreleasepool“中&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  例子：&lt;br&gt;     &lt;em&gt;*&lt;/em&gt; .h 文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;lt;Foundation/Foundation.h&amp;gt;
+@interface MyLengthyOperation : NSOperation
+@property (nonatomic, strong, readonly) NSString *mark;
+- (instancetype)initWithMark:(NSString *)mark;
+@end 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;em&gt;*&lt;/em&gt; .m 文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;quot;MyLengthyOperation.h&amp;quot;
+@interface MyLengthyOperation ()
+@property (nonatomic, strong, readwrite) NSString *mark;
+@end
+@implementation MyLengthyOperation
+- (instancetype)initWithMark:(NSString *)mark {  
+   self = [super init];
+   if (self) {      
+       self.mark = mark;
+    }
+   return self;
+   }
+- (void)main {
+    @autoreleasepool {
+      for (int i = 0; i &amp;lt; 100; i ++) {
+         if (self.isCancelled) {
+             break;
+         }
+         NSLog(@&amp;quot;%@ - %f&amp;quot;, self.mark, sqrt(i));
+        }
+    }
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;基本操作&quot;&gt;&lt;a href=&quot;#基本操作&quot; class=&quot;headerlink&quot; title=&quot;基本操作&quot;&gt;&lt;/a&gt;基本操作&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//  初始化任务 
+MyLengthyOperation *operation_1 = [[MyLengthyOperation alloc] initWithMark:@&amp;quot;operation_1&amp;quot;];
+MyLengthyOperation *operation_2 = [[MyLengthyOperation alloc] initWithMark:@&amp;quot;operation_2&amp;quot;];
+
+// 设置任务的优先级
+[operation_1 setQueuePriority:NSOperationQueuePriorityVeryLow];
+[operation_2 setQueuePriority:NSOperationQueuePriorityHigh];
+
+// 添加从属关系
+[operation_2 addDependency:operation_1]; （任务2在任务1结束后才会执行）
+
+// 初始化队列
+NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
+myQueue.name = @&amp;quot;下载队列&amp;quot;;
+
+// 将一个简单的任务队列添加进队列中 （使用 Block 回调方式）      
+    NSURL *aURL = [NSURL URLWithString:URL];
+    NSData *data = [NSData dataWithContentsOfURL:aURL];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+
+        UIImage *image = [[UIImage alloc] initWithData:data];
+        [self performSelectorOnMainThread:@selector(updateUI:) withObject:image waitUntilDone:YES];
+    }];
+}];
+
+// 设置任务队列的最大并发数
+ myQueue.maxConcurrentOperationCount = 4;
+
+// 添加进任务队列中执行
+[myQueue addOperation:operation_1];
+[myQueue addOperation:operation_2];
+
+// 取消所有操作
+[myQueue cancelAllOperations];
+
+// 执行延时的操作（将执行代码放置在 block 中）
+- (void)execute:(dispatch_block_t)block afterDelay:(int64_t)delta {
+
+   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delta), dispatch_get_main_queue(), block);
+ }
+
+// 挂起操作
+[myQueue setSuspended:YES];
+
+// 取消任务
+[operation_1 cancel];
+
+//  任务完成后的回调可以表示任务已经结束
+ [operation_1 setCompletionBlock:^{
+      NSLog(@&amp;quot;任务1结束&amp;quot;);
+  }];
+ [operation_2 setCompletionBlock:^{
+      NSLog(@&amp;quot;任务2结束&amp;quot;);
+ }];
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; 最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了&lt;strong&gt;同步／异步&lt;/strong&gt;，&lt;strong&gt;阻塞／非阻塞&lt;/strong&gt;所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。
+    
+    </summary>
+    
+    
+      <category term="［博客］" scheme="http://yoursite.com/tags/%EF%BC%BB%E5%8D%9A%E5%AE%A2%EF%BC%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>NSURLConnection 基本使用</title>
