@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/03/20/%E6%97%A5%E6%9C%9F%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A82/</loc>
+    
+    <lastmod>2016-03-20T06:09:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/03/20/%E6%97%A5%E6%9C%9F%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8NSDate/</loc>
+    
+    <lastmod>2016-03-20T06:08:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/03/17/NSData-%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2016-03-17T14:14:33.000Z</lastmod>

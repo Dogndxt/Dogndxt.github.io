@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-17T14:14:33.000Z</updated>
+  <updated>2016-03-20T06:09:55.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,121 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title> 日期类的使用2</title>
+    <link href="http://yoursite.com/2016/03/20/%E6%97%A5%E6%9C%9F%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A82/"/>
+    <id>http://yoursite.com/2016/03/20/日期类的使用2/</id>
+    <published>2016-03-20T05:59:29.000Z</published>
+    <updated>2016-03-20T06:09:55.000Z</updated>
+    
+    <content type="html">&lt;p&gt;接上一篇：&lt;a href=&quot;/2016/03/20/日期类的使用NSDate/&quot;&gt;日期类的使用NSDate&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;NSDateFormatter-的使用&quot;&gt;&lt;a href=&quot;#NSDateFormatter-的使用&quot; class=&quot;headerlink&quot; title=&quot;NSDateFormatter 的使用&quot;&gt;&lt;/a&gt;NSDateFormatter 的使用&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+
+[dateFormatter setDateFormat:@&amp;quot;&amp;apos;公元前/后:&amp;apos;G  &amp;apos;年份:&amp;apos;u&amp;apos;=&amp;apos;yyyy&amp;apos;=&amp;apos;yy &amp;apos;季度:&amp;apos;q&amp;apos;=&amp;apos;qqq&amp;apos;=&amp;apos;qqqq &amp;apos;月份:&amp;apos;M&amp;apos;=&amp;apos;MMM&amp;apos;=&amp;apos;MMMM &amp;apos;今天是今年第几周:&amp;apos;w &amp;apos;今天是本月第几周:&amp;apos;W  &amp;apos;
+今天是今天第几天:&amp;apos;D &amp;apos;今天是本月第几天:&amp;apos;d &amp;apos;星期:&amp;apos;c&amp;apos;=&amp;apos;ccc&amp;apos;=&amp;apos;cccc &amp;apos;上午/下午:&amp;apos;a &amp;apos;小时:&amp;apos;h&amp;apos;=&amp;apos;H &amp;apos;分钟:&amp;apos;m &amp;apos;秒:&amp;apos;s &amp;apos;毫秒:&amp;apos;SSS  &amp;apos;这一天已过多少毫秒:&amp;apos;A  &amp;apos;时区名称:&amp;apos;zzzz&amp;apos;=&amp;apos;vvvv &amp;apos;时区编号:&amp;apos;Z &amp;quot;];
+
+ NSLog(@&amp;quot;%@&amp;quot;, [dateFormatter stringFromDate:[NSDate date]]);
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;NSTimeZone-的使用&quot;&gt;&lt;a href=&quot;#NSTimeZone-的使用&quot; class=&quot;headerlink&quot; title=&quot;NSTimeZone 的使用&quot;&gt;&lt;/a&gt;NSTimeZone 的使用&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//系统时区
+NSTimeZone *zone = [NSTimeZone systemTimeZone];
+NSTimeZone *zone = [NSTimeZone defaultTimeZone];
+NSTimeZone *localTime = [NSTimeZone localTimeZone];
+
+NSData *data = [zone data];//转化成 二进制数据
+
+NSString *addStr = [zone abbreviation];//获取时区的简写
+
+NSInteger timeoff = [zone secondsFromGMT];   //获取时区的偏移量
+
+NSDate *timeOffDate = [date dateByAddingTimeInterval:timeoff]; //附加时间
+
+NSArray *zoneArrs = [NSTimeZone knownTimeZoneNames];    //获取时区的对应表
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;接上一篇：&lt;a href=&quot;/2016/03/20/日期类的使用NSDate/&quot;&gt;日期类的使用NSDate&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;NSDateFormatter-的使用&quot;&gt;&lt;a href=&quot;#NSDateFormatter-的使用&quot; class=&quot;headerlink&quot; title=&quot;NSDateFormatter 的使用&quot;&gt;&lt;/a&gt;NSDateFormatter 的使用&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+
+[dateFormatter setDateFormat:@&amp;quot;&amp;apos;公元前/后:&amp;apos;G  &amp;apos;年份:&amp;apos;u&amp;apos;=&amp;apos;yyyy&amp;apos;=&amp;apos;yy &amp;apos;季度:&amp;apos;q&amp;apos;=&amp;apos;qqq&amp;apos;=&amp;apos;qqqq &amp;apos;月份:&amp;apos;M&amp;apos;=&amp;apos;MMM&amp;apos;=&amp;apos;MMMM &amp;apos;今天是今年第几周:&amp;apos;w &amp;apos;今天是本月第几周:&amp;apos;W  &amp;apos;
+今天是今天第几天:&amp;apos;D &amp;apos;今天是本月第几天:&amp;apos;d &amp;apos;星期:&amp;apos;c&amp;apos;=&amp;apos;ccc&amp;apos;=&amp;apos;cccc &amp;apos;上午/下午:&amp;apos;a &amp;apos;小时:&amp;apos;h&amp;apos;=&amp;apos;H &amp;apos;分钟:&amp;apos;m &amp;apos;秒:&amp;apos;s &amp;apos;毫秒:&amp;apos;SSS  &amp;apos;这一天已过多少毫秒:&amp;apos;A  &amp;apos;时区名称:&amp;apos;zzzz&amp;apos;=&amp;apos;vvvv &amp;apos;时区编号:&amp;apos;Z &amp;quot;];
+
+ NSLog(@&amp;quot;%@&amp;quot;, [dateFormatter stringFromDate:[NSDate date]]);
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="日期，时间" scheme="http://yoursite.com/tags/%E6%97%A5%E6%9C%9F%EF%BC%8C%E6%97%B6%E9%97%B4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>日期类的使用NSDate</title>
+    <link href="http://yoursite.com/2016/03/20/%E6%97%A5%E6%9C%9F%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8NSDate/"/>
+    <id>http://yoursite.com/2016/03/20/日期类的使用NSDate/</id>
+    <published>2016-03-20T05:24:56.000Z</published>
+    <updated>2016-03-20T06:08:29.000Z</updated>
+    
+    <content type="html">&lt;p&gt;日期类在需要记录时间的地方发挥着巨大的作用，也可以实时地获取程序使用的时间。配合 NSLocal ，NSDateFormatter 和 NSTimeZone 这几个类就可以涵盖所有的程序使用的时间日期的数据。&lt;br&gt;&lt;img src=&quot;/img/date.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;初始化一个 NSDate 类可以使用工厂方法和实例方法：&lt;/p&gt;
+&lt;h4 id=&quot;工厂方法&quot;&gt;&lt;a href=&quot;#工厂方法&quot; class=&quot;headerlink&quot; title=&quot;工厂方法&quot;&gt;&lt;/a&gt;工厂方法&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSDate *time = [NSDate date]; //返回当前时间
+NSDate *time = [NSDate dateWithTimeIntervalSinceNow:0.0]; //返回以当前时间为基准，然后过了secs秒的时间
+NSDate *time = [NSDate dateWithTimeIntervalSince1970:100.0]; //返回以1970/01/01 GMT为基准，然后过了secs秒的时间
+NSDate *time = [NSDate dateWithTimeIntervalSinceReferenceDate:100.0]; //返回以2001/01/01 GMT为基准，然后过了secs秒的时间
+NSDate *time = [NSDate dateWithTimeInterval:100.0 sinceDate:time2]; //返回从某个时间之后过了多少秒
+NSDate *time = [NSDate distantFuture];  //返回很多年以后的未来的某一天。
+NSDate *time = [NSDate distantPast];    //返回很多年以前的某一天
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;实例方法&quot;&gt;&lt;a href=&quot;#实例方法&quot; class=&quot;headerlink&quot; title=&quot;实例方法&quot;&gt;&lt;/a&gt;实例方法&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSDate *time = [[NSDate alloc] init]; //返回当前时间
+NSDate *time = [[NSDate alloc] initWithTimeInterval:1000.0 sinceDate:time2]; //返回从某个时间之后过了多少秒
+NSDate *time = [[NSDate alloc] initWithTimeIntervalSince1970:1000000000.0]; //返回以1970/01/01 GMT为基准，然后过了secs秒的时间
+NSDate *time = [[NSDate alloc] initWithTimeIntervalSinceNow:100.0]; //返回以当前时间为基准，然后过了secs秒的时间
+NSDate *time = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:1000000.0]; //返回以2001/01/01 GMT为基准，然后过了secs秒的时间
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;日期间的比较-获取两个时间的间隔&quot;&gt;&lt;a href=&quot;#日期间的比较-获取两个时间的间隔&quot; class=&quot;headerlink&quot; title=&quot;日期间的比较 /  获取两个时间的间隔&quot;&gt;&lt;/a&gt;日期间的比较 /  获取两个时间的间隔&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSLog(@&amp;quot;%d&amp;quot;, [time isEqualToDate:time2]);  //是否相等
+NSLog(@&amp;quot;%@&amp;quot;, [time earlierDate:time2]);    //是否早于
+NSLog(@&amp;quot;%@&amp;quot;, [time2 laterDate:time]);      //是否低于
+NSLog(@&amp;quot;%ld&amp;quot;, [time2 compare:time]);       //排序时调用，返回 -1，0，1
+
+NSLog(@&amp;quot;%f&amp;quot;, [time timeIntervalSinceDate:time2]); //time2之后与time间的间隔
+NSLog(@&amp;quot;%f&amp;quot;, [time timeIntervalSince1970]);    //从1970年之后到time的间隔
+NSLog(@&amp;quot;%F&amp;quot;, [time timeIntervalSinceNow]);    //从现在到time之间的时间间隔
+NSLog(@&amp;quot;%f&amp;quot;, [time timeIntervalSinceReferenceDate]); //从以1970/01/01 GMT为基准到time的时间间隔
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;时间表示成字符串&quot;&gt;&lt;a href=&quot;#时间表示成字符串&quot; class=&quot;headerlink&quot; title=&quot;时间表示成字符串&quot;&gt;&lt;/a&gt;时间表示成字符串&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;- (NSString *)description; 以YYYY-MM-DD HH:MM:SS ±HHMM的格式表示时间。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSLocale-的用法&quot;&gt;&lt;a href=&quot;#NSLocale-的用法&quot; class=&quot;headerlink&quot; title=&quot;NSLocale 的用法&quot;&gt;&lt;/a&gt;NSLocale 的用法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier&amp;quot;en_US&amp;quot;]; // 根据本地标识符创建本地化对象
+
+[NSLocale availableLocaleIdentifiers]; // 获取系统所有本地化标识符数组列表  
+
+[[NSLocale currentLocale] localeIdentifier]; //获取当前系统设置语言的标识符
+
+[NSLocale lineDirectionForLanguage:[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode]; //获取当前语言的排版方向和字符方向
+
+[NSLocale preferredLanguages]; //获取用户的语言偏好设置列表 
+
+[NSNotificationCenter defaultCenter] addObserver:self selector@selector(localChangedHandler)  name:NSCurrentLocaleDidChangeNotification object:nil];  // 监听用户本地化设置的消息
+
+NSLocale *curLocal = [[NSLocale alloc]initWithLocaleIdentifier&amp;quot;zh-Hans&amp;quot;]; // 以本地化方式获取国际化信息的显示名称
+
+
+// 设置固定的系统返回 语言数据
+NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@&amp;quot;zh&amp;quot;];
+NSDateFormatter *secondDateFormatter = [[NSDateFormatter alloc] init];
+[secondDateFormatter setDateFormat:@&amp;quot;cccc&amp;quot;];  
+secondDateFormatter.locale = locale;
+NSDate *date = [NSDate date];
+NSLog(@&amp;quot;%@&amp;quot;, [secondDateFormatter stringFromDate:date]);
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;日期类在需要记录时间的地方发挥着巨大的作用，也可以实时地获取程序使用的时间。配合 NSLocal ，NSDateFormatter 和 NSTimeZone 这几个类就可以涵盖所有的程序使用的时间日期的数据。&lt;br&gt;&lt;img src=&quot;/img/date.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="日期，时间" scheme="http://yoursite.com/tags/%E6%97%A5%E6%9C%9F%EF%BC%8C%E6%97%B6%E9%97%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>NSData 的使用</title>

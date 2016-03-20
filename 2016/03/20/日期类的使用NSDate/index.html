@@ -4,21 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Core Text 基础2 | 第欧根尼的小桶</title>
+  <title>日期类的使用NSDate | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二. Core Text对象模型这节主要来看看Core Text绘制的一些细节问题了，首先是Core Text绘制的流程：">
+  <meta name="description" content="日期类在需要记录时间的地方发挥着巨大的作用，也可以实时地获取程序使用的时间。配合 NSLocal ，NSDateFormatter 和 NSTimeZone 这几个类就可以涵盖所有的程序使用的时间日期的数据。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Core Text 基础2">
-<meta property="og:url" content="http://yoursite.com/2016/03/14/Core-Text-基础2/index.html">
+<meta property="og:title" content="日期类的使用NSDate">
+<meta property="og:url" content="http://yoursite.com/2016/03/20/日期类的使用NSDate/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="二. Core Text对象模型这节主要来看看Core Text绘制的一些细节问题了，首先是Core Text绘制的流程：">
-<meta property="og:image" content="http://yoursite.com/img/drawflout.jpg">
-<meta property="og:image" content="http://yoursite.com/img/ctstruct.jpg">
-<meta property="og:updated_time" content="2016-03-14T13:51:14.000Z">
+<meta property="og:description" content="日期类在需要记录时间的地方发挥着巨大的作用，也可以实时地获取程序使用的时间。配合 NSLocal ，NSDateFormatter 和 NSTimeZone 这几个类就可以涵盖所有的程序使用的时间日期的数据。">
+<meta property="og:image" content="http://yoursite.com/img/date.png">
+<meta property="og:updated_time" content="2016-03-20T06:08:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Core Text 基础2">
-<meta name="twitter:description" content="二. Core Text对象模型这节主要来看看Core Text绘制的一些细节问题了，首先是Core Text绘制的流程：">
-<meta name="twitter:image" content="http://yoursite.com/img/drawflout.jpg">
+<meta name="twitter:title" content="日期类的使用NSDate">
+<meta name="twitter:description" content="日期类在需要记录时间的地方发挥着巨大的作用，也可以实时地获取程序使用的时间。配合 NSLocal ，NSDateFormatter 和 NSTimeZone 这几个类就可以涵盖所有的程序使用的时间日期的数据。">
+<meta name="twitter:image" content="http://yoursite.com/img/date.png">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -194,11 +193,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Core-Text-基础2" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-日期类的使用NSDate" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/14/Core-Text-基础2/" class="article-date">
-  	<time datetime="2016-03-14T13:14:41.000Z" itemprop="datePublished">2016-03-14</time>
+      <a href="/2016/03/20/日期类的使用NSDate/" class="article-date">
+  	<time datetime="2016-03-20T05:24:56.000Z" itemprop="datePublished">2016-03-20</time>
 </a>
     </div>
   
@@ -211,7 +210,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Core Text 基础2
+      日期类的使用NSDate
     </h1>
   
 
@@ -220,7 +219,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/informal/">informal</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期，时间/">日期，时间</a></li></ul>
 	</div>
 
         
@@ -231,17 +230,53 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="二-Core-Text对象模型"><a href="#二-Core-Text对象模型" class="headerlink" title="二. Core Text对象模型"></a>二. Core Text对象模型</h2><p>这节主要来看看Core Text绘制的一些细节问题了，首先是Core Text绘制的流程：</p>
-<p><img src="/img/drawflout.jpg" alt=""><br><a id="more"></a><br><img src="/img/ctstruct.jpg" alt=""></p>
-<ul>
-<li>framesetter framesetter对应的类型是 CTFramesetter，通过CFAttributedString进行初始化，它作为CTFrame对象的生产工厂，负责根据path生产对应的CTFrame</li>
-<li>CTFrame CTFrame是可以通过CTFrameDraw函数直接绘制到context上的，当然你可以在绘制之前，操作CTFrame中的CTLine，进行一些参数的微调</li>
-<li>CTLine 可以看做Core Text绘制中的一行的对象 通过它可以获得当前行的line ascent,line descent ,line leading,还可以获得Line下的所有Glyph Runs</li>
-<li>CTRun 或者叫做 Glyph Run，是一组共享想相同attributes（属性）的字形的集合体</li>
-</ul>
-<p>上面说了这么多对也没一个东西和图片绘制有关系，其实吧，Core Text本身并<strong>不支持图片绘制</strong>，图片的绘制你还得 <strong>通过Core Graphics</strong> 来进行。只是Core Text可以通过CTRun的设置为你的图片在文本绘制的过程中留出适当的空间。这个设置就使用到CTRunDelegate了，看这个名字大概就可以知道什么意思了，CTRunDelegate作为CTRun相关属性或操作扩展的一个入口，使得我们可以对CTRun做一些自定义的行为。为图片留位置的方法就是加入一个空白的CTRun，自定义其ascent，descent，width等参数，使得绘制文本的时候留下空白位置给相应的图片。然后图片在相应的空白位置上使用Core Graphics接口进行绘制。 </p>
-<p>使用CTRunDelegateCreate可以创建一个CTRunDelegate，它接收两个参数，一个是callbacks结构体，一个是所有callback调用的时候需要传入的对象。 callbacks的结构体为CTRunDelegateCallbacks，主要是包含一些回调函数，比如有返回当前run的ascent，descent，width这些值的回调函数，至于函数中如何鉴别当前是哪个run，可以在CTRunDelegateCreate的第二个参数来达到目的，因为CTRunDelegateCreate的第二个参数会作为每一个回调调用时的入参。</p>
+        <p>日期类在需要记录时间的地方发挥着巨大的作用，也可以实时地获取程序使用的时间。配合 NSLocal ，NSDateFormatter 和 NSTimeZone 这几个类就可以涵盖所有的程序使用的时间日期的数据。<br><img src="/img/date.png" alt=""><br><a id="more"></a></p>
+<p>初始化一个 NSDate 类可以使用工厂方法和实例方法：</p>
+<h4 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h4><pre><code>NSDate *time = [NSDate date]; //返回当前时间
+NSDate *time = [NSDate dateWithTimeIntervalSinceNow:0.0]; //返回以当前时间为基准，然后过了secs秒的时间
+NSDate *time = [NSDate dateWithTimeIntervalSince1970:100.0]; //返回以1970/01/01 GMT为基准，然后过了secs秒的时间
+NSDate *time = [NSDate dateWithTimeIntervalSinceReferenceDate:100.0]; //返回以2001/01/01 GMT为基准，然后过了secs秒的时间
+NSDate *time = [NSDate dateWithTimeInterval:100.0 sinceDate:time2]; //返回从某个时间之后过了多少秒
+NSDate *time = [NSDate distantFuture];  //返回很多年以后的未来的某一天。
+NSDate *time = [NSDate distantPast];    //返回很多年以前的某一天
+</code></pre><h4 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h4><pre><code>NSDate *time = [[NSDate alloc] init]; //返回当前时间
+NSDate *time = [[NSDate alloc] initWithTimeInterval:1000.0 sinceDate:time2]; //返回从某个时间之后过了多少秒
+NSDate *time = [[NSDate alloc] initWithTimeIntervalSince1970:1000000000.0]; //返回以1970/01/01 GMT为基准，然后过了secs秒的时间
+NSDate *time = [[NSDate alloc] initWithTimeIntervalSinceNow:100.0]; //返回以当前时间为基准，然后过了secs秒的时间
+NSDate *time = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:1000000.0]; //返回以2001/01/01 GMT为基准，然后过了secs秒的时间
+</code></pre><h4 id="日期间的比较-获取两个时间的间隔"><a href="#日期间的比较-获取两个时间的间隔" class="headerlink" title="日期间的比较 /  获取两个时间的间隔"></a>日期间的比较 /  获取两个时间的间隔</h4><pre><code>NSLog(@&quot;%d&quot;, [time isEqualToDate:time2]);  //是否相等
+NSLog(@&quot;%@&quot;, [time earlierDate:time2]);    //是否早于
+NSLog(@&quot;%@&quot;, [time2 laterDate:time]);      //是否低于
+NSLog(@&quot;%ld&quot;, [time2 compare:time]);       //排序时调用，返回 -1，0，1
 
+NSLog(@&quot;%f&quot;, [time timeIntervalSinceDate:time2]); //time2之后与time间的间隔
+NSLog(@&quot;%f&quot;, [time timeIntervalSince1970]);    //从1970年之后到time的间隔
+NSLog(@&quot;%F&quot;, [time timeIntervalSinceNow]);    //从现在到time之间的时间间隔
+NSLog(@&quot;%f&quot;, [time timeIntervalSinceReferenceDate]); //从以1970/01/01 GMT为基准到time的时间间隔
+</code></pre><h4 id="时间表示成字符串"><a href="#时间表示成字符串" class="headerlink" title="时间表示成字符串"></a>时间表示成字符串</h4><pre><code>- (NSString *)description; 以YYYY-MM-DD HH:MM:SS ±HHMM的格式表示时间。
+</code></pre><h3 id="NSLocale-的用法"><a href="#NSLocale-的用法" class="headerlink" title="NSLocale 的用法"></a>NSLocale 的用法</h3><pre><code>NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier&quot;en_US&quot;]; // 根据本地标识符创建本地化对象
+
+[NSLocale availableLocaleIdentifiers]; // 获取系统所有本地化标识符数组列表  
+
+[[NSLocale currentLocale] localeIdentifier]; //获取当前系统设置语言的标识符
+
+[NSLocale lineDirectionForLanguage:[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode]; //获取当前语言的排版方向和字符方向
+
+[NSLocale preferredLanguages]; //获取用户的语言偏好设置列表 
+
+[NSNotificationCenter defaultCenter] addObserver:self selector@selector(localChangedHandler)  name:NSCurrentLocaleDidChangeNotification object:nil];  // 监听用户本地化设置的消息
+
+NSLocale *curLocal = [[NSLocale alloc]initWithLocaleIdentifier&quot;zh-Hans&quot;]; // 以本地化方式获取国际化信息的显示名称
+
+
+// 设置固定的系统返回 语言数据
+NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@&quot;zh&quot;];
+NSDateFormatter *secondDateFormatter = [[NSDateFormatter alloc] init];
+[secondDateFormatter setDateFormat:@&quot;cccc&quot;];  
+secondDateFormatter.locale = locale;
+NSDate *date = [NSDate date];
+NSLog(@&quot;%@&quot;, [secondDateFormatter stringFromDate:date]);
+</code></pre>
       
     </div>
     
@@ -250,18 +285,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/03/15/iOS-之网络数据请求/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/03/20/日期类的使用2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          iOS 之网络数据请求
+           日期类的使用2
         
       </div>
     </a>
   
   
-    <a href="/2016/03/14/Core-Text-基础/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Core Text 基础</div>
+    <a href="/2016/03/17/NSData-的使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">NSData 的使用</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -296,7 +331,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Core-Text-基础2" data-title="Core Text 基础2" data-url="http://yoursite.com/2016/03/14/Core-Text-基础2/"></div>
+	<div class="ds-thread" data-thread-key="日期类的使用NSDate" data-title="日期类的使用NSDate" data-url="http://yoursite.com/2016/03/20/日期类的使用NSDate/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
