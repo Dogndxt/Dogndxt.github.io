@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-20T06:09:55.000Z</updated>
+  <updated>2016-03-27T02:50:18.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,119 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>StoryBoard 可视化界面布局注意点</title>
+    <link href="http://yoursite.com/2016/03/27/StoryBoard-%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2%E5%B8%83%E5%B1%80%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
+    <id>http://yoursite.com/2016/03/27/StoryBoard-可视化界面布局注意点/</id>
+    <published>2016-03-27T02:37:48.000Z</published>
+    <updated>2016-03-27T02:50:18.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;使用-ScrollView-进行自动布局&quot;&gt;&lt;a href=&quot;#使用-ScrollView-进行自动布局&quot; class=&quot;headerlink&quot; title=&quot;使用 ScrollView 进行自动布局&quot;&gt;&lt;/a&gt;使用 ScrollView 进行自动布局&lt;/h3&gt;&lt;p&gt; 解决方案：可以在 ScrollView 上添加一个唯一的子视图，大小和 ScrollView 一样，然后所有原来计划添加到 ScrollView 上的控件，都添加到子视图上面。&lt;br&gt; &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;实现步骤&quot;&gt;&lt;a href=&quot;#实现步骤&quot; class=&quot;headerlink&quot; title=&quot;实现步骤&quot;&gt;&lt;/a&gt;实现步骤&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在 Controller 自带的 View 里面添加一个 ScrollView，约束距离为（0，0，0，0）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在 ScrollView 里面添加子视图 View ，约束 ScrollView 的距离为（0，0，0，0）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在下面设置约束的4个按钮的第二个，如果想要上下滑动，则选择 Horizontal Center in Container, 并打上对勾，（如果想要左右滑动就选择 Vertical Center in Container， 同时实现左右上下则全不选）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;然后设置 View 的高度 Height（或者宽度 Width），这个高度或者宽度就是运行后 Scroller 的 ContentSize ；&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;动态设置高度或者宽度&quot;&gt;&lt;a href=&quot;#动态设置高度或者宽度&quot; class=&quot;headerlink&quot; title=&quot;动态设置高度或者宽度&quot;&gt;&lt;/a&gt;动态设置高度或者宽度&lt;/h4&gt;&lt;p&gt;将 View 的高度或者宽度设置成属性，然后重写 -(void)updateViewConstraints 方法，在调用 super 之后动态的设置 高度 这个约束的 constant 属性。&lt;/p&gt;
+&lt;h3 id=&quot;使用xcode-storyboard设置按钮圆角方法&quot;&gt;&lt;a href=&quot;#使用xcode-storyboard设置按钮圆角方法&quot; class=&quot;headerlink&quot; title=&quot;使用xcode storyboard设置按钮圆角方法&quot;&gt;&lt;/a&gt;使用xcode storyboard设置按钮圆角方法&lt;/h3&gt;&lt;p&gt;  在 sb 中点击右侧指示器的第三个下的  “User Defined Runtime Attribute” 添加 layer.cornerRadius 的值。&lt;br&gt;-&amp;gt; 在代码中：self.button.layer.cornerRadius = 10;&lt;/p&gt;
+&lt;h3 id=&quot;设置-navigationController-标题的颜色&quot;&gt;&lt;a href=&quot;#设置-navigationController-标题的颜色&quot; class=&quot;headerlink&quot; title=&quot;设置 navigationController 标题的颜色&quot;&gt;&lt;/a&gt;设置 navigationController 标题的颜色&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSDictionary *attributes=[NSDictionary dictionaryWithObjectsAndKeys:BASECOLOR, NSForegroundColorAttributeName,nil];
+[self.navigationController.navigationBar setTitleTextAttributes:attributes];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;设置-navigationItem-的左按钮-（非自定义）&quot;&gt;&lt;a href=&quot;#设置-navigationItem-的左按钮-（非自定义）&quot; class=&quot;headerlink&quot; title=&quot;设置 navigationItem 的左按钮 （非自定义）&quot;&gt;&lt;/a&gt;设置 navigationItem 的左按钮 （非自定义）&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;// 设置navigationItem的左按钮
+UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@&amp;quot;btn_common_return&amp;quot;] style:UIBarButtonItemStylePlain target:self action:@selector(leftNavBtnAction)];
+leftItem.tintColor = BASECOLOR; //图片的颜色需要单独设置，图片相当于一个蒙版
+self.navigationItem.leftBarButtonItem = leftItem;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;在-sb-中设置所有的-UINavigationBar-的统一色调&quot;&gt;&lt;a href=&quot;#在-sb-中设置所有的-UINavigationBar-的统一色调&quot; class=&quot;headerlink&quot; title=&quot;在 sb 中设置所有的 UINavigationBar 的统一色调&quot;&gt;&lt;/a&gt;在 sb 中设置所有的 UINavigationBar 的统一色调&lt;/h3&gt;&lt;p&gt;先在 UINavigationController 的页面点击查看属性显示器（右侧栏第四个）设置 Bar Tint 的颜色，就可以将全部的 bar 设置成同一个颜色，然后如果要想bar 的按钮也跟bar 同一颜色的话，还需要将其的 Background 设置成 Clear Color ，这样在子页面的按钮上设置 Clear Color 才会看到跟 bar 上的同一颜色。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;如果要想设置 UInavigationBar 上的 UIView 控件，需要在 wAny hAny 模式下将 UIView 放在右上角的位置，其他模式将不能正常显示 UIView 的大小与位置。&lt;/em&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;使用-ScrollView-进行自动布局&quot;&gt;&lt;a href=&quot;#使用-ScrollView-进行自动布局&quot; class=&quot;headerlink&quot; title=&quot;使用 ScrollView 进行自动布局&quot;&gt;&lt;/a&gt;使用 ScrollView 进行自动布局&lt;/h3&gt;&lt;p&gt; 解决方案：可以在 ScrollView 上添加一个唯一的子视图，大小和 ScrollView 一样，然后所有原来计划添加到 ScrollView 上的控件，都添加到子视图上面。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="sb" scheme="http://yoursite.com/tags/sb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CTStringAttributes 扩展属性</title>
+    <link href="http://yoursite.com/2016/03/27/CTStringAttributes-%E6%89%A9%E5%B1%95%E5%B1%9E%E6%80%A7/"/>
+    <id>http://yoursite.com/2016/03/27/CTStringAttributes-扩展属性/</id>
+    <published>2016-03-27T02:36:45.000Z</published>
+    <updated>2016-03-27T02:42:51.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Core Text 框架是处理文本内容的一个专门框架，在这个框架里面定义和约束了所有的文本字体和字形相关的属性定义。在 CTStringAttributes 这个头文件里面定义了&lt;strong&gt;21&lt;/strong&gt;种扩展属性，分别对字体和字形的属性方面进行了详细的定义。&lt;/p&gt;
+ &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;KCTFontAttributeName ：设置字体属性 （大小和字体）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTForegroundColorFromContextAttributeName ：从上下文中获取前景色&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTKernAttributeName ： 字符间距&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTLigatureAttributeName ：控制连体字的信息&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTForegroundColorAttributeName ： 前景色&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTParagraphStyleAttributeName ： 段落样式&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;KCTStrokeWidthAttributeName ：描边的宽度&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTStrokeColorAttributeName ： 描边的颜色&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTUnderlineStyleAttributeName : 下划线样式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTSuperscriptAttributeName ： 临时脚本&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTUnderlineColorAttributeName ：下划线颜色&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTVerticalFormsAttributeName ：控制字形方向&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;KCTGlyphInfoAttributeName ： 使用未编码的字形&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTCharacterShapeAttributeName ： 控制字形的选择&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTLanguageAttributeName ：指定文本的语言&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTRunDelegateAttributeName ：控制部分文字的外观&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTBaselineClassAttributeName ：引用重写基线的类&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTBaselineInfoAttributeName ： 引用基线信息的属性&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;KCTBaselineReferenceInfoAttributeName ：关键参考基线信息字典的参考标准&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTWritingDirectionAttributeName ：指定一个双向覆盖或者嵌入 （设置书写方向）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;KCTRubyAnnotationAttributeName ： 引用一个 CTRubyAnnotation 的关键&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Core Text 框架是处理文本内容的一个专门框架，在这个框架里面定义和约束了所有的文本字体和字形相关的属性定义。在 CTStringAttributes 这个头文件里面定义了&lt;strong&gt;21&lt;/strong&gt;种扩展属性，分别对字体和字形的属性方面进行了详细的定义。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="［coreText］" scheme="http://yoursite.com/tags/%EF%BC%BBcoreText%EF%BC%BD/"/>
+    
+  </entry>
   
   <entry>
     <title> 日期类的使用2</title>

@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>NSOperation和NSOperationQueue多线程的使用 | 第欧根尼的小桶</title>
+  <title>StoryBoard 可视化界面布局注意点 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了同步／异步，阻塞／非阻塞所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。">
+  <meta name="description" content="使用 ScrollView 进行自动布局 解决方案：可以在 ScrollView 上添加一个唯一的子视图，大小和 ScrollView 一样，然后所有原来计划添加到 ScrollView 上的控件，都添加到子视图上面。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NSOperation和NSOperationQueue多线程的使用">
-<meta property="og:url" content="http://yoursite.com/2016/03/17/NSOperation和NSOperationQueue多线程的使用/index.html">
+<meta property="og:title" content="StoryBoard 可视化界面布局注意点">
+<meta property="og:url" content="http://yoursite.com/2016/03/27/StoryBoard-可视化界面布局注意点/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了同步／异步，阻塞／非阻塞所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。">
-<meta property="og:updated_time" content="2016-03-17T12:10:41.000Z">
+<meta property="og:description" content="使用 ScrollView 进行自动布局 解决方案：可以在 ScrollView 上添加一个唯一的子视图，大小和 ScrollView 一样，然后所有原来计划添加到 ScrollView 上的控件，都添加到子视图上面。">
+<meta property="og:updated_time" content="2016-03-27T02:50:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSOperation和NSOperationQueue多线程的使用">
-<meta name="twitter:description" content="最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了同步／异步，阻塞／非阻塞所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。">
+<meta name="twitter:title" content="StoryBoard 可视化界面布局注意点">
+<meta name="twitter:description" content="使用 ScrollView 进行自动布局 解决方案：可以在 ScrollView 上添加一个唯一的子视图，大小和 ScrollView 一样，然后所有原来计划添加到 ScrollView 上的控件，都添加到子视图上面。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -191,11 +191,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-NSOperation和NSOperationQueue多线程的使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-StoryBoard-可视化界面布局注意点" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/17/NSOperation和NSOperationQueue多线程的使用/" class="article-date">
-  	<time datetime="2016-03-17T11:37:41.000Z" itemprop="datePublished">2016-03-17</time>
+      <a href="/2016/03/27/StoryBoard-可视化界面布局注意点/" class="article-date">
+  	<time datetime="2016-03-27T02:37:48.000Z" itemprop="datePublished">2016-03-27</time>
 </a>
     </div>
   
@@ -208,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      NSOperation和NSOperationQueue多线程的使用
+      StoryBoard 可视化界面布局注意点
     </h1>
   
 
@@ -217,7 +217,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［博客］/">［博客］</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sb/">sb</a></li></ul>
 	</div>
 
         
@@ -228,124 +228,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> 最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了<strong>同步／异步</strong>，<strong>阻塞／非阻塞</strong>所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。 <a id="more"></a></p>
-<p>  现在来讲述一下可以实现多线程的三种方式中的 NSOperation 类。使用NSOperation和NSOperationQueue实现多线程编程，实现步骤大致是这样的：</p>
-<p>  1&gt; 先将需要执行的操作封装到一个NSOperation对象中</p>
-<p>  2&gt; 然后将NSOperation对象添加到NSOperationQueue中</p>
-<p>  3&gt; 系统会自动将NSOperation中封装的操作放到一条新线程中执行</p>
-<p>  而由于  NSOperation 是一个抽象类，所以它的功能只能有其子类 NSBlockOperation 和 SInvocationOperation 来实现。</p>
-<h4 id="NSBlockOperation-的使用"><a href="#NSBlockOperation-的使用" class="headerlink" title="NSBlockOperation 的使用"></a>NSBlockOperation 的使用</h4><pre><code> NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^(){     
-    NSLog(@&quot;*执行第1次操作，线程：%@&quot;, [NSThread currentThread]);       
-   }];
-
-[operation addExecutionBlock:^() {
-
-   NSLog(@&quot;**又执行了1个新的操作，线程：%@&quot;, [NSThread currentThread]);
-
-   }];
-
-// 开始执行任务    
-[operation start];
-</code></pre><p>   注：默认情况下，调用了start方法后并不会开一条新线程去执行操作，而是在当前线程同步执行操作。只有将operation放到一个NSOperationQueue中，才会异步执行操作。</p>
-<h4 id="NSInvocationOperation-的使用"><a href="#NSInvocationOperation-的使用" class="headerlink" title="NSInvocationOperation 的使用"></a>NSInvocationOperation 的使用</h4><pre><code>ration2 = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downLoadImage:) object:URL];
-NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-[queue addOperation:operation2];
-
-如果是有刷新界面的操作，那么必须将这个操作交给主线程来完成。
-</code></pre><h3 id="自定义-NSOperation-类"><a href="#自定义-NSOperation-类" class="headerlink" title="自定义 NSOperation 类"></a>自定义 NSOperation 类</h3><p>由于 NSOperation 类功能比较少， 一般情况下我们可以自定义一个 NSOperation 类。要定制这样的一个操作，可以遵循以下步骤：</p>
-<ol>
-<li>继承 NSOperation 类</li>
-<li>重写“main”方法</li>
-<li>在“main”方法中创建一个“automaticreleasepool“</li>
-<li>将你的代码放在”autoreleasepool“中</li>
+        <h3 id="使用-ScrollView-进行自动布局"><a href="#使用-ScrollView-进行自动布局" class="headerlink" title="使用 ScrollView 进行自动布局"></a>使用 ScrollView 进行自动布局</h3><p> 解决方案：可以在 ScrollView 上添加一个唯一的子视图，大小和 ScrollView 一样，然后所有原来计划添加到 ScrollView 上的控件，都添加到子视图上面。<br> <a id="more"></a></p>
+<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4><ol>
+<li><p>在 Controller 自带的 View 里面添加一个 ScrollView，约束距离为（0，0，0，0）；</p>
+</li>
+<li><p>在 ScrollView 里面添加子视图 View ，约束 ScrollView 的距离为（0，0，0，0）；</p>
+</li>
+<li><p>在下面设置约束的4个按钮的第二个，如果想要上下滑动，则选择 Horizontal Center in Container, 并打上对勾，（如果想要左右滑动就选择 Vertical Center in Container， 同时实现左右上下则全不选）；</p>
+</li>
+<li><p>然后设置 View 的高度 Height（或者宽度 Width），这个高度或者宽度就是运行后 Scroller 的 ContentSize ；</p>
+</li>
 </ol>
-<p>  例子：<br>     <em>*</em> .h 文件</p>
-<pre><code>#import &lt;Foundation/Foundation.h&gt;
-@interface MyLengthyOperation : NSOperation
-@property (nonatomic, strong, readonly) NSString *mark;
-- (instancetype)initWithMark:(NSString *)mark;
-@end 
-</code></pre><p> <em>*</em> .m 文件</p>
-<pre><code>#import &quot;MyLengthyOperation.h&quot;
-@interface MyLengthyOperation ()
-@property (nonatomic, strong, readwrite) NSString *mark;
-@end
-@implementation MyLengthyOperation
-- (instancetype)initWithMark:(NSString *)mark {  
-   self = [super init];
-   if (self) {      
-       self.mark = mark;
-    }
-   return self;
-   }
-- (void)main {
-    @autoreleasepool {
-      for (int i = 0; i &lt; 100; i ++) {
-         if (self.isCancelled) {
-             break;
-         }
-         NSLog(@&quot;%@ - %f&quot;, self.mark, sqrt(i));
-        }
-    }
-}
+<h4 id="动态设置高度或者宽度"><a href="#动态设置高度或者宽度" class="headerlink" title="动态设置高度或者宽度"></a>动态设置高度或者宽度</h4><p>将 View 的高度或者宽度设置成属性，然后重写 -(void)updateViewConstraints 方法，在调用 super 之后动态的设置 高度 这个约束的 constant 属性。</p>
+<h3 id="使用xcode-storyboard设置按钮圆角方法"><a href="#使用xcode-storyboard设置按钮圆角方法" class="headerlink" title="使用xcode storyboard设置按钮圆角方法"></a>使用xcode storyboard设置按钮圆角方法</h3><p>  在 sb 中点击右侧指示器的第三个下的  “User Defined Runtime Attribute” 添加 layer.cornerRadius 的值。<br>-&gt; 在代码中：self.button.layer.cornerRadius = 10;</p>
+<h3 id="设置-navigationController-标题的颜色"><a href="#设置-navigationController-标题的颜色" class="headerlink" title="设置 navigationController 标题的颜色"></a>设置 navigationController 标题的颜色</h3><pre><code>NSDictionary *attributes=[NSDictionary dictionaryWithObjectsAndKeys:BASECOLOR, NSForegroundColorAttributeName,nil];
+[self.navigationController.navigationBar setTitleTextAttributes:attributes];
+</code></pre><h3 id="设置-navigationItem-的左按钮-（非自定义）"><a href="#设置-navigationItem-的左按钮-（非自定义）" class="headerlink" title="设置 navigationItem 的左按钮 （非自定义）"></a>设置 navigationItem 的左按钮 （非自定义）</h3><pre><code>// 设置navigationItem的左按钮
+UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@&quot;btn_common_return&quot;] style:UIBarButtonItemStylePlain target:self action:@selector(leftNavBtnAction)];
+leftItem.tintColor = BASECOLOR; //图片的颜色需要单独设置，图片相当于一个蒙版
+self.navigationItem.leftBarButtonItem = leftItem;
+</code></pre><h3 id="在-sb-中设置所有的-UINavigationBar-的统一色调"><a href="#在-sb-中设置所有的-UINavigationBar-的统一色调" class="headerlink" title="在 sb 中设置所有的 UINavigationBar 的统一色调"></a>在 sb 中设置所有的 UINavigationBar 的统一色调</h3><p>先在 UINavigationController 的页面点击查看属性显示器（右侧栏第四个）设置 Bar Tint 的颜色，就可以将全部的 bar 设置成同一个颜色，然后如果要想bar 的按钮也跟bar 同一颜色的话，还需要将其的 Background 设置成 Clear Color ，这样在子页面的按钮上设置 Clear Color 才会看到跟 bar 上的同一颜色。</p>
+<p><em>如果要想设置 UInavigationBar 上的 UIView 控件，需要在 wAny hAny 模式下将 UIView 放在右上角的位置，其他模式将不能正常显示 UIView 的大小与位置。</em></p>
 
-@end
-</code></pre><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><pre><code>//  初始化任务 
-MyLengthyOperation *operation_1 = [[MyLengthyOperation alloc] initWithMark:@&quot;operation_1&quot;];
-MyLengthyOperation *operation_2 = [[MyLengthyOperation alloc] initWithMark:@&quot;operation_2&quot;];
-
-// 设置任务的优先级
-[operation_1 setQueuePriority:NSOperationQueuePriorityVeryLow];
-[operation_2 setQueuePriority:NSOperationQueuePriorityHigh];
-
-// 添加从属关系
-[operation_2 addDependency:operation_1]; （任务2在任务1结束后才会执行）
-
-// 初始化队列
-NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
-myQueue.name = @&quot;下载队列&quot;;
-
-// 将一个简单的任务队列添加进队列中 （使用 Block 回调方式）      
-    NSURL *aURL = [NSURL URLWithString:URL];
-    NSData *data = [NSData dataWithContentsOfURL:aURL];
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-
-        UIImage *image = [[UIImage alloc] initWithData:data];
-        [self performSelectorOnMainThread:@selector(updateUI:) withObject:image waitUntilDone:YES];
-    }];
-}];
-
-// 设置任务队列的最大并发数
- myQueue.maxConcurrentOperationCount = 4;
-
-// 添加进任务队列中执行
-[myQueue addOperation:operation_1];
-[myQueue addOperation:operation_2];
-
-// 取消所有操作
-[myQueue cancelAllOperations];
-
-// 执行延时的操作（将执行代码放置在 block 中）
-- (void)execute:(dispatch_block_t)block afterDelay:(int64_t)delta {
-
-   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delta), dispatch_get_main_queue(), block);
- }
-
-// 挂起操作
-[myQueue setSuspended:YES];
-
-// 取消任务
-[operation_1 cancel];
-
-//  任务完成后的回调可以表示任务已经结束
- [operation_1 setCompletionBlock:^{
-      NSLog(@&quot;任务1结束&quot;);
-  }];
- [operation_2 setCompletionBlock:^{
-      NSLog(@&quot;任务2结束&quot;);
- }];
-</code></pre>
       
     </div>
     
@@ -354,18 +258,9 @@ myQueue.name = @&quot;下载队列&quot;;
     
 <nav id="article-nav">
   
-    <a href="/2016/03/17/NSData-的使用/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          NSData 的使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/03/15/NSURLConnection-基本使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">NSURLConnection 基本使用</div>
+    <a href="/2016/03/27/CTStringAttributes-扩展属性/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CTStringAttributes 扩展属性</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -400,7 +295,7 @@ myQueue.name = @&quot;下载队列&quot;;
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="NSOperation和NSOperationQueue多线程的使用" data-title="NSOperation和NSOperationQueue多线程的使用" data-url="http://yoursite.com/2016/03/17/NSOperation和NSOperationQueue多线程的使用/"></div>
+	<div class="ds-thread" data-thread-key="StoryBoard-可视化界面布局注意点" data-title="StoryBoard 可视化界面布局注意点" data-url="http://yoursite.com/2016/03/27/StoryBoard-可视化界面布局注意点/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
