@@ -6,28 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>NSURLConnection 基本使用 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。
-NSURLConnection 的常用类· NSURL ：请求地址
-· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….
-· NSMutableRequest ：NSURLRequest 的子类
-· N">
+  <meta name="description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NSURLConnection 基本使用">
 <meta property="og:url" content="http://yoursite.com/2016/03/15/NSURLConnection-基本使用/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。
-NSURLConnection 的常用类· NSURL ：请求地址
-· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….
-· NSMutableRequest ：NSURLRequest 的子类
-· N">
-<meta property="og:updated_time" content="2016-03-15T13:57:04.000Z">
+<meta property="og:description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。">
+<meta property="og:updated_time" content="2016-03-31T12:09:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSURLConnection 基本使用">
-<meta name="twitter:description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。
-NSURLConnection 的常用类· NSURL ：请求地址
-· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….
-· NSMutableRequest ：NSURLRequest 的子类
-· N">
+<meta name="twitter:description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -127,7 +115,7 @@ NSURLConnection 的常用类· NSURL ：请求地址
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 20px;">日期，时间</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a>
+						<a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 20px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a>
 					</div>
 				</section>
 				
@@ -240,12 +228,11 @@ NSURLConnection 的常用类· NSURL ：请求地址
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。</p>
+        <p>现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。<br><a id="more"></a></p>
 <h3 id="NSURLConnection-的常用类"><a href="#NSURLConnection-的常用类" class="headerlink" title="NSURLConnection 的常用类"></a>NSURLConnection 的常用类</h3><p>· NSURL ：请求地址</p>
 <p>· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….</p>
 <p>· NSMutableRequest ：NSURLRequest 的子类</p>
 <p>· NSURLConnection：负责发送请求，建立客户端和服务器的连接。发送NSURLRequest的数据给服务器，并收集来自服务器的响应数据</p>
-<a id="more"></a>
 <h3 id="NSURLConnection的使用"><a href="#NSURLConnection的使用" class="headerlink" title="NSURLConnection的使用"></a>NSURLConnection的使用</h3><p>使用 NSURLConnection 这个类的步骤主要有三个：</p>
 <p>1）创建一个NSURL对象，设置请求路径（设置请求路径）</p>
 <p>2）传入NSURL创建一个NSURLRequest对象，设置请求头和请求体（创建请求对象）</p>

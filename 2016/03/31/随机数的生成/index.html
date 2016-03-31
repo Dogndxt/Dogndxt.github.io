@@ -4,27 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title> 日期类的使用2 | 第欧根尼的小桶</title>
+  <title>随机数的生成 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="接上一篇：日期类的使用NSDate
-NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+  <meta name="description" content="如何生成一个 Objective-C 的随机数   具体而言，产生一个 0 和 N - 1 之间的随机数，使用 arc4random_uniform()，从而避免模偏差(modulo bias)。
 
-[dateFormatter setDateFormat:@&amp;quot;&amp;apos;公元前/后:&amp;apos;G  &amp;apos;年份:&amp;apos;u&amp;apos;=&amp;apos;yyyy&amp;apos;=&amp;">
+0 到 N - 1 之间的随机整数
+  NSUInteger r = arc4random_uniform(N);">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" 日期类的使用2">
-<meta property="og:url" content="http://yoursite.com/2016/03/20/日期类的使用2/index.html">
+<meta property="og:title" content="随机数的生成">
+<meta property="og:url" content="http://yoursite.com/2016/03/31/随机数的生成/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="接上一篇：日期类的使用NSDate
-NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+<meta property="og:description" content="如何生成一个 Objective-C 的随机数   具体而言，产生一个 0 和 N - 1 之间的随机数，使用 arc4random_uniform()，从而避免模偏差(modulo bias)。
 
-[dateFormatter setDateFormat:@&amp;quot;&amp;apos;公元前/后:&amp;apos;G  &amp;apos;年份:&amp;apos;u&amp;apos;=&amp;apos;yyyy&amp;apos;=&amp;">
-<meta property="og:updated_time" content="2016-03-20T06:09:55.000Z">
+0 到 N - 1 之间的随机整数
+  NSUInteger r = arc4random_uniform(N);">
+<meta property="og:updated_time" content="2016-03-31T11:55:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 日期类的使用2">
-<meta name="twitter:description" content="接上一篇：日期类的使用NSDate
-NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+<meta name="twitter:title" content="随机数的生成">
+<meta name="twitter:description" content="如何生成一个 Objective-C 的随机数   具体而言，产生一个 0 和 N - 1 之间的随机数，使用 arc4random_uniform()，从而避免模偏差(modulo bias)。
 
-[dateFormatter setDateFormat:@&amp;quot;&amp;apos;公元前/后:&amp;apos;G  &amp;apos;年份:&amp;apos;u&amp;apos;=&amp;apos;yyyy&amp;apos;=&amp;">
+0 到 N - 1 之间的随机整数
+  NSUInteger r = arc4random_uniform(N);">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -200,11 +200,11 @@ NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter allo
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-日期类的使用2" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-随机数的生成" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/20/日期类的使用2/" class="article-date">
-  	<time datetime="2016-03-20T05:59:29.000Z" itemprop="datePublished">2016-03-20</time>
+      <a href="/2016/03/31/随机数的生成/" class="article-date">
+  	<time datetime="2016-03-31T11:49:15.000Z" itemprop="datePublished">2016-03-31</time>
 </a>
     </div>
   
@@ -217,7 +217,7 @@ NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter allo
         
   
     <h1 class="article-title" itemprop="name">
-       日期类的使用2
+      随机数的生成
     </h1>
   
 
@@ -226,7 +226,7 @@ NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter allo
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期，时间/">日期，时间</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 	</div>
 
         
@@ -237,29 +237,47 @@ NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter allo
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>接上一篇：<a href="/2016/03/20/日期类的使用NSDate/">日期类的使用NSDate</a></p>
-<h3 id="NSDateFormatter-的使用"><a href="#NSDateFormatter-的使用" class="headerlink" title="NSDateFormatter 的使用"></a>NSDateFormatter 的使用</h3><pre><code>NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        <h3 id="如何生成一个-Objective-C-的随机数"><a href="#如何生成一个-Objective-C-的随机数" class="headerlink" title="如何生成一个 Objective-C 的随机数"></a>如何生成一个 Objective-C 的随机数</h3><p>   具体而言，产生一个 0 和 N - 1 之间的随机数，使用 arc4random_uniform()，从而避免模偏差(modulo bias)。</p>
+<ol>
+<li><p>0 到 N - 1 之间的随机整数</p>
+<p>  NSUInteger r = arc4random_uniform(N);</p>
+</li>
+</ol>
+<a id="more"></a>
+<ol>
+<li><p>1 到 N 之间的随机整数 </p>
+<p>  NSUInteger r = arc4random_uniform(N) + 1;</p>
+</li>
+</ol>
+<ol>
+<li>0 到 1 之间的随机浮点数（double）</li>
+</ol>
+<p>如果你要生成一个随机 double 或 float，另一个很好的选择是功能较模糊的 rand48 家族，包括 drand48(3)。</p>
+<pre><code>srand48(time(0));
+double r = drand48();
+</code></pre><p> 不像 arc4random 函数， rand48 函数在产生随机数之前需要种子的初始值。这个种子函数 srand48(3) 应该只运行一次</p>
+<h4 id="我如何从一个-NSArray-选择一个随机元素？"><a href="#我如何从一个-NSArray-选择一个随机元素？" class="headerlink" title="我如何从一个 NSArray 选择一个随机元素？"></a>我如何从一个 NSArray 选择一个随机元素？</h4><pre><code>if ([array count] &gt; 0) {
+  id obj = array[arc4random_uniform([array count])];
+}
+</code></pre><h4 id="我如何随机排序一个-NSArray？"><a href="#我如何随机排序一个-NSArray？" class="headerlink" title="我如何随机排序一个 NSArray？"></a>我如何随机排序一个 NSArray？</h4><pre><code>NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
+NSUInteger count = [mutableArray count];
 
-[dateFormatter setDateFormat:@&quot;&apos;公元前/后:&apos;G  &apos;年份:&apos;u&apos;=&apos;yyyy&apos;=&apos;yy &apos;季度:&apos;q&apos;=&apos;qqq&apos;=&apos;qqqq &apos;月份:&apos;M&apos;=&apos;MMM&apos;=&apos;MMMM &apos;今天是今年第几周:&apos;w &apos;今天是本月第几周:&apos;W  &apos;
-今天是今天第几天:&apos;D &apos;今天是本月第几天:&apos;d &apos;星期:&apos;c&apos;=&apos;ccc&apos;=&apos;cccc &apos;上午/下午:&apos;a &apos;小时:&apos;h&apos;=&apos;H &apos;分钟:&apos;m &apos;秒:&apos;s &apos;毫秒:&apos;SSS  &apos;这一天已过多少毫秒:&apos;A  &apos;时区名称:&apos;zzzz&apos;=&apos;vvvv &apos;时区编号:&apos;Z &quot;];
+if (count &gt; 1) {
+  for (NSUInteger i = count - 1; i &gt; 0; --i) {
+      [mutableArray exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform((int32_t)(i + 1))];
+   }
+}
+NSArray *randomArray = [NSArray arrayWithArray:mutableArray];
+</code></pre><h4 id="生成一个随机的小写-NSString"><a href="#生成一个随机的小写-NSString" class="headerlink" title="生成一个随机的小写 NSString"></a>生成一个随机的小写 NSString</h4><p>如果你是对一个已知的，连续范围的 Unicode 字符做处理，例如小写字母 (U+0061 — U+007A)，你可以从 char 做一个简单的换算：</p>
+<pre><code>NSString *letter = [NSString stringWithFormat:@&quot;%c&quot;, arc4random_uniform(26) + &apos;a&apos;];
+</code></pre><h4 id="从一个-NSString-选择一个随机字符"><a href="#从一个-NSString-选择一个随机字符" class="headerlink" title="从一个 NSString 选择一个随机字符"></a>从一个 NSString 选择一个随机字符</h4><p>另外，从一组你选择的字符中来挑选随机字母的一个简单的方法是简单地创建一个包含所有可能的字母的字符串：</p>
+<pre><code>NSString *vowels = @&quot;aeiouy&quot;;
+NSString *letter = [vowels substringWithRange:NSMakeRange(arc4random_uniform([vowels length]), 1)];
+</code></pre><h4 id="为什么要使用-arc4random-3-，而不是-rand-3-或-random-3-？"><a href="#为什么要使用-arc4random-3-，而不是-rand-3-或-random-3-？" class="headerlink" title="为什么要使用 arc4random(3)，而不是 rand(3) 或 random(3)？"></a>为什么要使用 arc4random(3)，而不是 rand(3) 或 random(3)？</h4><pre><code>arc4random 不需要初始种子（用 srand 或 srandom），使它更加容易使用。
+arc4random 范围可达 0x100000000 (4294967296)，而 rand 和 random 的上限在 RAND_MAX = 0x7fffffff (2147483647)。
+rand 经常定期被周期低位的方式，使其更可预测执行。
+</code></pre><h4 id="什么是-rand-3-random-3-和-arc4random-3-，以及它们从哪里来的？"><a href="#什么是-rand-3-random-3-和-arc4random-3-，以及它们从哪里来的？" class="headerlink" title="什么是 rand(3), random(3), 和 arc4random(3)，以及它们从哪里来的？"></a>什么是 rand(3), random(3), 和 arc4random(3)，以及它们从哪里来的？</h4><p>rand 是一个标准的 C 函数。<br>random 是定义为 POSIX 标准的一部分。<br>arc4random 是在 BSD 和派生平台。</p>
 
- NSLog(@&quot;%@&quot;, [dateFormatter stringFromDate:[NSDate date]]);
-</code></pre><a id="more"></a>
-<h3 id="NSTimeZone-的使用"><a href="#NSTimeZone-的使用" class="headerlink" title="NSTimeZone 的使用"></a>NSTimeZone 的使用</h3><pre><code>//系统时区
-NSTimeZone *zone = [NSTimeZone systemTimeZone];
-NSTimeZone *zone = [NSTimeZone defaultTimeZone];
-NSTimeZone *localTime = [NSTimeZone localTimeZone];
-
-NSData *data = [zone data];//转化成 二进制数据
-
-NSString *addStr = [zone abbreviation];//获取时区的简写
-
-NSInteger timeoff = [zone secondsFromGMT];   //获取时区的偏移量
-
-NSDate *timeOffDate = [date dateByAddingTimeInterval:timeoff]; //附加时间
-
-NSArray *zoneArrs = [NSTimeZone knownTimeZoneNames];    //获取时区的对应表
-</code></pre>
       
     </div>
     
@@ -268,18 +286,18 @@ NSArray *zoneArrs = [NSTimeZone knownTimeZoneNames];    //获取时区的对应�
     
 <nav id="article-nav">
   
-    <a href="/2016/03/27/CTStringAttributes-扩展属性/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/03/31/十个iOS面试问题/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          CTStringAttributes 扩展属性
+          十个iOS面试问题
         
       </div>
     </a>
   
   
-    <a href="/2016/03/20/日期类的使用NSDate/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">日期类的使用NSDate</div>
+    <a href="/2016/03/31/nil-Nil-NULL和NSNull/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nil_Nil_NULL和NSNull</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -314,7 +332,7 @@ NSArray *zoneArrs = [NSTimeZone knownTimeZoneNames];    //获取时区的对应�
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="日期类的使用2" data-title=" 日期类的使用2" data-url="http://yoursite.com/2016/03/20/日期类的使用2/"></div>
+	<div class="ds-thread" data-thread-key="随机数的生成" data-title="随机数的生成" data-url="http://yoursite.com/2016/03/31/随机数的生成/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

@@ -4,27 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title> 日期类的使用2 | 第欧根尼的小桶</title>
+  <title>nil_Nil_NULL和NSNull | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="接上一篇：日期类的使用NSDate
-NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-
-[dateFormatter setDateFormat:@&amp;quot;&amp;apos;公元前/后:&amp;apos;G  &amp;apos;年份:&amp;apos;u&amp;apos;=&amp;apos;yyyy&amp;apos;=&amp;">
+  <meta name="description">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" 日期类的使用2">
-<meta property="og:url" content="http://yoursite.com/2016/03/20/日期类的使用2/index.html">
+<meta property="og:title" content="nil_Nil_NULL和NSNull">
+<meta property="og:url" content="http://yoursite.com/2016/03/31/nil-Nil-NULL和NSNull/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="接上一篇：日期类的使用NSDate
-NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-
-[dateFormatter setDateFormat:@&amp;quot;&amp;apos;公元前/后:&amp;apos;G  &amp;apos;年份:&amp;apos;u&amp;apos;=&amp;apos;yyyy&amp;apos;=&amp;">
-<meta property="og:updated_time" content="2016-03-20T06:09:55.000Z">
+<meta property="og:description">
+<meta property="og:image" content="http://yoursite.com/img/null_nil.jpg">
+<meta property="og:updated_time" content="2016-03-31T11:55:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 日期类的使用2">
-<meta name="twitter:description" content="接上一篇：日期类的使用NSDate
-NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-
-[dateFormatter setDateFormat:@&amp;quot;&amp;apos;公元前/后:&amp;apos;G  &amp;apos;年份:&amp;apos;u&amp;apos;=&amp;apos;yyyy&amp;apos;=&amp;">
+<meta name="twitter:title" content="nil_Nil_NULL和NSNull">
+<meta name="twitter:description">
+<meta name="twitter:image" content="http://yoursite.com/img/null_nil.jpg">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -200,11 +193,11 @@ NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter allo
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-日期类的使用2" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-nil-Nil-NULL和NSNull" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/20/日期类的使用2/" class="article-date">
-  	<time datetime="2016-03-20T05:59:29.000Z" itemprop="datePublished">2016-03-20</time>
+      <a href="/2016/03/31/nil-Nil-NULL和NSNull/" class="article-date">
+  	<time datetime="2016-03-31T11:46:08.000Z" itemprop="datePublished">2016-03-31</time>
 </a>
     </div>
   
@@ -217,7 +210,7 @@ NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter allo
         
   
     <h1 class="article-title" itemprop="name">
-       日期类的使用2
+      nil_Nil_NULL和NSNull
     </h1>
   
 
@@ -226,7 +219,7 @@ NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter allo
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期，时间/">日期，时间</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nil/">nil</a></li></ul>
 	</div>
 
         
@@ -237,29 +230,20 @@ NSDateFormatter 的使用NSDateFormatter *dateFormatter = [[NSDateFormatter allo
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>接上一篇：<a href="/2016/03/20/日期类的使用NSDate/">日期类的使用NSDate</a></p>
-<h3 id="NSDateFormatter-的使用"><a href="#NSDateFormatter-的使用" class="headerlink" title="NSDateFormatter 的使用"></a>NSDateFormatter 的使用</h3><pre><code>NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        <p><img src="/img/null_nil.jpg" alt=""><br><a id="more"></a></p>
+<ul>
+<li><p>C用0来作为不存在的原始值，而NULL作为指针(这在指针环境中相当于0)。</p>
+</li>
+<li><p>Objective-C在C的表达不存在的基础上增加了nil。nil是一个指向不存在的对象指针。虽然它在语义上与NULL不同，但它们在技术上是相等的。</p>
+</li>
+<li><p>在框架层面，Foundation定义了NSNull，即一个类方法+null，它返回一个单独的NSNull对象。NSNull与nil以及NULL不同，因为它是一个实际的对象，而不是一个零值。</p>
+</li>
+<li><p>另外，在Foundation/NSObjCRuntime.h中，Nil被定义为指向零的类指针。这个nil的鲜为人知的大写的表兄并不常常出现，但它至少值得注意。</p>
+</li>
+<li><p>刚被分配的NSObject的内容被设置为0。</p>
+</li>
+</ul>
 
-[dateFormatter setDateFormat:@&quot;&apos;公元前/后:&apos;G  &apos;年份:&apos;u&apos;=&apos;yyyy&apos;=&apos;yy &apos;季度:&apos;q&apos;=&apos;qqq&apos;=&apos;qqqq &apos;月份:&apos;M&apos;=&apos;MMM&apos;=&apos;MMMM &apos;今天是今年第几周:&apos;w &apos;今天是本月第几周:&apos;W  &apos;
-今天是今天第几天:&apos;D &apos;今天是本月第几天:&apos;d &apos;星期:&apos;c&apos;=&apos;ccc&apos;=&apos;cccc &apos;上午/下午:&apos;a &apos;小时:&apos;h&apos;=&apos;H &apos;分钟:&apos;m &apos;秒:&apos;s &apos;毫秒:&apos;SSS  &apos;这一天已过多少毫秒:&apos;A  &apos;时区名称:&apos;zzzz&apos;=&apos;vvvv &apos;时区编号:&apos;Z &quot;];
-
- NSLog(@&quot;%@&quot;, [dateFormatter stringFromDate:[NSDate date]]);
-</code></pre><a id="more"></a>
-<h3 id="NSTimeZone-的使用"><a href="#NSTimeZone-的使用" class="headerlink" title="NSTimeZone 的使用"></a>NSTimeZone 的使用</h3><pre><code>//系统时区
-NSTimeZone *zone = [NSTimeZone systemTimeZone];
-NSTimeZone *zone = [NSTimeZone defaultTimeZone];
-NSTimeZone *localTime = [NSTimeZone localTimeZone];
-
-NSData *data = [zone data];//转化成 二进制数据
-
-NSString *addStr = [zone abbreviation];//获取时区的简写
-
-NSInteger timeoff = [zone secondsFromGMT];   //获取时区的偏移量
-
-NSDate *timeOffDate = [date dateByAddingTimeInterval:timeoff]; //附加时间
-
-NSArray *zoneArrs = [NSTimeZone knownTimeZoneNames];    //获取时区的对应表
-</code></pre>
       
     </div>
     
@@ -268,18 +252,18 @@ NSArray *zoneArrs = [NSTimeZone knownTimeZoneNames];    //获取时区的对应�
     
 <nav id="article-nav">
   
-    <a href="/2016/03/27/CTStringAttributes-扩展属性/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/03/31/随机数的生成/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          CTStringAttributes 扩展属性
+          随机数的生成
         
       </div>
     </a>
   
   
-    <a href="/2016/03/20/日期类的使用NSDate/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">日期类的使用NSDate</div>
+    <a href="/2016/03/31/Objective-C的警告/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Objective-C的警告</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -314,7 +298,7 @@ NSArray *zoneArrs = [NSTimeZone knownTimeZoneNames];    //获取时区的对应�
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="日期类的使用2" data-title=" 日期类的使用2" data-url="http://yoursite.com/2016/03/20/日期类的使用2/"></div>
+	<div class="ds-thread" data-thread-key="nil-Nil-NULL和NSNull" data-title="nil_Nil_NULL和NSNull" data-url="http://yoursite.com/2016/03/31/nil-Nil-NULL和NSNull/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
