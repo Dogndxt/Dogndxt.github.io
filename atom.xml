@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-31T12:04:57.000Z</updated>
+  <updated>2016-04-07T13:01:20.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>路径类NSURL的使用</title>
+    <link href="http://yoursite.com/2016/04/07/%E8%B7%AF%E5%BE%84%E7%B1%BBNSURL%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2016/04/07/路径类NSURL的使用/</id>
+    <published>2016-04-07T13:00:28.000Z</published>
+    <updated>2016-04-07T13:01:20.000Z</updated>
+    
+    <content type="html">&lt;p&gt;NSURL 类作为路径和地址的表示类，在各种场合都发挥很大的作用。&lt;/p&gt;
+&lt;h3 id=&quot;初始化&quot;&gt;&lt;a href=&quot;#初始化&quot; class=&quot;headerlink&quot; title=&quot;初始化&quot;&gt;&lt;/a&gt;初始化&lt;/h3&gt;&lt;p&gt;共有18中初始化方法 （9种实例化方法 + 9种工厂方法）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;init...
+URLWith...
+fileURLWith...
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;比较方法&quot;&gt;&lt;a href=&quot;#比较方法&quot; class=&quot;headerlink&quot; title=&quot;比较方法&quot;&gt;&lt;/a&gt;比较方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;isEqual:
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;查询一个NSURL&quot;&gt;&lt;a href=&quot;#查询一个NSURL&quot; class=&quot;headerlink&quot; title=&quot;查询一个NSURL&quot;&gt;&lt;/a&gt;查询一个NSURL&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;checkResourceIsReachableAndReturnError:  返回一个文件URL指向的资源是否可达
+isFileReferenceURL
+isFileURL
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;常量&quot;&gt;&lt;a href=&quot;#常量&quot; class=&quot;headerlink&quot; title=&quot;常量&quot;&gt;&lt;/a&gt;常量&lt;/h3&gt;&lt;p&gt;NSURLFileScheme  : 文件URL的scheme&lt;br&gt;还有一堆文件资源的key，如 属性修改日期、访问日期、内容修改日期、创建日期、自定义Icon、文件标识符、文件类型、文件安全、是否隐藏扩展名、是否是文件夹等&lt;/p&gt;
+&lt;h3 id=&quot;NSURL的属性：&quot;&gt;&lt;a href=&quot;#NSURL的属性：&quot; class=&quot;headerlink&quot; title=&quot;NSURL的属性：&quot;&gt;&lt;/a&gt;NSURL的属性：&lt;/h3&gt;&lt;p&gt;例如：scheme、user、password、host、port、path、pathComponents、pathExtension、lastPathComponent、parameterString、fragment&lt;/p&gt;
+&lt;h3 id=&quot;get和set-File-System-Resource-Properties-这部分需要加强理解&quot;&gt;&lt;a href=&quot;#get和set-File-System-Resource-Properties-这部分需要加强理解&quot; class=&quot;headerlink&quot; title=&quot;get和set File System Resource Properties(这部分需要加强理解)&quot;&gt;&lt;/a&gt;get和set File System Resource Properties(这部分需要加强理解)&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSString *size = Nil;
+NSError *error = [[NSError alloc] initWithDomain:@&amp;quot;1&amp;quot; code:1 userInfo:Nil];
+
+NSURL *samplePath = [[NSURL alloc] initWithString:@&amp;quot;file://Users/Users/zxq/Desktop/1.pdf&amp;quot;];
+
+//获取文件的大小
+[samplePath getResourceValue:&amp;amp;size forKey:NSURLFileSizeKey error:&amp;amp;error];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   [samplePath getResourceValue:&amp;amp;size forKey:NSURLTotalFileSizeKey error:&amp;amp;error];&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//获取文件地址
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   [samplePath getResourceValue:&amp;amp;size forKey:NSURLPathKey error:&amp;amp;error];&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//获取最后修改的时间
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   [samplePath getResourceValue:&amp;amp;size forKey:NSURLCreationDateKey error:&amp;amp;error];&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//获取文件名
+[samplePath getResourceValue:&amp;amp;size forKey:NSURLNameKey error:&amp;amp;error];
+NSLog(@&amp;quot;Error == %@&amp;quot;, error);
+NSLog(@&amp;quot;size == %@&amp;quot;, size);
+
+
+//是否可达
+NSLog(@&amp;quot;%d&amp;quot;, [samplePath checkPromisedItemIsReachableAndReturnError:&amp;amp;error]);
+
+NSLog(@&amp;quot;%d&amp;quot;, [samplePath isFileReferenceURL]);
+NSLog(@&amp;quot;%d&amp;quot;, [samplePath isFileURL]);
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;NSURL 类作为路径和地址的表示类，在各种场合都发挥很大的作用。&lt;/p&gt;
+&lt;h3 id=&quot;初始化&quot;&gt;&lt;a href=&quot;#初始化&quot; class=&quot;headerlink&quot; title=&quot;初始化&quot;&gt;&lt;/a&gt;初始化&lt;/h3&gt;&lt;p&gt;共有18中初始化方法 （9种实例化方法 + 9种工厂方法）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;init...
+URLWith...
+fileURLWith...
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="［NSURL］" scheme="http://yoursite.com/tags/%EF%BC%BBNSURL%EF%BC%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>十个iOS面试问题</title>

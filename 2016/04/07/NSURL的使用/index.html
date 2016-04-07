@@ -4,18 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>NSURLConnection 基本使用 | 第欧根尼的小桶</title>
+  <title>NSURL的使用 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。">
+  <meta name="description" content="NSURL 类作为路径和地址的表示类，在各种场合都发挥很大的作用。
+初始化共有18中初始化方法 （9种实例化方法 + 9种工厂方法）
+init...
+URLWith...
+fileURLWith...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NSURLConnection 基本使用">
-<meta property="og:url" content="http://yoursite.com/2016/03/15/NSURLConnection-基本使用/index.html">
+<meta property="og:title" content="NSURL的使用">
+<meta property="og:url" content="http://yoursite.com/2016/04/07/NSURL的使用/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。">
-<meta property="og:updated_time" content="2016-03-31T12:09:29.000Z">
+<meta property="og:description" content="NSURL 类作为路径和地址的表示类，在各种场合都发挥很大的作用。
+初始化共有18中初始化方法 （9种实例化方法 + 9种工厂方法）
+init...
+URLWith...
+fileURLWith...">
+<meta property="og:updated_time" content="2016-04-07T12:52:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSURLConnection 基本使用">
-<meta name="twitter:description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。">
+<meta name="twitter:title" content="NSURL的使用">
+<meta name="twitter:description" content="NSURL 类作为路径和地址的表示类，在各种场合都发挥很大的作用。
+初始化共有18中初始化方法 （9种实例化方法 + 9种工厂方法）
+init...
+URLWith...
+fileURLWith...">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -78,7 +90,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -115,7 +127,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 20px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a>
+						<a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 20px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a>
 					</div>
 				</section>
 				
@@ -191,11 +203,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-NSURLConnection-基本使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-NSURL的使用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/15/NSURLConnection-基本使用/" class="article-date">
-  	<time datetime="2016-03-15T13:38:59.000Z" itemprop="datePublished">2016-03-15</time>
+      <a href="/2016/04/07/NSURL的使用/" class="article-date">
+  	<time datetime="2016-04-07T12:50:09.000Z" itemprop="datePublished">2016-04-07</time>
 </a>
     </div>
   
@@ -208,7 +220,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      NSURLConnection 基本使用
+      NSURL的使用
     </h1>
   
 
@@ -216,10 +228,6 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［数据请求］/">［数据请求］</a></li></ul>
-	</div>
-
         
 
         <div class="clearfix"></div>
@@ -228,33 +236,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。<br><a id="more"></a></p>
-<h3 id="NSURLConnection-的常用类"><a href="#NSURLConnection-的常用类" class="headerlink" title="NSURLConnection 的常用类"></a>NSURLConnection 的常用类</h3><p>· NSURL ：请求地址</p>
-<p>· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….</p>
-<p>· NSMutableRequest ：NSURLRequest 的子类</p>
-<p>· NSURLConnection：负责发送请求，建立客户端和服务器的连接。发送NSURLRequest的数据给服务器，并收集来自服务器的响应数据</p>
-<h3 id="NSURLConnection的使用"><a href="#NSURLConnection的使用" class="headerlink" title="NSURLConnection的使用"></a>NSURLConnection的使用</h3><p>使用 NSURLConnection 这个类的步骤主要有三个：</p>
-<p>1）创建一个NSURL对象，设置请求路径（设置请求路径）</p>
-<p>2）传入NSURL创建一个NSURLRequest对象，设置请求头和请求体（创建请求对象）</p>
-<p>3）使用NSURLConnection发送NSURLRequest（发送请求）</p>
-<p>在请求数据的过程中根据连接服务器的方式分为<strong>同步请求</strong>和<strong>异步请求</strong>这两种。</p>
-<ol>
-<li>同步请求</li>
-</ol>
-<p><code>NSData *data=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];</code></p>
-<ol>
-<li>异步请求</li>
-</ol>
-<p>－ 使用 block 回调</p>
-<pre><code>NSOperationQueue *queue=[NSOperationQueue mainQueue];
-[NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) { }];
-</code></pre><p>－ 代理</p>
-<pre><code>NSURLConnection *conn=[NSURLConnection connectionWithRequest:request delegate:self];
-[conn start];
-</code></pre><p>然后在NSURLConnectionDataDelegate代理方法里面执行事件。</p>
-<h3 id="NSMutableURLRequest-的妙用"><a href="#NSMutableURLRequest-的妙用" class="headerlink" title="NSMutableURLRequest 的妙用"></a>NSMutableURLRequest 的妙用</h3><p>NSMutableURLRequest是NSURLRequest的子类，常用方法有</p>
-<p>－ 设置请求超时等待时间（超过这个时间就算超时，请求失败）- (void)setTimeoutInterval:(NSTimeInterval)seconds;<br>－ 设置请求方法（比如GET和POST）- (void)setHTTPMethod:(NSString <em>)method;<br>－ 设置请求体 - (void)setHTTPBody:(NSData </em>)data;<br>－ 设置请求头 - (void)setValue:(NSString <em>)value forHTTPHeaderField:(NSString </em>)field;</p>
+        <p>NSURL 类作为路径和地址的表示类，在各种场合都发挥很大的作用。</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>共有18中初始化方法 （9种实例化方法 + 9种工厂方法）</p>
+<pre><code>init...
+URLWith...
+fileURLWith...
+</code></pre><a id="more"></a>
+<h3 id="比较方法"><a href="#比较方法" class="headerlink" title="比较方法"></a>比较方法</h3><pre><code>isEqual:
+</code></pre><h3 id="查询一个NSURL"><a href="#查询一个NSURL" class="headerlink" title="查询一个NSURL"></a>查询一个NSURL</h3><pre><code>checkResourceIsReachableAndReturnError:  返回一个文件URL指向的资源是否可达
+isFileReferenceURL
+isFileURL
+</code></pre><h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>NSURLFileScheme  : 文件URL的scheme<br>还有一堆文件资源的key，如 属性修改日期、访问日期、内容修改日期、创建日期、自定义Icon、文件标识符、文件类型、文件安全、是否隐藏扩展名、是否是文件夹等</p>
+<h3 id="NSURL的属性："><a href="#NSURL的属性：" class="headerlink" title="NSURL的属性："></a>NSURL的属性：</h3><p>例如：scheme、user、password、host、port、path、pathComponents、pathExtension、lastPathComponent、parameterString、fragment</p>
+<h3 id="get和set-File-System-Resource-Properties-这部分需要加强理解"><a href="#get和set-File-System-Resource-Properties-这部分需要加强理解" class="headerlink" title="get和set File System Resource Properties(这部分需要加强理解)"></a>get和set File System Resource Properties(这部分需要加强理解)</h3><pre><code>NSString *size = Nil;
+NSError *error = [[NSError alloc] initWithDomain:@&quot;1&quot; code:1 userInfo:Nil];
 
+NSURL *samplePath = [[NSURL alloc] initWithString:@&quot;file://Users/Users/zxq/Desktop/1.pdf&quot;];
+
+//获取文件的大小
+[samplePath getResourceValue:&amp;size forKey:NSURLFileSizeKey error:&amp;error];
+</code></pre><p>   [samplePath getResourceValue:&amp;size forKey:NSURLTotalFileSizeKey error:&amp;error];</p>
+<pre><code>//获取文件地址
+</code></pre><p>   [samplePath getResourceValue:&amp;size forKey:NSURLPathKey error:&amp;error];</p>
+<pre><code>//获取最后修改的时间
+</code></pre><p>   [samplePath getResourceValue:&amp;size forKey:NSURLCreationDateKey error:&amp;error];</p>
+<pre><code>//获取文件名
+[samplePath getResourceValue:&amp;size forKey:NSURLNameKey error:&amp;error];
+NSLog(@&quot;Error == %@&quot;, error);
+NSLog(@&quot;size == %@&quot;, size);
+
+
+//是否可达
+NSLog(@&quot;%d&quot;, [samplePath checkPromisedItemIsReachableAndReturnError:&amp;error]);
+
+NSLog(@&quot;%d&quot;, [samplePath isFileReferenceURL]);
+NSLog(@&quot;%d&quot;, [samplePath isFileURL]);
+</code></pre>
       
     </div>
     
@@ -263,18 +280,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/03/17/NSOperation和NSOperationQueue多线程的使用/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          NSOperation和NSOperationQueue多线程的使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/03/15/iOS-之网络数据请求/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iOS 之网络数据请求</div>
+    <a href="/2016/03/31/十个iOS面试问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">十个iOS面试问题</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -309,7 +317,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="NSURLConnection-基本使用" data-title="NSURLConnection 基本使用" data-url="http://yoursite.com/2016/03/15/NSURLConnection-基本使用/"></div>
+	<div class="ds-thread" data-thread-key="NSURL的使用" data-title="NSURL的使用" data-url="http://yoursite.com/2016/04/07/NSURL的使用/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

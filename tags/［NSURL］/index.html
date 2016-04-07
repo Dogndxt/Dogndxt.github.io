@@ -4,18 +4,17 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>NSURLConnection 基本使用 | 第欧根尼的小桶</title>
+  <title>Tag: ［NSURL］ | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="NSURLConnection 基本使用">
-<meta property="og:url" content="http://yoursite.com/2016/03/15/NSURLConnection-基本使用/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="第欧根尼的小桶">
+<meta property="og:url" content="http://yoursite.com/tags/［NSURL］/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。">
-<meta property="og:updated_time" content="2016-03-31T12:09:29.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSURLConnection 基本使用">
-<meta name="twitter:description" content="现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。">
+<meta name="twitter:title" content="第欧根尼的小桶">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -191,143 +190,53 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-NSURLConnection-基本使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2016/03/15/NSURLConnection-基本使用/" class="article-date">
-  	<time datetime="2016-03-15T13:38:59.000Z" itemprop="datePublished">2016-03-15</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/04/07/路径类NSURL的使用/" class="archive-article-date">
+  	<time datetime="2016-04-07T13:00:28.000Z" itemprop="datePublished">4月 7</time>
 </a>
-    </div>
+        </div>
+    	 
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      NSURLConnection 基本使用
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/04/07/路径类NSURL的使用/">路径类NSURL的使用</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［数据请求］/">［数据请求］</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［NSURL］/">［NSURL］</a></li></ul>
 	</div>
 
-        
+          
 
+        </div>
         <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。<br><a id="more"></a></p>
-<h3 id="NSURLConnection-的常用类"><a href="#NSURLConnection-的常用类" class="headerlink" title="NSURLConnection 的常用类"></a>NSURLConnection 的常用类</h3><p>· NSURL ：请求地址</p>
-<p>· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….</p>
-<p>· NSMutableRequest ：NSURLRequest 的子类</p>
-<p>· NSURLConnection：负责发送请求，建立客户端和服务器的连接。发送NSURLRequest的数据给服务器，并收集来自服务器的响应数据</p>
-<h3 id="NSURLConnection的使用"><a href="#NSURLConnection的使用" class="headerlink" title="NSURLConnection的使用"></a>NSURLConnection的使用</h3><p>使用 NSURLConnection 这个类的步骤主要有三个：</p>
-<p>1）创建一个NSURL对象，设置请求路径（设置请求路径）</p>
-<p>2）传入NSURL创建一个NSURLRequest对象，设置请求头和请求体（创建请求对象）</p>
-<p>3）使用NSURLConnection发送NSURLRequest（发送请求）</p>
-<p>在请求数据的过程中根据连接服务器的方式分为<strong>同步请求</strong>和<strong>异步请求</strong>这两种。</p>
-<ol>
-<li>同步请求</li>
-</ol>
-<p><code>NSData *data=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];</code></p>
-<ol>
-<li>异步请求</li>
-</ol>
-<p>－ 使用 block 回调</p>
-<pre><code>NSOperationQueue *queue=[NSOperationQueue mainQueue];
-[NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) { }];
-</code></pre><p>－ 代理</p>
-<pre><code>NSURLConnection *conn=[NSURLConnection connectionWithRequest:request delegate:self];
-[conn start];
-</code></pre><p>然后在NSURLConnectionDataDelegate代理方法里面执行事件。</p>
-<h3 id="NSMutableURLRequest-的妙用"><a href="#NSMutableURLRequest-的妙用" class="headerlink" title="NSMutableURLRequest 的妙用"></a>NSMutableURLRequest 的妙用</h3><p>NSMutableURLRequest是NSURLRequest的子类，常用方法有</p>
-<p>－ 设置请求超时等待时间（超过这个时间就算超时，请求失败）- (void)setTimeoutInterval:(NSTimeInterval)seconds;<br>－ 设置请求方法（比如GET和POST）- (void)setHTTPMethod:(NSString <em>)method;<br>－ 设置请求体 - (void)setHTTPBody:(NSData </em>)data;<br>－ 设置请求头 - (void)setValue:(NSString <em>)value forHTTPHeaderField:(NSString </em>)field;</p>
-
-      
-    </div>
-    
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/03/17/NSOperation和NSOperationQueue多线程的使用/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          NSOperation和NSOperationQueue多线程的使用
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/03/15/iOS-之网络数据请求/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iOS 之网络数据请求</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="NSURLConnection-基本使用" data-title="NSURLConnection 基本使用" data-url="http://yoursite.com/2016/03/15/NSURLConnection-基本使用/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"dogndxt"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
 
 </div>
       <footer id="footer">
@@ -353,9 +262,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false
 	}
