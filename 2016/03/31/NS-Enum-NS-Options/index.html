@@ -20,7 +20,7 @@
   UITableViewCellStyleDefault,
   UITableViewCellStyleValue1,
   UITableViewCell">
-<meta property="og:updated_time" content="2016-03-31T12:00:18.000Z">
+<meta property="og:updated_time" content="2016-04-14T13:56:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NS_Enum & NS_Options">
 <meta name="twitter:description" content="一个专业的 Objective-C 工程师应该在面向对象和面向过程范式间优雅地切换，同时能够掌握二者的优势。
@@ -90,7 +90,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -127,7 +127,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 20px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a>
+						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 15px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［定时器］/" style="font-size: 10px;">［定时器］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a>
 					</div>
 				</section>
 				
@@ -247,7 +247,8 @@
   UITableViewCellStyleValue2,
   UITableViewCellStyleSubtitle
 };
-</code></pre><p> NS_ENUM 的第一个参数是用于存储的新类型的类型。在64位环境下，UITableViewCellStyle 和 NSInteger 一样有8bytes长。你要保证你给出的所有值能被该类型容纳，否则就会产生错误。第二个参数是新类型的名字。大括号里面和以前一样，是你要定义的各种值。<br> 这种实现方法提取了之前各种不同实现的优点，甚至有提示编辑器在进行 switch 判断时检查类型匹配的功能。<br><a id="more"></a></p>
+</code></pre><a id="more"></a>
+<p> NS_ENUM 的第一个参数是用于存储的新类型的类型。在64位环境下，UITableViewCellStyle 和 NSInteger 一样有8bytes长。你要保证你给出的所有值能被该类型容纳，否则就会产生错误。第二个参数是新类型的名字。大括号里面和以前一样，是你要定义的各种值。<br> 这种实现方法提取了之前各种不同实现的优点，甚至有提示编辑器在进行 switch 判断时检查类型匹配的功能。</p>
 <p>enum 也可以被定义为<strong>按位掩码（bitmask）</strong>。用简单的OR (|)和AND (&amp;)数学运算即可实现对一个整型值的编码。每一个值不是自动被赋予从0开始依次累加1的值，而是手动被赋予一个带有一个bit偏移量的值：类似1 &lt;&lt; 0、 1 &lt;&lt; 1、 1 &lt;&lt; 2等。如果你能够心算出每个数字的二进制表示法，例如：10110 代表 22，每一位都可以被认为是一个单独的布尔值。例如在UIKit中， UIViewAutoresizing 就是一个可以表示任何flexible top、bottom、 left 或 right margins、width、height组合的位掩码。</p>
 <p>不像 NS_ENUM ，<strong>位掩码用 NS_OPTIONS 宏</strong>。</p>
 <p>语法和 NS_ENUM 完全相同，但这个宏提示编译器值是如何通过位掩码 | 组合在一起的。同样的，注意值的区间不要超过所使用类型的最大容纳范围。</p>
