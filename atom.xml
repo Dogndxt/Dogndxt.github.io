@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-14T13:40:13.000Z</updated>
+  <updated>2016-04-15T14:53:08.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,124 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OC关键字</title>
+    <link href="http://yoursite.com/2016/04/15/OC%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    <id>http://yoursite.com/2016/04/15/OC关键字/</id>
+    <published>2016-04-15T14:50:55.000Z</published>
+    <updated>2016-04-15T14:53:08.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;import和-include的区别&quot;&gt;&lt;a href=&quot;#import和-include的区别&quot; class=&quot;headerlink&quot; title=&quot;#import和#include的区别&quot;&gt;&lt;/a&gt;#import和#include的区别&lt;/h3&gt;&lt;p&gt;  当我们在代码中使用两次#include的时候会报错：因为#include相当于拷贝头文件中的声明内容，所以会报重复定义的错误但是使用两次#import的话，不会报错，所以他可以解决重复导入的问题，他会做一次判断，如果已经导入一次就不导入了&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;class&quot;&gt;&lt;a href=&quot;#class&quot; class=&quot;headerlink&quot; title=&quot;@class&quot;&gt;&lt;/a&gt;@class&lt;/h3&gt;&lt;p&gt;  不会将Student.h拷贝过来，只是告诉编译器Student这个类在别的地方中有定义，这样就不知道这个类中任何信息(哪些属性和方法) &lt;/p&gt;
+&lt;p&gt;#import指令是Object-C针对#include的改进版本，#import确保引用的文件只会被引用一次，这样就不会陷入递归包含的问题中。&lt;/p&gt;
+&lt;h3 id=&quot;import与-class二者的区别在于：&quot;&gt;&lt;a href=&quot;#import与-class二者的区别在于：&quot; class=&quot;headerlink&quot; title=&quot;#import与@class二者的区别在于：&quot;&gt;&lt;/a&gt;#import与@class二者的区别在于：&lt;/h3&gt;&lt;p&gt;　　 &lt;/p&gt;
+&lt;p&gt; #import会链入该头文件的全部信息，包括实体变量和方法等；而@class只是告诉编译器，其后面声明的名称是类的名称，至于这些类是如何定义的，暂时不用考虑。在头文件中， 一般只需要知道被引用的类的名称就可以了。&lt;br&gt;　　&lt;br&gt; 不需要知道其内部的实体变量和方法，所以在头文件中一般使用@class来声明这个名称是类的名称。 而在实现类里面，因为会用到这个引用类的内部的实体变量和方法，所以需要使用#import来包含这个被引用类的头文件。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;import和-include的区别&quot;&gt;&lt;a href=&quot;#import和-include的区别&quot; class=&quot;headerlink&quot; title=&quot;#import和#include的区别&quot;&gt;&lt;/a&gt;#import和#include的区别&lt;/h3&gt;&lt;p&gt;  当我们在代码中使用两次#include的时候会报错：因为#include相当于拷贝头文件中的声明内容，所以会报重复定义的错误但是使用两次#import的话，不会报错，所以他可以解决重复导入的问题，他会做一次判断，如果已经导入一次就不导入了&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OC的实例方法和类方法的区别</title>
+    <link href="http://yoursite.com/2016/04/15/OC%E7%9A%84%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%E5%92%8C%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2016/04/15/OC的实例方法和类方法的区别/</id>
+    <published>2016-04-15T14:48:32.000Z</published>
+    <updated>2016-04-15T14:50:21.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;-对象方法&lt;/strong&gt; 即OO的基本精神之一 —— 封装／信息隐藏，这个需要你对OO有理解&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;+类方法&lt;/strong&gt; 一般用作命名空间，用以组织一组功能函数；又或用作类的工厂函数，用以产生类的对象；不管哪种，都需要有大型项目的经验，才知道如何组织程序的复杂性及使用设计模式&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;类方法和实例方法&quot;&gt;&lt;a href=&quot;#类方法和实例方法&quot; class=&quot;headerlink&quot; title=&quot;类方法和实例方法&quot;&gt;&lt;/a&gt;类方法和实例方法&lt;/h3&gt;&lt;p&gt;实例方法是— ， 类开头是+&lt;br&gt;实例方法是用实例对象访问，类方法的对象是类而不是实例，通常创建对象或者工具类。&lt;/p&gt;
+&lt;p&gt;在实例方法里，根据继承原理发送消息给self和super其实都是发送给self&lt;/p&gt;
+&lt;p&gt;在类方法里面self是其他的类的类方法，在类方法中给self发送消息只能发类方法，self是类super也是&lt;/p&gt;
+&lt;p&gt;什么时候用类方法：要创建一个实例时候获取一个共享实例，或者获取关于类的一些共有信息&lt;/p&gt;
+&lt;p&gt;1、类方法是属于整个类，而不属于某个对象。&lt;br&gt;2、类方法只能访问类成员变量，不能访问实例变量，而实例方法可以访问类成员变量和实例变量。&lt;br&gt;3、类方法的调用可以通过类名.类方法和对象.类方法，而实例方法只能通过对象.实例方法访问。&lt;br&gt;4、类方法只能访问类方法，而实例方法可以访问类方法和实例方法。&lt;br&gt;5、类方法不能被覆盖，实例方法可以被覆盖。 &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;-对象方法&lt;/strong&gt; 即OO的基本精神之一 —— 封装／信息隐藏，这个需要你对OO有理解&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;+类方法&lt;/strong&gt; 一般用作命名空间，用以组织一组功能函数；又或用作类的工厂函数，用以产生类的对象；不管哪种，都需要有大型项目的经验，才知道如何组织程序的复杂性及使用设计模式&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NSSet_集合（无序）</title>
+    <link href="http://yoursite.com/2016/04/15/NSSet-%E9%9B%86%E5%90%88%EF%BC%88%E6%97%A0%E5%BA%8F%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/04/15/NSSet-集合（无序）/</id>
+    <published>2016-04-15T14:46:28.000Z</published>
+    <updated>2016-04-15T14:47:26.000Z</updated>
+    
+    <content type="html">&lt;p&gt;NSSet和NSMutableSet是无序的, 但是它保证数据的唯一性。当插入相同的数据时，不会有任何效果。从内部实现来说是hash表，所以可以常数时间内查找一个数据。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;pre&gt;&lt;code&gt;//判断是否含有age字符串
+if([set containsObject:@&amp;quot;age&amp;quot;]) {
+    NSLog(@&amp;quot;set包含age&amp;quot;);
+}
+
+//判断set 是否等于set1
+if ([set isEqualToSet:set1]) {
+    NSLog(@&amp;quot;set 等于 set1&amp;quot;);
+}
+
+//判断set是否是否是set1的子集合
+if ([set isSubsetOfSet:set1]) {
+    NSLog(@&amp;quot;set isSubsetOfSet set1&amp;quot;);
+}
+
+//获取所有set对象
+NSArray *array = [set allObjects];
+NSLog(@&amp;quot;array:%@&amp;quot;, array);
+
+//迭代遍历
+NSEnumerator *enumerator = [set objectEnumerator];
+for (NSObject *object in enumerator) {
+    NSLog(@&amp;quot;set1里的对象:%@&amp;quot;, object);
+}
+
+//添加对象到集合里面
+[set setByAddingObject:@&amp;quot;123&amp;quot;];
+
+// 类方法处理方式
+NSSet *set3 = [NSSet set];
+NSSet *set4 = [NSSet setWithObject:@&amp;quot;123&amp;quot;];
+NSSet *set5 = [NSSet setWithObjects:@&amp;quot;1&amp;quot;, @&amp;quot;2&amp;quot;, nil];
+NSSet *set6 = [NSSet setWithArray:array];
+NSSet *set7 = [NSSet setWithSet:set6];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSMutableSet的使用&quot;&gt;&lt;a href=&quot;#NSMutableSet的使用&quot; class=&quot;headerlink&quot; title=&quot;NSMutableSet的使用&quot;&gt;&lt;/a&gt;NSMutableSet的使用&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSMutableSet继承NSSet，它可以使用NSSet的方法。
+
+[NSMutableSet setWithCapacity:6]:创建可变集合对象，并且初始化长度为6。
+[set addObject: obj] : 向集合中动态的添加对象。
+[set removeObject:obj]:删除集合中的一个对象。
+[set removeAllObjects]:删除集合中的所有对象。
+[set unionSet:obj]:向集合中添加一个obj集合的所有数据。
+[set minusSet:obj]:向集合中删除一个obj集合的所有数据。
+[set intersectSet]:向集合中删除一个不包含obj集合的所有数据。
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;NSSet和NSMutableSet是无序的, 但是它保证数据的唯一性。当插入相同的数据时，不会有任何效果。从内部实现来说是hash表，所以可以常数时间内查找一个数据。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS中 @synthesize 和 @dynamic 的区别</title>
@@ -941,261 +1059,6 @@ NSString *ttemp = [[NSString alloc] initWithData:[reader subdataWithRange:NSMake
     
     
       <category term="［数据］" scheme="http://yoursite.com/tags/%EF%BC%BB%E6%95%B0%E6%8D%AE%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NSOperation和NSOperationQueue多线程的使用</title>
-    <link href="http://yoursite.com/2016/03/17/NSOperation%E5%92%8CNSOperationQueue%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://yoursite.com/2016/03/17/NSOperation和NSOperationQueue多线程的使用/</id>
-    <published>2016-03-17T11:37:41.000Z</published>
-    <updated>2016-03-17T12:10:41.000Z</updated>
-    
-    <content type="html">&lt;p&gt; 最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了&lt;strong&gt;同步／异步&lt;/strong&gt;，&lt;strong&gt;阻塞／非阻塞&lt;/strong&gt;所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;  现在来讲述一下可以实现多线程的三种方式中的 NSOperation 类。使用NSOperation和NSOperationQueue实现多线程编程，实现步骤大致是这样的：&lt;/p&gt;
-&lt;p&gt;  1&amp;gt; 先将需要执行的操作封装到一个NSOperation对象中&lt;/p&gt;
-&lt;p&gt;  2&amp;gt; 然后将NSOperation对象添加到NSOperationQueue中&lt;/p&gt;
-&lt;p&gt;  3&amp;gt; 系统会自动将NSOperation中封装的操作放到一条新线程中执行&lt;/p&gt;
-&lt;p&gt;  而由于  NSOperation 是一个抽象类，所以它的功能只能有其子类 NSBlockOperation 和 SInvocationOperation 来实现。&lt;/p&gt;
-&lt;h4 id=&quot;NSBlockOperation-的使用&quot;&gt;&lt;a href=&quot;#NSBlockOperation-的使用&quot; class=&quot;headerlink&quot; title=&quot;NSBlockOperation 的使用&quot;&gt;&lt;/a&gt;NSBlockOperation 的使用&lt;/h4&gt;&lt;pre&gt;&lt;code&gt; NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^(){     
-    NSLog(@&amp;quot;*执行第1次操作，线程：%@&amp;quot;, [NSThread currentThread]);       
-   }];
-
-[operation addExecutionBlock:^() {
-
-   NSLog(@&amp;quot;**又执行了1个新的操作，线程：%@&amp;quot;, [NSThread currentThread]);
-
-   }];
-
-// 开始执行任务    
-[operation start];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   注：默认情况下，调用了start方法后并不会开一条新线程去执行操作，而是在当前线程同步执行操作。只有将operation放到一个NSOperationQueue中，才会异步执行操作。&lt;/p&gt;
-&lt;h4 id=&quot;NSInvocationOperation-的使用&quot;&gt;&lt;a href=&quot;#NSInvocationOperation-的使用&quot; class=&quot;headerlink&quot; title=&quot;NSInvocationOperation 的使用&quot;&gt;&lt;/a&gt;NSInvocationOperation 的使用&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;ration2 = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downLoadImage:) object:URL];
-NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-[queue addOperation:operation2];
-
-如果是有刷新界面的操作，那么必须将这个操作交给主线程来完成。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;自定义-NSOperation-类&quot;&gt;&lt;a href=&quot;#自定义-NSOperation-类&quot; class=&quot;headerlink&quot; title=&quot;自定义 NSOperation 类&quot;&gt;&lt;/a&gt;自定义 NSOperation 类&lt;/h3&gt;&lt;p&gt;由于 NSOperation 类功能比较少， 一般情况下我们可以自定义一个 NSOperation 类。要定制这样的一个操作，可以遵循以下步骤：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;继承 NSOperation 类&lt;/li&gt;
-&lt;li&gt;重写“main”方法&lt;/li&gt;
-&lt;li&gt;在“main”方法中创建一个“automaticreleasepool“&lt;/li&gt;
-&lt;li&gt;将你的代码放在”autoreleasepool“中&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;  例子：&lt;br&gt;     &lt;em&gt;*&lt;/em&gt; .h 文件&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#import &amp;lt;Foundation/Foundation.h&amp;gt;
-@interface MyLengthyOperation : NSOperation
-@property (nonatomic, strong, readonly) NSString *mark;
-- (instancetype)initWithMark:(NSString *)mark;
-@end 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;em&gt;*&lt;/em&gt; .m 文件&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#import &amp;quot;MyLengthyOperation.h&amp;quot;
-@interface MyLengthyOperation ()
-@property (nonatomic, strong, readwrite) NSString *mark;
-@end
-@implementation MyLengthyOperation
-- (instancetype)initWithMark:(NSString *)mark {  
-   self = [super init];
-   if (self) {      
-       self.mark = mark;
-    }
-   return self;
-   }
-- (void)main {
-    @autoreleasepool {
-      for (int i = 0; i &amp;lt; 100; i ++) {
-         if (self.isCancelled) {
-             break;
-         }
-         NSLog(@&amp;quot;%@ - %f&amp;quot;, self.mark, sqrt(i));
-        }
-    }
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;基本操作&quot;&gt;&lt;a href=&quot;#基本操作&quot; class=&quot;headerlink&quot; title=&quot;基本操作&quot;&gt;&lt;/a&gt;基本操作&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//  初始化任务 
-MyLengthyOperation *operation_1 = [[MyLengthyOperation alloc] initWithMark:@&amp;quot;operation_1&amp;quot;];
-MyLengthyOperation *operation_2 = [[MyLengthyOperation alloc] initWithMark:@&amp;quot;operation_2&amp;quot;];
-
-// 设置任务的优先级
-[operation_1 setQueuePriority:NSOperationQueuePriorityVeryLow];
-[operation_2 setQueuePriority:NSOperationQueuePriorityHigh];
-
-// 添加从属关系
-[operation_2 addDependency:operation_1]; （任务2在任务1结束后才会执行）
-
-// 初始化队列
-NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
-myQueue.name = @&amp;quot;下载队列&amp;quot;;
-
-// 将一个简单的任务队列添加进队列中 （使用 Block 回调方式）      
-    NSURL *aURL = [NSURL URLWithString:URL];
-    NSData *data = [NSData dataWithContentsOfURL:aURL];
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-
-        UIImage *image = [[UIImage alloc] initWithData:data];
-        [self performSelectorOnMainThread:@selector(updateUI:) withObject:image waitUntilDone:YES];
-    }];
-}];
-
-// 设置任务队列的最大并发数
- myQueue.maxConcurrentOperationCount = 4;
-
-// 添加进任务队列中执行
-[myQueue addOperation:operation_1];
-[myQueue addOperation:operation_2];
-
-// 取消所有操作
-[myQueue cancelAllOperations];
-
-// 执行延时的操作（将执行代码放置在 block 中）
-- (void)execute:(dispatch_block_t)block afterDelay:(int64_t)delta {
-
-   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delta), dispatch_get_main_queue(), block);
- }
-
-// 挂起操作
-[myQueue setSuspended:YES];
-
-// 取消任务
-[operation_1 cancel];
-
-//  任务完成后的回调可以表示任务已经结束
- [operation_1 setCompletionBlock:^{
-      NSLog(@&amp;quot;任务1结束&amp;quot;);
-  }];
- [operation_2 setCompletionBlock:^{
-      NSLog(@&amp;quot;任务2结束&amp;quot;);
- }];
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt; 最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了&lt;strong&gt;同步／异步&lt;/strong&gt;，&lt;strong&gt;阻塞／非阻塞&lt;/strong&gt;所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。
-    
-    </summary>
-    
-    
-      <category term="［博客］" scheme="http://yoursite.com/tags/%EF%BC%BB%E5%8D%9A%E5%AE%A2%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NSURLConnection 基本使用</title>
-    <link href="http://yoursite.com/2016/03/15/NSURLConnection-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
-    <id>http://yoursite.com/2016/03/15/NSURLConnection-基本使用/</id>
-    <published>2016-03-15T13:38:59.000Z</published>
-    <updated>2016-03-31T12:09:29.000Z</updated>
-    
-    <content type="html">&lt;p&gt;现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;NSURLConnection-的常用类&quot;&gt;&lt;a href=&quot;#NSURLConnection-的常用类&quot; class=&quot;headerlink&quot; title=&quot;NSURLConnection 的常用类&quot;&gt;&lt;/a&gt;NSURLConnection 的常用类&lt;/h3&gt;&lt;p&gt;· NSURL ：请求地址&lt;/p&gt;
-&lt;p&gt;· NSURLRequest ：封装一个请求，保存发给服务器的全部数据，包括一个NSURL对象，请求方法、请求头、请求体….&lt;/p&gt;
-&lt;p&gt;· NSMutableRequest ：NSURLRequest 的子类&lt;/p&gt;
-&lt;p&gt;· NSURLConnection：负责发送请求，建立客户端和服务器的连接。发送NSURLRequest的数据给服务器，并收集来自服务器的响应数据&lt;/p&gt;
-&lt;h3 id=&quot;NSURLConnection的使用&quot;&gt;&lt;a href=&quot;#NSURLConnection的使用&quot; class=&quot;headerlink&quot; title=&quot;NSURLConnection的使用&quot;&gt;&lt;/a&gt;NSURLConnection的使用&lt;/h3&gt;&lt;p&gt;使用 NSURLConnection 这个类的步骤主要有三个：&lt;/p&gt;
-&lt;p&gt;1）创建一个NSURL对象，设置请求路径（设置请求路径）&lt;/p&gt;
-&lt;p&gt;2）传入NSURL创建一个NSURLRequest对象，设置请求头和请求体（创建请求对象）&lt;/p&gt;
-&lt;p&gt;3）使用NSURLConnection发送NSURLRequest（发送请求）&lt;/p&gt;
-&lt;p&gt;在请求数据的过程中根据连接服务器的方式分为&lt;strong&gt;同步请求&lt;/strong&gt;和&lt;strong&gt;异步请求&lt;/strong&gt;这两种。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;同步请求&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;code&gt;NSData *data=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];&lt;/code&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;异步请求&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;－ 使用 block 回调&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSOperationQueue *queue=[NSOperationQueue mainQueue];
-[NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) { }];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;－ 代理&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSURLConnection *conn=[NSURLConnection connectionWithRequest:request delegate:self];
-[conn start];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后在NSURLConnectionDataDelegate代理方法里面执行事件。&lt;/p&gt;
-&lt;h3 id=&quot;NSMutableURLRequest-的妙用&quot;&gt;&lt;a href=&quot;#NSMutableURLRequest-的妙用&quot; class=&quot;headerlink&quot; title=&quot;NSMutableURLRequest 的妙用&quot;&gt;&lt;/a&gt;NSMutableURLRequest 的妙用&lt;/h3&gt;&lt;p&gt;NSMutableURLRequest是NSURLRequest的子类，常用方法有&lt;/p&gt;
-&lt;p&gt;－ 设置请求超时等待时间（超过这个时间就算超时，请求失败）- (void)setTimeoutInterval:(NSTimeInterval)seconds;&lt;br&gt;－ 设置请求方法（比如GET和POST）- (void)setHTTPMethod:(NSString &lt;em&gt;)method;&lt;br&gt;－ 设置请求体 - (void)setHTTPBody:(NSData &lt;/em&gt;)data;&lt;br&gt;－ 设置请求头 - (void)setValue:(NSString &lt;em&gt;)value forHTTPHeaderField:(NSString &lt;/em&gt;)field;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;现如今大部分的网络请求都是使用 NSURLConnection 这个类来完成，那么了解这个类对网络数据请求来说就至关重要的。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="［数据请求］" scheme="http://yoursite.com/tags/%EF%BC%BB%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS 之网络数据请求</title>
-    <link href="http://yoursite.com/2016/03/15/iOS-%E4%B9%8B%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82/"/>
-    <id>http://yoursite.com/2016/03/15/iOS-之网络数据请求/</id>
-    <published>2016-03-15T13:25:35.000Z</published>
-    <updated>2016-03-15T13:36:49.000Z</updated>
-    
-    <content type="html">&lt;p&gt;iOS 网络请求主要使用了 HTTP 和 HTTPS 协议。现在主要记录 HTTP 的网络请求方式。那么在讨论网络数据请求之前就必须先了解清楚：HTTP 请求报文和 HTTP 响应报文。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;HTTP-请求报文&quot;&gt;&lt;a href=&quot;#HTTP-请求报文&quot; class=&quot;headerlink&quot; title=&quot;HTTP 请求报文&quot;&gt;&lt;/a&gt;HTTP 请求报文&lt;/h3&gt;&lt;p&gt;一个HTTP请求报文由请求行（request line）,请求头部（head）,空行（blank line）和请求数据（request-body）4个部分组成。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;＜request-line＞
-＜headers＞
-＜blank line＞
-[＜request-body＞
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;请求行&quot;&gt;&lt;a href=&quot;#请求行&quot; class=&quot;headerlink&quot; title=&quot;请求行&quot;&gt;&lt;/a&gt;请求行&lt;/h4&gt;&lt;p&gt;由请求方法字段，URL字段和HTTP协议版本字段 3个字段组成，用空格分隔&lt;/p&gt;
-&lt;p&gt;HTTP 协议的请求方法有：GET，POST，HEAD，PUT，DELETE，OPTIONS，TRACE，CONNECT&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;GET ：最常见的一种请求方式，方法要求服务器将URL定位的资源放在响应报文的数据部分，回送给客户端。请求参数和对应的值附加在URL后面，利用一个问号（“?”）代表URL的结尾与请求参数的开始，传递参数长度受限制。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;POST ：将请求参数封装在HTTP请求数据中，以名称/值的形式出现，可以传输大量数据，这样POST方式对传送的数据大小没有限制，而且也不会显示在URL中。请求行中不包含数据字符串，这些数据保存在”请求内容”部分，各数据之间也是使用”&amp;amp;”符号隔开。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;HEAD：像GET，只不过服务端接受到HEAD请求后只返回响应行，而不会发送响应内容。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;请求头部&quot;&gt;&lt;a href=&quot;#请求头部&quot; class=&quot;headerlink&quot; title=&quot;请求头部&quot;&gt;&lt;/a&gt;请求头部&lt;/h4&gt;&lt;p&gt;请求头部由键/值对组成，每行一对，键和值用英文冒号“:”分隔&lt;/p&gt;
-&lt;p&gt;请求头部通知服务器有关于客户端请求的信息，典型的请求头有：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;User-Agent：产生请求的客户端类型。
-
-Accept：客户端可识别的内容类型列表。
-
-Host：请求的主机名，允许多个域名同处一个IP地址，即虚拟主机。
-
-Referer：参考者
-
-Accept-Language: 客户端可识别的语言
-
-Accept-Encoding: 客户端可识别的编码方式
-
-Connection: 链接方式
-
-Cookie:
-
-Content-Length: 数据的长度
-
-Content-Type: 数据的类型
-
-Date: 时间 
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;空行&quot;&gt;&lt;a href=&quot;#空行&quot; class=&quot;headerlink&quot; title=&quot;空行&quot;&gt;&lt;/a&gt;空行&lt;/h4&gt;&lt;p&gt;最后一个请求头之后是一个空行，发送回车符和换行符，通知服务器以下不再有请求头。&lt;/p&gt;
-&lt;h4 id=&quot;请求数据&quot;&gt;&lt;a href=&quot;#请求数据&quot; class=&quot;headerlink&quot; title=&quot;请求数据&quot;&gt;&lt;/a&gt;请求数据&lt;/h4&gt;&lt;p&gt;请求数据不在GET方法中使用，而是在POST方法中使用。POST方法适用于需要客户填写表单的场合。与请求数据相关的最常使用的请求头是Content-Type和Content-Length。&lt;/p&gt;
-&lt;h3 id=&quot;TTP-响应报文&quot;&gt;&lt;a href=&quot;#TTP-响应报文&quot; class=&quot;headerlink&quot; title=&quot;TTP 响应报文&quot;&gt;&lt;/a&gt;TTP 响应报文&lt;/h3&gt;&lt;p&gt;HTTP响应也由四个部分组成，分别是：状态行、响应头、空格、响应数据&lt;/p&gt;
-&lt;p&gt;如下所示，HTTP响应的格式与请求的格式十分类似：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;＜status-line＞
-＜headers＞
-＜blank line＞
-[＜response-body＞]
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;状态行（status line）通过提供一个状态码来说明所请求的资源情况。&lt;/p&gt;
-&lt;p&gt;状态行格式如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;HTTP-Version Status-Code Reason-Phrase CRLF
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中，HTTP-Version表示服务器HTTP协议的版本；Status-Code 表示服务器发回的响应状态代码；Reason-Phrase表示状态代码的文本描述。状态代码由三位数字组成，第一个数字定义了响应的类别，且有五种可能取值。&lt;/p&gt;
-&lt;p&gt;  • 1xx：指示信息–表示请求已接收，继续处理。&lt;br&gt;  • 2xx：成功–表示请求已被成功接收、理解、接受。&lt;br&gt;  • 3xx：重定向–要完成请求必须进行更进一步的操作。&lt;br&gt;  • 4xx：客户端错误–请求有语法错误或请求无法实现。&lt;br&gt;  • 5xx：服务器端错误–服务器未能实现合法的请求。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;iOS 网络请求主要使用了 HTTP 和 HTTPS 协议。现在主要记录 HTTP 的网络请求方式。那么在讨论网络数据请求之前就必须先了解清楚：HTTP 请求报文和 HTTP 响应报文。
-    
-    </summary>
-    
-    
-      <category term="［http 报文］" scheme="http://yoursite.com/tags/%EF%BC%BBhttp-%E6%8A%A5%E6%96%87%EF%BC%BD/"/>
     
   </entry>
   
