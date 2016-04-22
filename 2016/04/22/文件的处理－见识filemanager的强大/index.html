@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>文件的处理－见识filemanager的强大 | 第欧根尼的小桶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="获取应用沙盒根路径NSString *dirHome = NSHomeDirectory();">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件的处理－见识filemanager的强大">
+<meta property="og:url" content="http://yoursite.com/2016/04/22/文件的处理－见识filemanager的强大/index.html">
+<meta property="og:site_name" content="第欧根尼的小桶">
+<meta property="og:description" content="获取应用沙盒根路径NSString *dirHome = NSHomeDirectory();">
+<meta property="og:updated_time" content="2016-04-22T14:29:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件的处理－见识filemanager的强大">
+<meta name="twitter:description" content="获取应用沙盒根路径NSString *dirHome = NSHomeDirectory();">
+  
+    <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/yql.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">第欧根尼的小桶</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/informal">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Dogndxt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/3096523975/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/yang-ti-zi-79" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 13.33px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［iOS］/" style="font-size: 16.67px;">［iOS］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［定时器］/" style="font-size: 10px;">［定时器］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://stackoverflow.com">stackoverflow</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://bbs.iosre.com">逆向工程</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com">简书</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我就是你平时玩手机时忽视的人呀～ 请放下手机，和我多说说话好么。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">第欧根尼的小桶</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/yql.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">第欧根尼的小桶</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/informal">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Dogndxt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/3096523975/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/yang-ti-zi-79" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-文件的处理－见识filemanager的强大" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/22/文件的处理－见识filemanager的强大/" class="article-date">
+  	<time datetime="2016-04-22T14:29:05.000Z" itemprop="datePublished">2016-04-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      文件的处理－见识filemanager的强大
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="获取应用沙盒根路径"><a href="#获取应用沙盒根路径" class="headerlink" title="获取应用沙盒根路径"></a>获取应用沙盒根路径</h4><pre><code>NSString *dirHome = NSHomeDirectory(); 
+</code></pre><a id="more"></a>
+<h4 id="获取-Documents-目录文件"><a href="#获取-Documents-目录文件" class="headerlink" title="获取 Documents 目录文件"></a>获取 Documents 目录文件</h4><pre><code>NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+NSString *documentsDirectory = [paths lastObject]; 
+</code></pre><h4 id="获取-Library-目录路径"><a href="#获取-Library-目录路径" class="headerlink" title="获取 Library 目录路径"></a>获取 Library 目录路径</h4><pre><code>NSArray *paths2 = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+NSString *libraryDirectofry = [paths2 lastObject]; 
+</code></pre><h4 id="获取-Tmp-目录路径"><a href="#获取-Tmp-目录路径" class="headerlink" title="获取 Tmp 目录路径"></a>获取 Tmp 目录路径</h4><pre><code>NSString *tmpDirectory = NSTemporaryDirectory(); 
+</code></pre><h4 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h4><pre><code>NSFileManager *fileManager = [NSFileManager defaultManager];
+NSString *testDirectory = [documentsDirectory stringByAppendingString:@&quot;test&quot;];
+BOOL res = [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];   
+if (res) {
+
+    NSLog(@&quot;创建文件夹成功&quot;);
+} else {
+
+    NSLog(@&quot;创建文件夹失败&quot;);
+}
+</code></pre><h4 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h4><pre><code>NSData *data = [NSData dataWithContentsOfFile:@&quot;/Users/zxq/Desktop/userInfor&quot;];
+NSString *testPath = [testDirectory stringByAppendingPathComponent:@&quot;test.txt&quot;];
+BOOL res2 = [fileManager createFileAtPath:testPath contents:data attributes:nil]; 
+if (res2) {
+
+    NSLog(@&quot;创建文件成功&quot;);
+} else {
+
+    NSLog(@&quot;创建文件失败&quot;);
+}
+</code></pre><h4 id="测试写入内容"><a href="#测试写入内容" class="headerlink" title="测试写入内容"></a>测试写入内容</h4><pre><code>NSString *content = @&quot;测试写入内容&quot;;
+BOOL res3 = [content writeToFile:testPath atomically:YES encoding:NSUTF8StringEncoding error:nil]; 
+if (res3) {
+
+    NSLog(@&quot;文件写入成功&quot;);
+} else {
+
+    NSLog(@&quot;文件写入失败&quot;);
+}
+</code></pre><h4 id="读取文件内容"><a href="#读取文件内容" class="headerlink" title="读取文件内容"></a>读取文件内容</h4><pre><code>NSString *content2 = [NSString stringWithContentsOfFile:testPath encoding:NSUTF8StringEncoding error:nil]; 
+</code></pre><h4 id="获取文件属性"><a href="#获取文件属性" class="headerlink" title="获取文件属性"></a>获取文件属性</h4><pre><code>NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:testPath error:nil]; 
+for (int i = 0; i &lt; [[fileAttributes allKeys] count]; i ++) {
+
+    NSLog(@&quot;key: %@, value:%@&quot;, [[fileAttributes allKeys] objectAtIndex:i], [fileAttributes objectForKey:[[fileAttributes allKeys] objectAtIndex:i]]);
+}
+</code></pre><h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><pre><code>BOOL res4 = [fileManager removeItemAtPath:testPath error:nil]; 
+if (res4) {
+
+    NSLog(@&quot;删除成功&quot;);
+} else {
+
+    NSLog(@&quot;删除失败&quot;);
+}
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/22/内存空间Zone的挖掘/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">内存空间Zone的挖掘</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="文件的处理－见识filemanager的强大" data-title="文件的处理－见识filemanager的强大" data-url="http://yoursite.com/2016/04/22/文件的处理－见识filemanager的强大/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 第欧根尼的小桶
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

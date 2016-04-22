@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>错误类nserror的学习 | 第欧根尼的小桶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="获取系统的错误信息 
+比如移动文件时，获取文件操作错误：
+  NSError *e = nil;
+  [[NSFileManager defaultManager] moveItemAtPath:sourcePath toPath:targetPath error:&amp;amp;e];
+  if (e) {
+  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e local">
+<meta property="og:type" content="article">
+<meta property="og:title" content="错误类nserror的学习">
+<meta property="og:url" content="http://yoursite.com/2016/04/22/错误类nserror的学习/index.html">
+<meta property="og:site_name" content="第欧根尼的小桶">
+<meta property="og:description" content="获取系统的错误信息 
+比如移动文件时，获取文件操作错误：
+  NSError *e = nil;
+  [[NSFileManager defaultManager] moveItemAtPath:sourcePath toPath:targetPath error:&amp;amp;e];
+  if (e) {
+  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e local">
+<meta property="og:updated_time" content="2016-04-22T14:13:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="错误类nserror的学习">
+<meta name="twitter:description" content="获取系统的错误信息 
+比如移动文件时，获取文件操作错误：
+  NSError *e = nil;
+  [[NSFileManager defaultManager] moveItemAtPath:sourcePath toPath:targetPath error:&amp;amp;e];
+  if (e) {
+  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e local">
+  
+    <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/yql.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">第欧根尼的小桶</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/informal">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Dogndxt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/3096523975/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/yang-ti-zi-79" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 15px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［定时器］/" style="font-size: 10px;">［定时器］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://stackoverflow.com">stackoverflow</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://bbs.iosre.com">逆向工程</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com">简书</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我就是你平时玩手机时忽视的人呀～ 请放下手机，和我多说说话好么。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">第欧根尼的小桶</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/yql.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">第欧根尼的小桶</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/informal">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Dogndxt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/3096523975/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/yang-ti-zi-79" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-错误类nserror的学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/22/错误类nserror的学习/" class="article-date">
+  	<time datetime="2016-04-22T14:12:27.000Z" itemprop="datePublished">2016-04-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      错误类nserror的学习
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>获取系统的错误信息 </p>
+<p>比如移动文件时，获取文件操作错误：</p>
+<pre><code>  NSError *e = nil;
+  [[NSFileManager defaultManager] moveItemAtPath:sourcePath toPath:targetPath error:&amp;e];
+  if (e) {
+  　　NSLog(@&quot;move failed:%@&quot;, [e localizedDescription]);
+  }
+先定一个空的错误信息
+  NSError *e = nil;
+取地址
+  &amp;e   
+如果有错误信息，打印错误的本地化描述
+  if (e) {
+  　　NSLog(@&quot;move failed:%@&quot;, [e localizedDescription]);
+  }
+</code></pre><a id="more"></a>
+<h3 id="自定义错误信息"><a href="#自定义错误信息" class="headerlink" title="自定义错误信息"></a>自定义错误信息</h3><pre><code>通常可以通过下面语句，自定义个NSError对象
+
+   #define CustomErrorDomain @&quot;com.xiaodao.test&quot;
+     typedef enum {
+
+   　　  XDefultFailed = -1000,
+   　　  XRegisterFailed,
+   　　  XConnectFailed,
+   　　  XNotBindedFailed
+     }CustomErrorFailed;
+
+
+   NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@&quot;is a error test&quot;                                                                      forKey:NSLocalizedDescriptionKey];
+   NSError *aError = [NSError errorWithDomain:CustomErrorDomain code:XDefultFailed userInfo:userInfo];
+</code></pre><p>其中，自定义错误域对象CustomErrorDomain，通常用域名反写，也可以是任何其他字符串code错误标识, 系统的code一般都大于零，自定code可以用枚举（最好用负数, 但不是必须的）userInfo自定义错误信息，NSLocalizedDescriptionKey是NSError头文件中预定义的键，标识错误的本地化描述可以通过NSError的localizedDescription方法获得对应的值信息</p>
+<p>主调用函数一般传入NSError指针的指针，来获取错误信息，例如</p>
+<pre><code>- (Bool)doSomething:(NSDictionary *)parameter1 error:(NSError **)aError
+{
+   //TODO: do something
+　　*aError = [NSError errorWithDomain:CustomErrorDomain code:XDefultFailed userInfo:userInfo];
+　　return Yes;
+
+}
+</code></pre><h3 id="NSError头文件解析"><a href="#NSError头文件解析" class="headerlink" title="NSError头文件解析"></a>NSError头文件解析</h3><h4 id="NSError对象中，主要有三个私有变量"><a href="#NSError对象中，主要有三个私有变量" class="headerlink" title="NSError对象中，主要有三个私有变量"></a>NSError对象中，主要有三个私有变量</h4><pre><code>错误域（NSInteger）： _domain
+
+错误标示（NSString *）：_code
+
+错误详细信息（NSDictionary *）：_userInfo
+
+通常用_domain和_code一起标识一个错误信息
+
+
+获取_domain
+- (NSString *)domain;
+
+获取 _code
+- (NSInteger)code;
+
+获取 _userInfo
+- (NSDictionary *)userInfo;
+</code></pre><h4 id="预定义域"><a href="#预定义域" class="headerlink" title="预定义域"></a>预定义域</h4><pre><code>AppKit和Foundation库中主要的错误域
+     NSString *const NSCocoaErrorDomain;
+
+其他域
+     NSString *const NSPOSIXErrorDomain;
+     NSString *const NSOSStatusErrorDomain;
+     NSString *const NSMachErrorDomain;
+</code></pre><h4 id="预定义的userinfo键名"><a href="#预定义的userinfo键名" class="headerlink" title="预定义的userinfo键名"></a>预定义的userinfo键名</h4><pre><code>推荐的标准方式，通用键
+    NSString *const NSUnderlyingErrorKey;
+</code></pre><p>其他键，对应各自读取信息的方法：</p>
+<pre><code>详细描述键
+    NSString *const NSLocalizedDescriptionKey;
+
+取方法
+   - (NSString *)localizedDescription;
+
+失败原因键
+    NSString *const NSLocalizedFailureReasonErrorKey
+
+取方法
+    - (NSString *)localizedFailureReason;
+
+恢复建议键
+    NSString *const NSLocalizedRecoverySuggestionErrorKey;
+
+取方法
+    - (NSString *)localizedRecoverySuggestion;
+
+恢复选项键
+    NSString *const NSLocalizedRecoveryOptionsErrorKey
+
+取方法
+    - (NSArray *)localizedRecoveryOptions;
+
+其他键
+    NSString *const NSRecoveryAttempterErrorKey; 
+    NSString *const NSHelpAnchorErrorKey;
+    NSString *const NSStringEncodingErrorKey ;
+    NSString *const NSURLErrorKey;
+    NSString *const NSFilePathErrorKey;
+
+用法：
+NSDictionary *userInfo ＝ [NSDictionary dictionaryWithObjectsAndKeys:@&quot;这是错误详细的描述信息&quot;, NSLocalizedDescriptionKey, error, NSUnderlyingErrorKey, nil]];
+</code></pre><h4 id="主要的初始化方法："><a href="#主要的初始化方法：" class="headerlink" title="主要的初始化方法："></a>主要的初始化方法：</h4><pre><code>- (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict;
++ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict;
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/15/OC关键字/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">OC关键字</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="错误类nserror的学习" data-title="错误类nserror的学习" data-url="http://yoursite.com/2016/04/22/错误类nserror的学习/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 第欧根尼的小桶
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

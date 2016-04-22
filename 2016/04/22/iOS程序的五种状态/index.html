@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>iOS程序的五种状态 | 第欧根尼的小桶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IOS应用程序5种状态
+Not running:应用还没有启动，或者应用正在运行但是途中被系统停止
+
+Inactive:当前应用正在前台运行，但是并不接收事件（当前 或许正在执行其它代码）。一般每当应用要从一个状态切换到另一个不 同的状态时，中途过渡会短暂停留在此状态。唯一在此状态停留时 间比较长的情况是：当用户 锁屏时，或者系统提示用户去响应某 些（诸如电话来电、有未读短信等）事件的时候。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS程序的五种状态">
+<meta property="og:url" content="http://yoursite.com/2016/04/22/iOS程序的五种状态/index.html">
+<meta property="og:site_name" content="第欧根尼的小桶">
+<meta property="og:description" content="IOS应用程序5种状态
+Not running:应用还没有启动，或者应用正在运行但是途中被系统停止
+
+Inactive:当前应用正在前台运行，但是并不接收事件（当前 或许正在执行其它代码）。一般每当应用要从一个状态切换到另一个不 同的状态时，中途过渡会短暂停留在此状态。唯一在此状态停留时 间比较长的情况是：当用户 锁屏时，或者系统提示用户去响应某 些（诸如电话来电、有未读短信等）事件的时候。">
+<meta property="og:updated_time" content="2016-04-22T14:23:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS程序的五种状态">
+<meta name="twitter:description" content="IOS应用程序5种状态
+Not running:应用还没有启动，或者应用正在运行但是途中被系统停止
+
+Inactive:当前应用正在前台运行，但是并不接收事件（当前 或许正在执行其它代码）。一般每当应用要从一个状态切换到另一个不 同的状态时，中途过渡会短暂停留在此状态。唯一在此状态停留时 间比较长的情况是：当用户 锁屏时，或者系统提示用户去响应某 些（诸如电话来电、有未读短信等）事件的时候。">
+  
+    <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/yql.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">第欧根尼的小桶</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/informal">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Dogndxt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/3096523975/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/yang-ti-zi-79" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 13.33px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［iOS］/" style="font-size: 16.67px;">［iOS］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［定时器］/" style="font-size: 10px;">［定时器］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://stackoverflow.com">stackoverflow</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://bbs.iosre.com">逆向工程</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com">简书</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我就是你平时玩手机时忽视的人呀～ 请放下手机，和我多说说话好么。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">第欧根尼的小桶</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/yql.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">第欧根尼的小桶</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/informal">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Dogndxt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/3096523975/profile?topnav=1&wvr=6" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/yang-ti-zi-79" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-iOS程序的五种状态" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/22/iOS程序的五种状态/" class="article-date">
+  	<time datetime="2016-04-22T14:21:54.000Z" itemprop="datePublished">2016-04-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS程序的五种状态
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="IOS应用程序5种状态"><a href="#IOS应用程序5种状态" class="headerlink" title="IOS应用程序5种状态"></a>IOS应用程序5种状态</h3><ol>
+<li><p>Not running:应用还没有启动，或者应用正在运行但是途中被系统停止</p>
+</li>
+<li><p>Inactive:当前应用正在前台运行，但是并不接收事件（当前 或许正在执行其它代码）。一般每当应用要从一个状态切换到另一个不 同的状态时，中途过渡会短暂停留在此状态。唯一在此状态停留时 间比较长的情况是：当用户 锁屏时，或者系统提示用户去响应某 些（诸如电话来电、有未读短信等）事件的时候。</p>
+<a id="more"></a></li>
+<li><p>Active:当前应用正在前台运行，并且接收事件。这是应用正在前台运行时所处的正常状态。</p>
+</li>
+<li><p>Background:应用处在后台，并且还在执行代码。大多数将 要进入Suspended状态的应用，会先短暂进入此状态。然而，对于请求 需要额外的执行时间的应用，会在此状态保持更长一段时间。另外， 如果一个应用要 求启动时直接进入后台运行，这样的应用会直接 从Not running状态进入Background状态，中途不会经过Inactive状 态。比如没有界面的应用。注此处并不特指没有界面的应用，其实 也可以是 有界面的应用，只是如果要直接进入background状态的 话，该应用界面不会被显示。</p>
+</li>
+<li><p>Suspended:应用处在后台，并且已停止执行代码。系统自动 的将应用移入此状态，且在此举之前不会对应用做任何通知。当处在 此状态时，应用依然驻留内存但不执行任何程序代码。当系统发生 低内存告警时，系统将会将处 于Suspended状态的应用清除出内 存以为正在前台运行的应用提供足够的内存。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/22/错误类error的学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          错误类error的学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/22/单例UIApplication-总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">单例UIApplication-总结</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS程序的五种状态" data-title="iOS程序的五种状态" data-url="http://yoursite.com/2016/04/22/iOS程序的五种状态/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 第欧根尼的小桶
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-15T14:53:08.000Z</updated>
+  <updated>2016-04-22T14:29:35.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,331 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>文件的处理－见识filemanager的强大</title>
+    <link href="http://yoursite.com/2016/04/22/%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%EF%BC%8D%E8%A7%81%E8%AF%86filemanager%E7%9A%84%E5%BC%BA%E5%A4%A7/"/>
+    <id>http://yoursite.com/2016/04/22/文件的处理－见识filemanager的强大/</id>
+    <published>2016-04-22T14:29:05.000Z</published>
+    <updated>2016-04-22T14:29:35.000Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;获取应用沙盒根路径&quot;&gt;&lt;a href=&quot;#获取应用沙盒根路径&quot; class=&quot;headerlink&quot; title=&quot;获取应用沙盒根路径&quot;&gt;&lt;/a&gt;获取应用沙盒根路径&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSString *dirHome = NSHomeDirectory(); 
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;获取-Documents-目录文件&quot;&gt;&lt;a href=&quot;#获取-Documents-目录文件&quot; class=&quot;headerlink&quot; title=&quot;获取 Documents 目录文件&quot;&gt;&lt;/a&gt;获取 Documents 目录文件&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+NSString *documentsDirectory = [paths lastObject]; 
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;获取-Library-目录路径&quot;&gt;&lt;a href=&quot;#获取-Library-目录路径&quot; class=&quot;headerlink&quot; title=&quot;获取 Library 目录路径&quot;&gt;&lt;/a&gt;获取 Library 目录路径&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSArray *paths2 = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+NSString *libraryDirectofry = [paths2 lastObject]; 
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;获取-Tmp-目录路径&quot;&gt;&lt;a href=&quot;#获取-Tmp-目录路径&quot; class=&quot;headerlink&quot; title=&quot;获取 Tmp 目录路径&quot;&gt;&lt;/a&gt;获取 Tmp 目录路径&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSString *tmpDirectory = NSTemporaryDirectory(); 
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;创建文件夹&quot;&gt;&lt;a href=&quot;#创建文件夹&quot; class=&quot;headerlink&quot; title=&quot;创建文件夹&quot;&gt;&lt;/a&gt;创建文件夹&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSFileManager *fileManager = [NSFileManager defaultManager];
+NSString *testDirectory = [documentsDirectory stringByAppendingString:@&amp;quot;test&amp;quot;];
+BOOL res = [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];   
+if (res) {
+
+    NSLog(@&amp;quot;创建文件夹成功&amp;quot;);
+} else {
+
+    NSLog(@&amp;quot;创建文件夹失败&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;创建文件&quot;&gt;&lt;a href=&quot;#创建文件&quot; class=&quot;headerlink&quot; title=&quot;创建文件&quot;&gt;&lt;/a&gt;创建文件&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSData *data = [NSData dataWithContentsOfFile:@&amp;quot;/Users/zxq/Desktop/userInfor&amp;quot;];
+NSString *testPath = [testDirectory stringByAppendingPathComponent:@&amp;quot;test.txt&amp;quot;];
+BOOL res2 = [fileManager createFileAtPath:testPath contents:data attributes:nil]; 
+if (res2) {
+
+    NSLog(@&amp;quot;创建文件成功&amp;quot;);
+} else {
+
+    NSLog(@&amp;quot;创建文件失败&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;测试写入内容&quot;&gt;&lt;a href=&quot;#测试写入内容&quot; class=&quot;headerlink&quot; title=&quot;测试写入内容&quot;&gt;&lt;/a&gt;测试写入内容&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSString *content = @&amp;quot;测试写入内容&amp;quot;;
+BOOL res3 = [content writeToFile:testPath atomically:YES encoding:NSUTF8StringEncoding error:nil]; 
+if (res3) {
+
+    NSLog(@&amp;quot;文件写入成功&amp;quot;);
+} else {
+
+    NSLog(@&amp;quot;文件写入失败&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;读取文件内容&quot;&gt;&lt;a href=&quot;#读取文件内容&quot; class=&quot;headerlink&quot; title=&quot;读取文件内容&quot;&gt;&lt;/a&gt;读取文件内容&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSString *content2 = [NSString stringWithContentsOfFile:testPath encoding:NSUTF8StringEncoding error:nil]; 
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;获取文件属性&quot;&gt;&lt;a href=&quot;#获取文件属性&quot; class=&quot;headerlink&quot; title=&quot;获取文件属性&quot;&gt;&lt;/a&gt;获取文件属性&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:testPath error:nil]; 
+for (int i = 0; i &amp;lt; [[fileAttributes allKeys] count]; i ++) {
+
+    NSLog(@&amp;quot;key: %@, value:%@&amp;quot;, [[fileAttributes allKeys] objectAtIndex:i], [fileAttributes objectForKey:[[fileAttributes allKeys] objectAtIndex:i]]);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;删除文件&quot;&gt;&lt;a href=&quot;#删除文件&quot; class=&quot;headerlink&quot; title=&quot;删除文件&quot;&gt;&lt;/a&gt;删除文件&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;BOOL res4 = [fileManager removeItemAtPath:testPath error:nil]; 
+if (res4) {
+
+    NSLog(@&amp;quot;删除成功&amp;quot;);
+} else {
+
+    NSLog(@&amp;quot;删除失败&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;获取应用沙盒根路径&quot;&gt;&lt;a href=&quot;#获取应用沙盒根路径&quot; class=&quot;headerlink&quot; title=&quot;获取应用沙盒根路径&quot;&gt;&lt;/a&gt;获取应用沙盒根路径&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSString *dirHome = NSHomeDirectory(); 
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>内存空间Zone的挖掘</title>
+    <link href="http://yoursite.com/2016/04/22/%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4Zone%E7%9A%84%E6%8C%96%E6%8E%98/"/>
+    <id>http://yoursite.com/2016/04/22/内存空间Zone的挖掘/</id>
+    <published>2016-04-22T14:26:34.000Z</published>
+    <updated>2016-04-22T14:27:11.000Z</updated>
+    
+    <content type="html">&lt;p&gt;NSZone 是苹果对内存分配和释放的优化方式。NSZone不是一个对象；它是一个难懂的C结构，它被用于纪录关于内存处理（管理）一系列对象的信息。你几乎不需要担忧你自己的应用（applications）是怎样管理你自己的空间（zones）的 ；Cocoa透明地管理它。默认的NSZone在程序启动和所有对象被分配时创建。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;所以你为什么想要去用你自己的NSZone呢？&lt;/p&gt;
+&lt;p&gt;如果你大量分配数百个小对象，事实上你会发现你花费精力来为他们分配内存是有意义的。因为这种标准的（默认的）空间会被一直使用，它会变得斑驳起来；释放对象的过程会给整个内存留下令人尴尬的空隙。标准空间的分配器（allocator）也知道知道这一点，所以它尝试着优先去使用被用户释放的内存，去填补这些空隙，但是这种方式只有在空间(zone) 变得很大时才有明显效果。&lt;/p&gt;
+&lt;p&gt;如果你想为大量对象分配内存，然后，你可以创建你自己的空间（zone）并且告诉它不用去为了为新对象分配内存而去查找那些空隙。分配器现在能够每次跳到内存分配的末尾为你的新对象分配内存，能起到不错的效果。&lt;/p&gt;
+&lt;p&gt;另外，分配器也能为你节省时间，当分配器向操作系统请求更多内存时，分配器去查找哪块空间什么时候被填满，需要花费不少时间。一种更快的时间是一次去请求一大块内存，你也能告诉你的NSZone在这儿做什么。&lt;/p&gt;
+&lt;p&gt;NSZone也能节省你释放内存的时间。它有方法释放大量分配的内存，而不打扰释放器（deallocators）。如果用一个集合（set）包含一系列对象，这样能够节省时间，你可以一次释放它们而不用去乏味地一个个释放它们。&lt;/p&gt;
+&lt;p&gt;NSZone is Apple’s way of optimizing object allocation and freeing. NSZone is not an object; it is an opaque C-struct storing information about how memory should be handled for a set of objects.&lt;/p&gt;
+&lt;p&gt;One rarely needs to worry about handling your own zones in applications; Cocoa handles it transparently. A default NSZone is created&amp;gt;If you are mass-allocating hundreds of cheap objects, you may find the cost of actually allocating space for them becomes significant. Because the standard zone is used all the time, it can become very patchy; deleted objects can leave awkward gaps throughout memory. The allocator for the standard NSZone knows this, and it tries to fill these gaps in preference to grabbing more memory off the system, but this can be costly in time if the zone has grown quite large.&lt;/p&gt;
+&lt;p&gt;If you want to mass-allocate objects, then, you can create your own zone and tell it not to bother with finding gaps to put new objects in. The allocator can now jump to the end of its allotted memory each time and quickly assign memory to your new objects, saving a lot of effort.&lt;/p&gt;
+&lt;p&gt;Allocators can save you time elsewhere, too, as asking the OS for more memory, which a zone needs to do whenever it fills up, is another costly operation if it’s done a lot. Much quicker is to ask for huge chunks of memory at a time, and you can tell your NSZone what to do here as well.&lt;/p&gt;
+&lt;p&gt;Rumor has it that NSZone could save you deallocation time in the Good Old Days, too, with a method that simply chucks away all the allotted memory without bothering to call deallocators. If a set of objects is self-contained, this could save a lot of time, as you can chuck them all away at style=”font-weight:bold”&amp;gt;NSZone method (NSRecycleZone) carefully puts all the objects in a zone neatly style=”font-weight:bold”&amp;gt;NSZone. Not exactly a huge time-saver.&lt;/p&gt;
+&lt;p&gt;So, in summary, zones save you time in mass allocations. &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;NSZone 是苹果对内存分配和释放的优化方式。NSZone不是一个对象；它是一个难懂的C结构，它被用于纪录关于内存处理（管理）一系列对象的信息。你几乎不需要担忧你自己的应用（applications）是怎样管理你自己的空间（zones）的 ；Cocoa透明地管理它。默认的NSZone在程序启动和所有对象被分配时创建。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>错误类error的学习</title>
+    <link href="http://yoursite.com/2016/04/22/%E9%94%99%E8%AF%AF%E7%B1%BBerror%E7%9A%84%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2016/04/22/错误类error的学习/</id>
+    <published>2016-04-22T14:24:31.000Z</published>
+    <updated>2016-04-22T14:25:03.000Z</updated>
+    
+    <content type="html">&lt;p&gt;获取系统的错误信息 &lt;/p&gt;
+&lt;p&gt;比如移动文件时，获取文件操作错误：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  NSError *e = nil;
+  [[NSFileManager defaultManager] moveItemAtPath:sourcePath toPath:targetPath error:&amp;amp;e];
+  if (e) {
+  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e localizedDescription]);
+  }
+先定一个空的错误信息
+  NSError *e = nil;
+取地址
+  &amp;amp;e   
+如果有错误信息，打印错误的本地化描述
+  if (e) {
+  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e localizedDescription]);
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;自定义错误信息&quot;&gt;&lt;a href=&quot;#自定义错误信息&quot; class=&quot;headerlink&quot; title=&quot;自定义错误信息&quot;&gt;&lt;/a&gt;自定义错误信息&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;通常可以通过下面语句，自定义个NSError对象
+
+   #define CustomErrorDomain @&amp;quot;com.xiaodao.test&amp;quot;
+     typedef enum {
+
+   　　  XDefultFailed = -1000,
+   　　  XRegisterFailed,
+   　　  XConnectFailed,
+   　　  XNotBindedFailed
+     }CustomErrorFailed;
+
+   NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@&amp;quot;is a error test&amp;quot;                                                                      forKey:NSLocalizedDescriptionKey];
+   NSError *aError = [NSError errorWithDomain:CustomErrorDomain code:XDefultFailed userInfo:userInfo];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中，自定义错误域对象CustomErrorDomain，通常用域名反写，也可以是任何其他字符串code错误标识, 系统的code一般都大于零，自定code可以用枚举（最好用负数, 但不是必须的）userInfo自定义错误信息，NSLocalizedDescriptionKey是NSError头文件中预定义的键，标识错误的本地化描述可以通过NSError的localizedDescription方法获得对应的值信息&lt;/p&gt;
+&lt;p&gt;主调用函数一般传入NSError指针的指针，来获取错误信息，例如&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (Bool)doSomething:(NSDictionary *)parameter1 error:(NSError **)aError
+{
+   //TODO: do something
+　　*aError = [NSError errorWithDomain:CustomErrorDomain code:XDefultFailed userInfo:userInfo];
+　　return Yes;
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSError头文件解析&quot;&gt;&lt;a href=&quot;#NSError头文件解析&quot; class=&quot;headerlink&quot; title=&quot;NSError头文件解析&quot;&gt;&lt;/a&gt;NSError头文件解析&lt;/h3&gt;&lt;h4 id=&quot;NSError对象中，主要有三个私有变量&quot;&gt;&lt;a href=&quot;#NSError对象中，主要有三个私有变量&quot; class=&quot;headerlink&quot; title=&quot;NSError对象中，主要有三个私有变量&quot;&gt;&lt;/a&gt;NSError对象中，主要有三个私有变量&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;错误域（NSInteger）： _domain
+
+错误标示（NSString *）：_code
+
+错误详细信息（NSDictionary *）：_userInfo
+
+通常用_domain和_code一起标识一个错误信息
+
+
+获取_domain
+- (NSString *)domain;
+
+获取 _code
+- (NSInteger)code;
+
+获取 _userInfo
+- (NSDictionary *)userInfo;
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;预定义域&quot;&gt;&lt;a href=&quot;#预定义域&quot; class=&quot;headerlink&quot; title=&quot;预定义域&quot;&gt;&lt;/a&gt;预定义域&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;AppKit和Foundation库中主要的错误域
+     NSString *const NSCocoaErrorDomain;
+
+其他域
+     NSString *const NSPOSIXErrorDomain;
+     NSString *const NSOSStatusErrorDomain;
+     NSString *const NSMachErrorDomain;
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;预定义的userinfo键名&quot;&gt;&lt;a href=&quot;#预定义的userinfo键名&quot; class=&quot;headerlink&quot; title=&quot;预定义的userinfo键名&quot;&gt;&lt;/a&gt;预定义的userinfo键名&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;推荐的标准方式，通用键
+    NSString *const NSUnderlyingErrorKey;
+
+其他键，对应各自读取信息的方法：
+
+详细描述键
+    NSString *const NSLocalizedDescriptionKey;
+
+取方法
+   - (NSString *)localizedDescription;
+
+失败原因键
+    NSString *const NSLocalizedFailureReasonErrorKey
+
+取方法
+    - (NSString *)localizedFailureReason;
+
+恢复建议键
+    NSString *const NSLocalizedRecoverySuggestionErrorKey;
+
+取方法
+    - (NSString *)localizedRecoverySuggestion;
+
+恢复选项键
+    NSString *const NSLocalizedRecoveryOptionsErrorKey
+
+取方法
+    - (NSArray *)localizedRecoveryOptions;
+
+其他键
+    NSString *const NSRecoveryAttempterErrorKey; 
+    NSString *const NSHelpAnchorErrorKey;
+    NSString *const NSStringEncodingErrorKey ;
+    NSString *const NSURLErrorKey;
+    NSString *const NSFilePathErrorKey;
+用法：
+NSDictionary *userInfo ＝ [NSDictionary dictionaryWithObjectsAndKeys:@&amp;quot;这是错误详细的描述信息&amp;quot;, NSLocalizedDescriptionKey, error, NSUnderlyingErrorKey, nil]];
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;主要的初始化方法：&quot;&gt;&lt;a href=&quot;#主要的初始化方法：&quot; class=&quot;headerlink&quot; title=&quot;主要的初始化方法：&quot;&gt;&lt;/a&gt;主要的初始化方法：&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;- (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict;
++ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict;
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;获取系统的错误信息 &lt;/p&gt;
+&lt;p&gt;比如移动文件时，获取文件操作错误：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  NSError *e = nil;
+  [[NSFileManager defaultManager] moveItemAtPath:sourcePath toPath:targetPath error:&amp;amp;e];
+  if (e) {
+  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e localizedDescription]);
+  }
+先定一个空的错误信息
+  NSError *e = nil;
+取地址
+  &amp;amp;e   
+如果有错误信息，打印错误的本地化描述
+  if (e) {
+  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e localizedDescription]);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS程序的五种状态</title>
+    <link href="http://yoursite.com/2016/04/22/iOS%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%BA%94%E7%A7%8D%E7%8A%B6%E6%80%81/"/>
+    <id>http://yoursite.com/2016/04/22/iOS程序的五种状态/</id>
+    <published>2016-04-22T14:21:54.000Z</published>
+    <updated>2016-04-22T14:23:20.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;IOS应用程序5种状态&quot;&gt;&lt;a href=&quot;#IOS应用程序5种状态&quot; class=&quot;headerlink&quot; title=&quot;IOS应用程序5种状态&quot;&gt;&lt;/a&gt;IOS应用程序5种状态&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Not running:应用还没有启动，或者应用正在运行但是途中被系统停止&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Inactive:当前应用正在前台运行，但是并不接收事件（当前 或许正在执行其它代码）。一般每当应用要从一个状态切换到另一个不 同的状态时，中途过渡会短暂停留在此状态。唯一在此状态停留时 间比较长的情况是：当用户 锁屏时，或者系统提示用户去响应某 些（诸如电话来电、有未读短信等）事件的时候。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Active:当前应用正在前台运行，并且接收事件。这是应用正在前台运行时所处的正常状态。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Background:应用处在后台，并且还在执行代码。大多数将 要进入Suspended状态的应用，会先短暂进入此状态。然而，对于请求 需要额外的执行时间的应用，会在此状态保持更长一段时间。另外， 如果一个应用要 求启动时直接进入后台运行，这样的应用会直接 从Not running状态进入Background状态，中途不会经过Inactive状 态。比如没有界面的应用。注此处并不特指没有界面的应用，其实 也可以是 有界面的应用，只是如果要直接进入background状态的 话，该应用界面不会被显示。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Suspended:应用处在后台，并且已停止执行代码。系统自动 的将应用移入此状态，且在此举之前不会对应用做任何通知。当处在 此状态时，应用依然驻留内存但不执行任何程序代码。当系统发生 低内存告警时，系统将会将处 于Suspended状态的应用清除出内 存以为正在前台运行的应用提供足够的内存。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;IOS应用程序5种状态&quot;&gt;&lt;a href=&quot;#IOS应用程序5种状态&quot; class=&quot;headerlink&quot; title=&quot;IOS应用程序5种状态&quot;&gt;&lt;/a&gt;IOS应用程序5种状态&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Not running:应用还没有启动，或者应用正在运行但是途中被系统停止&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Inactive:当前应用正在前台运行，但是并不接收事件（当前 或许正在执行其它代码）。一般每当应用要从一个状态切换到另一个不 同的状态时，中途过渡会短暂停留在此状态。唯一在此状态停留时 间比较长的情况是：当用户 锁屏时，或者系统提示用户去响应某 些（诸如电话来电、有未读短信等）事件的时候。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单例UIApplication-总结</title>
+    <link href="http://yoursite.com/2016/04/22/%E5%8D%95%E4%BE%8BUIApplication-%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2016/04/22/单例UIApplication-总结/</id>
+    <published>2016-04-22T14:16:58.000Z</published>
+    <updated>2016-04-22T14:21:05.000Z</updated>
+    
+    <content type="html">&lt;p&gt;If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate class will be instantiated using init.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;UIKIT_EXTERN int UIApplicationMain (
+
+   int argc, 
+   char *argv[], 
+   NSString * __nullable principalClassName, 
+   NSString * __nullable delegateClassName
+);
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责-三件-事情：&quot;&gt;&lt;a href=&quot;#那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责-三件-事情：&quot; class=&quot;headerlink&quot; title=&quot;那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责 三件 事情：&quot;&gt;&lt;/a&gt;那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责 三件 事情：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1）从给定的类名初始化应用程序对象，也就是初始化UIApplication或者子类对象的一个实例，
+如果你在这里给定的是nil，那么 系统会默认UIApplication类，也就主要是这个类来控制以及协调应用程序的运行。
+在后续的工作中，你可以用静态方法sharedApplication 来获取应用程序的句柄。 
+2）从给定的应用程序委托类，初始化一个应用程序委托。并把该委托设置为应用程序的委托，这里就有如果传入参数为nil，会调用函数访问 Info.plist文件来寻找主nib文件，获取应用程序委托。 
+3）启动主事件循环，并开始接收事件。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;UIApplication（或-者子类）对象的职责，这个对象主要做下面几件事：&quot;&gt;&lt;a href=&quot;#UIApplication（或-者子类）对象的职责，这个对象主要做下面几件事：&quot; class=&quot;headerlink&quot; title=&quot;UIApplication（或 者子类）对象的职责，这个对象主要做下面几件事：&quot;&gt;&lt;/a&gt;UIApplication（或 者子类）对象的职责，这个对象主要做下面几件事：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1）负责处理到来的用户事件，并分发事件消息到应该处理该消息的目标对象（sender,  action)。 
+2）管理以及控制视图，包括呈现、控制行为、当前显示视图等。 
+3）该对象有一个应用程序委托对象，当一些生命周期内重要事件（可以包括系统事件或者生命周期控制事件）发生时，应用程序通知该对象。
+例如，应用程序启动、内存不够了或者应用程序结束等，让这些事件发生时，应用程序委托去响应。 
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;我们可以从应用程序的单例类对象中得到应用程序委托的对象&quot;&gt;&lt;a href=&quot;#我们可以从应用程序的单例类对象中得到应用程序委托的对象&quot; class=&quot;headerlink&quot; title=&quot;我们可以从应用程序的单例类对象中得到应用程序委托的对象&quot;&gt;&lt;/a&gt;我们可以从应用程序的单例类对象中得到应用程序委托的对象&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;UIApplicationDelegate* myDelegate = [[UIApplication sharedApplication] delegate]; 
+
+UIApplication 接收到所有的系统事件和生命周期事件时，都会把事件传递给UIApplicationDelegate进行处理，
+对于用户输入 事件，则传递给相应的目标对象去处理
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;创建UIApplication对象并指定其代理&quot;&gt;&lt;a href=&quot;#创建UIApplication对象并指定其代理&quot; class=&quot;headerlink&quot; title=&quot;创建UIApplication对象并指定其代理&quot;&gt;&lt;/a&gt;创建UIApplication对象并指定其代理&lt;/h3&gt;&lt;p&gt;通过UIApplicationMain函数创建UIApplication对象并 指定其代理对象AppDelegate;第三个参数为指定 UIApplication的子类来生成UIApplication对象，为nil时由 UIApplication类初始化默认对象；第四个参数为指定代理 对象。&lt;/p&gt;
+&lt;h3 id=&quot;UIApplication的代理对象&quot;&gt;&lt;a href=&quot;#UIApplication的代理对象&quot; class=&quot;headerlink&quot; title=&quot;UIApplication的代理对象&quot;&gt;&lt;/a&gt;UIApplication的代理对象&lt;/h3&gt;&lt;p&gt;作为UIApplication的代理类，必须要先实现 UIApplicationDelegate协议，协议里明确了作为代理应 该做或可以做哪些事情。 UIApplication对象负责监听应用程序的生命周期事件， 并将生命周期事件交由UIApplication代理对象处理。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate class will be instantiated using init.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;UIKIT_EXTERN int UIApplicationMain (
+
+   int argc, 
+   char *argv[], 
+   NSString * __nullable principalClassName, 
+   NSString * __nullable delegateClassName
+);
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>OC关键字</title>
@@ -734,331 +1059,6 @@ rand 经常定期被周期低位的方式，使其更可预测执行。
     
     
       <category term="［你好，请多多指教～］" scheme="http://yoursite.com/tags/%EF%BC%BB%E4%BD%A0%E5%A5%BD%EF%BC%8C%E8%AF%B7%E5%A4%9A%E5%A4%9A%E6%8C%87%E6%95%99%EF%BD%9E%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>StoryBoard 可视化界面布局注意点</title>
-    <link href="http://yoursite.com/2016/03/27/StoryBoard-%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2%E5%B8%83%E5%B1%80%E6%B3%A8%E6%84%8F%E7%82%B9/"/>
-    <id>http://yoursite.com/2016/03/27/StoryBoard-可视化界面布局注意点/</id>
-    <published>2016-03-27T02:37:48.000Z</published>
-    <updated>2016-03-27T02:50:18.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;使用-ScrollView-进行自动布局&quot;&gt;&lt;a href=&quot;#使用-ScrollView-进行自动布局&quot; class=&quot;headerlink&quot; title=&quot;使用 ScrollView 进行自动布局&quot;&gt;&lt;/a&gt;使用 ScrollView 进行自动布局&lt;/h3&gt;&lt;p&gt; 解决方案：可以在 ScrollView 上添加一个唯一的子视图，大小和 ScrollView 一样，然后所有原来计划添加到 ScrollView 上的控件，都添加到子视图上面。&lt;br&gt; &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h4 id=&quot;实现步骤&quot;&gt;&lt;a href=&quot;#实现步骤&quot; class=&quot;headerlink&quot; title=&quot;实现步骤&quot;&gt;&lt;/a&gt;实现步骤&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;在 Controller 自带的 View 里面添加一个 ScrollView，约束距离为（0，0，0，0）；&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在 ScrollView 里面添加子视图 View ，约束 ScrollView 的距离为（0，0，0，0）；&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在下面设置约束的4个按钮的第二个，如果想要上下滑动，则选择 Horizontal Center in Container, 并打上对勾，（如果想要左右滑动就选择 Vertical Center in Container， 同时实现左右上下则全不选）；&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;然后设置 View 的高度 Height（或者宽度 Width），这个高度或者宽度就是运行后 Scroller 的 ContentSize ；&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;动态设置高度或者宽度&quot;&gt;&lt;a href=&quot;#动态设置高度或者宽度&quot; class=&quot;headerlink&quot; title=&quot;动态设置高度或者宽度&quot;&gt;&lt;/a&gt;动态设置高度或者宽度&lt;/h4&gt;&lt;p&gt;将 View 的高度或者宽度设置成属性，然后重写 -(void)updateViewConstraints 方法，在调用 super 之后动态的设置 高度 这个约束的 constant 属性。&lt;/p&gt;
-&lt;h3 id=&quot;使用xcode-storyboard设置按钮圆角方法&quot;&gt;&lt;a href=&quot;#使用xcode-storyboard设置按钮圆角方法&quot; class=&quot;headerlink&quot; title=&quot;使用xcode storyboard设置按钮圆角方法&quot;&gt;&lt;/a&gt;使用xcode storyboard设置按钮圆角方法&lt;/h3&gt;&lt;p&gt;  在 sb 中点击右侧指示器的第三个下的  “User Defined Runtime Attribute” 添加 layer.cornerRadius 的值。&lt;br&gt;-&amp;gt; 在代码中：self.button.layer.cornerRadius = 10;&lt;/p&gt;
-&lt;h3 id=&quot;设置-navigationController-标题的颜色&quot;&gt;&lt;a href=&quot;#设置-navigationController-标题的颜色&quot; class=&quot;headerlink&quot; title=&quot;设置 navigationController 标题的颜色&quot;&gt;&lt;/a&gt;设置 navigationController 标题的颜色&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSDictionary *attributes=[NSDictionary dictionaryWithObjectsAndKeys:BASECOLOR, NSForegroundColorAttributeName,nil];
-[self.navigationController.navigationBar setTitleTextAttributes:attributes];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;设置-navigationItem-的左按钮-（非自定义）&quot;&gt;&lt;a href=&quot;#设置-navigationItem-的左按钮-（非自定义）&quot; class=&quot;headerlink&quot; title=&quot;设置 navigationItem 的左按钮 （非自定义）&quot;&gt;&lt;/a&gt;设置 navigationItem 的左按钮 （非自定义）&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;// 设置navigationItem的左按钮
-UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@&amp;quot;btn_common_return&amp;quot;] style:UIBarButtonItemStylePlain target:self action:@selector(leftNavBtnAction)];
-leftItem.tintColor = BASECOLOR; //图片的颜色需要单独设置，图片相当于一个蒙版
-self.navigationItem.leftBarButtonItem = leftItem;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;在-sb-中设置所有的-UINavigationBar-的统一色调&quot;&gt;&lt;a href=&quot;#在-sb-中设置所有的-UINavigationBar-的统一色调&quot; class=&quot;headerlink&quot; title=&quot;在 sb 中设置所有的 UINavigationBar 的统一色调&quot;&gt;&lt;/a&gt;在 sb 中设置所有的 UINavigationBar 的统一色调&lt;/h3&gt;&lt;p&gt;先在 UINavigationController 的页面点击查看属性显示器（右侧栏第四个）设置 Bar Tint 的颜色，就可以将全部的 bar 设置成同一个颜色，然后如果要想bar 的按钮也跟bar 同一颜色的话，还需要将其的 Background 设置成 Clear Color ，这样在子页面的按钮上设置 Clear Color 才会看到跟 bar 上的同一颜色。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;如果要想设置 UInavigationBar 上的 UIView 控件，需要在 wAny hAny 模式下将 UIView 放在右上角的位置，其他模式将不能正常显示 UIView 的大小与位置。&lt;/em&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;使用-ScrollView-进行自动布局&quot;&gt;&lt;a href=&quot;#使用-ScrollView-进行自动布局&quot; class=&quot;headerlink&quot; title=&quot;使用 ScrollView 进行自动布局&quot;&gt;&lt;/a&gt;使用 ScrollView 进行自动布局&lt;/h3&gt;&lt;p&gt; 解决方案：可以在 ScrollView 上添加一个唯一的子视图，大小和 ScrollView 一样，然后所有原来计划添加到 ScrollView 上的控件，都添加到子视图上面。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="sb" scheme="http://yoursite.com/tags/sb/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CTStringAttributes 扩展属性</title>
-    <link href="http://yoursite.com/2016/03/27/CTStringAttributes-%E6%89%A9%E5%B1%95%E5%B1%9E%E6%80%A7/"/>
-    <id>http://yoursite.com/2016/03/27/CTStringAttributes-扩展属性/</id>
-    <published>2016-03-27T02:36:45.000Z</published>
-    <updated>2016-03-27T02:42:51.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Core Text 框架是处理文本内容的一个专门框架，在这个框架里面定义和约束了所有的文本字体和字形相关的属性定义。在 CTStringAttributes 这个头文件里面定义了&lt;strong&gt;21&lt;/strong&gt;种扩展属性，分别对字体和字形的属性方面进行了详细的定义。&lt;/p&gt;
- &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;KCTFontAttributeName ：设置字体属性 （大小和字体）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTForegroundColorFromContextAttributeName ：从上下文中获取前景色&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTKernAttributeName ： 字符间距&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTLigatureAttributeName ：控制连体字的信息&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTForegroundColorAttributeName ： 前景色&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTParagraphStyleAttributeName ： 段落样式&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;KCTStrokeWidthAttributeName ：描边的宽度&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTStrokeColorAttributeName ： 描边的颜色&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTUnderlineStyleAttributeName : 下划线样式&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTSuperscriptAttributeName ： 临时脚本&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTUnderlineColorAttributeName ：下划线颜色&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTVerticalFormsAttributeName ：控制字形方向&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;KCTGlyphInfoAttributeName ： 使用未编码的字形&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTCharacterShapeAttributeName ： 控制字形的选择&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTLanguageAttributeName ：指定文本的语言&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTRunDelegateAttributeName ：控制部分文字的外观&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTBaselineClassAttributeName ：引用重写基线的类&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTBaselineInfoAttributeName ： 引用基线信息的属性&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;KCTBaselineReferenceInfoAttributeName ：关键参考基线信息字典的参考标准&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTWritingDirectionAttributeName ：指定一个双向覆盖或者嵌入 （设置书写方向）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;KCTRubyAnnotationAttributeName ： 引用一个 CTRubyAnnotation 的关键&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Core Text 框架是处理文本内容的一个专门框架，在这个框架里面定义和约束了所有的文本字体和字形相关的属性定义。在 CTStringAttributes 这个头文件里面定义了&lt;strong&gt;21&lt;/strong&gt;种扩展属性，分别对字体和字形的属性方面进行了详细的定义。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="［coreText］" scheme="http://yoursite.com/tags/%EF%BC%BBcoreText%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title> 日期类的使用2</title>
-    <link href="http://yoursite.com/2016/03/20/%E6%97%A5%E6%9C%9F%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A82/"/>
-    <id>http://yoursite.com/2016/03/20/日期类的使用2/</id>
-    <published>2016-03-20T05:59:29.000Z</published>
-    <updated>2016-03-20T06:09:55.000Z</updated>
-    
-    <content type="html">&lt;p&gt;接上一篇：&lt;a href=&quot;/2016/03/20/日期类的使用NSDate/&quot;&gt;日期类的使用NSDate&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;NSDateFormatter-的使用&quot;&gt;&lt;a href=&quot;#NSDateFormatter-的使用&quot; class=&quot;headerlink&quot; title=&quot;NSDateFormatter 的使用&quot;&gt;&lt;/a&gt;NSDateFormatter 的使用&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-
-[dateFormatter setDateFormat:@&amp;quot;&amp;apos;公元前/后:&amp;apos;G  &amp;apos;年份:&amp;apos;u&amp;apos;=&amp;apos;yyyy&amp;apos;=&amp;apos;yy &amp;apos;季度:&amp;apos;q&amp;apos;=&amp;apos;qqq&amp;apos;=&amp;apos;qqqq &amp;apos;月份:&amp;apos;M&amp;apos;=&amp;apos;MMM&amp;apos;=&amp;apos;MMMM &amp;apos;今天是今年第几周:&amp;apos;w &amp;apos;今天是本月第几周:&amp;apos;W  &amp;apos;
-今天是今天第几天:&amp;apos;D &amp;apos;今天是本月第几天:&amp;apos;d &amp;apos;星期:&amp;apos;c&amp;apos;=&amp;apos;ccc&amp;apos;=&amp;apos;cccc &amp;apos;上午/下午:&amp;apos;a &amp;apos;小时:&amp;apos;h&amp;apos;=&amp;apos;H &amp;apos;分钟:&amp;apos;m &amp;apos;秒:&amp;apos;s &amp;apos;毫秒:&amp;apos;SSS  &amp;apos;这一天已过多少毫秒:&amp;apos;A  &amp;apos;时区名称:&amp;apos;zzzz&amp;apos;=&amp;apos;vvvv &amp;apos;时区编号:&amp;apos;Z &amp;quot;];
-
- NSLog(@&amp;quot;%@&amp;quot;, [dateFormatter stringFromDate:[NSDate date]]);
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;NSTimeZone-的使用&quot;&gt;&lt;a href=&quot;#NSTimeZone-的使用&quot; class=&quot;headerlink&quot; title=&quot;NSTimeZone 的使用&quot;&gt;&lt;/a&gt;NSTimeZone 的使用&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//系统时区
-NSTimeZone *zone = [NSTimeZone systemTimeZone];
-NSTimeZone *zone = [NSTimeZone defaultTimeZone];
-NSTimeZone *localTime = [NSTimeZone localTimeZone];
-
-NSData *data = [zone data];//转化成 二进制数据
-
-NSString *addStr = [zone abbreviation];//获取时区的简写
-
-NSInteger timeoff = [zone secondsFromGMT];   //获取时区的偏移量
-
-NSDate *timeOffDate = [date dateByAddingTimeInterval:timeoff]; //附加时间
-
-NSArray *zoneArrs = [NSTimeZone knownTimeZoneNames];    //获取时区的对应表
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;接上一篇：&lt;a href=&quot;/2016/03/20/日期类的使用NSDate/&quot;&gt;日期类的使用NSDate&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;NSDateFormatter-的使用&quot;&gt;&lt;a href=&quot;#NSDateFormatter-的使用&quot; class=&quot;headerlink&quot; title=&quot;NSDateFormatter 的使用&quot;&gt;&lt;/a&gt;NSDateFormatter 的使用&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-
-[dateFormatter setDateFormat:@&amp;quot;&amp;apos;公元前/后:&amp;apos;G  &amp;apos;年份:&amp;apos;u&amp;apos;=&amp;apos;yyyy&amp;apos;=&amp;apos;yy &amp;apos;季度:&amp;apos;q&amp;apos;=&amp;apos;qqq&amp;apos;=&amp;apos;qqqq &amp;apos;月份:&amp;apos;M&amp;apos;=&amp;apos;MMM&amp;apos;=&amp;apos;MMMM &amp;apos;今天是今年第几周:&amp;apos;w &amp;apos;今天是本月第几周:&amp;apos;W  &amp;apos;
-今天是今天第几天:&amp;apos;D &amp;apos;今天是本月第几天:&amp;apos;d &amp;apos;星期:&amp;apos;c&amp;apos;=&amp;apos;ccc&amp;apos;=&amp;apos;cccc &amp;apos;上午/下午:&amp;apos;a &amp;apos;小时:&amp;apos;h&amp;apos;=&amp;apos;H &amp;apos;分钟:&amp;apos;m &amp;apos;秒:&amp;apos;s &amp;apos;毫秒:&amp;apos;SSS  &amp;apos;这一天已过多少毫秒:&amp;apos;A  &amp;apos;时区名称:&amp;apos;zzzz&amp;apos;=&amp;apos;vvvv &amp;apos;时区编号:&amp;apos;Z &amp;quot;];
-
- NSLog(@&amp;quot;%@&amp;quot;, [dateFormatter stringFromDate:[NSDate date]]);
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="日期，时间" scheme="http://yoursite.com/tags/%E6%97%A5%E6%9C%9F%EF%BC%8C%E6%97%B6%E9%97%B4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日期类的使用NSDate</title>
-    <link href="http://yoursite.com/2016/03/20/%E6%97%A5%E6%9C%9F%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8NSDate/"/>
-    <id>http://yoursite.com/2016/03/20/日期类的使用NSDate/</id>
-    <published>2016-03-20T05:24:56.000Z</published>
-    <updated>2016-03-20T06:08:29.000Z</updated>
-    
-    <content type="html">&lt;p&gt;日期类在需要记录时间的地方发挥着巨大的作用，也可以实时地获取程序使用的时间。配合 NSLocal ，NSDateFormatter 和 NSTimeZone 这几个类就可以涵盖所有的程序使用的时间日期的数据。&lt;br&gt;&lt;img src=&quot;/img/date.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;初始化一个 NSDate 类可以使用工厂方法和实例方法：&lt;/p&gt;
-&lt;h4 id=&quot;工厂方法&quot;&gt;&lt;a href=&quot;#工厂方法&quot; class=&quot;headerlink&quot; title=&quot;工厂方法&quot;&gt;&lt;/a&gt;工厂方法&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSDate *time = [NSDate date]; //返回当前时间
-NSDate *time = [NSDate dateWithTimeIntervalSinceNow:0.0]; //返回以当前时间为基准，然后过了secs秒的时间
-NSDate *time = [NSDate dateWithTimeIntervalSince1970:100.0]; //返回以1970/01/01 GMT为基准，然后过了secs秒的时间
-NSDate *time = [NSDate dateWithTimeIntervalSinceReferenceDate:100.0]; //返回以2001/01/01 GMT为基准，然后过了secs秒的时间
-NSDate *time = [NSDate dateWithTimeInterval:100.0 sinceDate:time2]; //返回从某个时间之后过了多少秒
-NSDate *time = [NSDate distantFuture];  //返回很多年以后的未来的某一天。
-NSDate *time = [NSDate distantPast];    //返回很多年以前的某一天
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;实例方法&quot;&gt;&lt;a href=&quot;#实例方法&quot; class=&quot;headerlink&quot; title=&quot;实例方法&quot;&gt;&lt;/a&gt;实例方法&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSDate *time = [[NSDate alloc] init]; //返回当前时间
-NSDate *time = [[NSDate alloc] initWithTimeInterval:1000.0 sinceDate:time2]; //返回从某个时间之后过了多少秒
-NSDate *time = [[NSDate alloc] initWithTimeIntervalSince1970:1000000000.0]; //返回以1970/01/01 GMT为基准，然后过了secs秒的时间
-NSDate *time = [[NSDate alloc] initWithTimeIntervalSinceNow:100.0]; //返回以当前时间为基准，然后过了secs秒的时间
-NSDate *time = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:1000000.0]; //返回以2001/01/01 GMT为基准，然后过了secs秒的时间
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;日期间的比较-获取两个时间的间隔&quot;&gt;&lt;a href=&quot;#日期间的比较-获取两个时间的间隔&quot; class=&quot;headerlink&quot; title=&quot;日期间的比较 /  获取两个时间的间隔&quot;&gt;&lt;/a&gt;日期间的比较 /  获取两个时间的间隔&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSLog(@&amp;quot;%d&amp;quot;, [time isEqualToDate:time2]);  //是否相等
-NSLog(@&amp;quot;%@&amp;quot;, [time earlierDate:time2]);    //是否早于
-NSLog(@&amp;quot;%@&amp;quot;, [time2 laterDate:time]);      //是否低于
-NSLog(@&amp;quot;%ld&amp;quot;, [time2 compare:time]);       //排序时调用，返回 -1，0，1
-
-NSLog(@&amp;quot;%f&amp;quot;, [time timeIntervalSinceDate:time2]); //time2之后与time间的间隔
-NSLog(@&amp;quot;%f&amp;quot;, [time timeIntervalSince1970]);    //从1970年之后到time的间隔
-NSLog(@&amp;quot;%F&amp;quot;, [time timeIntervalSinceNow]);    //从现在到time之间的时间间隔
-NSLog(@&amp;quot;%f&amp;quot;, [time timeIntervalSinceReferenceDate]); //从以1970/01/01 GMT为基准到time的时间间隔
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;时间表示成字符串&quot;&gt;&lt;a href=&quot;#时间表示成字符串&quot; class=&quot;headerlink&quot; title=&quot;时间表示成字符串&quot;&gt;&lt;/a&gt;时间表示成字符串&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;- (NSString *)description; 以YYYY-MM-DD HH:MM:SS ±HHMM的格式表示时间。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSLocale-的用法&quot;&gt;&lt;a href=&quot;#NSLocale-的用法&quot; class=&quot;headerlink&quot; title=&quot;NSLocale 的用法&quot;&gt;&lt;/a&gt;NSLocale 的用法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier&amp;quot;en_US&amp;quot;]; // 根据本地标识符创建本地化对象
-
-[NSLocale availableLocaleIdentifiers]; // 获取系统所有本地化标识符数组列表  
-
-[[NSLocale currentLocale] localeIdentifier]; //获取当前系统设置语言的标识符
-
-[NSLocale lineDirectionForLanguage:[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode]; //获取当前语言的排版方向和字符方向
-
-[NSLocale preferredLanguages]; //获取用户的语言偏好设置列表 
-
-[NSNotificationCenter defaultCenter] addObserver:self selector@selector(localChangedHandler)  name:NSCurrentLocaleDidChangeNotification object:nil];  // 监听用户本地化设置的消息
-
-NSLocale *curLocal = [[NSLocale alloc]initWithLocaleIdentifier&amp;quot;zh-Hans&amp;quot;]; // 以本地化方式获取国际化信息的显示名称
-
-
-// 设置固定的系统返回 语言数据
-NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@&amp;quot;zh&amp;quot;];
-NSDateFormatter *secondDateFormatter = [[NSDateFormatter alloc] init];
-[secondDateFormatter setDateFormat:@&amp;quot;cccc&amp;quot;];  
-secondDateFormatter.locale = locale;
-NSDate *date = [NSDate date];
-NSLog(@&amp;quot;%@&amp;quot;, [secondDateFormatter stringFromDate:date]);
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;日期类在需要记录时间的地方发挥着巨大的作用，也可以实时地获取程序使用的时间。配合 NSLocal ，NSDateFormatter 和 NSTimeZone 这几个类就可以涵盖所有的程序使用的时间日期的数据。&lt;br&gt;&lt;img src=&quot;/img/date.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="日期，时间" scheme="http://yoursite.com/tags/%E6%97%A5%E6%9C%9F%EF%BC%8C%E6%97%B6%E9%97%B4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NSData 的使用</title>
-    <link href="http://yoursite.com/2016/03/17/NSData-%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://yoursite.com/2016/03/17/NSData-的使用/</id>
-    <published>2016-03-17T14:01:55.000Z</published>
-    <updated>2016-03-17T14:14:33.000Z</updated>
-    
-    <content type="html">&lt;p&gt;应该说在任何网络中，如何使用数据来传递信息，保存和读取信息，并将其变为可以产生价值的东西，而在计算机的世界里面除了0 和 1 ，我们眼中所见的东西在计算机眼里只不过是一堆 0 和 1 数据而已。那么在 iOS 里，又是如何进行数据间的转化的。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;初始化-NSData-类型的对象&quot;&gt;&lt;a href=&quot;#初始化-NSData-类型的对象&quot; class=&quot;headerlink&quot; title=&quot;初始化 NSData 类型的对象&quot;&gt;&lt;/a&gt;初始化 NSData 类型的对象&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//定义一个char类型的字符串  
-const char * string = &amp;quot;Hi there ,this is a C string&amp;quot;; 
-
-//建立缓冲区，把字符串添加进去  
-NSData * data = [NSData dataWithBytes:string length:strlen(string)+1]; 
-
-//获取APP根目录的方法
-NSHomeDirectory()；
-
-//返回 data 的数据长度
-NSLog(@&amp;quot;%ld&amp;quot;, reader.length);
-
-
-//返回data对象的首指针
-NSLog(@&amp;quot;%s&amp;quot;, reader.bytes);
-
-
-//获取data格式的数据
-NSLog(@&amp;quot;%@&amp;quot;, reader.description);
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSString-类型的数据与-NSData-类型之间的转化&quot;&gt;&lt;a href=&quot;#NSString-类型的数据与-NSData-类型之间的转化&quot; class=&quot;headerlink&quot; title=&quot;NSString 类型的数据与 NSData 类型之间的转化&quot;&gt;&lt;/a&gt;NSString 类型的数据与 NSData 类型之间的转化&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSString * str = @&amp;quot;hello, world!&amp;quot;;
-NSData * data = [str dataUsingEncoding:NSUTF8StringEncoding]; //NSString转换成NSData类型
-NSString * newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSData-与-UIImage&quot;&gt;&lt;a href=&quot;#NSData-与-UIImage&quot; class=&quot;headerlink&quot; title=&quot;NSData 与 UIImage&quot;&gt;&lt;/a&gt;NSData 与 UIImage&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//例：从本地文件沙盒中取图片并转换为NSData
-
-NSString *path = [[NSBundle mainBundle] bundlePath];
-NSString *name = [NSString stringWithFormat:@&amp;quot;ceshi.png&amp;quot;];
-NSString *finalPath = [path stringByAppendingPathComponent:name];
-NSData *imageData = [NSData dataWithContentsOfFile: finalPath];
-UIImage *aimage = [UIImage imageWithData: imageData];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;base-64-编码解码&quot;&gt;&lt;a href=&quot;#base-64-编码解码&quot; class=&quot;headerlink&quot; title=&quot;base 64 编码解码&quot;&gt;&lt;/a&gt;base 64 编码解码&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;编码：
-
-NSString * stringExample = [NSString stringWithFormat:@&amp;quot;I Love You&amp;quot;];
-NSData * data1 = [stringExample dataUsingEncoding:NSUTF8StringEncoding];
-NSString * base64String = [data1 base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn]; 
-
-解码：
-
-NSData * dataFromString = [[NSData alloc] initWithBase64EncodedString:base64String options:NSDataBase64DecodingIgnoreUnknownCharacters];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;文件保存和读取&quot;&gt;&lt;a href=&quot;#文件保存和读取&quot; class=&quot;headerlink&quot; title=&quot;文件保存和读取&quot;&gt;&lt;/a&gt;文件保存和读取&lt;/h3&gt;&lt;pre&gt;&lt;code&gt; //定义一个字符串，保存一个路径  
-NSString * path = @&amp;quot;/tmp/ver.txt&amp;quot;; 
-
-//把这个保存路径的字符串保存到另一个文件中  encoding是编码  
-[path writeToFile:@&amp;quot;/tmp/string.txt&amp;quot; atomically:YES encoding:NSASCIIStringEncoding error:nil];
-
-
-//创建文件管理器     
-NSFileManager * fm = [NSFileManager defaultManager]; 
-
-//创建缓冲区，利用NSFileManager对象来获取文件中的内容，也就是这个文件的属性可修改  
-NSData * fileData = [fm contentsAtPath:@&amp;quot;/tmp/ver.txt&amp;quot;];   
-
-//获取上面fileData对象中通过NSFileManager对象获取的文件中的内容，然后再创建一个新的路径，并存储  
-[fm createFileAtPath:@&amp;quot;/tmp/test4.txt&amp;quot; contents:fileData attributes:nil];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;可修改的数据存储器-NSMutableData&quot;&gt;&lt;a href=&quot;#可修改的数据存储器-NSMutableData&quot; class=&quot;headerlink&quot; title=&quot;可修改的数据存储器 NSMutableData&quot;&gt;&lt;/a&gt;可修改的数据存储器 NSMutableData&lt;/h3&gt;&lt;p&gt;   创建的方式： &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSString *path = @&amp;quot;/Users/Allen/Desktop/test.dat&amp;quot;;
-NSString *temp = @&amp;quot;Jarod Yv&amp;quot;;
-int i = 100;
-float f = 98.3333f; 
-
-NSMutableData *writer = [[NSMutableData alloc] init];
-
-[writer appendData:[temp dataUsingEncoding:NSUTF8StringEncoding]];
-[writer appendBytes:&amp;amp;i length:sizeof(i)];
-[writer appendBytes:&amp;amp;f length:sizeof(f)];
-
-[writer writeToFile:path atomically:YES]; 
-
-读取：     
-int ii; 
-float ff;
-NSData *reader = [NSData dataWithContentsOfFile:path];
-
-NSString *ttemp = [[NSString alloc] initWithData:[reader subdataWithRange:NSMakeRange(0, [temp length])]encoding:NSUTF8StringEncoding];
-
-[reader getBytes:&amp;amp;ii range:NSMakeRange([temp length], sizeof(ii))];
-[reader getBytes:&amp;amp;ff range:NSMakeRange([temp length] + sizeof(ii), sizeof(ff))]; 
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;应该说在任何网络中，如何使用数据来传递信息，保存和读取信息，并将其变为可以产生价值的东西，而在计算机的世界里面除了0 和 1 ，我们眼中所见的东西在计算机眼里只不过是一堆 0 和 1 数据而已。那么在 iOS 里，又是如何进行数据间的转化的。
-    
-    </summary>
-    
-    
-      <category term="［数据］" scheme="http://yoursite.com/tags/%EF%BC%BB%E6%95%B0%E6%8D%AE%EF%BC%BD/"/>
     
   </entry>
   
