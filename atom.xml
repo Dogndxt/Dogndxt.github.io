@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-22T14:29:35.000Z</updated>
+  <updated>2016-04-24T14:44:56.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OC的三大特性</title>
+    <link href="http://yoursite.com/2016/04/24/OC%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/"/>
+    <id>http://yoursite.com/2016/04/24/OC的三大特性/</id>
+    <published>2016-04-24T14:38:11.000Z</published>
+    <updated>2016-04-24T14:44:56.000Z</updated>
+    
+    <content type="html">&lt;p&gt; OC中类的三大特性：继承，封装，多态&lt;/p&gt;
+&lt;h3 id=&quot;封装&quot;&gt;&lt;a href=&quot;#封装&quot; class=&quot;headerlink&quot; title=&quot;封装&quot;&gt;&lt;/a&gt;封装&lt;/h3&gt;&lt;p&gt;OC中是有四种访问权限修饰符：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@public、@protected、@private、@package
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中默认的修饰符是@private&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;但是这里要注意的是：OC中的方法是没有修饰符的概念的，这个和Java有很大的区别，一般都是公开访问的，即public的，但是我们怎么做到让OC中的一个方法不能被外界访问呢？&lt;/p&gt;
+&lt;p&gt;OC中是这么做的，如果想让一个方法不被外界访问的话，只需要在.m文件中实现这个方法，不要在头文件中进行定义，说白了就是：该方法有实现，没定义，这样外界在导入头文件的时候，是没有这个方法的，但是这个方法我们可以在自己的.m文件中进行使用。&lt;/p&gt;
+&lt;h3 id=&quot;继承&quot;&gt;&lt;a href=&quot;#继承&quot; class=&quot;headerlink&quot; title=&quot;继承&quot;&gt;&lt;/a&gt;继承&lt;/h3&gt;&lt;p&gt;继承是类中的一个重要的特性，他的出现使得我们没必要别写重复的代码，可重用性很高&lt;/p&gt;
+&lt;p&gt;可以使用 super 关键字来调用父类的方法，同时这里我们也是可以用 self 关键字来调用，这里看到其实这两种方式调用的效果是一样的，当我们在子类重新实现 brake 方法的时候(Java中的重写概念)，那么这时候 super 关键字调用的还是父类的方法，而 self 调用的就是重写之后的 brake 方法了。&lt;/p&gt;
+&lt;h3 id=&quot;多态&quot;&gt;&lt;a href=&quot;#多态&quot; class=&quot;headerlink&quot; title=&quot;多态&quot;&gt;&lt;/a&gt;多态&lt;/h3&gt;&lt;p&gt;定义类型和实际类型，一般是基于接口的形式实现的。&lt;/p&gt;
+&lt;p&gt;下面就来详细讲解一下多态的好处&lt;br&gt;上面的例子是一个彩色打印机和黑白打印机这两种打印机，然后Person类中有一个操作打印的方法，当然这个方法是需要打印机对象的，如果不用多态机制实现的话(Person.h中注释的代码部分)，就是给两种打印机单独定义个操作的方法，然后在Person.m(代码中注释的部分)中用具体的打印机对象进行操作，在main.m文件中，我们看到，当Person需要使用哪个打印机的时候，就去调用指定的方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[person printWithBlack:blackPrint];//调用黑白打印机  
+[person printWithColor:colorPrint];//调用彩色打印机  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这种设计就不好了，为什么呢？假如现在又有一种打印机，那么我们还需要在 Person.h 中定义一种操作这种打印机的方法，那么后续如果在添加新的打印机呢？还在添加方法吗？那么 Person.h 文件就会变得很臃肿。所以这时候多态就体现到好处了，使用父类类型，在 Person.h 中定义一个方法就可以了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void) doPrint:(Printer *)printer;  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里看到了，这个方法的参数类型就是父类的类型，这就是多态，定义类型为父类类型，实际类型为子类类型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void) doPrint:(Printer *)printer{  
+  [printer print];  
+ }  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里调用print方法，就是传递进来的实际类型的print方法。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Printer *p1 = [[ColorPrinter alloc] init];  
+Printer *p2 = [[BlackPrinter alloc] init];  
+
+[person doPrint:p1];  
+[person doPrint:p2];  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里的p1,p2表面上的类型是Printer，但是实际类型是子类类型，所以会调用他们自己对应的print方法。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; OC中类的三大特性：继承，封装，多态&lt;/p&gt;
+&lt;h3 id=&quot;封装&quot;&gt;&lt;a href=&quot;#封装&quot; class=&quot;headerlink&quot; title=&quot;封装&quot;&gt;&lt;/a&gt;封装&lt;/h3&gt;&lt;p&gt;OC中是有四种访问权限修饰符：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@public、@protected、@private、@package
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中默认的修饰符是@private&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>文件的处理－见识filemanager的强大</title>
@@ -1031,34 +1076,6 @@ rand 经常定期被周期低位的方式，使其更可预测执行。
     
     
       <category term="枚举" scheme="http://yoursite.com/tags/%E6%9E%9A%E4%B8%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2016年了，要毕业了QAQ</title>
-    <link href="http://yoursite.com/2016/03/28/2016%E5%B9%B4%E4%BA%86%EF%BC%8C%E8%A6%81%E6%AF%95%E4%B8%9A%E4%BA%86QAQ/"/>
-    <id>http://yoursite.com/2016/03/28/2016年了，要毕业了QAQ/</id>
-    <published>2016-03-28T12:28:42.000Z</published>
-    <updated>2016-03-28T13:05:49.000Z</updated>
-    
-    <content type="html">&lt;p&gt;2016年，今年好像又有奥运会了，回想起三年前的那个夏天懵懵懂懂地来到了现在的母校。第一学期过的是那么的开心的，感觉自己的大学好大，里面的女生都好漂亮的，毕竟是师范类院校。在这个大学里面认识了很多人，也尝遍了很多人情事故。记得大学里面很流行的一种风俗，说什么朋友才是陪伴你一生的，其他奖学金，预备党员什么的，学生干部什么的其实都不重要。可是也许我比较另类吧，当了三年的学生干部，也拿了三年的奖学金，所幸也有几个还算好的朋友。&lt;/p&gt;
-&lt;p&gt;一年之际在于春，既然如此顺便展望一下我的未来吧！&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;2016年，今年应该会成为我成长最快的一年的吧。步入社会，去寻找属于自己的方向。算起来我接触iOS已经有半年多了，洋洋洒洒写下的oc代码也大概有三四万行了。一般的项目也基本不在话下了。最近尝试写了几个小框架，虽然也能算个框架，不过跟yy比起来那真是差的有点太多了。不过我好像是的不知天高地厚的家伙，yy能办到的事也许我一年内办不到，那我一年的努力总应该能达到他的一半多吧。那么我该怎么做呢？如果可以的话，在这一年度里，我的代码量应该达到15万行。然后再学习一下Python这门语言，用它来强化一下我的算法。&lt;/p&gt;
-&lt;p&gt;那么就大概安排一下具体的计划：&lt;/p&gt;
-&lt;p&gt; 3-4月：将 iOS 可能使用的框架类别理解清楚，还有三四个框架还需要详细了解一下才好。&lt;/p&gt;
-&lt;p&gt; 5-7月：大量阅读github 上开源的项目，哈哈，有点题海战术的味道&lt;/p&gt;
-&lt;p&gt; 8-10: 这个时候我应该差不多能写出稍微好看一点的框架来吧&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;2016年，今年好像又有奥运会了，回想起三年前的那个夏天懵懵懂懂地来到了现在的母校。第一学期过的是那么的开心的，感觉自己的大学好大，里面的女生都好漂亮的，毕竟是师范类院校。在这个大学里面认识了很多人，也尝遍了很多人情事故。记得大学里面很流行的一种风俗，说什么朋友才是陪伴你一生的，其他奖学金，预备党员什么的，学生干部什么的其实都不重要。可是也许我比较另类吧，当了三年的学生干部，也拿了三年的奖学金，所幸也有几个还算好的朋友。&lt;/p&gt;
-&lt;p&gt;一年之际在于春，既然如此顺便展望一下我的未来吧！
-    
-    </summary>
-    
-    
-      <category term="［你好，请多多指教～］" scheme="http://yoursite.com/tags/%EF%BC%BB%E4%BD%A0%E5%A5%BD%EF%BC%8C%E8%AF%B7%E5%A4%9A%E5%A4%9A%E6%8C%87%E6%95%99%EF%BD%9E%EF%BC%BD/"/>
     
   </entry>
   

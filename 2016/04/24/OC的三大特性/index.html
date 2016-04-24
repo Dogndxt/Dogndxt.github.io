@@ -4,18 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>NSOperation和NSOperationQueue多线程的使用 | 第欧根尼的小桶</title>
+  <title>OC的三大特性 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了同步／异步，阻塞／非阻塞所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。">
+  <meta name="description" content="OC中类的三大特性：继承，封装，多态
+封装OC中是有四种访问权限修饰符：
+@public、@protected、@private、@package
+其中默认的修饰符是@private">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NSOperation和NSOperationQueue多线程的使用">
-<meta property="og:url" content="http://yoursite.com/2016/03/17/NSOperation和NSOperationQueue多线程的使用/index.html">
+<meta property="og:title" content="OC的三大特性">
+<meta property="og:url" content="http://yoursite.com/2016/04/24/OC的三大特性/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了同步／异步，阻塞／非阻塞所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。">
-<meta property="og:updated_time" content="2016-03-17T12:10:41.000Z">
+<meta property="og:description" content="OC中类的三大特性：继承，封装，多态
+封装OC中是有四种访问权限修饰符：
+@public、@protected、@private、@package
+其中默认的修饰符是@private">
+<meta property="og:updated_time" content="2016-04-24T14:44:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSOperation和NSOperationQueue多线程的使用">
-<meta name="twitter:description" content="最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了同步／异步，阻塞／非阻塞所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。">
+<meta name="twitter:title" content="OC的三大特性">
+<meta name="twitter:description" content="OC中类的三大特性：继承，封装，多态
+封装OC中是有四种访问权限修饰符：
+@public、@protected、@private、@package
+其中默认的修饰符是@private">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -191,11 +200,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-NSOperation和NSOperationQueue多线程的使用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-OC的三大特性" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/17/NSOperation和NSOperationQueue多线程的使用/" class="article-date">
-  	<time datetime="2016-03-17T11:37:41.000Z" itemprop="datePublished">2016-03-17</time>
+      <a href="/2016/04/24/OC的三大特性/" class="article-date">
+  	<time datetime="2016-04-24T14:38:11.000Z" itemprop="datePublished">2016-04-24</time>
 </a>
     </div>
   
@@ -208,7 +217,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      NSOperation和NSOperationQueue多线程的使用
+      OC的三大特性
     </h1>
   
 
@@ -216,10 +225,6 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［博客］/">［博客］</a></li></ul>
-	</div>
-
         
 
         <div class="clearfix"></div>
@@ -228,124 +233,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> 最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了<strong>同步／异步</strong>，<strong>阻塞／非阻塞</strong>所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。 <a id="more"></a></p>
-<p>  现在来讲述一下可以实现多线程的三种方式中的 NSOperation 类。使用NSOperation和NSOperationQueue实现多线程编程，实现步骤大致是这样的：</p>
-<p>  1&gt; 先将需要执行的操作封装到一个NSOperation对象中</p>
-<p>  2&gt; 然后将NSOperation对象添加到NSOperationQueue中</p>
-<p>  3&gt; 系统会自动将NSOperation中封装的操作放到一条新线程中执行</p>
-<p>  而由于  NSOperation 是一个抽象类，所以它的功能只能有其子类 NSBlockOperation 和 SInvocationOperation 来实现。</p>
-<h4 id="NSBlockOperation-的使用"><a href="#NSBlockOperation-的使用" class="headerlink" title="NSBlockOperation 的使用"></a>NSBlockOperation 的使用</h4><pre><code> NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^(){     
-    NSLog(@&quot;*执行第1次操作，线程：%@&quot;, [NSThread currentThread]);       
-   }];
+        <p> OC中类的三大特性：继承，封装，多态</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>OC中是有四种访问权限修饰符：</p>
+<pre><code>@public、@protected、@private、@package
+</code></pre><p>其中默认的修饰符是@private<br><a id="more"></a><br>但是这里要注意的是：OC中的方法是没有修饰符的概念的，这个和Java有很大的区别，一般都是公开访问的，即public的，但是我们怎么做到让OC中的一个方法不能被外界访问呢？</p>
+<p>OC中是这么做的，如果想让一个方法不被外界访问的话，只需要在.m文件中实现这个方法，不要在头文件中进行定义，说白了就是：该方法有实现，没定义，这样外界在导入头文件的时候，是没有这个方法的，但是这个方法我们可以在自己的.m文件中进行使用。</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承是类中的一个重要的特性，他的出现使得我们没必要别写重复的代码，可重用性很高</p>
+<p>可以使用 super 关键字来调用父类的方法，同时这里我们也是可以用 self 关键字来调用，这里看到其实这两种方式调用的效果是一样的，当我们在子类重新实现 brake 方法的时候(Java中的重写概念)，那么这时候 super 关键字调用的还是父类的方法，而 self 调用的就是重写之后的 brake 方法了。</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>定义类型和实际类型，一般是基于接口的形式实现的。</p>
+<p>下面就来详细讲解一下多态的好处<br>上面的例子是一个彩色打印机和黑白打印机这两种打印机，然后Person类中有一个操作打印的方法，当然这个方法是需要打印机对象的，如果不用多态机制实现的话(Person.h中注释的代码部分)，就是给两种打印机单独定义个操作的方法，然后在Person.m(代码中注释的部分)中用具体的打印机对象进行操作，在main.m文件中，我们看到，当Person需要使用哪个打印机的时候，就去调用指定的方法：</p>
+<pre><code>[person printWithBlack:blackPrint];//调用黑白打印机  
+[person printWithColor:colorPrint];//调用彩色打印机  
+</code></pre><p>这种设计就不好了，为什么呢？假如现在又有一种打印机，那么我们还需要在 Person.h 中定义一种操作这种打印机的方法，那么后续如果在添加新的打印机呢？还在添加方法吗？那么 Person.h 文件就会变得很臃肿。所以这时候多态就体现到好处了，使用父类类型，在 Person.h 中定义一个方法就可以了：</p>
+<pre><code>- (void) doPrint:(Printer *)printer;  
+</code></pre><p>这里看到了，这个方法的参数类型就是父类的类型，这就是多态，定义类型为父类类型，实际类型为子类类型</p>
+<pre><code>- (void) doPrint:(Printer *)printer{  
+  [printer print];  
+ }  
+</code></pre><p>这里调用print方法，就是传递进来的实际类型的print方法。</p>
+<pre><code>Printer *p1 = [[ColorPrinter alloc] init];  
+Printer *p2 = [[BlackPrinter alloc] init];  
 
-[operation addExecutionBlock:^() {
+[person doPrint:p1];  
+[person doPrint:p2];  
+</code></pre><p>这里的p1,p2表面上的类型是Printer，但是实际类型是子类类型，所以会调用他们自己对应的print方法。</p>
 
-   NSLog(@&quot;**又执行了1个新的操作，线程：%@&quot;, [NSThread currentThread]);
-
-   }];
-
-// 开始执行任务    
-[operation start];
-</code></pre><p>   注：默认情况下，调用了start方法后并不会开一条新线程去执行操作，而是在当前线程同步执行操作。只有将operation放到一个NSOperationQueue中，才会异步执行操作。</p>
-<h4 id="NSInvocationOperation-的使用"><a href="#NSInvocationOperation-的使用" class="headerlink" title="NSInvocationOperation 的使用"></a>NSInvocationOperation 的使用</h4><pre><code>ration2 = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downLoadImage:) object:URL];
-NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-[queue addOperation:operation2];
-
-如果是有刷新界面的操作，那么必须将这个操作交给主线程来完成。
-</code></pre><h3 id="自定义-NSOperation-类"><a href="#自定义-NSOperation-类" class="headerlink" title="自定义 NSOperation 类"></a>自定义 NSOperation 类</h3><p>由于 NSOperation 类功能比较少， 一般情况下我们可以自定义一个 NSOperation 类。要定制这样的一个操作，可以遵循以下步骤：</p>
-<ol>
-<li>继承 NSOperation 类</li>
-<li>重写“main”方法</li>
-<li>在“main”方法中创建一个“automaticreleasepool“</li>
-<li>将你的代码放在”autoreleasepool“中</li>
-</ol>
-<p>  例子：<br>     <em>*</em> .h 文件</p>
-<pre><code>#import &lt;Foundation/Foundation.h&gt;
-@interface MyLengthyOperation : NSOperation
-@property (nonatomic, strong, readonly) NSString *mark;
-- (instancetype)initWithMark:(NSString *)mark;
-@end 
-</code></pre><p> <em>*</em> .m 文件</p>
-<pre><code>#import &quot;MyLengthyOperation.h&quot;
-@interface MyLengthyOperation ()
-@property (nonatomic, strong, readwrite) NSString *mark;
-@end
-@implementation MyLengthyOperation
-- (instancetype)initWithMark:(NSString *)mark {  
-   self = [super init];
-   if (self) {      
-       self.mark = mark;
-    }
-   return self;
-   }
-- (void)main {
-    @autoreleasepool {
-      for (int i = 0; i &lt; 100; i ++) {
-         if (self.isCancelled) {
-             break;
-         }
-         NSLog(@&quot;%@ - %f&quot;, self.mark, sqrt(i));
-        }
-    }
-}
-
-@end
-</code></pre><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><pre><code>//  初始化任务 
-MyLengthyOperation *operation_1 = [[MyLengthyOperation alloc] initWithMark:@&quot;operation_1&quot;];
-MyLengthyOperation *operation_2 = [[MyLengthyOperation alloc] initWithMark:@&quot;operation_2&quot;];
-
-// 设置任务的优先级
-[operation_1 setQueuePriority:NSOperationQueuePriorityVeryLow];
-[operation_2 setQueuePriority:NSOperationQueuePriorityHigh];
-
-// 添加从属关系
-[operation_2 addDependency:operation_1]; （任务2在任务1结束后才会执行）
-
-// 初始化队列
-NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
-myQueue.name = @&quot;下载队列&quot;;
-
-// 将一个简单的任务队列添加进队列中 （使用 Block 回调方式）      
-    NSURL *aURL = [NSURL URLWithString:URL];
-    NSData *data = [NSData dataWithContentsOfURL:aURL];
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-
-        UIImage *image = [[UIImage alloc] initWithData:data];
-        [self performSelectorOnMainThread:@selector(updateUI:) withObject:image waitUntilDone:YES];
-    }];
-}];
-
-// 设置任务队列的最大并发数
- myQueue.maxConcurrentOperationCount = 4;
-
-// 添加进任务队列中执行
-[myQueue addOperation:operation_1];
-[myQueue addOperation:operation_2];
-
-// 取消所有操作
-[myQueue cancelAllOperations];
-
-// 执行延时的操作（将执行代码放置在 block 中）
-- (void)execute:(dispatch_block_t)block afterDelay:(int64_t)delta {
-
-   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delta), dispatch_get_main_queue(), block);
- }
-
-// 挂起操作
-[myQueue setSuspended:YES];
-
-// 取消任务
-[operation_1 cancel];
-
-//  任务完成后的回调可以表示任务已经结束
- [operation_1 setCompletionBlock:^{
-      NSLog(@&quot;任务1结束&quot;);
-  }];
- [operation_2 setCompletionBlock:^{
-      NSLog(@&quot;任务2结束&quot;);
- }];
-</code></pre>
       
     </div>
     
@@ -354,18 +266,9 @@ myQueue.name = @&quot;下载队列&quot;;
     
 <nav id="article-nav">
   
-    <a href="/2016/03/17/NSData-的使用/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          NSData 的使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/03/15/NSURLConnection-基本使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">NSURLConnection 基本使用</div>
+    <a href="/2016/04/22/文件的处理－见识filemanager的强大/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">文件的处理－见识filemanager的强大</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -400,7 +303,7 @@ myQueue.name = @&quot;下载队列&quot;;
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="NSOperation和NSOperationQueue多线程的使用" data-title="NSOperation和NSOperationQueue多线程的使用" data-url="http://yoursite.com/2016/03/17/NSOperation和NSOperationQueue多线程的使用/"></div>
+	<div class="ds-thread" data-thread-key="OC的三大特性" data-title="OC的三大特性" data-url="http://yoursite.com/2016/04/24/OC的三大特性/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
