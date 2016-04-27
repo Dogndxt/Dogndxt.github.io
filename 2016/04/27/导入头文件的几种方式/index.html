@@ -4,17 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016 | 第欧根尼的小桶</title>
+  <title>导入头文件的几种方式 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+  <meta name="description" content="导入头文件的方式有一下几种：
+1. #include &amp;lt; &amp;gt;
+2. #include &amp;quot; &amp;quot;
+3. #import &amp;lt; &amp;gt;
+4. #import &amp;quot; &amp;quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="导入头文件的几种方式">
+<meta property="og:url" content="http://yoursite.com/2016/04/27/导入头文件的几种方式/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="导入头文件的方式有一下几种：
+1. #include &amp;lt; &amp;gt;
+2. #include &amp;quot; &amp;quot;
+3. #import &amp;lt; &amp;gt;
+4. #import &amp;quot; &amp;quot;">
+<meta property="og:updated_time" content="2016-04-27T12:34:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="导入头文件的几种方式">
+<meta name="twitter:description" content="导入头文件的方式有一下几种：
+1. #include &amp;lt; &amp;gt;
+2. #include &amp;quot; &amp;quot;
+3. #import &amp;lt; &amp;gt;
+4. #import &amp;quot; &amp;quot;">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,270 +203,136 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-导入头文件的几种方式" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/04/27/导入头文件的几种方式/" class="article-date">
+  	<time datetime="2016-04-27T12:05:41.000Z" itemprop="datePublished">2016-04-27</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      导入头文件的几种方式
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/27/位运算/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:21:31.000Z" itemprop="datePublished">4月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/27/位运算/">位运算</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>导入头文件的方式有一下几种：</p>
+<pre><code>1. #include &lt; &gt;
+2. #include &quot; &quot;
+3. #import &lt; &gt;
+4. #import &quot; &quot;
+</code></pre><a id="more"></a>
+<p> #import 相对 #include 可以先检查文件中是否已经引入头文件，如果已经引入则不再引入。</p>
+<pre><code>&lt; &gt; 引用的是编译器的类库里面头文件
+&quot; &quot; 引用的是你程序目录的相对路径中的头文件
+</code></pre><p>  如果使用””，它是会先在你项目的当前目录查找是否有对应头文件<br>  如果没有，它还是会在对应的引用目录里面查找对应的头文件</p>
+<ul>
+<li>如果遇到已经导入 文件夹 但是代码显示找不到那个文件夹里面的文件，可以<br> 在 Build Settings -&gt; Search Paths -&gt; Header Search Paths 添加相对路径（添加之后会显示绝对路径 $(PROJECT_DIR)/Tools/Alipay）</li>
+</ul>
+<h4 id="Create-groups-与-Create-folder-references-的区别"><a href="#Create-groups-与-Create-folder-references-的区别" class="headerlink" title="Create groups 与 Create folder references 的区别"></a>Create groups 与 Create folder references 的区别</h4><p> 1.使用Create groups ，为任何新增加的文件夹创建组，组的概念也许我们并不陌生，我们在项目中完全可以手动添加一个groups（右键点击选择New Group），但是手动添加的groups实际上并不会存在于项目的目录中，你会发现被添加进groups中的文件仍在位于它原来所在的位置，但是从外部引入进来的groups并不会如此，正如我们刚才那样。groups一旦被创建或添加，都是以黄色文件夹的形式存在的，当你想要使用文件夹中的某个类的头文件时，你可以直接添加它的引用，例如</p>
+<pre><code>#include xxx.h
+</code></pre><p> 因为groups下的cpp文件是会被编译的。</p>
+<p> 2.使用Create folder references方法只是将文件单纯的创建了引用，这些文件不会被编译，所以在使用的时候需要加入其路径，比如在我们想要使用上图中的myScripts文件夹下面有某个头文件，则需要按照下面的方法添加声明：</p>
+<pre><code>#include myScripts/xxx.h
+</code></pre><p> 否则编译器就会告诉你找不到xxx.h文件。</p>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/27/字符串加密之Base64/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          字符串加密之Base64
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/24/OC的三大特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">OC的三大特性</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/27/字符串加密之Base64/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:18:00.000Z" itemprop="datePublished">4月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/27/字符串加密之Base64/">字符串加密之Base64</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/27/导入头文件的几种方式/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:05:41.000Z" itemprop="datePublished">4月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/27/导入头文件的几种方式/">导入头文件的几种方式</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="导入头文件的几种方式" data-title="导入头文件的几种方式" data-url="http://yoursite.com/2016/04/27/导入头文件的几种方式/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/24/OC的三大特性/" class="archive-article-date">
-  	<time datetime="2016-04-24T14:38:11.000Z" itemprop="datePublished">4月 24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/24/OC的三大特性/">OC的三大特性</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/22/文件的处理－见识filemanager的强大/" class="archive-article-date">
-  	<time datetime="2016-04-22T14:29:05.000Z" itemprop="datePublished">4月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/22/文件的处理－见识filemanager的强大/">文件的处理－见识filemanager的强大</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/22/内存空间Zone的挖掘/" class="archive-article-date">
-  	<time datetime="2016-04-22T14:26:34.000Z" itemprop="datePublished">4月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/22/内存空间Zone的挖掘/">内存空间Zone的挖掘</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/22/错误类error的学习/" class="archive-article-date">
-  	<time datetime="2016-04-22T14:24:31.000Z" itemprop="datePublished">4月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/22/错误类error的学习/">错误类error的学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/22/iOS程序的五种状态/" class="archive-article-date">
-  	<time datetime="2016-04-22T14:21:54.000Z" itemprop="datePublished">4月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/22/iOS程序的五种状态/">iOS程序的五种状态</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2016/page/2/">2</a><a class="page-number" href="/archives/2016/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2016/page/5/">5</a><a class="extend next" rel="next" href="/archives/2016/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -479,8 +358,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

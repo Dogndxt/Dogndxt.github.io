@@ -4,17 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016 | 第欧根尼的小桶</title>
+  <title>位运算 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+  <meta name="description" content="头文件中的特别标记0UL 表示 无符号长整型 01UL 表示 无符号长整型 1
+ 如果不写UL后缀，系统默认为：int, 即，有符号整数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="位运算">
+<meta property="og:url" content="http://yoursite.com/2016/04/27/位运算/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="头文件中的特别标记0UL 表示 无符号长整型 01UL 表示 无符号长整型 1
+ 如果不写UL后缀，系统默认为：int, 即，有符号整数。">
+<meta property="og:updated_time" content="2016-04-27T12:25:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="位运算">
+<meta name="twitter:description" content="头文件中的特别标记0UL 表示 无符号长整型 01UL 表示 无符号长整型 1
+ 如果不写UL后缀，系统默认为：int, 即，有符号整数。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,270 +194,121 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-位运算" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/04/27/位运算/" class="article-date">
+  	<time datetime="2016-04-27T12:21:31.000Z" itemprop="datePublished">2016-04-27</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      位运算
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/27/位运算/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:21:31.000Z" itemprop="datePublished">4月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/27/位运算/">位运算</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="头文件中的特别标记"><a href="#头文件中的特别标记" class="headerlink" title="头文件中的特别标记"></a>头文件中的特别标记</h3><p>0UL 表示 无符号长整型 0<br>1UL 表示 无符号长整型 1</p>
+<p> 如果不写UL后缀，系统默认为：int, 即，有符号整数。<br><a id="more"></a><br> 1.数值常数有：整型常数、浮点常数；<br> 2.只有数值常数才有后缀说明；<br> 3.数值常数后缀不区分字母大小写。</p>
+<p>（1）整型常数的表示形式有：十进制形式、以0开头的八进制形式、以0x开头的十六进制形式，无二进制形式。<br>    整型常数默认是signed int的。<br>    对整型常数进行类型转换的后缀只有：u或U（unsigned）、l或L（long）、u/U与l/L的组合（如：ul、lu、Lu等）。例：100u; -123u; 0x123l;</p>
+<p>（2）浮点常数的表示形式有：科学计数形式和小数点形式。<br>    浮点常数默认是double的。<br>    对浮点常数进行类型转换的后缀只有：f或F（单精度浮点数）、l或L（长双精度浮点数）。（注：因浮点型常数总是有符号的，故没有u或U后缀）。例：1.23e5f; 1.23l; -123.45f;</p>
+<h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3><p>  在许多计算机编程语言（例如：C语言、C++语言、Java语言、JavaScript语言、Pascal语言等）中，“&gt;&gt;”代表右移运算符，就相当于“shr”。该运算符为双目运算符，结合方向为从左到右，作用是把一个整型数的所有位向右移动指定的位数，移动到右边界之外的多余二进制位会被丢弃，并从左边界移入0。</p>
+<p>  右移运算的两个操作数应为整数类型。第一个操作数是要进行移位操作的数，第二个操作数指定第一个操作数移动的位数。如果第二个操作数等于0则不发生任何移位。</p>
+<p>应用举例：<br>        问：<strong>计算表达式14 &gt;&gt; 2的值</strong>。<br>        答：表达式14 &gt;&gt; 2的值为3，因为14（即二进制的00001110）向右移两位等于3（即二进制的00000011）。</p>
+<p>  说白了，就是把要移动的数转换成2进制，右移几位就去掉右边的几位数，左移几位就在右边加几个0，比如14右移2位就是转成二进制变成1110，去掉右边的10，变成11，11转成十进制就是3；左移2位就是111000，转成十进制就是56。</p>
+<ul>
+<li><p>位运算可以确保枚举值组合的唯一性. 因为位运算的计算方式是将二进制转换成十进制,<br>也就是说,枚举值里面存取的是 计算后的十进制值. </p>
+<p>打个比方: 通过上面的位运算方式设定好枚举以后,打印出来的枚举值分别是: 1 2 4 8 16 这5个数字,无论<strong>你如何组合在一起,也不会产生两个同样的数字</strong>.</p>
+</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/27/字符串加密之Base64/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">字符串加密之Base64</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/27/字符串加密之Base64/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:18:00.000Z" itemprop="datePublished">4月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/27/字符串加密之Base64/">字符串加密之Base64</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/27/导入头文件的几种方式/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:05:41.000Z" itemprop="datePublished">4月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/27/导入头文件的几种方式/">导入头文件的几种方式</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="位运算" data-title="位运算" data-url="http://yoursite.com/2016/04/27/位运算/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/24/OC的三大特性/" class="archive-article-date">
-  	<time datetime="2016-04-24T14:38:11.000Z" itemprop="datePublished">4月 24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/24/OC的三大特性/">OC的三大特性</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/22/文件的处理－见识filemanager的强大/" class="archive-article-date">
-  	<time datetime="2016-04-22T14:29:05.000Z" itemprop="datePublished">4月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/22/文件的处理－见识filemanager的强大/">文件的处理－见识filemanager的强大</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/22/内存空间Zone的挖掘/" class="archive-article-date">
-  	<time datetime="2016-04-22T14:26:34.000Z" itemprop="datePublished">4月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/22/内存空间Zone的挖掘/">内存空间Zone的挖掘</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/22/错误类error的学习/" class="archive-article-date">
-  	<time datetime="2016-04-22T14:24:31.000Z" itemprop="datePublished">4月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/22/错误类error的学习/">错误类error的学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/22/iOS程序的五种状态/" class="archive-article-date">
-  	<time datetime="2016-04-22T14:21:54.000Z" itemprop="datePublished">4月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/22/iOS程序的五种状态/">iOS程序的五种状态</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2016/page/2/">2</a><a class="page-number" href="/archives/2016/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2016/page/5/">5</a><a class="extend next" rel="next" href="/archives/2016/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -479,8 +334,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

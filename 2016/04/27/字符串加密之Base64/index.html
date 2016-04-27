@@ -4,27 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>OC的三大特性 | 第欧根尼的小桶</title>
+  <title>字符串加密之Base64 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="OC中类的三大特性：继承，封装，多态
-封装OC中是有四种访问权限修饰符：
-@public、@protected、@private、@package
-其中默认的修饰符是@private">
+  <meta name="description" content="Base64是网络上最常见的用于传输8Bit字节代码的编码方式之一，大家可以查看RFC2045～RFC2049，上面有MIME的详细规范。Base64编码可用于在HTTP环境下传递较长的标识信息。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OC的三大特性">
-<meta property="og:url" content="http://yoursite.com/2016/04/24/OC的三大特性/index.html">
+<meta property="og:title" content="字符串加密之Base64">
+<meta property="og:url" content="http://yoursite.com/2016/04/27/字符串加密之Base64/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="OC中类的三大特性：继承，封装，多态
-封装OC中是有四种访问权限修饰符：
-@public、@protected、@private、@package
-其中默认的修饰符是@private">
-<meta property="og:updated_time" content="2016-04-24T14:44:56.000Z">
+<meta property="og:description" content="Base64是网络上最常见的用于传输8Bit字节代码的编码方式之一，大家可以查看RFC2045～RFC2049，上面有MIME的详细规范。Base64编码可用于在HTTP环境下传递较长的标识信息。">
+<meta property="og:updated_time" content="2016-04-27T12:31:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OC的三大特性">
-<meta name="twitter:description" content="OC中类的三大特性：继承，封装，多态
-封装OC中是有四种访问权限修饰符：
-@public、@protected、@private、@package
-其中默认的修饰符是@private">
+<meta name="twitter:title" content="字符串加密之Base64">
+<meta name="twitter:description" content="Base64是网络上最常见的用于传输8Bit字节代码的编码方式之一，大家可以查看RFC2045～RFC2049，上面有MIME的详细规范。Base64编码可用于在HTTP环境下传递较长的标识信息。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -200,11 +191,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-OC的三大特性" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-字符串加密之Base64" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/24/OC的三大特性/" class="article-date">
-  	<time datetime="2016-04-24T14:38:11.000Z" itemprop="datePublished">2016-04-24</time>
+      <a href="/2016/04/27/字符串加密之Base64/" class="article-date">
+  	<time datetime="2016-04-27T12:18:00.000Z" itemprop="datePublished">2016-04-27</time>
 </a>
     </div>
   
@@ -217,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      OC的三大特性
+      字符串加密之Base64
     </h1>
   
 
@@ -225,6 +216,10 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
+	</div>
+
         
 
         <div class="clearfix"></div>
@@ -233,30 +228,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> OC中类的三大特性：继承，封装，多态</p>
-<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>OC中是有四种访问权限修饰符：</p>
-<pre><code>@public、@protected、@private、@package
-</code></pre><p>其中默认的修饰符是@private<br><a id="more"></a><br>但是这里要注意的是：OC中的方法是没有修饰符的概念的，这个和Java有很大的区别，一般都是公开访问的，即public的，但是我们怎么做到让OC中的一个方法不能被外界访问呢？</p>
-<p>OC中是这么做的，如果想让一个方法不被外界访问的话，只需要在.m文件中实现这个方法，不要在头文件中进行定义，说白了就是：该方法有实现，没定义，这样外界在导入头文件的时候，是没有这个方法的，但是这个方法我们可以在自己的.m文件中进行使用。</p>
-<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承是类中的一个重要的特性，他的出现使得我们没必要别写重复的代码，可重用性很高</p>
-<p>可以使用 super 关键字来调用父类的方法，同时这里我们也是可以用 self 关键字来调用，这里看到其实这两种方式调用的效果是一样的，当我们在子类重新实现 brake 方法的时候(Java中的重写概念)，那么这时候 super 关键字调用的还是父类的方法，而 self 调用的就是重写之后的 brake 方法了。</p>
-<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>定义类型和实际类型，一般是基于接口的形式实现的。</p>
-<p>下面就来详细讲解一下多态的好处<br>上面的例子是一个彩色打印机和黑白打印机这两种打印机，然后Person类中有一个操作打印的方法，当然这个方法是需要打印机对象的，如果不用多态机制实现的话(Person.h中注释的代码部分)，就是给两种打印机单独定义个操作的方法，然后在Person.m(代码中注释的部分)中用具体的打印机对象进行操作，在main.m文件中，我们看到，当Person需要使用哪个打印机的时候，就去调用指定的方法：</p>
-<pre><code>[person printWithBlack:blackPrint];//调用黑白打印机  
-[person printWithColor:colorPrint];//调用彩色打印机  
-</code></pre><p>这种设计就不好了，为什么呢？假如现在又有一种打印机，那么我们还需要在 Person.h 中定义一种操作这种打印机的方法，那么后续如果在添加新的打印机呢？还在添加方法吗？那么 Person.h 文件就会变得很臃肿。所以这时候多态就体现到好处了，使用父类类型，在 Person.h 中定义一个方法就可以了：</p>
-<pre><code>- (void) doPrint:(Printer *)printer;  
-</code></pre><p>这里看到了，这个方法的参数类型就是父类的类型，这就是多态，定义类型为父类类型，实际类型为子类类型</p>
-<pre><code>- (void) doPrint:(Printer *)printer{  
-  [printer print];  
- }  
-</code></pre><p>这里调用print方法，就是传递进来的实际类型的print方法。</p>
-<pre><code>Printer *p1 = [[ColorPrinter alloc] init];  
-Printer *p2 = [[BlackPrinter alloc] init];  
+        <p>Base64是网络上最常见的用于传输8Bit字节代码的编码方式之一，大家可以查看RFC2045～RFC2049，上面有MIME的详细规范。Base64编码可用于在HTTP环境下传递较长的标识信息。</p>
+<a id="more"></a>
+<pre><code>转码过程例子：
 
-[person doPrint:p1];  
-[person doPrint:p2];  
-</code></pre><p>这里的p1,p2表面上的类型是Printer，但是实际类型是子类类型，所以会调用他们自己对应的print方法。</p>
+    3*8=4*6
+    内存1个字符占8位
+
+    转前： s 1 3
+
+    先转成ascii：对应 115 49 51
+
+    2进制： 01110011 00110001 00110011
+
+    6个一组（4组） 011100110011000100110011
+
+    然后才有后面的 011100 110011 000100 110011
+
+    然后计算机是8位8位的存数 6不够，自动就补两个高位0了
+    所有有了 高位补0
+
+    科学计算器输入 00011100 00110011 00000100 00110011
+
+    得到 28 51 4 51
+    查对下照表 c z E z
+</code></pre><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><pre><code>关于这个编码的规则：
+①.把3个字符变成4个字符。
+②.每76个字符加一个换行符。
+③.最后的结束符也要处理。
+</code></pre><h3 id="编码的过程是这样的"><a href="#编码的过程是这样的" class="headerlink" title="编码的过程是这样的"></a>编码的过程是这样的</h3><pre><code>1. 第一个字符通过右移2位获得第一个目标字符的Base64表位置，根据这个数值取到表上相应的字符，就是第一个目标字符。
+
+2. 然后将第一个字符与0x03(00000011)进行与(&amp;)操作并左移4位,接着第二个字符右移4位与前者相或(|)，即获得第二个目标字符。
+
+3. 再将第二个字符与0x0f(00001111)进行与(&amp;)操作并左移2位,接着第三个字符右移6位与前者相或(|)，获得第三个目标字符。
+
+4. 最后将第三个字符与0x3f(00111111)进行与(&amp;)操作即获得第四个目标字符。
+
+5. 在以上的每一个步骤之后，再把结果与 0x3F 进行 AND 位操作，就可以得到编码后的字符了。
+
+ 可是等等……聪明的你可能会问到，原文的字节数量应该是3的倍数啊，如果这个条件不能满足的话，那该怎么办呢？
+
+我们的解决办法是这样的：原文剩余的字节根据编码规则继续单独转(1变2,2变3;不够的位数用0补全)，
+再用=号补满4个字节。这就是为什么有些Base64编码会以一个或两个等号结束的原因，但等号最多只有两个。
+
+ 因为：
+  一个原字节至少会变成两个目标字节
+
+所以余数任何情况下都只可能是0，1，2这三个数中的一个。如果余数是0的话，就表示原文字节数正好是3的倍数（最理想的情况）。
+如果是1的话，转成2个Base64编码字符，为了让Base64编码是4的倍数，就要补2个等号；同理，如果是2的话，就要补1个等号。
+</code></pre><h3 id="MIME格式"><a href="#MIME格式" class="headerlink" title="MIME格式"></a>MIME格式</h3><p> 在MIME格式的电子邮件中，base64可以用来将binary的字节序列数据编码成ASCII字符序列构成的文本。使用时，在传输编码方式中指定base64。使用的字符包括大小写字母各26个，加上10个数字，和加号“+”，斜杠“/”，一共64个字符，<strong>等号“=”</strong>用来作为后缀用途。</p>
+<p> 完整的base64定义可见 RFC1421和 RFC2045。编码后的数据比原始数据略长，为原来的4/3。在电子邮件中，根据RFC822规定，<strong>每76个字符，还需要加上一个回车换行</strong>。可以估算编码后数据长度大约为<strong>原长的135.1%</strong>。</p>
+<p> 转换的时候，将三个byte的数据，先后放入一个24bit的缓冲区中，先来的byte占高位。数据不足3byte的话，于缓冲区中剩下的Bit用0补足。然后，每次取出6个bit，按照其值选择 <em>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/</em>    中的字符作为编码后的输出。不断进行，直到全部输入数据转换完成。</p>
+<p> 如果最后<em>剩下两个输入数据</em>，在编码结果后<em>加<strong>1个</strong>“=”</em>；如果最后<em>剩下一个输入数据</em>，编码结果后<em>加<strong>2个</strong>“=”</em>；如果没有剩下任何数据，就什么都不要加，这样才可以保证资料还原的正确性。</p>
 
       
     </div>
@@ -266,18 +289,18 @@ Printer *p2 = [[BlackPrinter alloc] init];
     
 <nav id="article-nav">
   
-    <a href="/2016/04/27/导入头文件的几种方式/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/27/位运算/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          导入头文件的几种方式
+          位运算
         
       </div>
     </a>
   
   
-    <a href="/2016/04/22/文件的处理－见识filemanager的强大/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">文件的处理－见识filemanager的强大</div>
+    <a href="/2016/04/27/导入头文件的几种方式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">导入头文件的几种方式</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -312,7 +335,7 @@ Printer *p2 = [[BlackPrinter alloc] init];
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="OC的三大特性" data-title="OC的三大特性" data-url="http://yoursite.com/2016/04/24/OC的三大特性/"></div>
+	<div class="ds-thread" data-thread-key="字符串加密之Base64" data-title="字符串加密之Base64" data-url="http://yoursite.com/2016/04/27/字符串加密之Base64/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

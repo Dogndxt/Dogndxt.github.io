@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-24T14:44:56.000Z</updated>
+  <updated>2016-04-27T12:25:05.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,156 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>位运算</title>
+    <link href="http://yoursite.com/2016/04/27/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    <id>http://yoursite.com/2016/04/27/位运算/</id>
+    <published>2016-04-27T12:21:31.000Z</published>
+    <updated>2016-04-27T12:25:05.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;头文件中的特别标记&quot;&gt;&lt;a href=&quot;#头文件中的特别标记&quot; class=&quot;headerlink&quot; title=&quot;头文件中的特别标记&quot;&gt;&lt;/a&gt;头文件中的特别标记&lt;/h3&gt;&lt;p&gt;0UL 表示 无符号长整型 0&lt;br&gt;1UL 表示 无符号长整型 1&lt;/p&gt;
+&lt;p&gt; 如果不写UL后缀，系统默认为：int, 即，有符号整数。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt; 1.数值常数有：整型常数、浮点常数；&lt;br&gt; 2.只有数值常数才有后缀说明；&lt;br&gt; 3.数值常数后缀不区分字母大小写。&lt;/p&gt;
+&lt;p&gt;（1）整型常数的表示形式有：十进制形式、以0开头的八进制形式、以0x开头的十六进制形式，无二进制形式。&lt;br&gt;    整型常数默认是signed int的。&lt;br&gt;    对整型常数进行类型转换的后缀只有：u或U（unsigned）、l或L（long）、u/U与l/L的组合（如：ul、lu、Lu等）。例：100u; -123u; 0x123l;&lt;/p&gt;
+&lt;p&gt;（2）浮点常数的表示形式有：科学计数形式和小数点形式。&lt;br&gt;    浮点常数默认是double的。&lt;br&gt;    对浮点常数进行类型转换的后缀只有：f或F（单精度浮点数）、l或L（长双精度浮点数）。（注：因浮点型常数总是有符号的，故没有u或U后缀）。例：1.23e5f; 1.23l; -123.45f;&lt;/p&gt;
+&lt;h3 id=&quot;位运算&quot;&gt;&lt;a href=&quot;#位运算&quot; class=&quot;headerlink&quot; title=&quot;位运算&quot;&gt;&lt;/a&gt;位运算&lt;/h3&gt;&lt;p&gt;  在许多计算机编程语言（例如：C语言、C++语言、Java语言、JavaScript语言、Pascal语言等）中，“&amp;gt;&amp;gt;”代表右移运算符，就相当于“shr”。该运算符为双目运算符，结合方向为从左到右，作用是把一个整型数的所有位向右移动指定的位数，移动到右边界之外的多余二进制位会被丢弃，并从左边界移入0。&lt;/p&gt;
+&lt;p&gt;  右移运算的两个操作数应为整数类型。第一个操作数是要进行移位操作的数，第二个操作数指定第一个操作数移动的位数。如果第二个操作数等于0则不发生任何移位。&lt;/p&gt;
+&lt;p&gt;应用举例：&lt;br&gt;        问：&lt;strong&gt;计算表达式14 &amp;gt;&amp;gt; 2的值&lt;/strong&gt;。&lt;br&gt;        答：表达式14 &amp;gt;&amp;gt; 2的值为3，因为14（即二进制的00001110）向右移两位等于3（即二进制的00000011）。&lt;/p&gt;
+&lt;p&gt;  说白了，就是把要移动的数转换成2进制，右移几位就去掉右边的几位数，左移几位就在右边加几个0，比如14右移2位就是转成二进制变成1110，去掉右边的10，变成11，11转成十进制就是3；左移2位就是111000，转成十进制就是56。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;位运算可以确保枚举值组合的唯一性. 因为位运算的计算方式是将二进制转换成十进制,&lt;br&gt;也就是说,枚举值里面存取的是 计算后的十进制值. &lt;/p&gt;
+&lt;p&gt;打个比方: 通过上面的位运算方式设定好枚举以后,打印出来的枚举值分别是: 1 2 4 8 16 这5个数字,无论&lt;strong&gt;你如何组合在一起,也不会产生两个同样的数字&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;头文件中的特别标记&quot;&gt;&lt;a href=&quot;#头文件中的特别标记&quot; class=&quot;headerlink&quot; title=&quot;头文件中的特别标记&quot;&gt;&lt;/a&gt;头文件中的特别标记&lt;/h3&gt;&lt;p&gt;0UL 表示 无符号长整型 0&lt;br&gt;1UL 表示 无符号长整型 1&lt;/p&gt;
+&lt;p&gt; 如果不写UL后缀，系统默认为：int, 即，有符号整数。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>字符串加密之Base64</title>
+    <link href="http://yoursite.com/2016/04/27/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E5%AF%86%E4%B9%8BBase64/"/>
+    <id>http://yoursite.com/2016/04/27/字符串加密之Base64/</id>
+    <published>2016-04-27T12:18:00.000Z</published>
+    <updated>2016-04-27T12:31:36.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Base64是网络上最常见的用于传输8Bit字节代码的编码方式之一，大家可以查看RFC2045～RFC2049，上面有MIME的详细规范。Base64编码可用于在HTTP环境下传递较长的标识信息。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;pre&gt;&lt;code&gt;转码过程例子：
+
+    3*8=4*6
+    内存1个字符占8位
+
+    转前： s 1 3
+
+    先转成ascii：对应 115 49 51
+
+    2进制： 01110011 00110001 00110011
+
+    6个一组（4组） 011100110011000100110011
+
+    然后才有后面的 011100 110011 000100 110011
+
+    然后计算机是8位8位的存数 6不够，自动就补两个高位0了
+    所有有了 高位补0
+
+    科学计算器输入 00011100 00110011 00000100 00110011
+
+    得到 28 51 4 51
+    查对下照表 c z E z
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;规则&quot;&gt;&lt;a href=&quot;#规则&quot; class=&quot;headerlink&quot; title=&quot;规则&quot;&gt;&lt;/a&gt;规则&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;关于这个编码的规则：
+①.把3个字符变成4个字符。
+②.每76个字符加一个换行符。
+③.最后的结束符也要处理。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;编码的过程是这样的&quot;&gt;&lt;a href=&quot;#编码的过程是这样的&quot; class=&quot;headerlink&quot; title=&quot;编码的过程是这样的&quot;&gt;&lt;/a&gt;编码的过程是这样的&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1. 第一个字符通过右移2位获得第一个目标字符的Base64表位置，根据这个数值取到表上相应的字符，就是第一个目标字符。
+
+2. 然后将第一个字符与0x03(00000011)进行与(&amp;amp;)操作并左移4位,接着第二个字符右移4位与前者相或(|)，即获得第二个目标字符。
+
+3. 再将第二个字符与0x0f(00001111)进行与(&amp;amp;)操作并左移2位,接着第三个字符右移6位与前者相或(|)，获得第三个目标字符。
+
+4. 最后将第三个字符与0x3f(00111111)进行与(&amp;amp;)操作即获得第四个目标字符。
+
+5. 在以上的每一个步骤之后，再把结果与 0x3F 进行 AND 位操作，就可以得到编码后的字符了。
+
+ 可是等等……聪明的你可能会问到，原文的字节数量应该是3的倍数啊，如果这个条件不能满足的话，那该怎么办呢？
+
+我们的解决办法是这样的：原文剩余的字节根据编码规则继续单独转(1变2,2变3;不够的位数用0补全)，
+再用=号补满4个字节。这就是为什么有些Base64编码会以一个或两个等号结束的原因，但等号最多只有两个。
+
+ 因为：
+  一个原字节至少会变成两个目标字节
+
+所以余数任何情况下都只可能是0，1，2这三个数中的一个。如果余数是0的话，就表示原文字节数正好是3的倍数（最理想的情况）。
+如果是1的话，转成2个Base64编码字符，为了让Base64编码是4的倍数，就要补2个等号；同理，如果是2的话，就要补1个等号。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;MIME格式&quot;&gt;&lt;a href=&quot;#MIME格式&quot; class=&quot;headerlink&quot; title=&quot;MIME格式&quot;&gt;&lt;/a&gt;MIME格式&lt;/h3&gt;&lt;p&gt; 在MIME格式的电子邮件中，base64可以用来将binary的字节序列数据编码成ASCII字符序列构成的文本。使用时，在传输编码方式中指定base64。使用的字符包括大小写字母各26个，加上10个数字，和加号“+”，斜杠“/”，一共64个字符，&lt;strong&gt;等号“=”&lt;/strong&gt;用来作为后缀用途。&lt;/p&gt;
+&lt;p&gt; 完整的base64定义可见 RFC1421和 RFC2045。编码后的数据比原始数据略长，为原来的4/3。在电子邮件中，根据RFC822规定，&lt;strong&gt;每76个字符，还需要加上一个回车换行&lt;/strong&gt;。可以估算编码后数据长度大约为&lt;strong&gt;原长的135.1%&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt; 转换的时候，将三个byte的数据，先后放入一个24bit的缓冲区中，先来的byte占高位。数据不足3byte的话，于缓冲区中剩下的Bit用0补足。然后，每次取出6个bit，按照其值选择 &lt;em&gt;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&lt;/em&gt;    中的字符作为编码后的输出。不断进行，直到全部输入数据转换完成。&lt;/p&gt;
+&lt;p&gt; 如果最后&lt;em&gt;剩下两个输入数据&lt;/em&gt;，在编码结果后&lt;em&gt;加&lt;strong&gt;1个&lt;/strong&gt;“=”&lt;/em&gt;；如果最后&lt;em&gt;剩下一个输入数据&lt;/em&gt;，编码结果后&lt;em&gt;加&lt;strong&gt;2个&lt;/strong&gt;“=”&lt;/em&gt;；如果没有剩下任何数据，就什么都不要加，这样才可以保证资料还原的正确性。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Base64是网络上最常见的用于传输8Bit字节代码的编码方式之一，大家可以查看RFC2045～RFC2049，上面有MIME的详细规范。Base64编码可用于在HTTP环境下传递较长的标识信息。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>导入头文件的几种方式</title>
+    <link href="http://yoursite.com/2016/04/27/%E5%AF%BC%E5%85%A5%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
+    <id>http://yoursite.com/2016/04/27/导入头文件的几种方式/</id>
+    <published>2016-04-27T12:05:41.000Z</published>
+    <updated>2016-04-27T12:34:01.000Z</updated>
+    
+    <content type="html">&lt;p&gt;导入头文件的方式有一下几种：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. #include &amp;lt; &amp;gt;
+2. #include &amp;quot; &amp;quot;
+3. #import &amp;lt; &amp;gt;
+4. #import &amp;quot; &amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt; #import 相对 #include 可以先检查文件中是否已经引入头文件，如果已经引入则不再引入。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt; &amp;gt; 引用的是编译器的类库里面头文件
+&amp;quot; &amp;quot; 引用的是你程序目录的相对路径中的头文件
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  如果使用””，它是会先在你项目的当前目录查找是否有对应头文件&lt;br&gt;  如果没有，它还是会在对应的引用目录里面查找对应的头文件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果遇到已经导入 文件夹 但是代码显示找不到那个文件夹里面的文件，可以&lt;br&gt; 在 Build Settings -&amp;gt; Search Paths -&amp;gt; Header Search Paths 添加相对路径（添加之后会显示绝对路径 $(PROJECT_DIR)/Tools/Alipay）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;Create-groups-与-Create-folder-references-的区别&quot;&gt;&lt;a href=&quot;#Create-groups-与-Create-folder-references-的区别&quot; class=&quot;headerlink&quot; title=&quot;Create groups 与 Create folder references 的区别&quot;&gt;&lt;/a&gt;Create groups 与 Create folder references 的区别&lt;/h4&gt;&lt;p&gt; 1.使用Create groups ，为任何新增加的文件夹创建组，组的概念也许我们并不陌生，我们在项目中完全可以手动添加一个groups（右键点击选择New Group），但是手动添加的groups实际上并不会存在于项目的目录中，你会发现被添加进groups中的文件仍在位于它原来所在的位置，但是从外部引入进来的groups并不会如此，正如我们刚才那样。groups一旦被创建或添加，都是以黄色文件夹的形式存在的，当你想要使用文件夹中的某个类的头文件时，你可以直接添加它的引用，例如&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#include xxx.h
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 因为groups下的cpp文件是会被编译的。&lt;/p&gt;
+&lt;p&gt; 2.使用Create folder references方法只是将文件单纯的创建了引用，这些文件不会被编译，所以在使用的时候需要加入其路径，比如在我们想要使用上图中的myScripts文件夹下面有某个头文件，则需要按照下面的方法添加声明：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#include myScripts/xxx.h
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 否则编译器就会告诉你找不到xxx.h文件。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;导入头文件的方式有一下几种：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. #include &amp;lt; &amp;gt;
+2. #include &amp;quot; &amp;quot;
+3. #import &amp;lt; &amp;gt;
+4. #import &amp;quot; &amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>OC的三大特性</title>
@@ -929,153 +1079,6 @@ rand 经常定期被周期低位的方式，使其更可预测执行。
     
     
       <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nil_Nil_NULL和NSNull</title>
-    <link href="http://yoursite.com/2016/03/31/nil-Nil-NULL%E5%92%8CNSNull/"/>
-    <id>http://yoursite.com/2016/03/31/nil-Nil-NULL和NSNull/</id>
-    <published>2016-03-31T11:46:08.000Z</published>
-    <updated>2016-03-31T11:55:41.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;/img/null_nil.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;C用0来作为不存在的原始值，而NULL作为指针(这在指针环境中相当于0)。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Objective-C在C的表达不存在的基础上增加了nil。nil是一个指向不存在的对象指针。虽然它在语义上与NULL不同，但它们在技术上是相等的。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在框架层面，Foundation定义了NSNull，即一个类方法+null，它返回一个单独的NSNull对象。NSNull与nil以及NULL不同，因为它是一个实际的对象，而不是一个零值。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;另外，在Foundation/NSObjCRuntime.h中，Nil被定义为指向零的类指针。这个nil的鲜为人知的大写的表兄并不常常出现，但它至少值得注意。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;刚被分配的NSObject的内容被设置为0。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;/img/null_nil.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="nil" scheme="http://yoursite.com/tags/nil/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Objective-C的警告</title>
-    <link href="http://yoursite.com/2016/03/31/Objective-C%E7%9A%84%E8%AD%A6%E5%91%8A/"/>
-    <id>http://yoursite.com/2016/03/31/Objective-C的警告/</id>
-    <published>2016-03-31T11:41:07.000Z</published>
-    <updated>2016-03-31T12:05:53.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Apple LLVM 7.0 - Warning - objective C &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Direct userage of ‘isa’                  直接使用 isa&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Duplicate Method Definitions             重复的方法定义   &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Implict Atomic Objective - C Properties  隐式的原子属性&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Implict Synthesized Properties           隐式的合成属性&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Incomplete Objective - C Protocols       不完整的实现协议方法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Overridding Deprecated Objective - C Methods  压倒一切弃用的oc方法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Strict Selector Matching       严格的选择器匹配&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Undeclared Selector            未申报的选择器&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Unintentional Root Class       无意的根类&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;警告的种类&quot;&gt;&lt;a href=&quot;#警告的种类&quot; class=&quot;headerlink&quot; title=&quot;警告的种类&quot;&gt;&lt;/a&gt;警告的种类&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;-Wall 并不是所有警告。这一个警告组开启的是编译器开发者对于“你所写的代码中有问题”这一命题有着很高的自信的那些警告。要是在这一组设定下你的代码出现了警告，那基本上就是你的代码真的存在严重问题了。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;-Wextra 如其所名，-Wextra组提供“额外的”警告。这个组和-Wall组几乎一样有用，但是有些情况下对于代码相对过于严苛。一个很常见的例子是，-Wextra中包含了-Wsign-compare，这个警告标识会开启比较时候对signed和unsigned的类型检查，当比较符两边一边是signed一边是unsigned时，产生警告。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;-Weverything 这个是真正的所有警告。但是一般开发者不会选择使用这个标识，因为它包含了那些还正在开发中的可能尚存bug的警告提示。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;控制警告，局部加入或关闭&quot;&gt;&lt;a href=&quot;#控制警告，局部加入或关闭&quot; class=&quot;headerlink&quot; title=&quot;控制警告，局部加入或关闭&quot;&gt;&lt;/a&gt;控制警告，局部加入或关闭&lt;/h3&gt;&lt;p&gt;Clang提供了我们自己加入警告或者暂时关闭警告的办法。&lt;/p&gt;
-&lt;p&gt;强制加入一个警告：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//Generate a warning
-#pragma message &amp;quot;Warning 1&amp;quot;
-
-//Another way to generate a warning
-#warning &amp;quot;Warning 2&amp;quot;
-
-//Generate an error to fail the build.
-#error &amp;quot;Something wrong&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;关闭某个警告：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;如果需要全局关闭的话，直接在Other C Flags里写-Wno-…就行了，比如-Wextra -Wno-sign-compare就是一个常见的组合。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如果相对某几个文件开启或禁用警告，在Build Phases的Compile Source相应的文件中加入对应的编译标识即可。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如果只是想在某几行关闭某个警告的话，可以通过临时改变诊断编译标记来抑制指定类型的警告，具体如下：&lt;/p&gt;
-&lt;p&gt; #pragma clang diagnostic push&lt;br&gt; #pragma clang diagnostic ignored “-Wunused-variable”&lt;br&gt; int a;&lt;br&gt; #pragma clang diagnostic pop&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;注： 把某些警告当作错误，-Werror=…即可，同样地，也可以在-Werror被激活时使用-Wno-error=…来使某些警告不成为错误。结合使用这些编译标识可以达到很好的控制。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Apple LLVM 7.0 - Warning - objective C &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Direct userage of ‘isa’                  直接使用 isa&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Duplicate Method Definitions             重复的方法定义   &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Implict Atomic Objective - C Properties  隐式的原子属性&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>NS_Enum &amp; NS_Options</title>
-    <link href="http://yoursite.com/2016/03/31/NS-Enum-NS-Options/"/>
-    <id>http://yoursite.com/2016/03/31/NS-Enum-NS-Options/</id>
-    <published>2016-03-31T11:37:57.000Z</published>
-    <updated>2016-04-14T13:56:19.000Z</updated>
-    
-    <content type="html">&lt;p&gt;一个专业的 Objective-C 工程师应该在面向对象和面向过程范式间优雅地切换，同时能够掌握&lt;br&gt;二者的优势。&lt;/p&gt;
-&lt;p&gt;例子：&lt;br&gt;    typedef NS_ENUM(NSInteger, UITableViewCellStyle) {         &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  UITableViewCellStyleDefault,
-  UITableViewCellStyleValue1,
-  UITableViewCellStyleValue2,
-  UITableViewCellStyleSubtitle
-};
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt; NS_ENUM 的第一个参数是用于存储的新类型的类型。在64位环境下，UITableViewCellStyle 和 NSInteger 一样有8bytes长。你要保证你给出的所有值能被该类型容纳，否则就会产生错误。第二个参数是新类型的名字。大括号里面和以前一样，是你要定义的各种值。&lt;br&gt; 这种实现方法提取了之前各种不同实现的优点，甚至有提示编辑器在进行 switch 判断时检查类型匹配的功能。&lt;/p&gt;
-&lt;p&gt;enum 也可以被定义为&lt;strong&gt;按位掩码（bitmask）&lt;/strong&gt;。用简单的OR (|)和AND (&amp;amp;)数学运算即可实现对一个整型值的编码。每一个值不是自动被赋予从0开始依次累加1的值，而是手动被赋予一个带有一个bit偏移量的值：类似1 &amp;lt;&amp;lt; 0、 1 &amp;lt;&amp;lt; 1、 1 &amp;lt;&amp;lt; 2等。如果你能够心算出每个数字的二进制表示法，例如：10110 代表 22，每一位都可以被认为是一个单独的布尔值。例如在UIKit中， UIViewAutoresizing 就是一个可以表示任何flexible top、bottom、 left 或 right margins、width、height组合的位掩码。&lt;/p&gt;
-&lt;p&gt;不像 NS_ENUM ，&lt;strong&gt;位掩码用 NS_OPTIONS 宏&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;语法和 NS_ENUM 完全相同，但这个宏提示编译器值是如何通过位掩码 | 组合在一起的。同样的，注意值的区间不要超过所使用类型的最大容纳范围。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一个专业的 Objective-C 工程师应该在面向对象和面向过程范式间优雅地切换，同时能够掌握&lt;br&gt;二者的优势。&lt;/p&gt;
-&lt;p&gt;例子：&lt;br&gt;    typedef NS_ENUM(NSInteger, UITableViewCellStyle) {         &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  UITableViewCellStyleDefault,
-  UITableViewCellStyleValue1,
-  UITableViewCellStyleValue2,
-  UITableViewCellStyleSubtitle
-};
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="枚举" scheme="http://yoursite.com/tags/%E6%9E%9A%E4%B8%BE/"/>
     
   </entry>
   
