@@ -4,21 +4,39 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>位运算 | 第欧根尼的小桶</title>
+  <title>基本文件操作filehandle的用法 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="头文件中的特别标记0UL 表示 无符号长整型 01UL 表示 无符号长整型 1
- 如果不写UL后缀，系统默认为：int, 即，有符号整数。">
+  <meta name="description" content="利用NSFilehandle类提供的方法，允许更有效地使用文件。
+一般而言，处理文件时都要经历以下三个步骤：
+
+1.打开文件，并获取一个NSFileHandle对象，以便在后面的I/O操作中引用该文件
+
+2.对打开的文件执行I/O操作（读取、写入、更新）
+
+3.关闭文件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="位运算">
-<meta property="og:url" content="http://yoursite.com/2016/04/27/位运算/index.html">
+<meta property="og:title" content="基本文件操作filehandle的用法">
+<meta property="og:url" content="http://yoursite.com/2016/04/29/基本文件操作filehandle的用法/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="头文件中的特别标记0UL 表示 无符号长整型 01UL 表示 无符号长整型 1
- 如果不写UL后缀，系统默认为：int, 即，有符号整数。">
-<meta property="og:updated_time" content="2016-04-27T12:25:05.000Z">
+<meta property="og:description" content="利用NSFilehandle类提供的方法，允许更有效地使用文件。
+一般而言，处理文件时都要经历以下三个步骤：
+
+1.打开文件，并获取一个NSFileHandle对象，以便在后面的I/O操作中引用该文件
+
+2.对打开的文件执行I/O操作（读取、写入、更新）
+
+3.关闭文件">
+<meta property="og:updated_time" content="2016-04-29T13:00:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="位运算">
-<meta name="twitter:description" content="头文件中的特别标记0UL 表示 无符号长整型 01UL 表示 无符号长整型 1
- 如果不写UL后缀，系统默认为：int, 即，有符号整数。">
+<meta name="twitter:title" content="基本文件操作filehandle的用法">
+<meta name="twitter:description" content="利用NSFilehandle类提供的方法，允许更有效地使用文件。
+一般而言，处理文件时都要经历以下三个步骤：
+
+1.打开文件，并获取一个NSFileHandle对象，以便在后面的I/O操作中引用该文件
+
+2.对打开的文件执行I/O操作（读取、写入、更新）
+
+3.关闭文件">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -194,11 +212,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-位运算" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-基本文件操作filehandle的用法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/27/位运算/" class="article-date">
-  	<time datetime="2016-04-27T12:21:31.000Z" itemprop="datePublished">2016-04-27</time>
+      <a href="/2016/04/29/基本文件操作filehandle的用法/" class="article-date">
+  	<time datetime="2016-04-29T12:57:38.000Z" itemprop="datePublished">2016-04-29</time>
 </a>
     </div>
   
@@ -211,7 +229,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      位运算
+      基本文件操作filehandle的用法
     </h1>
   
 
@@ -220,7 +238,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 	</div>
 
         
@@ -231,20 +249,91 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="头文件中的特别标记"><a href="#头文件中的特别标记" class="headerlink" title="头文件中的特别标记"></a>头文件中的特别标记</h3><p>0UL 表示 无符号长整型 0<br>1UL 表示 无符号长整型 1</p>
-<p> 如果不写UL后缀，系统默认为：int, 即，有符号整数。<br><a id="more"></a><br> 1.数值常数有：整型常数、浮点常数；<br> 2.只有数值常数才有后缀说明；<br> 3.数值常数后缀不区分字母大小写。</p>
-<p>（1）整型常数的表示形式有：十进制形式、以0开头的八进制形式、以0x开头的十六进制形式，无二进制形式。<br>    整型常数默认是signed int的。<br>    对整型常数进行类型转换的后缀只有：u或U（unsigned）、l或L（long）、u/U与l/L的组合（如：ul、lu、Lu等）。例：100u; -123u; 0x123l;</p>
-<p>（2）浮点常数的表示形式有：科学计数形式和小数点形式。<br>    浮点常数默认是double的。<br>    对浮点常数进行类型转换的后缀只有：f或F（单精度浮点数）、l或L（长双精度浮点数）。（注：因浮点型常数总是有符号的，故没有u或U后缀）。例：1.23e5f; 1.23l; -123.45f;</p>
-<h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3><p>  在许多计算机编程语言（例如：C语言、C++语言、Java语言、JavaScript语言、Pascal语言等）中，“&gt;&gt;”代表右移运算符，就相当于“shr”。该运算符为双目运算符，结合方向为从左到右，作用是把一个整型数的所有位向右移动指定的位数，移动到右边界之外的多余二进制位会被丢弃，并从左边界移入0。</p>
-<p>  右移运算的两个操作数应为整数类型。第一个操作数是要进行移位操作的数，第二个操作数指定第一个操作数移动的位数。如果第二个操作数等于0则不发生任何移位。</p>
-<p>应用举例：<br>        问：<strong>计算表达式14 &gt;&gt; 2的值</strong>。<br>        答：表达式14 &gt;&gt; 2的值为3，因为14（即二进制的00001110）向右移两位等于3（即二进制的00000011）。</p>
-<p>  说白了，就是把要移动的数转换成2进制，右移几位就去掉右边的几位数，左移几位就在右边加几个0，比如14右移2位就是转成二进制变成1110，去掉右边的10，变成11，11转成十进制就是3；左移2位就是111000，转成十进制就是56。</p>
-<ul>
-<li><p>位运算可以确保枚举值组合的唯一性. 因为位运算的计算方式是将二进制转换成十进制,<br>也就是说,枚举值里面存取的是 计算后的十进制值. </p>
-<p>打个比方: 通过上面的位运算方式设定好枚举以后,打印出来的枚举值分别是: 1 2 4 8 16 这5个数字,无论<strong>你如何组合在一起,也不会产生两个同样的数字</strong>.</p>
-</li>
-</ul>
+        <p>利用NSFilehandle类提供的方法，允许更有效地使用文件。</p>
+<pre><code>一般而言，处理文件时都要经历以下三个步骤：
 
+1.打开文件，并获取一个NSFileHandle对象，以便在后面的I/O操作中引用该文件
+
+2.对打开的文件执行I/O操作（读取、写入、更新）
+
+3.关闭文件
+</code></pre><a id="more"></a>
+<p> NSFileHandle用于以标准输入、标准输出、标准错误和空设置的方法。他们的格式为fileHandleWithDevice，其中Device可以是StandardInput、StandardOutput、StandardError或者NullDevice。</p>
+<p> 应该注意到，<strong>NSFileHandle类并没有提供创建文件的功能</strong>。必须使用NSFileManager方法来创建文件。因此，方法 fileHandleForWritingAtPath：和 hfileHandleUpdatingAtPath：都假定文件已经存在，否则返回nil。对于这两个方法，文件的偏移量都设为文件的开始，所以都是在文件的开始位置开始写入（或更新模式的读取）</p>
+<p> NSFileHandle常用方法:</p>
+<pre><code>+(NSFileHandle*)fileHandleForReadingAtPath:path 打开一个文件用于读入
+
++(NSFileHandle*)fileHandleForWritingAtPath:path 打开一个文件用于写入
+
++(NSFileHandle*)fileHandleForUpdatingAtPath:path 打开一个文件用于读写
+
+-(NSData*)availableData 从设备或者通道返回可用数据
+
+-(NSData*)readDataToEndOfFile 读取其余的数据知道文件的末尾(最多UINT_MAX字节)
+
+-(NSData*)readDataOfLength:(NSUInteger)bytes 从文件中读取指定字节的内容
+
+-(void)writeData:data  将data写入文件
+
+-(unsigned long long)offsetInFile 获取当前偏移量
+
+-(void)seekToFileOffset:offset  设置偏移量
+
+-(unsigned long long)seekToEndOfFile 将偏移量定位到文件的末尾
+
+-(void)truncateFileAtOffset:offset 讲文件的长度设置为offset字节
+
+-(void)closeFile 关闭文件
+</code></pre><p>方法fileHandleForWritingAtPath和fileHandleForUpdatingAtPath所指定的文件必须是已经存在的，否则返回nil,另外对于这两个方法中文件的偏移量都是为文件的开始。</p>
+<h3 id="部分代码"><a href="#部分代码" class="headerlink" title="部分代码"></a>部分代码</h3><pre><code>NSFileHandle *inFile, *outFile;
+NSData *buffer;
+
+//文件 1
+NSData *data = [NSData dataWithContentsOfFile:@&quot;/Users/zxq/Desktop/userInfor&quot;];
+[[NSFileManager defaultManager] createFileAtPath:@&quot;test.txt&quot; contents:data attributes:nil];
+
+//文件2
+NSData *data2 = [NSData dataWithContentsOfFile:@&quot;/Users/zxq/Desktop/123&quot;];
+[[NSFileManager defaultManager] createFileAtPath:@&quot;out.txt&quot; contents:data2 attributes:nil];
+
+// 打开test.txt文件用于读取操作
+inFile = [NSFileHandle fileHandleForReadingAtPath:@&quot;test.txt&quot;];
+
+// 打开test.txt文件用于写操作
+outFile = [NSFileHandle fileHandleForWritingAtPath: @&quot;out.txt&quot;];
+outFile = [NSFileHandle fileHandleForUpdatingAtPath:@&quot;out.txt&quot;];
+
+// 读取数据
+buffer = [inFile readDataToEndOfFile];
+buffer = [inFile readDataOfLength:60];
+
+// 写入数据
+[outFile writeData:buffer];
+
+//获取当前文件的偏移量
+long long offset =  [outFile offsetInFile];
+NSLog(@&quot;offset = %lld&quot;, offset);
+
+
+//设置当前文件的偏移量
+[inFile seekToFileOffset:100];
+
+if(inFile == nil)
+{
+    NSLog(@&quot;Open of testfile.txt for reading failed!&quot;);
+    return 1;
+} else {
+
+    buffer = [inFile readDataToEndOfFile];
+    NSLog(@&quot;%@&quot;, buffer);
+}
+
+//关闭两个文件
+[inFile closeFile];
+[outFile closeFile];
+
+NSLog(@&quot;%@&quot;, [NSString stringWithContentsOfFile:@&quot;out.txt&quot; encoding:NSUTF8StringEncoding error:nil]);
+</code></pre>
       
     </div>
     
@@ -253,18 +342,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/04/29/基本文件操作filehandle的用法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          基本文件操作filehandle的用法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/27/字符串加密之Base64/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">字符串加密之Base64</div>
+    <a href="/2016/04/27/位运算/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">位运算</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -299,7 +379,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="位运算" data-title="位运算" data-url="http://yoursite.com/2016/04/27/位运算/"></div>
+	<div class="ds-thread" data-thread-key="基本文件操作filehandle的用法" data-title="基本文件操作filehandle的用法" data-url="http://yoursite.com/2016/04/29/基本文件操作filehandle的用法/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

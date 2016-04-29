@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-27T12:25:05.000Z</updated>
+  <updated>2016-04-29T13:00:52.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,118 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基本文件操作filehandle的用法</title>
+    <link href="http://yoursite.com/2016/04/29/%E5%9F%BA%E6%9C%AC%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9Cfilehandle%E7%9A%84%E7%94%A8%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/04/29/基本文件操作filehandle的用法/</id>
+    <published>2016-04-29T12:57:38.000Z</published>
+    <updated>2016-04-29T13:00:52.000Z</updated>
+    
+    <content type="html">&lt;p&gt;利用NSFilehandle类提供的方法，允许更有效地使用文件。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;一般而言，处理文件时都要经历以下三个步骤：
+
+1.打开文件，并获取一个NSFileHandle对象，以便在后面的I/O操作中引用该文件
+
+2.对打开的文件执行I/O操作（读取、写入、更新）
+
+3.关闭文件
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt; NSFileHandle用于以标准输入、标准输出、标准错误和空设置的方法。他们的格式为fileHandleWithDevice，其中Device可以是StandardInput、StandardOutput、StandardError或者NullDevice。&lt;/p&gt;
+&lt;p&gt; 应该注意到，&lt;strong&gt;NSFileHandle类并没有提供创建文件的功能&lt;/strong&gt;。必须使用NSFileManager方法来创建文件。因此，方法 fileHandleForWritingAtPath：和 hfileHandleUpdatingAtPath：都假定文件已经存在，否则返回nil。对于这两个方法，文件的偏移量都设为文件的开始，所以都是在文件的开始位置开始写入（或更新模式的读取）&lt;/p&gt;
+&lt;p&gt; NSFileHandle常用方法:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+(NSFileHandle*)fileHandleForReadingAtPath:path 打开一个文件用于读入
+
++(NSFileHandle*)fileHandleForWritingAtPath:path 打开一个文件用于写入
+
++(NSFileHandle*)fileHandleForUpdatingAtPath:path 打开一个文件用于读写
+
+-(NSData*)availableData 从设备或者通道返回可用数据
+
+-(NSData*)readDataToEndOfFile 读取其余的数据知道文件的末尾(最多UINT_MAX字节)
+
+-(NSData*)readDataOfLength:(NSUInteger)bytes 从文件中读取指定字节的内容
+
+-(void)writeData:data  将data写入文件
+
+-(unsigned long long)offsetInFile 获取当前偏移量
+
+-(void)seekToFileOffset:offset  设置偏移量
+
+-(unsigned long long)seekToEndOfFile 将偏移量定位到文件的末尾
+
+-(void)truncateFileAtOffset:offset 讲文件的长度设置为offset字节
+
+-(void)closeFile 关闭文件
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;方法fileHandleForWritingAtPath和fileHandleForUpdatingAtPath所指定的文件必须是已经存在的，否则返回nil,另外对于这两个方法中文件的偏移量都是为文件的开始。&lt;/p&gt;
+&lt;h3 id=&quot;部分代码&quot;&gt;&lt;a href=&quot;#部分代码&quot; class=&quot;headerlink&quot; title=&quot;部分代码&quot;&gt;&lt;/a&gt;部分代码&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSFileHandle *inFile, *outFile;
+NSData *buffer;
+
+//文件 1
+NSData *data = [NSData dataWithContentsOfFile:@&amp;quot;/Users/zxq/Desktop/userInfor&amp;quot;];
+[[NSFileManager defaultManager] createFileAtPath:@&amp;quot;test.txt&amp;quot; contents:data attributes:nil];
+
+//文件2
+NSData *data2 = [NSData dataWithContentsOfFile:@&amp;quot;/Users/zxq/Desktop/123&amp;quot;];
+[[NSFileManager defaultManager] createFileAtPath:@&amp;quot;out.txt&amp;quot; contents:data2 attributes:nil];
+
+// 打开test.txt文件用于读取操作
+inFile = [NSFileHandle fileHandleForReadingAtPath:@&amp;quot;test.txt&amp;quot;];
+
+// 打开test.txt文件用于写操作
+outFile = [NSFileHandle fileHandleForWritingAtPath: @&amp;quot;out.txt&amp;quot;];
+outFile = [NSFileHandle fileHandleForUpdatingAtPath:@&amp;quot;out.txt&amp;quot;];
+
+// 读取数据
+buffer = [inFile readDataToEndOfFile];
+buffer = [inFile readDataOfLength:60];
+
+// 写入数据
+[outFile writeData:buffer];
+
+//获取当前文件的偏移量
+long long offset =  [outFile offsetInFile];
+NSLog(@&amp;quot;offset = %lld&amp;quot;, offset);
+
+
+//设置当前文件的偏移量
+[inFile seekToFileOffset:100];
+
+if(inFile == nil)
+{
+    NSLog(@&amp;quot;Open of testfile.txt for reading failed!&amp;quot;);
+    return 1;
+} else {
+
+    buffer = [inFile readDataToEndOfFile];
+    NSLog(@&amp;quot;%@&amp;quot;, buffer);
+}
+
+//关闭两个文件
+[inFile closeFile];
+[outFile closeFile];
+
+NSLog(@&amp;quot;%@&amp;quot;, [NSString stringWithContentsOfFile:@&amp;quot;out.txt&amp;quot; encoding:NSUTF8StringEncoding error:nil]);
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;利用NSFilehandle类提供的方法，允许更有效地使用文件。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;一般而言，处理文件时都要经历以下三个步骤：
+
+1.打开文件，并获取一个NSFileHandle对象，以便在后面的I/O操作中引用该文件
+
+2.对打开的文件执行I/O操作（读取、写入、更新）
+
+3.关闭文件
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>位运算</title>
@@ -1014,71 +1126,6 @@ fileURLWith...
     
     
       <category term="iOS 成长之路" scheme="http://yoursite.com/tags/iOS-%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>随机数的生成</title>
-    <link href="http://yoursite.com/2016/03/31/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%9A%84%E7%94%9F%E6%88%90/"/>
-    <id>http://yoursite.com/2016/03/31/随机数的生成/</id>
-    <published>2016-03-31T11:49:15.000Z</published>
-    <updated>2016-03-31T11:55:13.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;如何生成一个-Objective-C-的随机数&quot;&gt;&lt;a href=&quot;#如何生成一个-Objective-C-的随机数&quot; class=&quot;headerlink&quot; title=&quot;如何生成一个 Objective-C 的随机数&quot;&gt;&lt;/a&gt;如何生成一个 Objective-C 的随机数&lt;/h3&gt;&lt;p&gt;   具体而言，产生一个 0 和 N - 1 之间的随机数，使用 arc4random_uniform()，从而避免模偏差(modulo bias)。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;0 到 N - 1 之间的随机整数&lt;/p&gt;
-&lt;p&gt;  NSUInteger r = arc4random_uniform(N);&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;1 到 N 之间的随机整数 &lt;/p&gt;
-&lt;p&gt;  NSUInteger r = arc4random_uniform(N) + 1;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol&gt;
-&lt;li&gt;0 到 1 之间的随机浮点数（double）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;如果你要生成一个随机 double 或 float，另一个很好的选择是功能较模糊的 rand48 家族，包括 drand48(3)。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;srand48(time(0));
-double r = drand48();
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 不像 arc4random 函数， rand48 函数在产生随机数之前需要种子的初始值。这个种子函数 srand48(3) 应该只运行一次&lt;/p&gt;
-&lt;h4 id=&quot;我如何从一个-NSArray-选择一个随机元素？&quot;&gt;&lt;a href=&quot;#我如何从一个-NSArray-选择一个随机元素？&quot; class=&quot;headerlink&quot; title=&quot;我如何从一个 NSArray 选择一个随机元素？&quot;&gt;&lt;/a&gt;我如何从一个 NSArray 选择一个随机元素？&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;if ([array count] &amp;gt; 0) {
-  id obj = array[arc4random_uniform([array count])];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;我如何随机排序一个-NSArray？&quot;&gt;&lt;a href=&quot;#我如何随机排序一个-NSArray？&quot; class=&quot;headerlink&quot; title=&quot;我如何随机排序一个 NSArray？&quot;&gt;&lt;/a&gt;我如何随机排序一个 NSArray？&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
-NSUInteger count = [mutableArray count];
-
-if (count &amp;gt; 1) {
-  for (NSUInteger i = count - 1; i &amp;gt; 0; --i) {
-      [mutableArray exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform((int32_t)(i + 1))];
-   }
-}
-NSArray *randomArray = [NSArray arrayWithArray:mutableArray];
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;生成一个随机的小写-NSString&quot;&gt;&lt;a href=&quot;#生成一个随机的小写-NSString&quot; class=&quot;headerlink&quot; title=&quot;生成一个随机的小写 NSString&quot;&gt;&lt;/a&gt;生成一个随机的小写 NSString&lt;/h4&gt;&lt;p&gt;如果你是对一个已知的，连续范围的 Unicode 字符做处理，例如小写字母 (U+0061 — U+007A)，你可以从 char 做一个简单的换算：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSString *letter = [NSString stringWithFormat:@&amp;quot;%c&amp;quot;, arc4random_uniform(26) + &amp;apos;a&amp;apos;];
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;从一个-NSString-选择一个随机字符&quot;&gt;&lt;a href=&quot;#从一个-NSString-选择一个随机字符&quot; class=&quot;headerlink&quot; title=&quot;从一个 NSString 选择一个随机字符&quot;&gt;&lt;/a&gt;从一个 NSString 选择一个随机字符&lt;/h4&gt;&lt;p&gt;另外，从一组你选择的字符中来挑选随机字母的一个简单的方法是简单地创建一个包含所有可能的字母的字符串：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSString *vowels = @&amp;quot;aeiouy&amp;quot;;
-NSString *letter = [vowels substringWithRange:NSMakeRange(arc4random_uniform([vowels length]), 1)];
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;为什么要使用-arc4random-3-，而不是-rand-3-或-random-3-？&quot;&gt;&lt;a href=&quot;#为什么要使用-arc4random-3-，而不是-rand-3-或-random-3-？&quot; class=&quot;headerlink&quot; title=&quot;为什么要使用 arc4random(3)，而不是 rand(3) 或 random(3)？&quot;&gt;&lt;/a&gt;为什么要使用 arc4random(3)，而不是 rand(3) 或 random(3)？&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;arc4random 不需要初始种子（用 srand 或 srandom），使它更加容易使用。
-arc4random 范围可达 0x100000000 (4294967296)，而 rand 和 random 的上限在 RAND_MAX = 0x7fffffff (2147483647)。
-rand 经常定期被周期低位的方式，使其更可预测执行。
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;什么是-rand-3-random-3-和-arc4random-3-，以及它们从哪里来的？&quot;&gt;&lt;a href=&quot;#什么是-rand-3-random-3-和-arc4random-3-，以及它们从哪里来的？&quot; class=&quot;headerlink&quot; title=&quot;什么是 rand(3), random(3), 和 arc4random(3)，以及它们从哪里来的？&quot;&gt;&lt;/a&gt;什么是 rand(3), random(3), 和 arc4random(3)，以及它们从哪里来的？&lt;/h4&gt;&lt;p&gt;rand 是一个标准的 C 函数。&lt;br&gt;random 是定义为 POSIX 标准的一部分。&lt;br&gt;arc4random 是在 BSD 和派生平台。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;如何生成一个-Objective-C-的随机数&quot;&gt;&lt;a href=&quot;#如何生成一个-Objective-C-的随机数&quot; class=&quot;headerlink&quot; title=&quot;如何生成一个 Objective-C 的随机数&quot;&gt;&lt;/a&gt;如何生成一个 Objective-C 的随机数&lt;/h3&gt;&lt;p&gt;   具体而言，产生一个 0 和 N - 1 之间的随机数，使用 arc4random_uniform()，从而避免模偏差(modulo bias)。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;0 到 N - 1 之间的随机整数&lt;/p&gt;
-&lt;p&gt;  NSUInteger r = arc4random_uniform(N);&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-    
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
     
   </entry>
   
