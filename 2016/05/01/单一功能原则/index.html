@@ -4,18 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>单例UIApplication-总结 | 第欧根尼的小桶</title>
+  <title>单一功能原则 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate cla">
+  <meta name="description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
+所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例UIApplication-总结">
-<meta property="og:url" content="http://yoursite.com/2016/04/22/单例UIApplication-总结/index.html">
+<meta property="og:title" content="单一功能原则">
+<meta property="og:url" content="http://yoursite.com/2016/05/01/单一功能原则/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate cla">
-<meta property="og:updated_time" content="2016-04-22T14:21:05.000Z">
+<meta property="og:description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
+所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
+<meta property="og:updated_time" content="2016-05-01T13:34:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例UIApplication-总结">
-<meta name="twitter:description" content="If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate cla">
+<meta name="twitter:title" content="单一功能原则">
+<meta name="twitter:description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
+所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -191,11 +194,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-单例UIApplication-总结" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-单一功能原则" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/22/单例UIApplication-总结/" class="article-date">
-  	<time datetime="2016-04-22T14:16:58.000Z" itemprop="datePublished">2016-04-22</time>
+      <a href="/2016/05/01/单一功能原则/" class="article-date">
+  	<time datetime="2016-05-01T13:29:49.000Z" itemprop="datePublished">2016-05-01</time>
 </a>
     </div>
   
@@ -208,7 +211,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      单例UIApplication-总结
+      单一功能原则
     </h1>
   
 
@@ -217,7 +220,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［类的魔法］/">［类的魔法］</a></li></ul>
 	</div>
 
         
@@ -228,30 +231,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate class will be instantiated using init.</p>
-<pre><code>UIKIT_EXTERN int UIApplicationMain (
-
-   int argc, 
-   char *argv[], 
-   NSString * __nullable principalClassName, 
-   NSString * __nullable delegateClassName
-);
-</code></pre><a id="more"></a>
-<h3 id="那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责-三件-事情："><a href="#那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责-三件-事情：" class="headerlink" title="那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责 三件 事情："></a>那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责 三件 事情：</h3><pre><code>1）从给定的类名初始化应用程序对象，也就是初始化UIApplication或者子类对象的一个实例，
-如果你在这里给定的是nil，那么 系统会默认UIApplication类，也就主要是这个类来控制以及协调应用程序的运行。
-在后续的工作中，你可以用静态方法sharedApplication 来获取应用程序的句柄。 
-2）从给定的应用程序委托类，初始化一个应用程序委托。并把该委托设置为应用程序的委托，这里就有如果传入参数为nil，会调用函数访问 Info.plist文件来寻找主nib文件，获取应用程序委托。 
-3）启动主事件循环，并开始接收事件。
-</code></pre><h3 id="UIApplication（或-者子类）对象的职责，这个对象主要做下面几件事："><a href="#UIApplication（或-者子类）对象的职责，这个对象主要做下面几件事：" class="headerlink" title="UIApplication（或 者子类）对象的职责，这个对象主要做下面几件事："></a>UIApplication（或 者子类）对象的职责，这个对象主要做下面几件事：</h3><pre><code>1）负责处理到来的用户事件，并分发事件消息到应该处理该消息的目标对象（sender,  action)。 
-2）管理以及控制视图，包括呈现、控制行为、当前显示视图等。 
-3）该对象有一个应用程序委托对象，当一些生命周期内重要事件（可以包括系统事件或者生命周期控制事件）发生时，应用程序通知该对象。
-例如，应用程序启动、内存不够了或者应用程序结束等，让这些事件发生时，应用程序委托去响应。 
-</code></pre><h3 id="我们可以从应用程序的单例类对象中得到应用程序委托的对象"><a href="#我们可以从应用程序的单例类对象中得到应用程序委托的对象" class="headerlink" title="我们可以从应用程序的单例类对象中得到应用程序委托的对象"></a>我们可以从应用程序的单例类对象中得到应用程序委托的对象</h3><pre><code>UIApplicationDelegate* myDelegate = [[UIApplication sharedApplication] delegate]; 
-
-UIApplication 接收到所有的系统事件和生命周期事件时，都会把事件传递给UIApplicationDelegate进行处理，
-对于用户输入 事件，则传递给相应的目标对象去处理
-</code></pre><h3 id="创建UIApplication对象并指定其代理"><a href="#创建UIApplication对象并指定其代理" class="headerlink" title="创建UIApplication对象并指定其代理"></a>创建UIApplication对象并指定其代理</h3><p>通过UIApplicationMain函数创建UIApplication对象并 指定其代理对象AppDelegate;第三个参数为指定 UIApplication的子类来生成UIApplication对象，为nil时由 UIApplication类初始化默认对象；第四个参数为指定代理 对象。</p>
-<h3 id="UIApplication的代理对象"><a href="#UIApplication的代理对象" class="headerlink" title="UIApplication的代理对象"></a>UIApplication的代理对象</h3><p>作为UIApplication的代理类，必须要先实现 UIApplicationDelegate协议，协议里明确了作为代理应 该做或可以做哪些事情。 UIApplication对象负责监听应用程序的生命周期事件， 并将生命周期事件交由UIApplication代理对象处理。</p>
+        <p><strong>在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。</strong></p>
+<p>所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。<br><a id="more"></a></p>
+<p>这个术语由<strong>罗伯特·C·马丁（Robert Cecil Martin）</strong>在他的《敏捷软件开发，原则，模式和实践》一书中的一篇名为〈面向对象设计原则〉的文章中给出。</p>
+<p>马丁表述该原则是基于的《结构化分析和系统规格》一书中的内聚原则（Cohesion）上。</p>
+<p>马丁把功能（职责）定义为：“<strong>改变的原因</strong>”，并且总结出一个类或者模块应该<strong>有且只有一个</strong>改变的原因。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>一个具体的例子就是，想象有一个用于编辑和打印报表的模块。这样的一个模块存在两个改变的原因。</p>
+<pre><code>第一，报表的内容可以改变（编辑）。
+第二，报表的格式可以改变（打印）。
+</code></pre><p>这两方面会的改变因为完全不同的起因而发生：一个是本质的修改，一个是表面的修改。<br>单一功能原则认为这两方面的问题事实上是两个分离的功能，因此他们应该分离在不同的类或者模块里。把有不同的改变原因的事物耦合在一起的设计是糟糕的。</p>
+<p><strong>保持一个类专注于单一功能点上的一个重要的原因是，它会使得类更加的健壮。</strong></p>
+<p>继续上面的例子，如果有一个对于报表编辑流程的修改，那么将存在极大的危险性，打印功能的代码会因此不工作，假使这两个功能存在于同一个类中的话。</p>
 
       
     </div>
@@ -261,18 +251,9 @@ UIApplication 接收到所有的系统事件和生命周期事件时，都会把
     
 <nav id="article-nav">
   
-    <a href="/2016/04/22/iOS程序的五种状态/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS程序的五种状态
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/15/OC关键字/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">OC关键字</div>
+    <a href="/2016/04/29/基本文件操作filehandle的用法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基本文件操作filehandle的用法</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -307,7 +288,7 @@ UIApplication 接收到所有的系统事件和生命周期事件时，都会把
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="单例UIApplication-总结" data-title="单例UIApplication-总结" data-url="http://yoursite.com/2016/04/22/单例UIApplication-总结/"></div>
+	<div class="ds-thread" data-thread-key="单一功能原则" data-title="单一功能原则" data-url="http://yoursite.com/2016/05/01/单一功能原则/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

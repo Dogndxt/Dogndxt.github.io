@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-29T13:00:52.000Z</updated>
+  <updated>2016-05-01T13:34:46.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>单一功能原则</title>
+    <link href="http://yoursite.com/2016/05/01/%E5%8D%95%E4%B8%80%E5%8A%9F%E8%83%BD%E5%8E%9F%E5%88%99/"/>
+    <id>http://yoursite.com/2016/05/01/单一功能原则/</id>
+    <published>2016-05-01T13:29:49.000Z</published>
+    <updated>2016-05-01T13:34:46.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这个术语由&lt;strong&gt;罗伯特·C·马丁（Robert Cecil Martin）&lt;/strong&gt;在他的《敏捷软件开发，原则，模式和实践》一书中的一篇名为〈面向对象设计原则〉的文章中给出。&lt;/p&gt;
+&lt;p&gt;马丁表述该原则是基于的《结构化分析和系统规格》一书中的内聚原则（Cohesion）上。&lt;/p&gt;
+&lt;p&gt;马丁把功能（职责）定义为：“&lt;strong&gt;改变的原因&lt;/strong&gt;”，并且总结出一个类或者模块应该&lt;strong&gt;有且只有一个&lt;/strong&gt;改变的原因。&lt;/p&gt;
+&lt;h3 id=&quot;例子&quot;&gt;&lt;a href=&quot;#例子&quot; class=&quot;headerlink&quot; title=&quot;例子&quot;&gt;&lt;/a&gt;例子&lt;/h3&gt;&lt;p&gt;一个具体的例子就是，想象有一个用于编辑和打印报表的模块。这样的一个模块存在两个改变的原因。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;第一，报表的内容可以改变（编辑）。
+第二，报表的格式可以改变（打印）。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这两方面会的改变因为完全不同的起因而发生：一个是本质的修改，一个是表面的修改。&lt;br&gt;单一功能原则认为这两方面的问题事实上是两个分离的功能，因此他们应该分离在不同的类或者模块里。把有不同的改变原因的事物耦合在一起的设计是糟糕的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;保持一个类专注于单一功能点上的一个重要的原因是，它会使得类更加的健壮。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;继续上面的例子，如果有一个对于报表编辑流程的修改，那么将存在极大的危险性，打印功能的代码会因此不工作，假使这两个功能存在于同一个类中的话。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="［类的魔法］" scheme="http://yoursite.com/tags/%EF%BC%BB%E7%B1%BB%E7%9A%84%E9%AD%94%E6%B3%95%EF%BC%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>基本文件操作filehandle的用法</title>
@@ -1082,50 +1114,6 @@ fileURLWith...
     
     
       <category term="［NSURL］" scheme="http://yoursite.com/tags/%EF%BC%BBNSURL%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>十个iOS面试问题</title>
-    <link href="http://yoursite.com/2016/03/31/%E5%8D%81%E4%B8%AAiOS%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2016/03/31/十个iOS面试问题/</id>
-    <published>2016-03-31T12:01:39.000Z</published>
-    <updated>2016-03-31T12:04:57.000Z</updated>
-    
-    <content type="html">&lt;p&gt;哪一天我能解决这十个问题了，我也算是有小成了，直接上题：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;你使用过Objective-C的运行时编程（Runtime Programming）么？如果使用过，你用它做了什么？你还能记得你所使用的相关的头文件或者某些方法的名称吗？&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;你实现过多线程的Core Data么？NSPersistentStoreCoordinator，NSManagedObjectContext和NSManagedObject中的哪些需要在线程中创建或者传递？你是用什么样的策略来实现的？&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Core开头的系列的内容。是否使用过CoreAnimation和CoreGraphics。UI框架和CA，CG框架的联系是什么？分别用CA和CG做过些什么动画或者图像上的内容。（有需要的话还可以涉及Quartz的一些内容）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;是否使用过CoreText或者CoreImage等？如果使用过，请谈谈你使用CoreText或者CoreImage的体验。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;NSNotification和KVO的区别和用法是什么？什么时候应该使用通知，什么时候应该使用KVO，它们的实现上有什么区别吗？如果用protocol和delegate（或者delegate的Array）来实现类似的功能可能吗？如果可能，会有什么潜在的问题？如果不能，为什么？（虽然protocol和delegate这种东西面试已经面烂了…）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;你用过NSOperationQueue么？如果用过或者了解的话，你为什么要使用NSOperationQueue，实现了什么？请描述它和GCD的区别和类似的地方（提示：可以从两者的实现机制和适用范围来描述）。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;既然提到GCD，那么问一下在使用GCD以及block时要注意些什么？它们两是一回事儿么？block在ARC中和传统的MRC中的行为和用法有没有什么区别，需要注意些什么？&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;您是否做过异步的网络处理和通讯方面的工作？如果有，能具体介绍一些实现策略么？&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;对于Objective-C，你认为它最大的优点和最大的不足是什么？对于不足之处，现在有没有可用的方法绕过这些不足来实现需求。如果可以的话，你有没有考虑或者实践过重新实现OC的一些功能，如果有，具体会如何做？&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;你实现过一个框架或者库以供别人使用么？如果有，请谈一谈构建框架或者库时候的经验；如果没有，请设想和设计框架的public的API，并指出大概需要如何做、需要注意一些什么方面，来使别人容易地使用你的框架。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;哪一天我能解决这十个问题了，我也算是有小成了，直接上题：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;你使用过Objective-C的运行时编程（Runtime Programming）么？如果使用过，你用它做了什么？你还能记得你所使用的相关的头文件或者某些方法的名称吗？
-    
-    </summary>
-    
-    
-      <category term="iOS 成长之路" scheme="http://yoursite.com/tags/iOS-%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/"/>
     
   </entry>
   
