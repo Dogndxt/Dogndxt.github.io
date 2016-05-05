@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-01T13:34:46.000Z</updated>
+  <updated>2016-05-05T13:23:44.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,88 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>深度学习（三）</title>
+    <link href="http://yoursite.com/2016/05/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/05/05/深度学习（三）/</id>
+    <published>2016-05-05T13:11:48.000Z</published>
+    <updated>2016-05-05T13:23:44.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;关于特征&quot;&gt;&lt;a href=&quot;#关于特征&quot; class=&quot;headerlink&quot; title=&quot;关于特征&quot;&gt;&lt;/a&gt;关于特征&lt;/h3&gt;&lt;h4 id=&quot;4-1、特征表示的粒度&quot;&gt;&lt;a href=&quot;#4-1、特征表示的粒度&quot; class=&quot;headerlink&quot; title=&quot;4.1、特征表示的粒度&quot;&gt;&lt;/a&gt;4.1、特征表示的粒度&lt;/h4&gt;&lt;p&gt;学习算法在一个什么粒度上的特征表示，才有能发挥作用？就一个图片来说，像素级的特征根本没有价值。例如下面的摩托车，从像素级别，根本得不到任何信息，其无法进行摩托车和非摩托车的区分。而如果特征是一个具有结构性（或者说有含义）的时候，比如是否具有车把手（handle），是否具有车轮（wheel），就很容易把摩托车和非摩托车区分，学习算法才能发挥作用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;4-2、初级（浅层）特征表示&quot;&gt;&lt;a href=&quot;#4-2、初级（浅层）特征表示&quot; class=&quot;headerlink&quot; title=&quot;4.2、初级（浅层）特征表示&quot;&gt;&lt;/a&gt;4.2、初级（浅层）特征表示&lt;/h4&gt;&lt;p&gt;1995 年前后，Bruno Olshausen和 David Field 两位学者任职 Cornell University，他们试图同时用生理学和计算机的手段，双管齐下，研究视觉问题。&lt;br&gt;他们收集了很多黑白风景照片，从这些照片中，提取出400个小碎片，每个照片碎片的尺寸均为 16x16 像素，不妨把这400个碎片标记为 S[i], i = 0,.. 399。接下来，再从这些黑白风景照片中，随机提取另一个碎片，尺寸也是 16x16 像素，不妨把这个碎片标记为 T。&lt;br&gt;他们提出的问题是，如何从这400个碎片中，选取一组碎片，S[k], 通过叠加的办法，合成出一个新的碎片，而这个新的碎片，应当与随机选择的目标碎片 T，尽可能相似，同时，S[k] 的数量尽可能少。用数学的语言来描述，就是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Sum_k (a[k] * S[k]) --&amp;gt; T, 其中 a[k] 是在叠加碎片 S[k] 时的权重系数。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为解决这个问题，Bruno Olshausen和 David Field 发明了一个算法，稀疏编码（Sparse Coding）。&lt;br&gt;稀疏编码是一个重复迭代的过程，每次迭代分两步：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1）选择一组 S[k]，然后调整 a[k]，使得Sum_k (a[k] * S[k]) 最接近 T。
+2）固定住 a[k]，在 400 个碎片中，选择其它更合适的碎片S’[k]，替代原先的 S[k]，使得Sum_k (a[k] * S’[k]) 最接近 T。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;经过几次迭代后，最佳的 S[k] 组合，被遴选出来了。令人惊奇的是，被选中的 S[k]，基本上都是照片上不同物体的边缘线，这些线段形状相似，区别在于方向。&lt;/p&gt;
+&lt;p&gt;Bruno Olshausen和 David Field 的算法结果，与 David Hubel 和Torsten Wiesel 的生理发现，不谋而合！&lt;br&gt;也就是说，复杂图形，往往由一些基本结构组成。&lt;/p&gt;
+&lt;h4 id=&quot;4-3、结构性特征表示&quot;&gt;&lt;a href=&quot;#4-3、结构性特征表示&quot; class=&quot;headerlink&quot; title=&quot;4.3、结构性特征表示&quot;&gt;&lt;/a&gt;4.3、结构性特征表示&lt;/h4&gt;&lt;p&gt;小块的图形可以由基本edge构成，更结构化，更复杂的，具有概念性的图形如何表示呢？这就需要更高层次的特征表示，比如V2，V4。因此V1看像素级是像素级。V2看V1是像素级，这个是层次递进的，高层表达由底层表达的组合而成。专业点说就是基basis。V1取提出的basis是边缘，然后V2层是V1层这些basis的组合，这时候V2区得到的又是高一层的basis。即上一层的basis组合的结果，上上层又是上一层的组合basis……（所以有大牛说Deep learning就是“搞基”，因为难听，所以美其名曰Deep learning或者Unsupervised Feature Learning）&lt;/p&gt;
+&lt;p&gt;直观上说，就是找到make sense的小patch再将其进行combine，就得到了上一层的feature，递归地向上learning feature。&lt;br&gt;在不同object上做training是，所得的edge basis 是非常相似的，但object parts和models 就会completely different了（那咱们分辨car或者face是不是容易多了）：&lt;/p&gt;
+&lt;h4 id=&quot;4-4、需要有多少个特征？&quot;&gt;&lt;a href=&quot;#4-4、需要有多少个特征？&quot; class=&quot;headerlink&quot; title=&quot;4.4、需要有多少个特征？&quot;&gt;&lt;/a&gt;4.4、需要有多少个特征？&lt;/h4&gt;&lt;p&gt;我们知道需要层次的特征构建，由浅入深，但每一层该有多少个特征呢？&lt;br&gt;任何一种方法，特征越多，给出的参考信息就越多，准确性会得到提升。但特征多意味着计算复杂，探索的空间大，可以用来训练的数据在每个特征上就会稀疏，都会带来各种问题，并不一定特征越多越好。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;关于特征&quot;&gt;&lt;a href=&quot;#关于特征&quot; class=&quot;headerlink&quot; title=&quot;关于特征&quot;&gt;&lt;/a&gt;关于特征&lt;/h3&gt;&lt;h4 id=&quot;4-1、特征表示的粒度&quot;&gt;&lt;a href=&quot;#4-1、特征表示的粒度&quot; class=&quot;headerlink&quot; title=&quot;4.1、特征表示的粒度&quot;&gt;&lt;/a&gt;4.1、特征表示的粒度&lt;/h4&gt;&lt;p&gt;学习算法在一个什么粒度上的特征表示，才有能发挥作用？就一个图片来说，像素级的特征根本没有价值。例如下面的摩托车，从像素级别，根本得不到任何信息，其无法进行摩托车和非摩托车的区分。而如果特征是一个具有结构性（或者说有含义）的时候，比如是否具有车把手（handle），是否具有车轮（wheel），就很容易把摩托车和非摩托车区分，学习算法才能发挥作用。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习（二）</title>
+    <link href="http://yoursite.com/2016/05/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/05/05/深度学习（二）/</id>
+    <published>2016-05-05T13:03:45.000Z</published>
+    <updated>2016-05-05T13:13:10.000Z</updated>
+    
+    <content type="html">&lt;p&gt;那它是怎么学习的呢？怎么知道哪些特征好哪些不好呢？我们说机器学习是一门专门研究计算机怎样模拟或实现人类的学习行为的学科。&lt;/p&gt;
+&lt;h3 id=&quot;人脑视觉机理&quot;&gt;&lt;a href=&quot;#人脑视觉机理&quot; class=&quot;headerlink&quot; title=&quot;人脑视觉机理&quot;&gt;&lt;/a&gt;人脑视觉机理&lt;/h3&gt;&lt;p&gt;可视皮层是分级的&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 神经-中枢-大脑的工作过程，或许是一个不断迭代、不断抽象的过程&lt;/strong&gt;。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;这里的关键词有两个，一个是抽象，一个是迭代。从原始信号，做低级抽象，逐渐向高级抽象迭代。&lt;strong&gt;人类的逻辑思维，经常使用高度抽象的概念&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;总的来说，人的视觉系统的信息处理是分级的。从低级的V1区提取边缘特征，再到V2区的形状或者目标的部分等，再到更高层，整个目标、目标的行为等。也就是说高层的特征是低层特征的组合，从低层到高层的特征表示越来越抽象，越来越能表现语义或者意图。而抽象层面越高，存在的可能猜测就越少，就越利于分类。例如，单词集合和句子的对应是多对一的，句子和语义的对应又是多对一的，语义和意图的对应还是多对一的，这是个层级体系。 &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/danao.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;那它是怎么学习的呢？怎么知道哪些特征好哪些不好呢？我们说机器学习是一门专门研究计算机怎样模拟或实现人类的学习行为的学科。&lt;/p&gt;
+&lt;h3 id=&quot;人脑视觉机理&quot;&gt;&lt;a href=&quot;#人脑视觉机理&quot; class=&quot;headerlink&quot; title=&quot;人脑视觉机理&quot;&gt;&lt;/a&gt;人脑视觉机理&lt;/h3&gt;&lt;p&gt;可视皮层是分级的&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 神经-中枢-大脑的工作过程，或许是一个不断迭代、不断抽象的过程&lt;/strong&gt;。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习（一）</title>
+    <link href="http://yoursite.com/2016/05/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%EF%BC%8D%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/05/05/深度学习（－）/</id>
+    <published>2016-05-05T12:46:40.000Z</published>
+    <updated>2016-05-05T13:29:40.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;p&gt;&lt;strong&gt; Artificial Intelligence，也就是人工智能&lt;/strong&gt;，就像长生不老和星际漫游一样，是人类最美好的梦想之一。&lt;/p&gt;
+&lt;p&gt;  图灵（图灵，大家都知道吧。计算机和人工智能的鼻祖，分别对应于其著名的“图灵机”和“图灵测试”）在 1950 年的论文里，提出图灵试验的设想，即，隔墙对话，你将不知道与你谈话的，是人还是电脑。这无疑给计算机，尤其是人工智能，预设了一个很高的期望值。但是半个世纪过去了，人工智能的进展，远远没有达到图灵试验的标准。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;  但是自 2006 年以来，机器学习领域，取得了突破性的进展。图灵试验，至少不是那么可望而不可及了。至于技术手段，不仅仅依赖于云计算对大数据的并行处理能力，而且依赖于算法。这个算法就是，Deep Learning。借助于 Deep Learning 算法，人类终于找到了如何处理“抽象概念”这个亘古难题的方法。&lt;/p&gt;
+&lt;p&gt;  2012年6月，《纽约时报》披露了Google Brain项目，吸引了公众的广泛关注。这个项目是由著名的斯坦福大学的机器学习教授Andrew Ng和在大规模计算机系统方面的世界顶尖专家JeffDean共同主导，用16000个CPU Core的并行计算平台训练一种称为“深度神经网络”（DNN，Deep Neural Networks）的机器学习模型（内部共有10亿个节点。人脑中有150多亿个神经元），在语音识别和图像识别等领域获得了巨大的成功。&lt;/p&gt;
+&lt;h3 id=&quot;机器学习（人工智能的核心）的背景&quot;&gt;&lt;a href=&quot;#机器学习（人工智能的核心）的背景&quot; class=&quot;headerlink&quot; title=&quot;机器学习（人工智能的核心）的背景&quot;&gt;&lt;/a&gt;机器学习（人工智能的核心）的背景&lt;/h3&gt;&lt;p&gt;  &lt;strong&gt; 机器学习（Machine Learning）是一门专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能的学科。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  目前我们通过机器学习去解决这些问题的思路都是这样的（以视觉感知为例子）：&lt;/p&gt;
+&lt;p&gt; &lt;img src=&quot;/img/sfeature.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;   从开始的通过传感器（例如CMOS）来获得数据。然后经过预处理、特征提取、特征选择，再到推理、预测或者识别。最后一个部分，也就是机器学习的部分，绝大部分的工作是在这方面做的，也存在很多的paper和研究。&lt;/p&gt;
+&lt;p&gt;  而中间的三部分，概括起来就是特征表达。良好的特征表达，对最终算法的准确性起了非常关键的作用，而且系统主要的计算和测试工作都耗在这一大部分。但，这块实际中一般都是人工完成的。靠人工提取特征。&lt;br&gt;&lt;img src=&quot;/img/manmade.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;  截止现在，也出现了不少NB的特征（好的特征应具有不变性（大小、尺度和旋转等）和可区分性）：例如Sift的出现，是局部图像特征描述子研究领域一项里程碑式的工作。由于SIFT对尺度、旋转以及一定视角和光照变化等图像变化都具有不变性，并且SIFT具有很强的可区分性，的确让很多问题的解决变为可能。但它也不是万能的。&lt;/p&gt;
+&lt;p&gt;  然而，手工地选取特征是一件非常费力、启发式（需要专业知识）的方法，能不能选取好很大程度上靠经验和运气，而且它的调节需要大量的时间。&lt;br&gt;  既然手工选取特征不太好，那么能不能自动地学习一些特征呢？&lt;br&gt;  答案是能！&lt;br&gt;  &lt;strong&gt;Deep Learning就是用来干这个事情的，看它的一个别名UnsupervisedFeature Learning，就可以顾名思义了，Unsupervised的意思就是不要人参与特征的选取过程&lt;/strong&gt;。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;p&gt;&lt;strong&gt; Artificial Intelligence，也就是人工智能&lt;/strong&gt;，就像长生不老和星际漫游一样，是人类最美好的梦想之一。&lt;/p&gt;
+&lt;p&gt;  图灵（图灵，大家都知道吧。计算机和人工智能的鼻祖，分别对应于其著名的“图灵机”和“图灵测试”）在 1950 年的论文里，提出图灵试验的设想，即，隔墙对话，你将不知道与你谈话的，是人还是电脑。这无疑给计算机，尤其是人工智能，预设了一个很高的期望值。但是半个世纪过去了，人工智能的进展，远远没有达到图灵试验的标准。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>单一功能原则</title>
@@ -962,158 +1044,6 @@ B.第三个参数开始，你可以按照原方法（例如：setHeight:(float)�
     
     
       <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title> 继承自NSObject的不常用又很有用的函数load 和 initialize</title>
-    <link href="http://yoursite.com/2016/04/14/%E7%BB%A7%E6%89%BF%E8%87%AANSObject%E7%9A%84%E4%B8%8D%E5%B8%B8%E7%94%A8%E5%8F%88%E5%BE%88%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0load-%E5%92%8C-initialize/"/>
-    <id>http://yoursite.com/2016/04/14/继承自NSObject的不常用又很有用的函数load-和-initialize/</id>
-    <published>2016-04-14T13:17:18.000Z</published>
-    <updated>2016-04-14T13:43:09.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;初始化阶段-－－-load-函数&quot;&gt;&lt;a href=&quot;#初始化阶段-－－-load-函数&quot; class=&quot;headerlink&quot; title=&quot;初始化阶段 －－ load 函数&quot;&gt;&lt;/a&gt;初始化阶段 －－ load 函数&lt;/h3&gt;&lt;p&gt; +(void)load&lt;/p&gt;
-&lt;p&gt;当类被引用进程序的时候会执行这个函数。&lt;/p&gt;
-&lt;p&gt;在一个程序开始运行之前（在main函数开始执行之前）,在库开始被程序加载，load函数就会开始被执行。 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;我们开发的程序都可以认为是一个库，但是库又不会独立存在（我们的程序还会引用其他库，也可能被其他函数引用），所以库的初始化顺序可以如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;1. 初始化我们引用的库
-2. 执行我们自己库的Objective-C的load函数
-3. 执行C++和C的static初始化变量
-4. 初始化引用我们库的其他库
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在我们的编写的库中，会有很多类重写load函数，他们之间的执行顺序是不确定的。&lt;/p&gt;
-&lt;p&gt;当父类和子类都实现load函数时，父类的load函数会被先执行。load函数是系统自动加载的，因此不需要调用父类的load函数，否则父类的load函数会多次执行。&lt;/p&gt;
-&lt;p&gt;在Category中写load函数是不会替换原始类中的load函数的，原始类和Category中的load函数都会被执行，原始类的load会先被执行，再执行Category中的load函数。当有多个Category都实现了load函数，这几个load函数执行顺序不确定。&lt;/p&gt;
-&lt;h3 id=&quot;初始化阶段-－－-Initialize函数&quot;&gt;&lt;a href=&quot;#初始化阶段-－－-Initialize函数&quot; class=&quot;headerlink&quot; title=&quot;初始化阶段 －－ Initialize函数&quot;&gt;&lt;/a&gt;初始化阶段 －－ Initialize函数&lt;/h3&gt;&lt;p&gt; +(void)initialize&lt;/p&gt;
-&lt;p&gt;当类第一次被执行到的时候这个函数会被执行。&lt;/p&gt;
-&lt;p&gt;如果类包含继承关系，父类的initialize函数会比子类先执行。由于是系统自动调用，也不需要显式的调用父类的initialize，否则父类的initialize会被多次执行。&lt;/p&gt;
-&lt;p&gt;假如这个类放到代码中，而这段代码并没有被执行，这个函数是不会被执行的。&lt;/p&gt;
-&lt;h3 id=&quot;Load-or-Initialize&quot;&gt;&lt;a href=&quot;#Load-or-Initialize&quot; class=&quot;headerlink&quot; title=&quot;Load or Initialize&quot;&gt;&lt;/a&gt;Load or Initialize&lt;/h3&gt;&lt;p&gt;这两个函数没有交集，也没有执行的先后顺序，他们各自遵循着各自的调用原则。因此在写逻辑的时候，不能有逻辑依赖load函数比initialize函数先行调用。&lt;/p&gt;
-&lt;h3 id=&quot;使用场景&quot;&gt;&lt;a href=&quot;#使用场景&quot; class=&quot;headerlink&quot; title=&quot;使用场景&quot;&gt;&lt;/a&gt;使用场景&lt;/h3&gt;&lt;p&gt;将针对于类修改放在intialize中，将针对Category的修改放在load中。&lt;/p&gt;
-&lt;p&gt;但是假如我们是修改系统的类，一般会通过添加Category来添加功能，但是如果修改initialize会导致原生的intialize不会执行，所以&lt;strong&gt;放在load中&lt;/strong&gt;会比较妥当。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;初始化阶段-－－-load-函数&quot;&gt;&lt;a href=&quot;#初始化阶段-－－-load-函数&quot; class=&quot;headerlink&quot; title=&quot;初始化阶段 －－ load 函数&quot;&gt;&lt;/a&gt;初始化阶段 －－ load 函数&lt;/h3&gt;&lt;p&gt; +(void)load&lt;/p&gt;
-&lt;p&gt;当类被引用进程序的时候会执行这个函数。&lt;/p&gt;
-&lt;p&gt;在一个程序开始运行之前（在main函数开始执行之前）,在库开始被程序加载，load函数就会开始被执行。
-    
-    </summary>
-    
-    
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>定时器NSTimer</title>
-    <link href="http://yoursite.com/2016/04/08/%E5%AE%9A%E6%97%B6%E5%99%A8NSTimer/"/>
-    <id>http://yoursite.com/2016/04/08/定时器NSTimer/</id>
-    <published>2016-04-08T14:13:12.000Z</published>
-    <updated>2016-04-08T14:19:48.000Z</updated>
-    
-    <content type="html">&lt;p&gt;定时器类具有五种初始化方法，包含四种工厂方法和一个实例化方法。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;NSTimer *timer = [NSTimer timerWithTimeInterval:2.0 invocation:invocation repeats:NO];&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;NSTimer *timer2 = [NSTimer scheduledTimerWithTimeInterval:2.0 invocation:invocation repeats:YES];&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;NSTimer *timer3 = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(myLog) userInfo:@”123” repeats:YES];&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;NSTimer *timer4 = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(myLog) userInfo:@”456” repeats:YES];&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;NSTimer *timer5 = [[NSTimer alloc] initWithFireDate:date interval:2.0 target:self selector:@selector(myLog) userInfo:@”789” repeats:YES];&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;说明：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; TimerInterval : 执行之前等待的时间。比如设置成1.0，就代表1秒后执行方法
- target : 需要执行方法的对象。
- selector : 需要执行的方法
- repeats : 是否需要循环
- userInfo : 用户信息
-
-方法中需要调用的对象：
-
-      NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[[self class] instanceMethodSignatureForSelector:@selector(initW)]];
-      [invocation setTarget:self];
-      [invocation setSelector:@selector(myLog)];
-
-  需要分别实现 **initW **和 **myLog** 方法。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;将-NSTimer-对象加入Runloop&quot;&gt;&lt;a href=&quot;#将-NSTimer-对象加入Runloop&quot; class=&quot;headerlink&quot; title=&quot;将 NSTimer 对象加入Runloop&quot;&gt;&lt;/a&gt;将 NSTimer 对象加入Runloop&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[[NSRunLoop mainRunLoop] addTimer:timer3 forMode:NSDefaultRunLoopMode];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;释放方法&quot;&gt;&lt;a href=&quot;#释放方法&quot; class=&quot;headerlink&quot; title=&quot;释放方法&quot;&gt;&lt;/a&gt;释放方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[timer invalidate];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;启动方法&quot;&gt;&lt;a href=&quot;#启动方法&quot; class=&quot;headerlink&quot; title=&quot;启动方法&quot;&gt;&lt;/a&gt;启动方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1. [timer2 fire];
-
-2. timer4.fireDate = [NSDate distantPast];
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;定时器类具有五种初始化方法，包含四种工厂方法和一个实例化方法。
-    
-    </summary>
-    
-    
-      <category term="［定时器］" scheme="http://yoursite.com/tags/%EF%BC%BB%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>路径类NSURL的使用</title>
-    <link href="http://yoursite.com/2016/04/07/%E8%B7%AF%E5%BE%84%E7%B1%BBNSURL%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://yoursite.com/2016/04/07/路径类NSURL的使用/</id>
-    <published>2016-04-07T13:00:28.000Z</published>
-    <updated>2016-04-07T13:01:20.000Z</updated>
-    
-    <content type="html">&lt;p&gt;NSURL 类作为路径和地址的表示类，在各种场合都发挥很大的作用。&lt;/p&gt;
-&lt;h3 id=&quot;初始化&quot;&gt;&lt;a href=&quot;#初始化&quot; class=&quot;headerlink&quot; title=&quot;初始化&quot;&gt;&lt;/a&gt;初始化&lt;/h3&gt;&lt;p&gt;共有18中初始化方法 （9种实例化方法 + 9种工厂方法）&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;init...
-URLWith...
-fileURLWith...
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;比较方法&quot;&gt;&lt;a href=&quot;#比较方法&quot; class=&quot;headerlink&quot; title=&quot;比较方法&quot;&gt;&lt;/a&gt;比较方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;isEqual:
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;查询一个NSURL&quot;&gt;&lt;a href=&quot;#查询一个NSURL&quot; class=&quot;headerlink&quot; title=&quot;查询一个NSURL&quot;&gt;&lt;/a&gt;查询一个NSURL&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;checkResourceIsReachableAndReturnError:  返回一个文件URL指向的资源是否可达
-isFileReferenceURL
-isFileURL
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;常量&quot;&gt;&lt;a href=&quot;#常量&quot; class=&quot;headerlink&quot; title=&quot;常量&quot;&gt;&lt;/a&gt;常量&lt;/h3&gt;&lt;p&gt;NSURLFileScheme  : 文件URL的scheme&lt;br&gt;还有一堆文件资源的key，如 属性修改日期、访问日期、内容修改日期、创建日期、自定义Icon、文件标识符、文件类型、文件安全、是否隐藏扩展名、是否是文件夹等&lt;/p&gt;
-&lt;h3 id=&quot;NSURL的属性：&quot;&gt;&lt;a href=&quot;#NSURL的属性：&quot; class=&quot;headerlink&quot; title=&quot;NSURL的属性：&quot;&gt;&lt;/a&gt;NSURL的属性：&lt;/h3&gt;&lt;p&gt;例如：scheme、user、password、host、port、path、pathComponents、pathExtension、lastPathComponent、parameterString、fragment&lt;/p&gt;
-&lt;h3 id=&quot;get和set-File-System-Resource-Properties-这部分需要加强理解&quot;&gt;&lt;a href=&quot;#get和set-File-System-Resource-Properties-这部分需要加强理解&quot; class=&quot;headerlink&quot; title=&quot;get和set File System Resource Properties(这部分需要加强理解)&quot;&gt;&lt;/a&gt;get和set File System Resource Properties(这部分需要加强理解)&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSString *size = Nil;
-NSError *error = [[NSError alloc] initWithDomain:@&amp;quot;1&amp;quot; code:1 userInfo:Nil];
-
-NSURL *samplePath = [[NSURL alloc] initWithString:@&amp;quot;file://Users/Users/zxq/Desktop/1.pdf&amp;quot;];
-
-//获取文件的大小
-[samplePath getResourceValue:&amp;amp;size forKey:NSURLFileSizeKey error:&amp;amp;error];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   [samplePath getResourceValue:&amp;amp;size forKey:NSURLTotalFileSizeKey error:&amp;amp;error];&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//获取文件地址
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   [samplePath getResourceValue:&amp;amp;size forKey:NSURLPathKey error:&amp;amp;error];&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//获取最后修改的时间
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   [samplePath getResourceValue:&amp;amp;size forKey:NSURLCreationDateKey error:&amp;amp;error];&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//获取文件名
-[samplePath getResourceValue:&amp;amp;size forKey:NSURLNameKey error:&amp;amp;error];
-NSLog(@&amp;quot;Error == %@&amp;quot;, error);
-NSLog(@&amp;quot;size == %@&amp;quot;, size);
-
-
-//是否可达
-NSLog(@&amp;quot;%d&amp;quot;, [samplePath checkPromisedItemIsReachableAndReturnError:&amp;amp;error]);
-
-NSLog(@&amp;quot;%d&amp;quot;, [samplePath isFileReferenceURL]);
-NSLog(@&amp;quot;%d&amp;quot;, [samplePath isFileURL]);
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;NSURL 类作为路径和地址的表示类，在各种场合都发挥很大的作用。&lt;/p&gt;
-&lt;h3 id=&quot;初始化&quot;&gt;&lt;a href=&quot;#初始化&quot; class=&quot;headerlink&quot; title=&quot;初始化&quot;&gt;&lt;/a&gt;初始化&lt;/h3&gt;&lt;p&gt;共有18中初始化方法 （9种实例化方法 + 9种工厂方法）&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;init...
-URLWith...
-fileURLWith...
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="［NSURL］" scheme="http://yoursite.com/tags/%EF%BC%BBNSURL%EF%BC%BD/"/>
     
   </entry>
   

@@ -4,21 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>单一功能原则 | 第欧根尼的小桶</title>
+  <title>深度学习（三） | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
-所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
+  <meta name="description" content="关于特征4.1、特征表示的粒度学习算法在一个什么粒度上的特征表示，才有能发挥作用？就一个图片来说，像素级的特征根本没有价值。例如下面的摩托车，从像素级别，根本得不到任何信息，其无法进行摩托车和非摩托车的区分。而如果特征是一个具有结构性（或者说有含义）的时候，比如是否具有车把手（handle），是否具有车轮（wheel），就很容易把摩托车和非摩托车区分，学习算法才能发挥作用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单一功能原则">
-<meta property="og:url" content="http://yoursite.com/2016/05/01/单一功能原则/index.html">
+<meta property="og:title" content="深度学习（三）">
+<meta property="og:url" content="http://yoursite.com/2016/05/05/深度学习（三）/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
-所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
-<meta property="og:updated_time" content="2016-05-01T13:34:46.000Z">
+<meta property="og:description" content="关于特征4.1、特征表示的粒度学习算法在一个什么粒度上的特征表示，才有能发挥作用？就一个图片来说，像素级的特征根本没有价值。例如下面的摩托车，从像素级别，根本得不到任何信息，其无法进行摩托车和非摩托车的区分。而如果特征是一个具有结构性（或者说有含义）的时候，比如是否具有车把手（handle），是否具有车轮（wheel），就很容易把摩托车和非摩托车区分，学习算法才能发挥作用。">
+<meta property="og:updated_time" content="2016-05-05T13:23:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单一功能原则">
-<meta name="twitter:description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
-所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
+<meta name="twitter:title" content="深度学习（三）">
+<meta name="twitter:description" content="关于特征4.1、特征表示的粒度学习算法在一个什么粒度上的特征表示，才有能发挥作用？就一个图片来说，像素级的特征根本没有价值。例如下面的摩托车，从像素级别，根本得不到任何信息，其无法进行摩托车和非摩托车的区分。而如果特征是一个具有结构性（或者说有含义）的时候，比如是否具有车把手（handle），是否具有车轮（wheel），就很容易把摩托车和非摩托车区分，学习算法才能发挥作用。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -194,11 +191,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-单一功能原则" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-深度学习（三）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/01/单一功能原则/" class="article-date">
-  	<time datetime="2016-05-01T13:29:49.000Z" itemprop="datePublished">2016-05-01</time>
+      <a href="/2016/05/05/深度学习（三）/" class="article-date">
+  	<time datetime="2016-05-05T13:11:48.000Z" itemprop="datePublished">2016-05-05</time>
 </a>
     </div>
   
@@ -211,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      单一功能原则
+      深度学习（三）
     </h1>
   
 
@@ -219,10 +216,6 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［类的魔法］/">［类的魔法］</a></li></ul>
-	</div>
-
         
 
         <div class="clearfix"></div>
@@ -231,17 +224,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。</strong></p>
-<p>所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。<br><a id="more"></a></p>
-<p>这个术语由<strong>罗伯特·C·马丁（Robert Cecil Martin）</strong>在他的《敏捷软件开发，原则，模式和实践》一书中的一篇名为〈面向对象设计原则〉的文章中给出。</p>
-<p>马丁表述该原则是基于的《结构化分析和系统规格》一书中的内聚原则（Cohesion）上。</p>
-<p>马丁把功能（职责）定义为：“<strong>改变的原因</strong>”，并且总结出一个类或者模块应该<strong>有且只有一个</strong>改变的原因。</p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>一个具体的例子就是，想象有一个用于编辑和打印报表的模块。这样的一个模块存在两个改变的原因。</p>
-<pre><code>第一，报表的内容可以改变（编辑）。
-第二，报表的格式可以改变（打印）。
-</code></pre><p>这两方面会的改变因为完全不同的起因而发生：一个是本质的修改，一个是表面的修改。<br>单一功能原则认为这两方面的问题事实上是两个分离的功能，因此他们应该分离在不同的类或者模块里。把有不同的改变原因的事物耦合在一起的设计是糟糕的。</p>
-<p><strong>保持一个类专注于单一功能点上的一个重要的原因是，它会使得类更加的健壮。</strong></p>
-<p>继续上面的例子，如果有一个对于报表编辑流程的修改，那么将存在极大的危险性，打印功能的代码会因此不工作，假使这两个功能存在于同一个类中的话。</p>
+        <h3 id="关于特征"><a href="#关于特征" class="headerlink" title="关于特征"></a>关于特征</h3><h4 id="4-1、特征表示的粒度"><a href="#4-1、特征表示的粒度" class="headerlink" title="4.1、特征表示的粒度"></a>4.1、特征表示的粒度</h4><p>学习算法在一个什么粒度上的特征表示，才有能发挥作用？就一个图片来说，像素级的特征根本没有价值。例如下面的摩托车，从像素级别，根本得不到任何信息，其无法进行摩托车和非摩托车的区分。而如果特征是一个具有结构性（或者说有含义）的时候，比如是否具有车把手（handle），是否具有车轮（wheel），就很容易把摩托车和非摩托车区分，学习算法才能发挥作用。<br><a id="more"></a></p>
+<h4 id="4-2、初级（浅层）特征表示"><a href="#4-2、初级（浅层）特征表示" class="headerlink" title="4.2、初级（浅层）特征表示"></a>4.2、初级（浅层）特征表示</h4><p>1995 年前后，Bruno Olshausen和 David Field 两位学者任职 Cornell University，他们试图同时用生理学和计算机的手段，双管齐下，研究视觉问题。<br>他们收集了很多黑白风景照片，从这些照片中，提取出400个小碎片，每个照片碎片的尺寸均为 16x16 像素，不妨把这400个碎片标记为 S[i], i = 0,.. 399。接下来，再从这些黑白风景照片中，随机提取另一个碎片，尺寸也是 16x16 像素，不妨把这个碎片标记为 T。<br>他们提出的问题是，如何从这400个碎片中，选取一组碎片，S[k], 通过叠加的办法，合成出一个新的碎片，而这个新的碎片，应当与随机选择的目标碎片 T，尽可能相似，同时，S[k] 的数量尽可能少。用数学的语言来描述，就是：</p>
+<pre><code>Sum_k (a[k] * S[k]) --&gt; T, 其中 a[k] 是在叠加碎片 S[k] 时的权重系数。
+</code></pre><p>为解决这个问题，Bruno Olshausen和 David Field 发明了一个算法，稀疏编码（Sparse Coding）。<br>稀疏编码是一个重复迭代的过程，每次迭代分两步：</p>
+<pre><code>1）选择一组 S[k]，然后调整 a[k]，使得Sum_k (a[k] * S[k]) 最接近 T。
+2）固定住 a[k]，在 400 个碎片中，选择其它更合适的碎片S’[k]，替代原先的 S[k]，使得Sum_k (a[k] * S’[k]) 最接近 T。
+</code></pre><p>经过几次迭代后，最佳的 S[k] 组合，被遴选出来了。令人惊奇的是，被选中的 S[k]，基本上都是照片上不同物体的边缘线，这些线段形状相似，区别在于方向。</p>
+<p>Bruno Olshausen和 David Field 的算法结果，与 David Hubel 和Torsten Wiesel 的生理发现，不谋而合！<br>也就是说，复杂图形，往往由一些基本结构组成。</p>
+<h4 id="4-3、结构性特征表示"><a href="#4-3、结构性特征表示" class="headerlink" title="4.3、结构性特征表示"></a>4.3、结构性特征表示</h4><p>小块的图形可以由基本edge构成，更结构化，更复杂的，具有概念性的图形如何表示呢？这就需要更高层次的特征表示，比如V2，V4。因此V1看像素级是像素级。V2看V1是像素级，这个是层次递进的，高层表达由底层表达的组合而成。专业点说就是基basis。V1取提出的basis是边缘，然后V2层是V1层这些basis的组合，这时候V2区得到的又是高一层的basis。即上一层的basis组合的结果，上上层又是上一层的组合basis……（所以有大牛说Deep learning就是“搞基”，因为难听，所以美其名曰Deep learning或者Unsupervised Feature Learning）</p>
+<p>直观上说，就是找到make sense的小patch再将其进行combine，就得到了上一层的feature，递归地向上learning feature。<br>在不同object上做training是，所得的edge basis 是非常相似的，但object parts和models 就会completely different了（那咱们分辨car或者face是不是容易多了）：</p>
+<h4 id="4-4、需要有多少个特征？"><a href="#4-4、需要有多少个特征？" class="headerlink" title="4.4、需要有多少个特征？"></a>4.4、需要有多少个特征？</h4><p>我们知道需要层次的特征构建，由浅入深，但每一层该有多少个特征呢？<br>任何一种方法，特征越多，给出的参考信息就越多，准确性会得到提升。但特征多意味着计算复杂，探索的空间大，可以用来训练的数据在每个特征上就会稀疏，都会带来各种问题，并不一定特征越多越好。</p>
 
       
     </div>
@@ -251,18 +244,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/05/05/深度学习（－）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          深度学习（一）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/29/基本文件操作filehandle的用法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">基本文件操作filehandle的用法</div>
+    <a href="/2016/05/05/深度学习（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深度学习（二）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -297,7 +281,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="单一功能原则" data-title="单一功能原则" data-url="http://yoursite.com/2016/05/01/单一功能原则/"></div>
+	<div class="ds-thread" data-thread-key="深度学习（三）" data-title="深度学习（三）" data-url="http://yoursite.com/2016/05/05/深度学习（三）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

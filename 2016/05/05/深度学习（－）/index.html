@@ -4,21 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>单一功能原则 | 第欧根尼的小桶</title>
+  <title>深度学习（一） | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
-所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
+  <meta name="description" content="概述 Artificial Intelligence，也就是人工智能，就像长生不老和星际漫游一样，是人类最美好的梦想之一。
+  图灵（图灵，大家都知道吧。计算机和人工智能的鼻祖，分别对应于其著名的“图灵机”和“图灵测试”）在 1950 年的论文里，提出图灵试验的设想，即，隔墙对话，你将不知道与你谈话的，是人还是电脑。这无疑给计算机，尤其是人工智能，预设了一个很高的期望值。但是半个世纪过去了，人工智">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单一功能原则">
-<meta property="og:url" content="http://yoursite.com/2016/05/01/单一功能原则/index.html">
+<meta property="og:title" content="深度学习（一）">
+<meta property="og:url" content="http://yoursite.com/2016/05/05/深度学习（－）/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
-所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
-<meta property="og:updated_time" content="2016-05-01T13:34:46.000Z">
+<meta property="og:description" content="概述 Artificial Intelligence，也就是人工智能，就像长生不老和星际漫游一样，是人类最美好的梦想之一。
+  图灵（图灵，大家都知道吧。计算机和人工智能的鼻祖，分别对应于其著名的“图灵机”和“图灵测试”）在 1950 年的论文里，提出图灵试验的设想，即，隔墙对话，你将不知道与你谈话的，是人还是电脑。这无疑给计算机，尤其是人工智能，预设了一个很高的期望值。但是半个世纪过去了，人工智">
+<meta property="og:image" content="http://yoursite.com/img/sfeature.jpg">
+<meta property="og:image" content="http://yoursite.com/img/manmade.jpg">
+<meta property="og:updated_time" content="2016-05-05T13:29:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单一功能原则">
-<meta name="twitter:description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
-所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
+<meta name="twitter:title" content="深度学习（一）">
+<meta name="twitter:description" content="概述 Artificial Intelligence，也就是人工智能，就像长生不老和星际漫游一样，是人类最美好的梦想之一。
+  图灵（图灵，大家都知道吧。计算机和人工智能的鼻祖，分别对应于其著名的“图灵机”和“图灵测试”）在 1950 年的论文里，提出图灵试验的设想，即，隔墙对话，你将不知道与你谈话的，是人还是电脑。这无疑给计算机，尤其是人工智能，预设了一个很高的期望值。但是半个世纪过去了，人工智">
+<meta name="twitter:image" content="http://yoursite.com/img/sfeature.jpg">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -194,11 +197,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-单一功能原则" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-深度学习（－）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/01/单一功能原则/" class="article-date">
-  	<time datetime="2016-05-01T13:29:49.000Z" itemprop="datePublished">2016-05-01</time>
+      <a href="/2016/05/05/深度学习（－）/" class="article-date">
+  	<time datetime="2016-05-05T12:46:40.000Z" itemprop="datePublished">2016-05-05</time>
 </a>
     </div>
   
@@ -211,7 +214,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      单一功能原则
+      深度学习（一）
     </h1>
   
 
@@ -219,10 +222,6 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［类的魔法］/">［类的魔法］</a></li></ul>
-	</div>
-
         
 
         <div class="clearfix"></div>
@@ -231,17 +230,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。</strong></p>
-<p>所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。<br><a id="more"></a></p>
-<p>这个术语由<strong>罗伯特·C·马丁（Robert Cecil Martin）</strong>在他的《敏捷软件开发，原则，模式和实践》一书中的一篇名为〈面向对象设计原则〉的文章中给出。</p>
-<p>马丁表述该原则是基于的《结构化分析和系统规格》一书中的内聚原则（Cohesion）上。</p>
-<p>马丁把功能（职责）定义为：“<strong>改变的原因</strong>”，并且总结出一个类或者模块应该<strong>有且只有一个</strong>改变的原因。</p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>一个具体的例子就是，想象有一个用于编辑和打印报表的模块。这样的一个模块存在两个改变的原因。</p>
-<pre><code>第一，报表的内容可以改变（编辑）。
-第二，报表的格式可以改变（打印）。
-</code></pre><p>这两方面会的改变因为完全不同的起因而发生：一个是本质的修改，一个是表面的修改。<br>单一功能原则认为这两方面的问题事实上是两个分离的功能，因此他们应该分离在不同的类或者模块里。把有不同的改变原因的事物耦合在一起的设计是糟糕的。</p>
-<p><strong>保持一个类专注于单一功能点上的一个重要的原因是，它会使得类更加的健壮。</strong></p>
-<p>继续上面的例子，如果有一个对于报表编辑流程的修改，那么将存在极大的危险性，打印功能的代码会因此不工作，假使这两个功能存在于同一个类中的话。</p>
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><strong> Artificial Intelligence，也就是人工智能</strong>，就像长生不老和星际漫游一样，是人类最美好的梦想之一。</p>
+<p>  图灵（图灵，大家都知道吧。计算机和人工智能的鼻祖，分别对应于其著名的“图灵机”和“图灵测试”）在 1950 年的论文里，提出图灵试验的设想，即，隔墙对话，你将不知道与你谈话的，是人还是电脑。这无疑给计算机，尤其是人工智能，预设了一个很高的期望值。但是半个世纪过去了，人工智能的进展，远远没有达到图灵试验的标准。<br><a id="more"></a><br>  但是自 2006 年以来，机器学习领域，取得了突破性的进展。图灵试验，至少不是那么可望而不可及了。至于技术手段，不仅仅依赖于云计算对大数据的并行处理能力，而且依赖于算法。这个算法就是，Deep Learning。借助于 Deep Learning 算法，人类终于找到了如何处理“抽象概念”这个亘古难题的方法。</p>
+<p>  2012年6月，《纽约时报》披露了Google Brain项目，吸引了公众的广泛关注。这个项目是由著名的斯坦福大学的机器学习教授Andrew Ng和在大规模计算机系统方面的世界顶尖专家JeffDean共同主导，用16000个CPU Core的并行计算平台训练一种称为“深度神经网络”（DNN，Deep Neural Networks）的机器学习模型（内部共有10亿个节点。人脑中有150多亿个神经元），在语音识别和图像识别等领域获得了巨大的成功。</p>
+<h3 id="机器学习（人工智能的核心）的背景"><a href="#机器学习（人工智能的核心）的背景" class="headerlink" title="机器学习（人工智能的核心）的背景"></a>机器学习（人工智能的核心）的背景</h3><p>  <strong> 机器学习（Machine Learning）是一门专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能的学科。</strong></p>
+<p>  目前我们通过机器学习去解决这些问题的思路都是这样的（以视觉感知为例子）：</p>
+<p> <img src="/img/sfeature.jpg" alt=""><br>   从开始的通过传感器（例如CMOS）来获得数据。然后经过预处理、特征提取、特征选择，再到推理、预测或者识别。最后一个部分，也就是机器学习的部分，绝大部分的工作是在这方面做的，也存在很多的paper和研究。</p>
+<p>  而中间的三部分，概括起来就是特征表达。良好的特征表达，对最终算法的准确性起了非常关键的作用，而且系统主要的计算和测试工作都耗在这一大部分。但，这块实际中一般都是人工完成的。靠人工提取特征。<br><img src="/img/manmade.jpg" alt=""></p>
+<p>  截止现在，也出现了不少NB的特征（好的特征应具有不变性（大小、尺度和旋转等）和可区分性）：例如Sift的出现，是局部图像特征描述子研究领域一项里程碑式的工作。由于SIFT对尺度、旋转以及一定视角和光照变化等图像变化都具有不变性，并且SIFT具有很强的可区分性，的确让很多问题的解决变为可能。但它也不是万能的。</p>
+<p>  然而，手工地选取特征是一件非常费力、启发式（需要专业知识）的方法，能不能选取好很大程度上靠经验和运气，而且它的调节需要大量的时间。<br>  既然手工选取特征不太好，那么能不能自动地学习一些特征呢？<br>  答案是能！<br>  <strong>Deep Learning就是用来干这个事情的，看它的一个别名UnsupervisedFeature Learning，就可以顾名思义了，Unsupervised的意思就是不要人参与特征的选取过程</strong>。</p>
 
       
     </div>
@@ -251,18 +248,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/05/05/深度学习（－）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/05/05/深度学习（二）/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          深度学习（一）
+          深度学习（二）
         
       </div>
     </a>
   
   
-    <a href="/2016/04/29/基本文件操作filehandle的用法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">基本文件操作filehandle的用法</div>
+    <a href="/2016/05/01/单一功能原则/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">单一功能原则</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -297,7 +294,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="单一功能原则" data-title="单一功能原则" data-url="http://yoursite.com/2016/05/01/单一功能原则/"></div>
+	<div class="ds-thread" data-thread-key="深度学习（－）" data-title="深度学习（一）" data-url="http://yoursite.com/2016/05/05/深度学习（－）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

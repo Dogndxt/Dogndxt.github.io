@@ -4,21 +4,26 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>单一功能原则 | 第欧根尼的小桶</title>
+  <title>深度学习（二） | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
-所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
+  <meta name="description" content="那它是怎么学习的呢？怎么知道哪些特征好哪些不好呢？我们说机器学习是一门专门研究计算机怎样模拟或实现人类的学习行为的学科。
+人脑视觉机理可视皮层是分级的
+ 神经-中枢-大脑的工作过程，或许是一个不断迭代、不断抽象的过程。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单一功能原则">
-<meta property="og:url" content="http://yoursite.com/2016/05/01/单一功能原则/index.html">
+<meta property="og:title" content="深度学习（二）">
+<meta property="og:url" content="http://yoursite.com/2016/05/05/深度学习（二）/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
-所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
-<meta property="og:updated_time" content="2016-05-01T13:34:46.000Z">
+<meta property="og:description" content="那它是怎么学习的呢？怎么知道哪些特征好哪些不好呢？我们说机器学习是一门专门研究计算机怎样模拟或实现人类的学习行为的学科。
+人脑视觉机理可视皮层是分级的
+ 神经-中枢-大脑的工作过程，或许是一个不断迭代、不断抽象的过程。">
+<meta property="og:image" content="http://yoursite.com/img/danao.jpg">
+<meta property="og:updated_time" content="2016-05-05T13:13:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单一功能原则">
-<meta name="twitter:description" content="在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。
-所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。">
+<meta name="twitter:title" content="深度学习（二）">
+<meta name="twitter:description" content="那它是怎么学习的呢？怎么知道哪些特征好哪些不好呢？我们说机器学习是一门专门研究计算机怎样模拟或实现人类的学习行为的学科。
+人脑视觉机理可视皮层是分级的
+ 神经-中枢-大脑的工作过程，或许是一个不断迭代、不断抽象的过程。">
+<meta name="twitter:image" content="http://yoursite.com/img/danao.jpg">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -194,11 +199,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-单一功能原则" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-深度学习（二）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/01/单一功能原则/" class="article-date">
-  	<time datetime="2016-05-01T13:29:49.000Z" itemprop="datePublished">2016-05-01</time>
+      <a href="/2016/05/05/深度学习（二）/" class="article-date">
+  	<time datetime="2016-05-05T13:03:45.000Z" itemprop="datePublished">2016-05-05</time>
 </a>
     </div>
   
@@ -211,7 +216,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      单一功能原则
+      深度学习（二）
     </h1>
   
 
@@ -219,10 +224,6 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［类的魔法］/">［类的魔法］</a></li></ul>
-	</div>
-
         
 
         <div class="clearfix"></div>
@@ -231,17 +232,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>在面向对象编程领域中，单一功能原则（Single responsibility principle）规定每个类都应该有一个单一的功能，并且该功能应该由这个类完全封装起来。</strong></p>
-<p>所有它的（这个类的）服务都应该严密的和该功能平行（功能平行，意味着没有依赖）。<br><a id="more"></a></p>
-<p>这个术语由<strong>罗伯特·C·马丁（Robert Cecil Martin）</strong>在他的《敏捷软件开发，原则，模式和实践》一书中的一篇名为〈面向对象设计原则〉的文章中给出。</p>
-<p>马丁表述该原则是基于的《结构化分析和系统规格》一书中的内聚原则（Cohesion）上。</p>
-<p>马丁把功能（职责）定义为：“<strong>改变的原因</strong>”，并且总结出一个类或者模块应该<strong>有且只有一个</strong>改变的原因。</p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>一个具体的例子就是，想象有一个用于编辑和打印报表的模块。这样的一个模块存在两个改变的原因。</p>
-<pre><code>第一，报表的内容可以改变（编辑）。
-第二，报表的格式可以改变（打印）。
-</code></pre><p>这两方面会的改变因为完全不同的起因而发生：一个是本质的修改，一个是表面的修改。<br>单一功能原则认为这两方面的问题事实上是两个分离的功能，因此他们应该分离在不同的类或者模块里。把有不同的改变原因的事物耦合在一起的设计是糟糕的。</p>
-<p><strong>保持一个类专注于单一功能点上的一个重要的原因是，它会使得类更加的健壮。</strong></p>
-<p>继续上面的例子，如果有一个对于报表编辑流程的修改，那么将存在极大的危险性，打印功能的代码会因此不工作，假使这两个功能存在于同一个类中的话。</p>
+        <p>那它是怎么学习的呢？怎么知道哪些特征好哪些不好呢？我们说机器学习是一门专门研究计算机怎样模拟或实现人类的学习行为的学科。</p>
+<h3 id="人脑视觉机理"><a href="#人脑视觉机理" class="headerlink" title="人脑视觉机理"></a>人脑视觉机理</h3><p>可视皮层是分级的</p>
+<p><strong> 神经-中枢-大脑的工作过程，或许是一个不断迭代、不断抽象的过程</strong>。<br><a id="more"></a><br>这里的关键词有两个，一个是抽象，一个是迭代。从原始信号，做低级抽象，逐渐向高级抽象迭代。<strong>人类的逻辑思维，经常使用高度抽象的概念</strong>。</p>
+<p>总的来说，人的视觉系统的信息处理是分级的。从低级的V1区提取边缘特征，再到V2区的形状或者目标的部分等，再到更高层，整个目标、目标的行为等。也就是说高层的特征是低层特征的组合，从低层到高层的特征表示越来越抽象，越来越能表现语义或者意图。而抽象层面越高，存在的可能猜测就越少，就越利于分类。例如，单词集合和句子的对应是多对一的，句子和语义的对应又是多对一的，语义和意图的对应还是多对一的，这是个层级体系。 </p>
+<p><img src="/img/danao.jpg" alt=""></p>
 
       
     </div>
@@ -251,18 +246,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/05/05/深度学习（－）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/05/05/深度学习（三）/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          深度学习（一）
+          深度学习（三）
         
       </div>
     </a>
   
   
-    <a href="/2016/04/29/基本文件操作filehandle的用法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">基本文件操作filehandle的用法</div>
+    <a href="/2016/05/05/深度学习（－）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深度学习（一）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -297,7 +292,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="单一功能原则" data-title="单一功能原则" data-url="http://yoursite.com/2016/05/01/单一功能原则/"></div>
+	<div class="ds-thread" data-thread-key="深度学习（二）" data-title="深度学习（二）" data-url="http://yoursite.com/2016/05/05/深度学习（二）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
