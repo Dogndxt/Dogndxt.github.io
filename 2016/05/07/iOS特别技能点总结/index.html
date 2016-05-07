@@ -4,20 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title> 继承自NSObject的不常用又很有用的函数－ 函数调用 | 第欧根尼的小桶</title>
+  <title>iOS特别技能点总结 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。">
+  <meta name="description" content="修改状态栏颜色
+在 info.plist 添加 View controller-based status bar appearance 并设置为 NO（白色），YES（黑色）， 如果为NO，并在 Appdelegate 里面添加
+[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+则可设置">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" 继承自NSObject的不常用又很有用的函数－ 函数调用">
-<meta property="og:url" content="http://yoursite.com/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/index.html">
+<meta property="og:title" content="iOS特别技能点总结">
+<meta property="og:url" content="http://yoursite.com/2016/05/07/iOS特别技能点总结/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。">
-<meta property="og:image" content="http://yoursite.com/img/objc_msgSend.png">
-<meta property="og:updated_time" content="2016-04-14T13:48:24.000Z">
+<meta property="og:description" content="修改状态栏颜色
+在 info.plist 添加 View controller-based status bar appearance 并设置为 NO（白色），YES（黑色）， 如果为NO，并在 Appdelegate 里面添加
+[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+则可设置">
+<meta property="og:updated_time" content="2016-05-07T12:06:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 继承自NSObject的不常用又很有用的函数－ 函数调用">
-<meta name="twitter:description" content="Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。">
-<meta name="twitter:image" content="http://yoursite.com/img/objc_msgSend.png">
+<meta name="twitter:title" content="iOS特别技能点总结">
+<meta name="twitter:description" content="修改状态栏颜色
+在 info.plist 添加 View controller-based status bar appearance 并设置为 NO（白色），YES（黑色）， 如果为NO，并在 Appdelegate 里面添加
+[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+则可设置">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -193,11 +200,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-继承自NSObject的不常用又很有用的函数－-函数调用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-iOS特别技能点总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/" class="article-date">
-  	<time datetime="2016-04-14T13:20:13.000Z" itemprop="datePublished">2016-04-14</time>
+      <a href="/2016/05/07/iOS特别技能点总结/" class="article-date">
+  	<time datetime="2016-05-07T11:33:38.000Z" itemprop="datePublished">2016-05-07</time>
 </a>
     </div>
   
@@ -210,7 +217,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-       继承自NSObject的不常用又很有用的函数－ 函数调用
+      iOS特别技能点总结
     </h1>
   
 
@@ -218,10 +225,6 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
         
 
         <div class="clearfix"></div>
@@ -230,25 +233,64 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。<br><a id="more"></a><br>  和现实生活一样，门牌可以随便发（@selector(XXX)），但是不一定都找得到住户，如果找不到系统会给程序几次机会来程序正常运行，实在没出路了才会抛出异常。下图是objc_msgSend调用时，查找SEL的IML的过程。咱们以这个流程为例看看其中涉及的很有用的函数。</p>
-<p> <img src="/img/objc_msgSend.png" alt=""></p>
-<h3 id="resolveInstanceMethod-函数"><a href="#resolveInstanceMethod-函数" class="headerlink" title="resolveInstanceMethod 函数"></a>resolveInstanceMethod 函数</h3><pre><code>+ (BOOL)resolveInstanceMethod:(SEL)name
-</code></pre><p>这个函数在运行时(runtime)，没有找到SEL的IML时就会执行。这个函数是给类利用class_addMethod添加函数的机会。根据文档，如果实现了添加函数代码则返回YES，未实现返回NO。</p>
-<h3 id="forwardingTargetForSelector-函数"><a href="#forwardingTargetForSelector-函数" class="headerlink" title="forwardingTargetForSelector 函数"></a>forwardingTargetForSelector 函数</h3><pre><code>- (id)forwardingTargetForSelector:(SEL)aSelector
-</code></pre><p>流程到了这里，系统给了个将这个SEL转给其他对象的机会。返回参数是一个对象，如果这个对象非nil、非self的话，系统会将运行的消息转发给这个对象执行。否则，继续查找其他流程。</p>
-<h3 id="methodSignatureForSelector-函数"><a href="#methodSignatureForSelector-函数" class="headerlink" title="methodSignatureForSelector 函数"></a>methodSignatureForSelector 函数</h3><pre><code>- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
-</code></pre><p>这个函数和后面的forwardInvocation:是最后一个寻找IML的机会。这个函数让重载方有机会抛出一个函数的签名，再由后面的forwardInvocation:去执行。</p>
-<h3 id="forwardInvocation-函数"><a href="#forwardInvocation-函数" class="headerlink" title="forwardInvocation 函数"></a>forwardInvocation 函数</h3><pre><code>- (void)forwardInvocation:(NSInvocation *)anInvocation
-</code></pre><p>真正执行从methodSignatureForSelector:返回的NSMethodSignature。在这个函数里可以将NSInvocation多次转发到多个对象中，这也是这种方式灵活的地方。（forwardingTargetForSelector只能以Selector的形式转向一个对象）</p>
-<h3 id="doesNotRecognizeSelector-函数"><a href="#doesNotRecognizeSelector-函数" class="headerlink" title="doesNotRecognizeSelector 函数"></a>doesNotRecognizeSelector 函数</h3><pre><code>- (void)doesNotRecognizeSelector:(SEL)aSelector
-</code></pre><p>作为找不到函数实现的最后一步，NSObject实现这个函数只有一个功能，就是抛出异常。</p>
-<p>虽然理论上可以重载这个函数实现保证不抛出异常（不调用super实现），但是苹果文档着重提出“一定不能让这个函数就这么结束掉，必须抛出异常”。</p>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>在一个函数找不到时，Objective-C提供了三种方式去补救：</p>
-<p>1、调用resolveInstanceMethod给个机会让类添加这个实现这个函数</p>
-<p>2、调用forwardingTargetForSelector让别的对象去执行这个函数</p>
-<p>3、调用methodSignatureForSelector（函数符号制造器）和forwardInvocation（函数执行器）灵活的将目标函数以其他形式执行。</p>
-<p>如果都不中，调用doesNotRecognizeSelector抛出异常。</p>
+        <h3 id="修改状态栏颜色"><a href="#修改状态栏颜色" class="headerlink" title="修改状态栏颜色"></a>修改状态栏颜色</h3><ol>
+<li><p>在 info.plist 添加 View controller-based status bar appearance 并设置为 NO（白色），YES（黑色）， 如果为NO，并在 Appdelegate 里面添加</p>
+<pre><code>[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+则可设置为白色。
+</code></pre></li>
+</ol>
+<a id="more"></a>
+<ol>
+<li><p>在有 navigationbar 的时候需要 添加方法 ：</p>
+<pre><code>- (UIStatusBarStyle)preferredStatusBarStyle {
 
+    return UIStatusBarStyleLightContent;
+} 
+</code></pre></li>
+</ol>
+<p>并且在 viewDidload 中添加：self.navigationController.navigationBar.barStyle = UIBarStyleBlack;</p>
+<p>这样可以设置为白色</p>
+<h3 id="修改-Bar-Button-Item-的颜色"><a href="#修改-Bar-Button-Item-的颜色" class="headerlink" title="修改 Bar Button Item 的颜色"></a>修改 Bar Button Item 的颜色</h3><p>如果要修改 Right Bar Button Items 的颜色，需要在 Bar Button Item 里面修改它的 Tint 的颜色。因为自定义右按钮Right Bar Button Items 有两个图层：Bar Button Item 和 View。</p>
+<h3 id="警告：Plain-style-unsupported-in-a-Navigation-item"><a href="#警告：Plain-style-unsupported-in-a-Navigation-item" class="headerlink" title="警告：Plain style unsupported in a Navigation item"></a>警告：Plain style unsupported in a Navigation item</h3><p> 解决方法： 将 plain 设置成：Bordered 。</p>
+<h3 id="怎样设置UITableView的cell之间的距离"><a href="#怎样设置UITableView的cell之间的距离" class="headerlink" title="怎样设置UITableView的cell之间的距离?"></a>怎样设置UITableView的cell之间的距离?</h3><p>分为两种情况：</p>
+<pre><code>1. 分组表格    - 每段一个cell设置表头的高度 
+2. 非分组表格  - 将tableViewCell的背景色，contentView的背景色设置为透明，在contentView中添加一个UIImageView做为背景，使UIImageView的高度小于cell的高度，这样创建出的tableView就可以使每个cell之间看起来有一定间隔。
+</code></pre><h3 id="performSegueWithIdentifier-produce-no-segue-with-identifier-error"><a href="#performSegueWithIdentifier-produce-no-segue-with-identifier-error" class="headerlink" title="performSegueWithIdentifier produce no segue with identifier error"></a>performSegueWithIdentifier produce no segue with identifier error</h3><p>   解决方法：先检查要跳转的界面和目的界面的表格的协议（delegate和datasource）是否有代理。然后检查是否给控制器添加了类。</p>
+<ol>
+<li>在 ios 中如果遇到添加的图片没有显示出来，可以先检查图片的名称是否正确，<br>然后检查图片的格式是否是 PNG 格式，最后检查是否已经添加到工程当中了。</li>
+</ol>
+<ol>
+<li>在tableView 中 cell 的跳转，需要使用控制器间的跳转。 </li>
+</ol>
+<ol>
+<li><p>异常：Terminating app due to uncaught exception ‘NSInvalidArgumentException’, reason: ‘<em>*</em> -[UIViewController tableView:numberOfRowsInSection:]: unrecognized selector sent to instance 0x3b02120’</p>
+<p>解决方法：检测视图控制器是否绑定了具体的类。</p>
+</li>
+</ol>
+<ol>
+<li><p>this class is not key value coding-compliant for the key XXX错误的解决方法</p>
+<p>解决方法：在设置IBAction和IBOutlet时有多余的连线，按下ctrl键检查控件的连接将多余的连续删除后程序正常运行。</p>
+</li>
+<li><p>this class is not key value coding-compliant for the key leftTitle.</p>
+<p>解决方法： 因为sb 或者 xib 中的控件链接的属性有些没有出现在页面绑定的控制器上，造成引用上的健值错误。</p>
+</li>
+</ol>
+<h3 id="去除-tableView-的-sectionView-的粘性"><a href="#去除-tableView-的-sectionView-的粘性" class="headerlink" title="去除 tableView 的 sectionView 的粘性"></a>去除 tableView 的 sectionView 的粘性</h3><pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+   CGFloat sectionHeaderHeight = 45;
+   if (scrollView.contentOffset.y &lt;= sectionHeaderHeight&amp;&amp;scrollView.contentOffset.y &gt;= 0) {
+
+       scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+   }
+   else if (scrollView.contentOffset.y &gt;= sectionHeaderHeight) {
+
+       scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+   }
+}
+</code></pre><h3 id="修改-textField-的-placeholder-的字体颜色，大小"><a href="#修改-textField-的-placeholder-的字体颜色，大小" class="headerlink" title="修改 textField 的 placeholder 的字体颜色，大小"></a>修改 textField 的 placeholder 的字体颜色，大小</h3><pre><code>[textField setValue:[UIColor redColor] forKeyPath:@&quot;_placeholderLabel.textColor&quot;];  
+
+[textField setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@&quot;_placeholderLabel.font&quot;]; 
+</code></pre>
       
     </div>
     
@@ -257,18 +299,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-           继承自NSObject的不常用又很有用的函数－ 函数调用2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数load-和-initialize/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"> 继承自NSObject的不常用又很有用的函数load 和 initialize</div>
+    <a href="/2016/05/05/深度学习（三）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深度学习（三）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -303,7 +336,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="继承自NSObject的不常用又很有用的函数－-函数调用" data-title=" 继承自NSObject的不常用又很有用的函数－ 函数调用" data-url="http://yoursite.com/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/"></div>
+	<div class="ds-thread" data-thread-key="iOS特别技能点总结" data-title="iOS特别技能点总结" data-url="http://yoursite.com/2016/05/07/iOS特别技能点总结/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

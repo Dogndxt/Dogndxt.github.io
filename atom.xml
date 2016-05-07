@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-05T13:23:44.000Z</updated>
+  <updated>2016-05-07T12:06:01.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,86 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS特别技能点总结</title>
+    <link href="http://yoursite.com/2016/05/07/iOS%E7%89%B9%E5%88%AB%E6%8A%80%E8%83%BD%E7%82%B9%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2016/05/07/iOS特别技能点总结/</id>
+    <published>2016-05-07T11:33:38.000Z</published>
+    <updated>2016-05-07T12:06:01.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;修改状态栏颜色&quot;&gt;&lt;a href=&quot;#修改状态栏颜色&quot; class=&quot;headerlink&quot; title=&quot;修改状态栏颜色&quot;&gt;&lt;/a&gt;修改状态栏颜色&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在 info.plist 添加 View controller-based status bar appearance 并设置为 NO（白色），YES（黑色）， 如果为NO，并在 Appdelegate 里面添加&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+则可设置为白色。
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在有 navigationbar 的时候需要 添加方法 ：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (UIStatusBarStyle)preferredStatusBarStyle {
+
+    return UIStatusBarStyleLightContent;
+} 
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;并且在 viewDidload 中添加：self.navigationController.navigationBar.barStyle = UIBarStyleBlack;&lt;/p&gt;
+&lt;p&gt;这样可以设置为白色&lt;/p&gt;
+&lt;h3 id=&quot;修改-Bar-Button-Item-的颜色&quot;&gt;&lt;a href=&quot;#修改-Bar-Button-Item-的颜色&quot; class=&quot;headerlink&quot; title=&quot;修改 Bar Button Item 的颜色&quot;&gt;&lt;/a&gt;修改 Bar Button Item 的颜色&lt;/h3&gt;&lt;p&gt;如果要修改 Right Bar Button Items 的颜色，需要在 Bar Button Item 里面修改它的 Tint 的颜色。因为自定义右按钮Right Bar Button Items 有两个图层：Bar Button Item 和 View。&lt;/p&gt;
+&lt;h3 id=&quot;警告：Plain-style-unsupported-in-a-Navigation-item&quot;&gt;&lt;a href=&quot;#警告：Plain-style-unsupported-in-a-Navigation-item&quot; class=&quot;headerlink&quot; title=&quot;警告：Plain style unsupported in a Navigation item&quot;&gt;&lt;/a&gt;警告：Plain style unsupported in a Navigation item&lt;/h3&gt;&lt;p&gt; 解决方法： 将 plain 设置成：Bordered 。&lt;/p&gt;
+&lt;h3 id=&quot;怎样设置UITableView的cell之间的距离&quot;&gt;&lt;a href=&quot;#怎样设置UITableView的cell之间的距离&quot; class=&quot;headerlink&quot; title=&quot;怎样设置UITableView的cell之间的距离?&quot;&gt;&lt;/a&gt;怎样设置UITableView的cell之间的距离?&lt;/h3&gt;&lt;p&gt;分为两种情况：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. 分组表格    - 每段一个cell设置表头的高度 
+2. 非分组表格  - 将tableViewCell的背景色，contentView的背景色设置为透明，在contentView中添加一个UIImageView做为背景，使UIImageView的高度小于cell的高度，这样创建出的tableView就可以使每个cell之间看起来有一定间隔。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;performSegueWithIdentifier-produce-no-segue-with-identifier-error&quot;&gt;&lt;a href=&quot;#performSegueWithIdentifier-produce-no-segue-with-identifier-error&quot; class=&quot;headerlink&quot; title=&quot;performSegueWithIdentifier produce no segue with identifier error&quot;&gt;&lt;/a&gt;performSegueWithIdentifier produce no segue with identifier error&lt;/h3&gt;&lt;p&gt;   解决方法：先检查要跳转的界面和目的界面的表格的协议（delegate和datasource）是否有代理。然后检查是否给控制器添加了类。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 ios 中如果遇到添加的图片没有显示出来，可以先检查图片的名称是否正确，&lt;br&gt;然后检查图片的格式是否是 PNG 格式，最后检查是否已经添加到工程当中了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;在tableView 中 cell 的跳转，需要使用控制器间的跳转。 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;异常：Terminating app due to uncaught exception ‘NSInvalidArgumentException’, reason: ‘&lt;em&gt;*&lt;/em&gt; -[UIViewController tableView:numberOfRowsInSection:]: unrecognized selector sent to instance 0x3b02120’&lt;/p&gt;
+&lt;p&gt;解决方法：检测视图控制器是否绑定了具体的类。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;this class is not key value coding-compliant for the key XXX错误的解决方法&lt;/p&gt;
+&lt;p&gt;解决方法：在设置IBAction和IBOutlet时有多余的连线，按下ctrl键检查控件的连接将多余的连续删除后程序正常运行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;this class is not key value coding-compliant for the key leftTitle.&lt;/p&gt;
+&lt;p&gt;解决方法： 因为sb 或者 xib 中的控件链接的属性有些没有出现在页面绑定的控制器上，造成引用上的健值错误。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;去除-tableView-的-sectionView-的粘性&quot;&gt;&lt;a href=&quot;#去除-tableView-的-sectionView-的粘性&quot; class=&quot;headerlink&quot; title=&quot;去除 tableView 的 sectionView 的粘性&quot;&gt;&lt;/a&gt;去除 tableView 的 sectionView 的粘性&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+   CGFloat sectionHeaderHeight = 45;
+   if (scrollView.contentOffset.y &amp;lt;= sectionHeaderHeight&amp;amp;&amp;amp;scrollView.contentOffset.y &amp;gt;= 0) {
+
+       scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+   }
+   else if (scrollView.contentOffset.y &amp;gt;= sectionHeaderHeight) {
+
+       scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+   }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;修改-textField-的-placeholder-的字体颜色，大小&quot;&gt;&lt;a href=&quot;#修改-textField-的-placeholder-的字体颜色，大小&quot; class=&quot;headerlink&quot; title=&quot;修改 textField 的 placeholder 的字体颜色，大小&quot;&gt;&lt;/a&gt;修改 textField 的 placeholder 的字体颜色，大小&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[textField setValue:[UIColor redColor] forKeyPath:@&amp;quot;_placeholderLabel.textColor&amp;quot;];  
+
+[textField setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@&amp;quot;_placeholderLabel.font&amp;quot;]; 
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;修改状态栏颜色&quot;&gt;&lt;a href=&quot;#修改状态栏颜色&quot; class=&quot;headerlink&quot; title=&quot;修改状态栏颜色&quot;&gt;&lt;/a&gt;修改状态栏颜色&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在 info.plist 添加 View controller-based status bar appearance 并设置为 NO（白色），YES（黑色）， 如果为NO，并在 Appdelegate 里面添加&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+则可设置为白色。
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>深度学习（三）</title>
@@ -74,7 +154,7 @@
     <link href="http://yoursite.com/2016/05/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%EF%BC%8D%EF%BC%89/"/>
     <id>http://yoursite.com/2016/05/05/深度学习（－）/</id>
     <published>2016-05-05T12:46:40.000Z</published>
-    <updated>2016-05-05T13:29:40.000Z</updated>
+    <updated>2016-05-05T13:37:54.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;p&gt;&lt;strong&gt; Artificial Intelligence，也就是人工智能&lt;/strong&gt;，就像长生不老和星际漫游一样，是人类最美好的梦想之一。&lt;/p&gt;
 &lt;p&gt;  图灵（图灵，大家都知道吧。计算机和人工智能的鼻祖，分别对应于其著名的“图灵机”和“图灵测试”）在 1950 年的论文里，提出图灵试验的设想，即，隔墙对话，你将不知道与你谈话的，是人还是电脑。这无疑给计算机，尤其是人工智能，预设了一个很高的期望值。但是半个世纪过去了，人工智能的进展，远远没有达到图灵试验的标准。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;  但是自 2006 年以来，机器学习领域，取得了突破性的进展。图灵试验，至少不是那么可望而不可及了。至于技术手段，不仅仅依赖于云计算对大数据的并行处理能力，而且依赖于算法。这个算法就是，Deep Learning。借助于 Deep Learning 算法，人类终于找到了如何处理“抽象概念”这个亘古难题的方法。&lt;/p&gt;
@@ -1001,44 +1081,6 @@ B.第三个参数开始，你可以按照原方法（例如：setHeight:(float)�
       &lt;h3 id=&quot;补充：respondsToSelector&quot;&gt;&lt;a href=&quot;#补充：respondsToSelector&quot; class=&quot;headerlink&quot; title=&quot;补充：respondsToSelector&quot;&gt;&lt;/a&gt;补充：respondsToSelector&lt;/h3&gt;&lt;p&gt;   +(BOOL)respondsToSelector:(SEL)aSelector &lt;/p&gt;
 &lt;p&gt;这个函数大家再熟悉不过了，用来检查对象是否实现了某函数。&lt;/p&gt;
 &lt;p&gt;此函数通常是不需要重载的，但是在动态实现了查找过程后，需要重载此函数让对外接口查找动态实现函数的时候返回YES，保证对外接口的行为统一。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title> 继承自NSObject的不常用又很有用的函数－ 函数调用</title>
-    <link href="http://yoursite.com/2016/04/14/%E7%BB%A7%E6%89%BF%E8%87%AANSObject%E7%9A%84%E4%B8%8D%E5%B8%B8%E7%94%A8%E5%8F%88%E5%BE%88%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%EF%BC%8D-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
-    <id>http://yoursite.com/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/</id>
-    <published>2016-04-14T13:20:13.000Z</published>
-    <updated>2016-04-14T13:48:24.000Z</updated>
-    
-    <content type="html">&lt;p&gt;  Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;  和现实生活一样，门牌可以随便发（@selector(XXX)），但是不一定都找得到住户，如果找不到系统会给程序几次机会来程序正常运行，实在没出路了才会抛出异常。下图是objc_msgSend调用时，查找SEL的IML的过程。咱们以这个流程为例看看其中涉及的很有用的函数。&lt;/p&gt;
-&lt;p&gt; &lt;img src=&quot;/img/objc_msgSend.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;resolveInstanceMethod-函数&quot;&gt;&lt;a href=&quot;#resolveInstanceMethod-函数&quot; class=&quot;headerlink&quot; title=&quot;resolveInstanceMethod 函数&quot;&gt;&lt;/a&gt;resolveInstanceMethod 函数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;+ (BOOL)resolveInstanceMethod:(SEL)name
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个函数在运行时(runtime)，没有找到SEL的IML时就会执行。这个函数是给类利用class_addMethod添加函数的机会。根据文档，如果实现了添加函数代码则返回YES，未实现返回NO。&lt;/p&gt;
-&lt;h3 id=&quot;forwardingTargetForSelector-函数&quot;&gt;&lt;a href=&quot;#forwardingTargetForSelector-函数&quot; class=&quot;headerlink&quot; title=&quot;forwardingTargetForSelector 函数&quot;&gt;&lt;/a&gt;forwardingTargetForSelector 函数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (id)forwardingTargetForSelector:(SEL)aSelector
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;流程到了这里，系统给了个将这个SEL转给其他对象的机会。返回参数是一个对象，如果这个对象非nil、非self的话，系统会将运行的消息转发给这个对象执行。否则，继续查找其他流程。&lt;/p&gt;
-&lt;h3 id=&quot;methodSignatureForSelector-函数&quot;&gt;&lt;a href=&quot;#methodSignatureForSelector-函数&quot; class=&quot;headerlink&quot; title=&quot;methodSignatureForSelector 函数&quot;&gt;&lt;/a&gt;methodSignatureForSelector 函数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个函数和后面的forwardInvocation:是最后一个寻找IML的机会。这个函数让重载方有机会抛出一个函数的签名，再由后面的forwardInvocation:去执行。&lt;/p&gt;
-&lt;h3 id=&quot;forwardInvocation-函数&quot;&gt;&lt;a href=&quot;#forwardInvocation-函数&quot; class=&quot;headerlink&quot; title=&quot;forwardInvocation 函数&quot;&gt;&lt;/a&gt;forwardInvocation 函数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (void)forwardInvocation:(NSInvocation *)anInvocation
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;真正执行从methodSignatureForSelector:返回的NSMethodSignature。在这个函数里可以将NSInvocation多次转发到多个对象中，这也是这种方式灵活的地方。（forwardingTargetForSelector只能以Selector的形式转向一个对象）&lt;/p&gt;
-&lt;h3 id=&quot;doesNotRecognizeSelector-函数&quot;&gt;&lt;a href=&quot;#doesNotRecognizeSelector-函数&quot; class=&quot;headerlink&quot; title=&quot;doesNotRecognizeSelector 函数&quot;&gt;&lt;/a&gt;doesNotRecognizeSelector 函数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (void)doesNotRecognizeSelector:(SEL)aSelector
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;作为找不到函数实现的最后一步，NSObject实现这个函数只有一个功能，就是抛出异常。&lt;/p&gt;
-&lt;p&gt;虽然理论上可以重载这个函数实现保证不抛出异常（不调用super实现），但是苹果文档着重提出“一定不能让这个函数就这么结束掉，必须抛出异常”。&lt;/p&gt;
-&lt;h3 id=&quot;使用场景&quot;&gt;&lt;a href=&quot;#使用场景&quot; class=&quot;headerlink&quot; title=&quot;使用场景&quot;&gt;&lt;/a&gt;使用场景&lt;/h3&gt;&lt;p&gt;在一个函数找不到时，Objective-C提供了三种方式去补救：&lt;/p&gt;
-&lt;p&gt;1、调用resolveInstanceMethod给个机会让类添加这个实现这个函数&lt;/p&gt;
-&lt;p&gt;2、调用forwardingTargetForSelector让别的对象去执行这个函数&lt;/p&gt;
-&lt;p&gt;3、调用methodSignatureForSelector（函数符号制造器）和forwardInvocation（函数执行器）灵活的将目标函数以其他形式执行。&lt;/p&gt;
-&lt;p&gt;如果都不中，调用doesNotRecognizeSelector抛出异常。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;  Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。&lt;br&gt;
     
     </summary>
     
