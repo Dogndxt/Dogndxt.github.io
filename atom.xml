@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-07T12:18:58.000Z</updated>
+  <updated>2016-05-16T13:43:13.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>预编译指令</title>
+    <link href="http://yoursite.com/2016/05/16/%E9%A2%84%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/"/>
+    <id>http://yoursite.com/2016/05/16/预编译指令/</id>
+    <published>2016-05-16T13:38:49.000Z</published>
+    <updated>2016-05-16T13:43:13.000Z</updated>
+    
+    <content type="html">&lt;p&gt;常见的预处理功能&lt;/p&gt;
+&lt;p&gt;预处理器的主要作用就是把通过预处理的内建功能对一个资源进行等价替换，最常见的预处理有：文件包含，条件编译、布局控制和宏替换4种。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;＊ 文件包含：#include 是一种最为常见的预处理，主要是做为文件的引用组合源程序正文。
+
+＊ 条件编译：#if,#ifndef,#ifdef,#endif,#undef等也是比较常见的预处理，主要是进行编译时进行有选择的挑选，注释掉一些指定的代码，以达到版本控制、防止对文件重复包含的功能。
+
+＊ 布局控制：#pragma，这也是我们应用预处理的一个重要方面，主要功能是为编译程序提供非常规的控制流信息。
+
+＊ 宏替换：#define，这是最常见的用法，它可以定义符号常量、函数功能、重新命名、字符串的拼接等各种功能。
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt; 预处理过程扫描源代码，对其进行初步的转换，产生新的源代码提供给编译器。可见预处理过程先于编译器对源代码进行处理。&lt;/p&gt;
+&lt;p&gt; 预处理指令是以#开头的代码行，#后是指令关键字，在关键字和#号之间允许存在任意个数的空白字符。正行语句构成了一条预处理指令，该指令酱紫啊编译器进行编译之前对源代码做某些转换，下面是一些&lt;/p&gt;
+&lt;h3 id=&quot;常用的预处理指令&quot;&gt;&lt;a href=&quot;#常用的预处理指令&quot; class=&quot;headerlink&quot; title=&quot;常用的预处理指令&quot;&gt;&lt;/a&gt;常用的预处理指令&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;#   空指令，没有任何效果
+
+#include 包含一个源代码文件
+
+#define 定义宏
+
+#undef 取消定义宏
+
+#if 如果条件为真，则编译下面的代码
+
+#elif 如果前面的#if不为真，则编译下面的代码
+
+#endif 结束一个#if...#elif条件编译块
+
+#ifdef 如果已经定义了某个宏，则编译下面的代码
+
+#ifndef 如果没有定义某个宏，则编译下面的代码
+
+#error 停止编译并显示错误信息
+
+#pragma 为编译程序提供非常规的控制流信息
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 这些指令的主要目的是进行编译时进行有选择的挑选，注释掉一些指定的代码，以达到版本控制、防止对文件重复包含的功能。&lt;/p&gt;
+&lt;h3 id=&quot;预定义标识符&quot;&gt;&lt;a href=&quot;#预定义标识符&quot; class=&quot;headerlink&quot; title=&quot;预定义标识符&quot;&gt;&lt;/a&gt;预定义标识符&lt;/h3&gt;&lt;p&gt;  为了处理一些有用的信息，预处理定义了一些预处理标识符，虽然各种编译器的预处理标识符不尽相同，但是他们都会处理下面的4种：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;__FILE__ 正在编译的文件的名字
+__LINE__ 正在编译的文件的行号
+__DATE__ 编译时刻的日期字符串，例如： &amp;quot;25 Jan 2006&amp;quot;
+__TIME__ 编译时刻的时间字符串，例如： &amp;quot;12:30:55&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;常见的预处理功能&lt;/p&gt;
+&lt;p&gt;预处理器的主要作用就是把通过预处理的内建功能对一个资源进行等价替换，最常见的预处理有：文件包含，条件编译、布局控制和宏替换4种。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;＊ 文件包含：#include 是一种最为常见的预处理，主要是做为文件的引用组合源程序正文。
+
+＊ 条件编译：#if,#ifndef,#ifdef,#endif,#undef等也是比较常见的预处理，主要是进行编译时进行有选择的挑选，注释掉一些指定的代码，以达到版本控制、防止对文件重复包含的功能。
+
+＊ 布局控制：#pragma，这也是我们应用预处理的一个重要方面，主要功能是为编译程序提供非常规的控制流信息。
+
+＊ 宏替换：#define，这是最常见的用法，它可以定义符号常量、函数功能、重新命名、字符串的拼接等各种功能。
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS特别技能点总结</title>
@@ -968,102 +1036,6 @@ B.第三个参数开始，你可以按照原方法（例如：setHeight:(float)�
     
       &lt;p&gt;&lt;strong&gt;@synthesize&lt;/strong&gt;  实际的意义就是 自动生成属性的setter和getter方法。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;@dynamic&lt;/strong&gt;  就是要告诉编译器，代码中用@dynamic修饰的属性，其getter和setter方法会在程序运行的时候或者用其他方式动态绑定，以便让编译器通过编译（指定一个函数或者其他类的方法作为动态属性的setter、getter方法的运行时实现）。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title> 继承自NSObject的不常用又很有用的函数－ 函数调用2</title>
-    <link href="http://yoursite.com/2016/04/14/%E7%BB%A7%E6%89%BF%E8%87%AANSObject%E7%9A%84%E4%B8%8D%E5%B8%B8%E7%94%A8%E5%8F%88%E5%BE%88%E6%9C%89%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0%EF%BC%8D-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A82/"/>
-    <id>http://yoursite.com/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用2/</id>
-    <published>2016-04-14T13:21:38.000Z</published>
-    <updated>2016-04-14T13:47:29.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;补充：respondsToSelector&quot;&gt;&lt;a href=&quot;#补充：respondsToSelector&quot; class=&quot;headerlink&quot; title=&quot;补充：respondsToSelector&quot;&gt;&lt;/a&gt;补充：respondsToSelector&lt;/h3&gt;&lt;p&gt;   +(BOOL)respondsToSelector:(SEL)aSelector &lt;/p&gt;
-&lt;p&gt;这个函数大家再熟悉不过了，用来检查对象是否实现了某函数。&lt;/p&gt;
-&lt;p&gt;此函数通常是不需要重载的，但是在动态实现了查找过程后，需要重载此函数让对外接口查找动态实现函数的时候返回YES，保证对外接口的行为统一。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; - (BOOL) respondsToSelector:(SEL)aSelector
-    {
-       if (@selector(setTitle:) == aSelector ||
-       @selector(title) == aSelector ||
-       @selector(setAuthor:) == aSelector ||
-       @selector(author) == aSelector)
-      {
-        return YES;
-      }
-
-       return [super respondsToSelector: aSelector];
-    }
-
-  //全局函数
- 1.void dynamicMethodIMP(id self, SEL _cmd)
-        {
-           // implementation ....
-        }
-
- 2.+ (BOOL) resolveInstanceMethod:(SEL)aSEL
-       {
-        if (aSEL == @selector(resolveThisMethodDynamically))
-        {
-            class_addMethod([self class], aSEL, (IMP) dynamicMethodIMP, &amp;quot;v@:&amp;quot;);
-            return YES;
-         }
-         return [super resolveInstanceMethod:aSel];
-       }
-
-  //将消息转出某对象
-3.- (id)forwardingTargetForSelector:(SEL)aSelector
-      {
-       NSLog(@&amp;quot;MyTestObject _cmd: %@&amp;quot;, NSStringFromSelector(_cmd));
-
-        NoneClass *none = [[NoneClass alloc] init];
-        if ([none respondsToSelector: aSelector]) {
-          return none;
-       }
-
-       return [super forwardingTargetForSelector: aSelector];
-      }
-
-4.- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
-    {
-      NSString *sel = NSStringFromSelector(selector);
-      if ([sel rangeOfString:@&amp;quot;set&amp;quot;].location == 0) {
-        //动态造一个 setter函数
-        return [NSMethodSignature signatureWithObjCTypes:&amp;quot;v@:@&amp;quot;];
-      } else {
-        //动态造一个 getter函数
-        return [NSMethodSignature signatureWithObjCTypes:&amp;quot;@@:&amp;quot;];
-      }
-   }
-
-5.- (void)forwardInvocation:(NSInvocation *)invocation
-      {
-       //拿到函数名
-       NSString *key = NSStringFromSelector([invocation selector]);
-       if ([key rangeOfString:@&amp;quot;set&amp;quot;].location == 0) {
-          //setter函数形如 setXXX: 拆掉 set和冒号 
-          key = [[key substringWithRange:NSMakeRange(3, [key length]-4)] lowercaseString];
-          NSString *obj;
-          //从参数列表中找到值
-          [invocation getArgument:&amp;amp;obj atIndex:2];
-          [data setObject:obj forKey:key];
-        } else {
-          //getter函数就相对简单了，直接把函数名做 key就好了。
-          NSString *obj = [data objectForKey:key];
-          [invocation setReturnValue:&amp;amp;obj];
-        }
-      }
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;补充：respondsToSelector&quot;&gt;&lt;a href=&quot;#补充：respondsToSelector&quot; class=&quot;headerlink&quot; title=&quot;补充：respondsToSelector&quot;&gt;&lt;/a&gt;补充：respondsToSelector&lt;/h3&gt;&lt;p&gt;   +(BOOL)respondsToSelector:(SEL)aSelector &lt;/p&gt;
-&lt;p&gt;这个函数大家再熟悉不过了，用来检查对象是否实现了某函数。&lt;/p&gt;
-&lt;p&gt;此函数通常是不需要重载的，但是在动态实现了查找过程后，需要重载此函数让对外接口查找动态实现函数的时候返回YES，保证对外接口的行为统一。&lt;br&gt;
     
     </summary>
     
