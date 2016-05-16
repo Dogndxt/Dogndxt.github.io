@@ -16,7 +16,7 @@
 <meta property="og:description" content="修改状态栏颜色1.在 info.plist 添加 View controller-based status bar appearance 并设置为 NO（白色），YES（黑色）， 如果为NO，并在 Appdelegate 里面添加
 [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 则可设">
-<meta property="og:updated_time" content="2016-05-07T12:18:58.000Z">
+<meta property="og:updated_time" content="2016-05-16T13:55:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS特别技能点总结">
 <meta name="twitter:description" content="修改状态栏颜色1.在 info.plist 添加 View controller-based status bar appearance 并设置为 NO（白色），YES（黑色）， 如果为NO，并在 Appdelegate 里面添加
@@ -235,7 +235,7 @@
 则可设置为白色。
 </code></pre><a id="more"></a>
 <p>2.在有 navigationbar 的时候需要 添加方法 ：</p>
-<pre><code>-(UIStatusBarStyle)preferredStatusBarStyle {
+<pre><code>- (UIStatusBarStyle)preferredStatusBarStyle {
 
 return UIStatusBarStyleLightContent;
 } 
