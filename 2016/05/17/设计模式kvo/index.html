@@ -4,17 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016 | 第欧根尼的小桶</title>
+  <title>设计模式kvo | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+  <meta name="description" content="KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应
+首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。
+   在初始化方法中加入：
+[_tableView addObserver:self forKeyPath:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式kvo">
+<meta property="og:url" content="http://yoursite.com/2016/05/17/设计模式kvo/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应
+首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。
+   在初始化方法中加入：
+[_tableView addObserver:self forKeyPath:">
+<meta property="og:updated_time" content="2016-05-17T13:33:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="设计模式kvo">
+<meta name="twitter:description" content="KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应
+首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。
+   在初始化方法中加入：
+[_tableView addObserver:self forKeyPath:">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,254 +200,142 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-设计模式kvo" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/05/17/设计模式kvo/" class="article-date">
+  	<time datetime="2016-05-17T13:32:36.000Z" itemprop="datePublished">2016-05-17</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      设计模式kvo
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/17/设计模式kvo/" class="archive-article-date">
-  	<time datetime="2016-05-17T13:32:36.000Z" itemprop="datePublished">5月 17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/17/设计模式kvo/">设计模式kvo</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应</strong></p>
+<p>首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。</p>
+<p>   在初始化方法中加入：</p>
+<pre><code>[_tableView addObserver:self forKeyPath:@&quot;contentOffset&quot; options:NSKeyValueObservingOptionNew context:nil];
+</code></pre><a id="more"></a>
+<p>   在dealloc中移除KVO监听：</p>
+<pre><code>[_tableView removeObserver:self forKeyPath:@&quot;contentOffset&quot; context:nil];
+</code></pre><p>  添加默认的响应回调方法：</p>
+<pre><code>- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 
-        <div class="article-info info-on-right">
-          
-          
+  [self doSomethingWhenContentOffsetChanges];
+}
+</code></pre><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1.当你在controller中添加多个KVO时，所有的回调都是走同上述函数，那就必须对触发回调函数的来源进行判断。</p>
+<pre><code>判断如下：
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+ - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+
+       if (object == _tableView &amp;&amp; [keyPath isEqualToString:@&quot;contentOffset&quot;]) {
+
+           [self doSomethingWhenContentOffsetChanges];
+        }
+   }
+</code></pre><p>2.假设当前类(在例子中为UITableViewController)还有父类，并且父类也有自己绑定了一些其他KVO呢？我们看到，上述回调函数体中只有一个判断，如果这个if不成立，这次KVO事件的触发就会到此中断了。但事实上，若当前类无法捕捉到这个KVO，那很有可能是在他的superClass，或者super-superClass…中，上述处理砍断了这个链。</p>
+<pre><code>合理的处理方式应该是这样的：
+
+   - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+     {
+       if (object == _tableView &amp;&amp; [keyPath isEqualToString:@&quot;contentOffset&quot;]) {
+
+           [self doSomethingWhenContentOffsetChanges];
+       } else {
+
+          [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+       }
+     }
+</code></pre><p>3.潜在的问题有可能出现在dealloc中对KVO的注销上。KVO的一种缺陷(其实不能称为缺陷，应该称为特性)是，当对同一个keypath进行两次removeObserver时会导致程序crash，这种情况常常出现在父类有一个kvo，父类在dealloc中remove了一次，子类又remove了一次的情况下。</p>
+<pre><code>* 我们可以分别在父类以及本类中定义各自的context字符串，比如在本类中定义context为@&quot;ThisIsMyKVOContextNotSuper&quot;;然后在dealloc中remove observer时指定移除的自身添加的observer。
+这样iOS就能知道移除的是自己的kvo，而不是父类中的kvo，避免二次remove造成crash。
+</code></pre>
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/16/预编译指令/" class="archive-article-date">
-  	<time datetime="2016-05-16T13:38:49.000Z" itemprop="datePublished">5月 16</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/16/预编译指令/">预编译指令</a>
-    </h1>
   
+    <a href="/2016/05/16/预编译指令/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">预编译指令</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/07/iOS特别技能点总结/" class="archive-article-date">
-  	<time datetime="2016-05-07T11:33:38.000Z" itemprop="datePublished">5月 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/07/iOS特别技能点总结/">iOS特别技能点总结</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/深度学习（三）/" class="archive-article-date">
-  	<time datetime="2016-05-05T13:11:48.000Z" itemprop="datePublished">5月 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/深度学习（三）/">深度学习（三）</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/深度学习（二）/" class="archive-article-date">
-  	<time datetime="2016-05-05T13:03:45.000Z" itemprop="datePublished">5月 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/深度学习（二）/">深度学习（二）</a>
-    </h1>
-  
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="设计模式kvo" data-title="设计模式kvo" data-url="http://yoursite.com/2016/05/17/设计模式kvo/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/深度学习（－）/" class="archive-article-date">
-  	<time datetime="2016-05-05T12:46:40.000Z" itemprop="datePublished">5月 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/深度学习（－）/">深度学习（一）</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/01/单一功能原则/" class="archive-article-date">
-  	<time datetime="2016-05-01T13:29:49.000Z" itemprop="datePublished">5月 1</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/01/单一功能原则/">单一功能原则</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［类的魔法］/">［类的魔法］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/29/基本文件操作filehandle的用法/" class="archive-article-date">
-  	<time datetime="2016-04-29T12:57:38.000Z" itemprop="datePublished">4月 29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/29/基本文件操作filehandle的用法/">基本文件操作filehandle的用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2016/page/2/">2</a><a class="page-number" href="/archives/2016/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2016/page/6/">6</a><a class="extend next" rel="next" href="/archives/2016/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -463,8 +361,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
