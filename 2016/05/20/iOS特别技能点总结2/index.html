@@ -4,27 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>设计模式kvo | 第欧根尼的小桶</title>
+  <title>iOS特别技能点总结2 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应
-首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。
-   在初始化方法中加入：
-[_tableView addObserver:self forKeyPath:">
+  <meta name="description" content="iOS 通知1.在数据发生变化的界面进行通知注册和发送
+ NSArray *saveImageArray = [[NSArray alloc] initWithObjects:@&amp;quot;123&amp;quot;, nil];
+[[NSNotificationCenter defaultCenter] postNotificationName:@&amp;quot;postData&amp;quot; object:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式kvo">
-<meta property="og:url" content="http://yoursite.com/2016/05/17/设计模式kvo/index.html">
+<meta property="og:title" content="iOS特别技能点总结2">
+<meta property="og:url" content="http://yoursite.com/2016/05/20/iOS特别技能点总结2/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应
-首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。
-   在初始化方法中加入：
-[_tableView addObserver:self forKeyPath:">
-<meta property="og:updated_time" content="2016-05-17T13:33:52.000Z">
+<meta property="og:description" content="iOS 通知1.在数据发生变化的界面进行通知注册和发送
+ NSArray *saveImageArray = [[NSArray alloc] initWithObjects:@&amp;quot;123&amp;quot;, nil];
+[[NSNotificationCenter defaultCenter] postNotificationName:@&amp;quot;postData&amp;quot; object:">
+<meta property="og:updated_time" content="2016-05-20T14:58:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式kvo">
-<meta name="twitter:description" content="KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应
-首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。
-   在初始化方法中加入：
-[_tableView addObserver:self forKeyPath:">
+<meta name="twitter:title" content="iOS特别技能点总结2">
+<meta name="twitter:description" content="iOS 通知1.在数据发生变化的界面进行通知注册和发送
+ NSArray *saveImageArray = [[NSArray alloc] initWithObjects:@&amp;quot;123&amp;quot;, nil];
+[[NSNotificationCenter defaultCenter] postNotificationName:@&amp;quot;postData&amp;quot; object:">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -200,11 +197,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-设计模式kvo" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-iOS特别技能点总结2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/17/设计模式kvo/" class="article-date">
-  	<time datetime="2016-05-17T13:32:36.000Z" itemprop="datePublished">2016-05-17</time>
+      <a href="/2016/05/20/iOS特别技能点总结2/" class="article-date">
+  	<time datetime="2016-05-20T14:53:45.000Z" itemprop="datePublished">2016-05-20</time>
 </a>
     </div>
   
@@ -217,7 +214,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      设计模式kvo
+      iOS特别技能点总结2
     </h1>
   
 
@@ -233,44 +230,67 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应</strong></p>
-<p>首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。</p>
-<p>   在初始化方法中加入：</p>
-<pre><code>[_tableView addObserver:self forKeyPath:@&quot;contentOffset&quot; options:NSKeyValueObservingOptionNew context:nil];
+        <h3 id="iOS-通知"><a href="#iOS-通知" class="headerlink" title="iOS 通知"></a>iOS 通知</h3><p>1.在数据发生变化的界面进行通知注册和发送</p>
+<pre><code> NSArray *saveImageArray = [[NSArray alloc] initWithObjects:@&quot;123&quot;, nil];
+[[NSNotificationCenter defaultCenter] postNotificationName:@&quot;postData&quot; object:saveImageArray];
 </code></pre><a id="more"></a>
-<p>   在dealloc中移除KVO监听：</p>
-<pre><code>[_tableView removeObserver:self forKeyPath:@&quot;contentOffset&quot; context:nil];
-</code></pre><p>  添加默认的响应回调方法：</p>
-<pre><code>- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+<p>2.在通知接收界面进行通知监测和作出反应</p>
+<pre><code>[[NSNotificationCenter defaultCenter] addObserver:self
+                                      selector:@selector(PostImage:)//接收消息方法
+                                          name:@&quot;postData&quot;//消息识别名称
+                                        object:nil];
+//实现方法
+-(void)PostImage:(NSArray *)array {
 
-  [self doSomethingWhenContentOffsetChanges];
+    self.messageSign.hidden = NO;
+    NSLog(@&quot;array ===  %@&quot;, array);
+    //接收传送过来的消息
 }
-</code></pre><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1.当你在controller中添加多个KVO时，所有的回调都是走同上述函数，那就必须对触发回调函数的来源进行判断。</p>
-<pre><code>判断如下：
+</code></pre><p>3.在接收通知的界面消失的时候进行–通知观察者的移除</p>
+<pre><code> //移除observer   
+[[NSNotificationCenter defaultCenter] removeObserver:self name:@&quot;postData&quot; object:nil];
+</code></pre><h3 id="界面间的跳转-–-（storyboard方式搭建界面）"><a href="#界面间的跳转-–-（storyboard方式搭建界面）" class="headerlink" title="界面间的跳转 – （storyboard方式搭建界面）"></a>界面间的跳转 – （storyboard方式搭建界面）</h3><p>1.界面间有 segue 的界面跳转</p>
+<pre><code>[self performSegueWithIdentifier:@&quot;segue的Identifier&quot; sender:nil]; // 添加在需要跳转的地方
 
- - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+// 有 segue 的跳转都会调用到的方法
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-       if (object == _tableView &amp;&amp; [keyPath isEqualToString:@&quot;contentOffset&quot;]) {
+   // 传送的数据
+   ViewController *lVC = [segue destinationViewController];
+   VC.team_id = self.team_id1;
+}
+</code></pre><p>2.界面间没有连线或者在不同的 storyboard 界面跳转</p>
+<pre><code>// 获取要跳转的 Storyboard
+UIStoryboard *scoreStoryboard = [UIStoryboard storyboardWithName:@&quot;Personal&quot; bundle:nil];
 
-           [self doSomethingWhenContentOffsetChanges];
-        }
-   }
-</code></pre><p>2.假设当前类(在例子中为UITableViewController)还有父类，并且父类也有自己绑定了一些其他KVO呢？我们看到，上述回调函数体中只有一个判断，如果这个if不成立，这次KVO事件的触发就会到此中断了。但事实上，若当前类无法捕捉到这个KVO，那很有可能是在他的superClass，或者super-superClass…中，上述处理砍断了这个链。</p>
-<pre><code>合理的处理方式应该是这样的：
+// 需要在目标界面设置 Storyboard ID
+PayViewController *payVC = [scoreStoryboard instantiateViewControllerWithIdentifier:@&quot;PayViewController&quot;];
+payVC.diamondCount = 1;
 
-   - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-     {
-       if (object == _tableView &amp;&amp; [keyPath isEqualToString:@&quot;contentOffset&quot;]) {
+[self.navigationController pushViewController:payVC animated:YES];
+</code></pre><ul>
+<li><p>错误 ：UIImage stringByDeletingPathExtension]: unrecognized selector sent to instance 0xbe79910</p>
+<p>原因 ：你所使用的对象已经是 UIImage ，不能再分割成其他对象</p>
+<p>解决方案： 寻找使用了这个对象的地方，并修改。</p>
+</li>
+</ul>
+<h3 id="单独对一些文件设置-ARC-或者设置-非ARC"><a href="#单独对一些文件设置-ARC-或者设置-非ARC" class="headerlink" title="单独对一些文件设置 ARC 或者设置 非ARC"></a>单独对一些文件设置 ARC 或者设置 非ARC</h3><p>1.如果项目建立时未使用ARC，想将其改为ARC，可以在building setting中修改</p>
+<pre><code>在Building Setting中搜索auto reference
 
-           [self doSomethingWhenContentOffsetChanges];
-       } else {
+将Objective-C Automatic Reference Counting一行设置为YES即可
+</code></pre><p>2.因为之前没有ARC机制，好多比较好的类库都是使用的非ARC，或是有些大牛还是不喜欢用ARC，封装的类也是非ARC的，想要在自己的ARC项目中使用这些非ARC类库，只需要简单的设置一下就可以了。</p>
+<pre><code>在TARGETS-Bulid Phares-Compile Sources中找到非ARC的文件，双击，在弹出的框中添加
 
-          [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-       }
-     }
-</code></pre><p>3.潜在的问题有可能出现在dealloc中对KVO的注销上。KVO的一种缺陷(其实不能称为缺陷，应该称为特性)是，当对同一个keypath进行两次removeObserver时会导致程序crash，这种情况常常出现在父类有一个kvo，父类在dealloc中remove了一次，子类又remove了一次的情况下。</p>
-<pre><code>* 我们可以分别在父类以及本类中定义各自的context字符串，比如在本类中定义context为@&quot;ThisIsMyKVOContextNotSuper&quot;;然后在dealloc中remove observer时指定移除的自身添加的observer。
-这样iOS就能知道移除的是自己的kvo，而不是父类中的kvo，避免二次remove造成crash。
+   -fno-objc-arc
+</code></pre><p>3.UIImage转化成NSData</p>
+<pre><code>NSData *data;
+if (UIImagePNGRepresentation(image) == nil) {
+
+      data = UIImageJPEGRepresentation(image, 1);
+    } else {
+
+      data = UIImagePNGRepresentation(image);
+} 
 </code></pre>
       
     </div>
@@ -280,18 +300,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/05/20/iOS特别技能点总结2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/05/20/方法性能方法/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          iOS特别技能点总结2
+          方法性能方法
         
       </div>
     </a>
   
   
-    <a href="/2016/05/16/预编译指令/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">预编译指令</div>
+    <a href="/2016/05/17/设计模式kvo/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">设计模式kvo</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -326,7 +346,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="设计模式kvo" data-title="设计模式kvo" data-url="http://yoursite.com/2016/05/17/设计模式kvo/"></div>
+	<div class="ds-thread" data-thread-key="iOS特别技能点总结2" data-title="iOS特别技能点总结2" data-url="http://yoursite.com/2016/05/20/iOS特别技能点总结2/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

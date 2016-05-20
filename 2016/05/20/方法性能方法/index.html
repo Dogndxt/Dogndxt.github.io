@@ -4,27 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>设计模式kvo | 第欧根尼的小桶</title>
+  <title>方法性能方法 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应
-首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。
-   在初始化方法中加入：
-[_tableView addObserver:self forKeyPath:">
+  <meta name="description" content="性能测试   
+通常enumerateObjectsUsingBlock: 和 (for(… in …)在效率上基本一致，有时会快些。主要是因为它们都是基于 NSFastEnumeration 实现的. 快速迭代在处理的过程中需要多一次转换，当然也会消耗掉一些时间. 基于Block的迭代可以达到本机存储一样快的遍历集合. 对于字典同样适用，而数组的迭代却不行。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式kvo">
-<meta property="og:url" content="http://yoursite.com/2016/05/17/设计模式kvo/index.html">
+<meta property="og:title" content="方法性能方法">
+<meta property="og:url" content="http://yoursite.com/2016/05/20/方法性能方法/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应
-首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。
-   在初始化方法中加入：
-[_tableView addObserver:self forKeyPath:">
-<meta property="og:updated_time" content="2016-05-17T13:33:52.000Z">
+<meta property="og:description" content="性能测试   
+通常enumerateObjectsUsingBlock: 和 (for(… in …)在效率上基本一致，有时会快些。主要是因为它们都是基于 NSFastEnumeration 实现的. 快速迭代在处理的过程中需要多一次转换，当然也会消耗掉一些时间. 基于Block的迭代可以达到本机存储一样快的遍历集合. 对于字典同样适用，而数组的迭代却不行。">
+<meta property="og:updated_time" content="2016-05-20T15:01:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式kvo">
-<meta name="twitter:description" content="KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应
-首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。
-   在初始化方法中加入：
-[_tableView addObserver:self forKeyPath:">
+<meta name="twitter:title" content="方法性能方法">
+<meta name="twitter:description" content="性能测试   
+通常enumerateObjectsUsingBlock: 和 (for(… in …)在效率上基本一致，有时会快些。主要是因为它们都是基于 NSFastEnumeration 实现的. 快速迭代在处理的过程中需要多一次转换，当然也会消耗掉一些时间. 基于Block的迭代可以达到本机存储一样快的遍历集合. 对于字典同样适用，而数组的迭代却不行。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -200,11 +194,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-设计模式kvo" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-方法性能方法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/17/设计模式kvo/" class="article-date">
-  	<time datetime="2016-05-17T13:32:36.000Z" itemprop="datePublished">2016-05-17</time>
+      <a href="/2016/05/20/方法性能方法/" class="article-date">
+  	<time datetime="2016-05-20T14:59:25.000Z" itemprop="datePublished">2016-05-20</time>
 </a>
     </div>
   
@@ -217,7 +211,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      设计模式kvo
+      方法性能方法
     </h1>
   
 
@@ -233,45 +227,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应</strong></p>
-<p>首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。</p>
-<p>   在初始化方法中加入：</p>
-<pre><code>[_tableView addObserver:self forKeyPath:@&quot;contentOffset&quot; options:NSKeyValueObservingOptionNew context:nil];
-</code></pre><a id="more"></a>
-<p>   在dealloc中移除KVO监听：</p>
-<pre><code>[_tableView removeObserver:self forKeyPath:@&quot;contentOffset&quot; context:nil];
-</code></pre><p>  添加默认的响应回调方法：</p>
-<pre><code>- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-
-  [self doSomethingWhenContentOffsetChanges];
+        <p>性能测试   </p>
+<p>通常enumerateObjectsUsingBlock: 和 (for(… in …)在效率上基本一致，有时会快些。主要是因为它们都是基于 NSFastEnumeration 实现的. 快速迭代在处理的过程中需要多一次转换，当然也会消耗掉一些时间. 基于Block的迭代可以达到本机存储一样快的遍历集合. 对于字典同样适用，而数组的迭代却不行。<br><a id="more"></a><br>（ <a href="http://stackoverflow.com/questions/4486622/when-to-use-enumerateobjectsusingblock-vs-for" target="_blank" rel="external">http://stackoverflow.com/questions/4486622/when-to-use-enumerateobjectsusingblock-vs-for</a> ）</p>
+<pre><code>NSMutableArray *test = [NSMutableArray array];
+for (int i= 0; i &lt; 10000000; i++) {
+    [test addObject:@(i)];
 }
-</code></pre><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1.当你在controller中添加多个KVO时，所有的回调都是走同上述函数，那就必须对触发回调函数的来源进行判断。</p>
-<pre><code>判断如下：
+int sum = 0;
 
- - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+double date_s = CFAbsoluteTimeGetCurrent();
+for (int i = 0;i &lt; test.count; i++) {
+    sum += 1;
+}
+double date_e =  CFAbsoluteTimeGetCurrent();
+NSLog(@&quot;ForLoop Time: %f&quot;, date_e - date_s);
 
-       if (object == _tableView &amp;&amp; [keyPath isEqualToString:@&quot;contentOffset&quot;]) {
+date_s =  CFAbsoluteTimeGetCurrent();
+for (id obj in test) {
+    sum += 1;
+}
+date_e =  CFAbsoluteTimeGetCurrent();
+NSLog(@&quot;Enumeration Time: %f&quot;, date_e - date_s);
+</code></pre><p>  注意”enumerateObjectsUsingBlock” 修改局部变量时， 你需要声明局部变量为 __block 类型.</p>
+<p>  enumerateObjectsWithOptions:usingBlock: 支持并发迭代或反向迭代，并发迭代时效率也非常高.</p>
+<p>  对于字典而言, enumerateObjectsWithOptions:usingBlock 也是唯一的方式可以并发实现恢复Key-Value值.</p>
 
-           [self doSomethingWhenContentOffsetChanges];
-        }
-   }
-</code></pre><p>2.假设当前类(在例子中为UITableViewController)还有父类，并且父类也有自己绑定了一些其他KVO呢？我们看到，上述回调函数体中只有一个判断，如果这个if不成立，这次KVO事件的触发就会到此中断了。但事实上，若当前类无法捕捉到这个KVO，那很有可能是在他的superClass，或者super-superClass…中，上述处理砍断了这个链。</p>
-<pre><code>合理的处理方式应该是这样的：
-
-   - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-     {
-       if (object == _tableView &amp;&amp; [keyPath isEqualToString:@&quot;contentOffset&quot;]) {
-
-           [self doSomethingWhenContentOffsetChanges];
-       } else {
-
-          [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-       }
-     }
-</code></pre><p>3.潜在的问题有可能出现在dealloc中对KVO的注销上。KVO的一种缺陷(其实不能称为缺陷，应该称为特性)是，当对同一个keypath进行两次removeObserver时会导致程序crash，这种情况常常出现在父类有一个kvo，父类在dealloc中remove了一次，子类又remove了一次的情况下。</p>
-<pre><code>* 我们可以分别在父类以及本类中定义各自的context字符串，比如在本类中定义context为@&quot;ThisIsMyKVOContextNotSuper&quot;;然后在dealloc中remove observer时指定移除的自身添加的observer。
-这样iOS就能知道移除的是自己的kvo，而不是父类中的kvo，避免二次remove造成crash。
-</code></pre>
       
     </div>
     
@@ -280,18 +260,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/05/20/iOS特别技能点总结2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS特别技能点总结2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/05/16/预编译指令/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">预编译指令</div>
+    <a href="/2016/05/20/iOS特别技能点总结2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS特别技能点总结2</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -326,7 +297,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="设计模式kvo" data-title="设计模式kvo" data-url="http://yoursite.com/2016/05/17/设计模式kvo/"></div>
+	<div class="ds-thread" data-thread-key="方法性能方法" data-title="方法性能方法" data-url="http://yoursite.com/2016/05/20/方法性能方法/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

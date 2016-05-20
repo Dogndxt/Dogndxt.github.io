@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-17T13:33:52.000Z</updated>
+  <updated>2016-05-20T15:01:59.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,131 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>方法性能方法</title>
+    <link href="http://yoursite.com/2016/05/20/%E6%96%B9%E6%B3%95%E6%80%A7%E8%83%BD%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/05/20/方法性能方法/</id>
+    <published>2016-05-20T14:59:25.000Z</published>
+    <updated>2016-05-20T15:01:59.000Z</updated>
+    
+    <content type="html">&lt;p&gt;性能测试   &lt;/p&gt;
+&lt;p&gt;通常enumerateObjectsUsingBlock: 和 (for(… in …)在效率上基本一致，有时会快些。主要是因为它们都是基于 NSFastEnumeration 实现的. 快速迭代在处理的过程中需要多一次转换，当然也会消耗掉一些时间. 基于Block的迭代可以达到本机存储一样快的遍历集合. 对于字典同样适用，而数组的迭代却不行。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;（ &lt;a href=&quot;http://stackoverflow.com/questions/4486622/when-to-use-enumerateobjectsusingblock-vs-for&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/4486622/when-to-use-enumerateobjectsusingblock-vs-for&lt;/a&gt; ）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSMutableArray *test = [NSMutableArray array];
+for (int i= 0; i &amp;lt; 10000000; i++) {
+    [test addObject:@(i)];
+}
+int sum = 0;
+
+double date_s = CFAbsoluteTimeGetCurrent();
+for (int i = 0;i &amp;lt; test.count; i++) {
+    sum += 1;
+}
+double date_e =  CFAbsoluteTimeGetCurrent();
+NSLog(@&amp;quot;ForLoop Time: %f&amp;quot;, date_e - date_s);
+
+date_s =  CFAbsoluteTimeGetCurrent();
+for (id obj in test) {
+    sum += 1;
+}
+date_e =  CFAbsoluteTimeGetCurrent();
+NSLog(@&amp;quot;Enumeration Time: %f&amp;quot;, date_e - date_s);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  注意”enumerateObjectsUsingBlock” 修改局部变量时， 你需要声明局部变量为 __block 类型.&lt;/p&gt;
+&lt;p&gt;  enumerateObjectsWithOptions:usingBlock: 支持并发迭代或反向迭代，并发迭代时效率也非常高.&lt;/p&gt;
+&lt;p&gt;  对于字典而言, enumerateObjectsWithOptions:usingBlock 也是唯一的方式可以并发实现恢复Key-Value值.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;性能测试   &lt;/p&gt;
+&lt;p&gt;通常enumerateObjectsUsingBlock: 和 (for(… in …)在效率上基本一致，有时会快些。主要是因为它们都是基于 NSFastEnumeration 实现的. 快速迭代在处理的过程中需要多一次转换，当然也会消耗掉一些时间. 基于Block的迭代可以达到本机存储一样快的遍历集合. 对于字典同样适用，而数组的迭代却不行。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>iOS特别技能点总结2</title>
+    <link href="http://yoursite.com/2016/05/20/iOS%E7%89%B9%E5%88%AB%E6%8A%80%E8%83%BD%E7%82%B9%E6%80%BB%E7%BB%932/"/>
+    <id>http://yoursite.com/2016/05/20/iOS特别技能点总结2/</id>
+    <published>2016-05-20T14:53:45.000Z</published>
+    <updated>2016-05-20T14:58:01.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;iOS-通知&quot;&gt;&lt;a href=&quot;#iOS-通知&quot; class=&quot;headerlink&quot; title=&quot;iOS 通知&quot;&gt;&lt;/a&gt;iOS 通知&lt;/h3&gt;&lt;p&gt;1.在数据发生变化的界面进行通知注册和发送&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; NSArray *saveImageArray = [[NSArray alloc] initWithObjects:@&amp;quot;123&amp;quot;, nil];
+[[NSNotificationCenter defaultCenter] postNotificationName:@&amp;quot;postData&amp;quot; object:saveImageArray];
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;2.在通知接收界面进行通知监测和作出反应&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[[NSNotificationCenter defaultCenter] addObserver:self
+                                      selector:@selector(PostImage:)//接收消息方法
+                                          name:@&amp;quot;postData&amp;quot;//消息识别名称
+                                        object:nil];
+//实现方法
+-(void)PostImage:(NSArray *)array {
+
+    self.messageSign.hidden = NO;
+    NSLog(@&amp;quot;array ===  %@&amp;quot;, array);
+    //接收传送过来的消息
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.在接收通知的界面消失的时候进行–通知观察者的移除&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; //移除observer   
+[[NSNotificationCenter defaultCenter] removeObserver:self name:@&amp;quot;postData&amp;quot; object:nil];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;界面间的跳转-–-（storyboard方式搭建界面）&quot;&gt;&lt;a href=&quot;#界面间的跳转-–-（storyboard方式搭建界面）&quot; class=&quot;headerlink&quot; title=&quot;界面间的跳转 – （storyboard方式搭建界面）&quot;&gt;&lt;/a&gt;界面间的跳转 – （storyboard方式搭建界面）&lt;/h3&gt;&lt;p&gt;1.界面间有 segue 的界面跳转&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[self performSegueWithIdentifier:@&amp;quot;segue的Identifier&amp;quot; sender:nil]; // 添加在需要跳转的地方
+
+// 有 segue 的跳转都会调用到的方法
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+   // 传送的数据
+   ViewController *lVC = [segue destinationViewController];
+   VC.team_id = self.team_id1;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.界面间没有连线或者在不同的 storyboard 界面跳转&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 获取要跳转的 Storyboard
+UIStoryboard *scoreStoryboard = [UIStoryboard storyboardWithName:@&amp;quot;Personal&amp;quot; bundle:nil];
+
+// 需要在目标界面设置 Storyboard ID
+PayViewController *payVC = [scoreStoryboard instantiateViewControllerWithIdentifier:@&amp;quot;PayViewController&amp;quot;];
+payVC.diamondCount = 1;
+
+[self.navigationController pushViewController:payVC animated:YES];
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;错误 ：UIImage stringByDeletingPathExtension]: unrecognized selector sent to instance 0xbe79910&lt;/p&gt;
+&lt;p&gt;原因 ：你所使用的对象已经是 UIImage ，不能再分割成其他对象&lt;/p&gt;
+&lt;p&gt;解决方案： 寻找使用了这个对象的地方，并修改。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;单独对一些文件设置-ARC-或者设置-非ARC&quot;&gt;&lt;a href=&quot;#单独对一些文件设置-ARC-或者设置-非ARC&quot; class=&quot;headerlink&quot; title=&quot;单独对一些文件设置 ARC 或者设置 非ARC&quot;&gt;&lt;/a&gt;单独对一些文件设置 ARC 或者设置 非ARC&lt;/h3&gt;&lt;p&gt;1.如果项目建立时未使用ARC，想将其改为ARC，可以在building setting中修改&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;在Building Setting中搜索auto reference
+
+将Objective-C Automatic Reference Counting一行设置为YES即可
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.因为之前没有ARC机制，好多比较好的类库都是使用的非ARC，或是有些大牛还是不喜欢用ARC，封装的类也是非ARC的，想要在自己的ARC项目中使用这些非ARC类库，只需要简单的设置一下就可以了。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;在TARGETS-Bulid Phares-Compile Sources中找到非ARC的文件，双击，在弹出的框中添加
+
+   -fno-objc-arc
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.UIImage转化成NSData&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSData *data;
+if (UIImagePNGRepresentation(image) == nil) {
+
+      data = UIImageJPEGRepresentation(image, 1);
+    } else {
+
+      data = UIImagePNGRepresentation(image);
+} 
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;iOS-通知&quot;&gt;&lt;a href=&quot;#iOS-通知&quot; class=&quot;headerlink&quot; title=&quot;iOS 通知&quot;&gt;&lt;/a&gt;iOS 通知&lt;/h3&gt;&lt;p&gt;1.在数据发生变化的界面进行通知注册和发送&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; NSArray *saveImageArray = [[NSArray alloc] initWithObjects:@&amp;quot;123&amp;quot;, nil];
+[[NSNotificationCenter defaultCenter] postNotificationName:@&amp;quot;postData&amp;quot; object:saveImageArray];
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>设计模式kvo</title>
@@ -969,99 +1094,6 @@ UIApplication 接收到所有的系统事件和生命周期事件时，都会把
     <summary type="html">
     
       &lt;h3 id=&quot;import和-include的区别&quot;&gt;&lt;a href=&quot;#import和-include的区别&quot; class=&quot;headerlink&quot; title=&quot;#import和#include的区别&quot;&gt;&lt;/a&gt;#import和#include的区别&lt;/h3&gt;&lt;p&gt;  当我们在代码中使用两次#include的时候会报错：因为#include相当于拷贝头文件中的声明内容，所以会报重复定义的错误但是使用两次#import的话，不会报错，所以他可以解决重复导入的问题，他会做一次判断，如果已经导入一次就不导入了&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OC的实例方法和类方法的区别</title>
-    <link href="http://yoursite.com/2016/04/15/OC%E7%9A%84%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%E5%92%8C%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>http://yoursite.com/2016/04/15/OC的实例方法和类方法的区别/</id>
-    <published>2016-04-15T14:48:32.000Z</published>
-    <updated>2016-04-15T14:50:21.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;-对象方法&lt;/strong&gt; 即OO的基本精神之一 —— 封装／信息隐藏，这个需要你对OO有理解&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;+类方法&lt;/strong&gt; 一般用作命名空间，用以组织一组功能函数；又或用作类的工厂函数，用以产生类的对象；不管哪种，都需要有大型项目的经验，才知道如何组织程序的复杂性及使用设计模式&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;类方法和实例方法&quot;&gt;&lt;a href=&quot;#类方法和实例方法&quot; class=&quot;headerlink&quot; title=&quot;类方法和实例方法&quot;&gt;&lt;/a&gt;类方法和实例方法&lt;/h3&gt;&lt;p&gt;实例方法是— ， 类开头是+&lt;br&gt;实例方法是用实例对象访问，类方法的对象是类而不是实例，通常创建对象或者工具类。&lt;/p&gt;
-&lt;p&gt;在实例方法里，根据继承原理发送消息给self和super其实都是发送给self&lt;/p&gt;
-&lt;p&gt;在类方法里面self是其他的类的类方法，在类方法中给self发送消息只能发类方法，self是类super也是&lt;/p&gt;
-&lt;p&gt;什么时候用类方法：要创建一个实例时候获取一个共享实例，或者获取关于类的一些共有信息&lt;/p&gt;
-&lt;p&gt;1、类方法是属于整个类，而不属于某个对象。&lt;br&gt;2、类方法只能访问类成员变量，不能访问实例变量，而实例方法可以访问类成员变量和实例变量。&lt;br&gt;3、类方法的调用可以通过类名.类方法和对象.类方法，而实例方法只能通过对象.实例方法访问。&lt;br&gt;4、类方法只能访问类方法，而实例方法可以访问类方法和实例方法。&lt;br&gt;5、类方法不能被覆盖，实例方法可以被覆盖。 &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;-对象方法&lt;/strong&gt; 即OO的基本精神之一 —— 封装／信息隐藏，这个需要你对OO有理解&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;+类方法&lt;/strong&gt; 一般用作命名空间，用以组织一组功能函数；又或用作类的工厂函数，用以产生类的对象；不管哪种，都需要有大型项目的经验，才知道如何组织程序的复杂性及使用设计模式&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NSSet_集合（无序）</title>
-    <link href="http://yoursite.com/2016/04/15/NSSet-%E9%9B%86%E5%90%88%EF%BC%88%E6%97%A0%E5%BA%8F%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/04/15/NSSet-集合（无序）/</id>
-    <published>2016-04-15T14:46:28.000Z</published>
-    <updated>2016-04-15T14:47:26.000Z</updated>
-    
-    <content type="html">&lt;p&gt;NSSet和NSMutableSet是无序的, 但是它保证数据的唯一性。当插入相同的数据时，不会有任何效果。从内部实现来说是hash表，所以可以常数时间内查找一个数据。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;pre&gt;&lt;code&gt;//判断是否含有age字符串
-if([set containsObject:@&amp;quot;age&amp;quot;]) {
-    NSLog(@&amp;quot;set包含age&amp;quot;);
-}
-
-//判断set 是否等于set1
-if ([set isEqualToSet:set1]) {
-    NSLog(@&amp;quot;set 等于 set1&amp;quot;);
-}
-
-//判断set是否是否是set1的子集合
-if ([set isSubsetOfSet:set1]) {
-    NSLog(@&amp;quot;set isSubsetOfSet set1&amp;quot;);
-}
-
-//获取所有set对象
-NSArray *array = [set allObjects];
-NSLog(@&amp;quot;array:%@&amp;quot;, array);
-
-//迭代遍历
-NSEnumerator *enumerator = [set objectEnumerator];
-for (NSObject *object in enumerator) {
-    NSLog(@&amp;quot;set1里的对象:%@&amp;quot;, object);
-}
-
-//添加对象到集合里面
-[set setByAddingObject:@&amp;quot;123&amp;quot;];
-
-// 类方法处理方式
-NSSet *set3 = [NSSet set];
-NSSet *set4 = [NSSet setWithObject:@&amp;quot;123&amp;quot;];
-NSSet *set5 = [NSSet setWithObjects:@&amp;quot;1&amp;quot;, @&amp;quot;2&amp;quot;, nil];
-NSSet *set6 = [NSSet setWithArray:array];
-NSSet *set7 = [NSSet setWithSet:set6];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSMutableSet的使用&quot;&gt;&lt;a href=&quot;#NSMutableSet的使用&quot; class=&quot;headerlink&quot; title=&quot;NSMutableSet的使用&quot;&gt;&lt;/a&gt;NSMutableSet的使用&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSMutableSet继承NSSet，它可以使用NSSet的方法。
-
-[NSMutableSet setWithCapacity:6]:创建可变集合对象，并且初始化长度为6。
-[set addObject: obj] : 向集合中动态的添加对象。
-[set removeObject:obj]:删除集合中的一个对象。
-[set removeAllObjects]:删除集合中的所有对象。
-[set unionSet:obj]:向集合中添加一个obj集合的所有数据。
-[set minusSet:obj]:向集合中删除一个obj集合的所有数据。
-[set intersectSet]:向集合中删除一个不包含obj集合的所有数据。
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;NSSet和NSMutableSet是无序的, 但是它保证数据的唯一性。当插入相同的数据时，不会有任何效果。从内部实现来说是hash表，所以可以常数时间内查找一个数据。&lt;/p&gt;
     
     </summary>
     
