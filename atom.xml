@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-22T02:54:25.000Z</updated>
+  <updated>2016-05-29T12:42:21.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>极光推送实现步骤</title>
+    <link href="http://yoursite.com/2016/05/29/%E6%9E%81%E5%85%89%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4/"/>
+    <id>http://yoursite.com/2016/05/29/极光推送实现步骤/</id>
+    <published>2016-05-29T12:24:30.000Z</published>
+    <updated>2016-05-29T12:42:21.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;1-创建应用程序ID&quot;&gt;&lt;a href=&quot;#1-创建应用程序ID&quot; class=&quot;headerlink&quot; title=&quot;1. 创建应用程序ID&quot;&gt;&lt;/a&gt;1. 创建应用程序ID&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;登陆 iOS Dev Center 选择进入iOS Provisioning Portal  ---&amp;gt; 点击App IDs进入App ID列表
+ ---&amp;gt; 为 App 开启 Push Notification 功能。如果是已经创建的 App ID 也可以通过设置开启 Push Notification 功能。
+  --&amp;gt; 根据实际情况完善 App ID 信息并提交,注意此处需要指定具体的 Bundle ID 不要使用通配符。
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;2-配置和下载证书&quot;&gt;&lt;a href=&quot;#2-配置和下载证书&quot; class=&quot;headerlink&quot; title=&quot;2. 配置和下载证书&quot;&gt;&lt;/a&gt;2. 配置和下载证书&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;Certificate --&amp;gt; All --&amp;gt; 新建证书需要注意选择证书种类（开发证书用于开发和调试使用，生产证书用于 App Store 发布）
+--&amp;gt; 点击 Continue 后选择证书对应的应用ID，然后继续会出现“About Creating a Certificate Signing Request (CSR)”。 
+--&amp;gt;  根据它的说明创建打开KeychainAccess 创建 Certificate Signing Request 
+--&amp;gt; 填写“User Email Address”和“Common Name” 后选择 Saved to disk 进行保存 。 
+--&amp;gt; 继续返回Apple developer 网站点击 Continue ，上传刚刚生成的 .certSigningRequest 文件生成 APNs Push Certificate。
+下载并双击打开证书，证书打开时会启动“钥匙串访问”工具。在“钥匙串访问”中你的证书会显示在“我的证书”中，
+注意选择“My Certificates” 和&amp;quot;login&amp;quot; 
+--&amp;gt;  导出 .p12 证书文件(将文件保存为Personal Information Exchange (.p12)格式。)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;3-上传证书&quot;&gt;&lt;a href=&quot;#3-上传证书&quot; class=&quot;headerlink&quot; title=&quot;3. 上传证书&quot;&gt;&lt;/a&gt;3. 上传证书&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;在 JPush 管理 Portal 上，针对某应用程序，上传上面步骤得到 .p12 证书文件。
+这是 iOS SDK 能够接收到 JPush 推送消息的必要步骤。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Provisioning-Profile的创建&quot;&gt;&lt;a href=&quot;#Provisioning-Profile的创建&quot; class=&quot;headerlink&quot; title=&quot;Provisioning Profile的创建&quot;&gt;&lt;/a&gt;Provisioning Profile的创建&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;创建Provisioning Profile的前提，已在Apple Developer网站创建待发布应用所使用的Bundle ID的App ID，
+且为该App ID创建了APNs证书
+ --&amp;gt; 在苹果开发者账号的Provisioning Profile页面点击&amp;quot;+&amp;quot;按钮，创建Provisioning Profile 
+ --&amp;gt; 选择此Provisioning Profile的环境后点击[Continue]： 
+ --&amp;gt;  选择要创建Provisioning Profile的App ID后点击[Continue]：
+ --&amp;gt; 选择所属的开发者证书，（这里创建了多个开发者证书，建议只创建一个，方便管理）为了方便，
+ 选择了[Select All],再点击[Continue]进入下一步
+--&amp;gt; 为该Provisioning Profile选择将要安装的设备（一般选择[Select All]），点击[Continue] 
+--&amp;gt; 给该Provisioning Profile填写Profile Name，点击[generate]完成创建 
+--&amp;gt; 填写完Profile Name后点击[generate]完成创建，之后点击[DownLoad]下载Provisioning Profile 
+--&amp;gt; 双击下载下来的Provisioning Profile，添加到xcode。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;XCode的证书配置教程&quot;&gt;&lt;a href=&quot;#XCode的证书配置教程&quot; class=&quot;headerlink&quot; title=&quot;XCode的证书配置教程&quot;&gt;&lt;/a&gt;XCode的证书配置教程&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1.打开xxx-info.plist的Bundle identifier项把上传到JPush 控制台的bundle id填写进去
+2.点击项目，选择目标TARGETS后进入Build Setting 界面，搜索“Code signing”配置注册的证书
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;客户端设置&quot;&gt;&lt;a href=&quot;#客户端设置&quot; class=&quot;headerlink&quot; title=&quot;客户端设置&quot;&gt;&lt;/a&gt;客户端设置&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;开启Remote notifications
+需要在Xcode 中修改应用的 Capabilities 开启Remote notifications
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取自定义消息推送内容&quot;&gt;&lt;a href=&quot;#获取自定义消息推送内容&quot; class=&quot;headerlink&quot; title=&quot;获取自定义消息推送内容&quot;&gt;&lt;/a&gt;获取自定义消息推送内容&lt;/h3&gt;&lt;p&gt;功能说明: 只有在前端运行的时候才能收到自定义消息的推送。从jpush服务器获取用户推送的自定义消息内容和标题以及附加字段等。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;获取iOS的推送内容需要在delegate类中注册通知并实现回调方法。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取-RegistrationID&quot;&gt;&lt;a href=&quot;#获取-RegistrationID&quot; class=&quot;headerlink&quot; title=&quot;获取 RegistrationID&quot;&gt;&lt;/a&gt;获取 RegistrationID&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;+(NSString *)registrationID
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;标签与别名-API-iOS&quot;&gt;&lt;a href=&quot;#标签与别名-API-iOS&quot; class=&quot;headerlink&quot; title=&quot;标签与别名 API (iOS)&quot;&gt;&lt;/a&gt;标签与别名 API (iOS)&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;+ (void)setTags:(NSSet *)tags alias:(NSString *)alias callbackSelector:(SEL)cbSelector object:(id)theTarget;
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-创建应用程序ID&quot;&gt;&lt;a href=&quot;#1-创建应用程序ID&quot; class=&quot;headerlink&quot; title=&quot;1. 创建应用程序ID&quot;&gt;&lt;/a&gt;1. 创建应用程序ID&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;登陆 iOS Dev Center 选择进入iOS Provisioning Portal  ---&amp;gt; 点击App IDs进入App ID列表
+ ---&amp;gt; 为 App 开启 Push Notification 功能。如果是已经创建的 App ID 也可以通过设置开启 Push Notification 功能。
+  --&amp;gt; 根据实际情况完善 App ID 信息并提交,注意此处需要指定具体的 Bundle ID 不要使用通配符。
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS特别技能点总结3</title>
@@ -1112,58 +1166,6 @@ NSDictionary *userInfo ＝ [NSDictionary dictionaryWithObjectsAndKeys:@&amp;quot
     
     
       <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>单例UIApplication-总结</title>
-    <link href="http://yoursite.com/2016/04/22/%E5%8D%95%E4%BE%8BUIApplication-%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2016/04/22/单例UIApplication-总结/</id>
-    <published>2016-04-22T14:16:58.000Z</published>
-    <updated>2016-04-22T14:21:05.000Z</updated>
-    
-    <content type="html">&lt;p&gt;If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate class will be instantiated using init.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;UIKIT_EXTERN int UIApplicationMain (
-
-   int argc, 
-   char *argv[], 
-   NSString * __nullable principalClassName, 
-   NSString * __nullable delegateClassName
-);
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责-三件-事情：&quot;&gt;&lt;a href=&quot;#那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责-三件-事情：&quot; class=&quot;headerlink&quot; title=&quot;那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责 三件 事情：&quot;&gt;&lt;/a&gt;那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责 三件 事情：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1）从给定的类名初始化应用程序对象，也就是初始化UIApplication或者子类对象的一个实例，
-如果你在这里给定的是nil，那么 系统会默认UIApplication类，也就主要是这个类来控制以及协调应用程序的运行。
-在后续的工作中，你可以用静态方法sharedApplication 来获取应用程序的句柄。 
-2）从给定的应用程序委托类，初始化一个应用程序委托。并把该委托设置为应用程序的委托，这里就有如果传入参数为nil，会调用函数访问 Info.plist文件来寻找主nib文件，获取应用程序委托。 
-3）启动主事件循环，并开始接收事件。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;UIApplication（或-者子类）对象的职责，这个对象主要做下面几件事：&quot;&gt;&lt;a href=&quot;#UIApplication（或-者子类）对象的职责，这个对象主要做下面几件事：&quot; class=&quot;headerlink&quot; title=&quot;UIApplication（或 者子类）对象的职责，这个对象主要做下面几件事：&quot;&gt;&lt;/a&gt;UIApplication（或 者子类）对象的职责，这个对象主要做下面几件事：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1）负责处理到来的用户事件，并分发事件消息到应该处理该消息的目标对象（sender,  action)。 
-2）管理以及控制视图，包括呈现、控制行为、当前显示视图等。 
-3）该对象有一个应用程序委托对象，当一些生命周期内重要事件（可以包括系统事件或者生命周期控制事件）发生时，应用程序通知该对象。
-例如，应用程序启动、内存不够了或者应用程序结束等，让这些事件发生时，应用程序委托去响应。 
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;我们可以从应用程序的单例类对象中得到应用程序委托的对象&quot;&gt;&lt;a href=&quot;#我们可以从应用程序的单例类对象中得到应用程序委托的对象&quot; class=&quot;headerlink&quot; title=&quot;我们可以从应用程序的单例类对象中得到应用程序委托的对象&quot;&gt;&lt;/a&gt;我们可以从应用程序的单例类对象中得到应用程序委托的对象&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;UIApplicationDelegate* myDelegate = [[UIApplication sharedApplication] delegate]; 
-
-UIApplication 接收到所有的系统事件和生命周期事件时，都会把事件传递给UIApplicationDelegate进行处理，
-对于用户输入 事件，则传递给相应的目标对象去处理
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;创建UIApplication对象并指定其代理&quot;&gt;&lt;a href=&quot;#创建UIApplication对象并指定其代理&quot; class=&quot;headerlink&quot; title=&quot;创建UIApplication对象并指定其代理&quot;&gt;&lt;/a&gt;创建UIApplication对象并指定其代理&lt;/h3&gt;&lt;p&gt;通过UIApplicationMain函数创建UIApplication对象并 指定其代理对象AppDelegate;第三个参数为指定 UIApplication的子类来生成UIApplication对象，为nil时由 UIApplication类初始化默认对象；第四个参数为指定代理 对象。&lt;/p&gt;
-&lt;h3 id=&quot;UIApplication的代理对象&quot;&gt;&lt;a href=&quot;#UIApplication的代理对象&quot; class=&quot;headerlink&quot; title=&quot;UIApplication的代理对象&quot;&gt;&lt;/a&gt;UIApplication的代理对象&lt;/h3&gt;&lt;p&gt;作为UIApplication的代理类，必须要先实现 UIApplicationDelegate协议，协议里明确了作为代理应 该做或可以做哪些事情。 UIApplication对象负责监听应用程序的生命周期事件， 并将生命周期事件交由UIApplication代理对象处理。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate class will be instantiated using init.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;UIKIT_EXTERN int UIApplicationMain (
-
-   int argc, 
-   char *argv[], 
-   NSString * __nullable principalClassName, 
-   NSString * __nullable delegateClassName
-);
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
     
   </entry>
   
