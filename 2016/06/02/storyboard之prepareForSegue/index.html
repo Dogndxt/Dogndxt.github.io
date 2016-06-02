@@ -4,17 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016 | 第欧根尼的小桶</title>
+  <title> storyboard之prepareForSegue | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/2016/page/2/index.html">
+  <meta name="description" content="storyboard 解决的是页面之间的跳转问题。 一个颇为复杂的页面跳转，一旦使用了storyboard，就会四两拨千斤。你只需简单地拖拽，即可完成UIViewController 之间的跳转。 这里面有个神器，一个极为重要的method :
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {}
+
+第一个参">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" storyboard之prepareForSegue">
+<meta property="og:url" content="http://yoursite.com/2016/06/02/storyboard之prepareForSegue/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="storyboard 解决的是页面之间的跳转问题。 一个颇为复杂的页面跳转，一旦使用了storyboard，就会四两拨千斤。你只需简单地拖拽，即可完成UIViewController 之间的跳转。 这里面有个神器，一个极为重要的method :
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {}
+
+第一个参">
+<meta property="og:updated_time" content="2016-06-02T13:43:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content=" storyboard之prepareForSegue">
+<meta name="twitter:description" content="storyboard 解决的是页面之间的跳转问题。 一个颇为复杂的页面跳转，一旦使用了storyboard，就会四两拨千斤。你只需简单地拖拽，即可完成UIViewController 之间的跳转。 这里面有个神器，一个极为重要的method :
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {}
+
+第一个参">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,258 +200,120 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-storyboard之prepareForSegue" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/06/02/storyboard之prepareForSegue/" class="article-date">
+  	<time datetime="2016-06-02T13:41:03.000Z" itemprop="datePublished">2016-06-02</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+       storyboard之prepareForSegue
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/07/iOS特别技能点总结/" class="archive-article-date">
-  	<time datetime="2016-05-07T11:33:38.000Z" itemprop="datePublished">5月 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/07/iOS特别技能点总结/">iOS特别技能点总结</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>storyboard 解决的是页面之间的跳转问题。 一个颇为复杂的页面跳转，一旦使用了storyboard，就会四两拨千斤。你只需简单地拖拽，即可完成UIViewController 之间的跳转。 这里面有个神器，一个极为重要的method :</p>
+<pre><code>- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {}
 
-        <div class="article-info info-on-right">
-          
-          
+第一个参数是 segue， 第二个参数是 sender。 
+</code></pre><a id="more"></a>
+<p>这个method 主要解决2个问题：</p>
+<pre><code>（1） 获取所要跳转到的视图控制器 （ViewController）；
+（2） 同时，将上一个视图的数据，传递给下一个视图。 （比如： 上一个视图是TableView， 那么，就要将点击cell的行号传递到下一个视图）。
+</code></pre><p> UIViewController *destination = segue.destinationViewController;<br> 只要是 prepareForSegue：sender： 总会声明一个目标视图控制器（destination viewcontroller）</p>
+<ul>
+<li>有一种灵活的传递方法，通过遵循 KVC （Key -Value- Coding）规则来传值。 具体来说， 就是通过 [viewController setValue: forKey: ] 来存储数据。  既然提供了存储方式，就有对应的获取的方式。 以技术用语表达，就是： 读写操作是成对出现的。</li>
+</ul>
+<h3 id="该方法的触发条件"><a href="#该方法的触发条件" class="headerlink" title="该方法的触发条件"></a>该方法的触发条件</h3><pre><code>当前的视图控制器即将被另一个视图控制器所替代时，segue将处于激活状态，从而调用prepareForSegue:sender: 方法。
+</code></pre><h3 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h3><p> 为了区分视图的跳转，可以用上一个、下一个来表示，也可以用源视图、目标视图来表示。 即： sourceViewController 和destinationViewController。  目标视图控制器是指：即将显示（加载）的视图， 而源视图控制器是指：即将被取代的视图控制器。</p>
+<p> segue虽然实现的是视图之间的跳转，其实是视图控制器之间的切换。 <strong>更确切地说，segue 实现的是Secene（场景）之间的跳转。</strong></p>
+<p>  <strong> Scene 是由：  View 、 ViewController、First Responder、Exit  组成的。</strong></p>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/02/pragma声明/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">pragma声明</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/深度学习（三）/" class="archive-article-date">
-  	<time datetime="2016-05-05T13:11:48.000Z" itemprop="datePublished">5月 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/深度学习（三）/">深度学习（三）</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/深度学习（二）/" class="archive-article-date">
-  	<time datetime="2016-05-05T13:03:45.000Z" itemprop="datePublished">5月 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/深度学习（二）/">深度学习（二）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/深度学习（－）/" class="archive-article-date">
-  	<time datetime="2016-05-05T12:46:40.000Z" itemprop="datePublished">5月 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/深度学习（－）/">深度学习（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/01/单一功能原则/" class="archive-article-date">
-  	<time datetime="2016-05-01T13:29:49.000Z" itemprop="datePublished">5月 1</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/01/单一功能原则/">单一功能原则</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［类的魔法］/">［类的魔法］</a></li></ul>
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/29/基本文件操作filehandle的用法/" class="archive-article-date">
-  	<time datetime="2016-04-29T12:57:38.000Z" itemprop="datePublished">4月 29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/29/基本文件操作filehandle的用法/">基本文件操作filehandle的用法</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/27/位运算/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:21:31.000Z" itemprop="datePublished">4月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/27/位运算/">位运算</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="storyboard之prepareForSegue" data-title=" storyboard之prepareForSegue" data-url="http://yoursite.com/2016/06/02/storyboard之prepareForSegue/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/27/字符串加密之Base64/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:18:00.000Z" itemprop="datePublished">4月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/27/字符串加密之Base64/">字符串加密之Base64</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2016/">&laquo; Prev</a><a class="page-number" href="/archives/2016/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2016/page/3/">3</a><a class="page-number" href="/archives/2016/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2016/page/6/">6</a><a class="extend next" rel="next" href="/archives/2016/page/3/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -467,8 +339,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

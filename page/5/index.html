@@ -192,6 +192,133 @@
 
       <div class="body-wrap">
   
+    <article id="post-十个iOS面试问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/31/十个iOS面试问题/" class="article-date">
+  	<time datetime="2016-03-31T12:01:39.000Z" itemprop="datePublished">2016-03-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/31/十个iOS面试问题/">十个iOS面试问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>哪一天我能解决这十个问题了，我也算是有小成了，直接上题：</p>
+<ol>
+<li>你使用过Objective-C的运行时编程（Runtime Programming）么？如果使用过，你用它做了什么？你还能记得你所使用的相关的头文件或者某些方法的名称吗？
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS-成长之路/">iOS 成长之路</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/31/十个iOS面试问题/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-随机数的生成" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/31/随机数的生成/" class="article-date">
+  	<time datetime="2016-03-31T11:49:15.000Z" itemprop="datePublished">2016-03-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/31/随机数的生成/">随机数的生成</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="如何生成一个-Objective-C-的随机数"><a href="#如何生成一个-Objective-C-的随机数" class="headerlink" title="如何生成一个 Objective-C 的随机数"></a>如何生成一个 Objective-C 的随机数</h3><p>   具体而言，产生一个 0 和 N - 1 之间的随机数，使用 arc4random_uniform()，从而避免模偏差(modulo bias)。</p>
+<ol>
+<li><p>0 到 N - 1 之间的随机整数</p>
+<p>  NSUInteger r = arc4random_uniform(N);</p>
+</li>
+</ol>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/31/随机数的生成/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-nil-Nil-NULL和NSNull" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -544,133 +671,6 @@
       
         <p class="article-more-link">
           <a  href="/2016/03/27/CTStringAttributes-扩展属性/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-日期类的使用2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/20/日期类的使用2/" class="article-date">
-  	<time datetime="2016-03-20T05:59:29.000Z" itemprop="datePublished">2016-03-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/20/日期类的使用2/"> 日期类的使用2</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>接上一篇：<a href="/2016/03/20/日期类的使用NSDate/">日期类的使用NSDate</a></p>
-<h3 id="NSDateFormatter-的使用"><a href="#NSDateFormatter-的使用" class="headerlink" title="NSDateFormatter 的使用"></a>NSDateFormatter 的使用</h3><pre><code>NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-
-[dateFormatter setDateFormat:@&quot;&apos;公元前/后:&apos;G  &apos;年份:&apos;u&apos;=&apos;yyyy&apos;=&apos;yy &apos;季度:&apos;q&apos;=&apos;qqq&apos;=&apos;qqqq &apos;月份:&apos;M&apos;=&apos;MMM&apos;=&apos;MMMM &apos;今天是今年第几周:&apos;w &apos;今天是本月第几周:&apos;W  &apos;
-今天是今天第几天:&apos;D &apos;今天是本月第几天:&apos;d &apos;星期:&apos;c&apos;=&apos;ccc&apos;=&apos;cccc &apos;上午/下午:&apos;a &apos;小时:&apos;h&apos;=&apos;H &apos;分钟:&apos;m &apos;秒:&apos;s &apos;毫秒:&apos;SSS  &apos;这一天已过多少毫秒:&apos;A  &apos;时区名称:&apos;zzzz&apos;=&apos;vvvv &apos;时区编号:&apos;Z &quot;];
-
- NSLog(@&quot;%@&quot;, [dateFormatter stringFromDate:[NSDate date]]);
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期，时间/">日期，时间</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/20/日期类的使用2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-日期类的使用NSDate" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/20/日期类的使用NSDate/" class="article-date">
-  	<time datetime="2016-03-20T05:24:56.000Z" itemprop="datePublished">2016-03-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/20/日期类的使用NSDate/">日期类的使用NSDate</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>日期类在需要记录时间的地方发挥着巨大的作用，也可以实时地获取程序使用的时间。配合 NSLocal ，NSDateFormatter 和 NSTimeZone 这几个类就可以涵盖所有的程序使用的时间日期的数据。<br><img src="/img/date.png" alt=""><br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期，时间/">日期，时间</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/20/日期类的使用NSDate/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

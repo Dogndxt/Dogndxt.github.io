@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-29T12:42:21.000Z</updated>
+  <updated>2016-06-02T13:43:30.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,82 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title> storyboard之prepareForSegue</title>
+    <link href="http://yoursite.com/2016/06/02/storyboard%E4%B9%8BprepareForSegue/"/>
+    <id>http://yoursite.com/2016/06/02/storyboard之prepareForSegue/</id>
+    <published>2016-06-02T13:41:03.000Z</published>
+    <updated>2016-06-02T13:43:30.000Z</updated>
+    
+    <content type="html">&lt;p&gt;storyboard 解决的是页面之间的跳转问题。 一个颇为复杂的页面跳转，一旦使用了storyboard，就会四两拨千斤。你只需简单地拖拽，即可完成UIViewController 之间的跳转。 这里面有个神器，一个极为重要的method :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {}
+
+第一个参数是 segue， 第二个参数是 sender。 
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;这个method 主要解决2个问题：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;（1） 获取所要跳转到的视图控制器 （ViewController）；
+（2） 同时，将上一个视图的数据，传递给下一个视图。 （比如： 上一个视图是TableView， 那么，就要将点击cell的行号传递到下一个视图）。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; UIViewController *destination = segue.destinationViewController;&lt;br&gt; 只要是 prepareForSegue：sender： 总会声明一个目标视图控制器（destination viewcontroller）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;有一种灵活的传递方法，通过遵循 KVC （Key -Value- Coding）规则来传值。 具体来说， 就是通过 [viewController setValue: forKey: ] 来存储数据。  既然提供了存储方式，就有对应的获取的方式。 以技术用语表达，就是： 读写操作是成对出现的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;该方法的触发条件&quot;&gt;&lt;a href=&quot;#该方法的触发条件&quot; class=&quot;headerlink&quot; title=&quot;该方法的触发条件&quot;&gt;&lt;/a&gt;该方法的触发条件&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;当前的视图控制器即将被另一个视图控制器所替代时，segue将处于激活状态，从而调用prepareForSegue:sender: 方法。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;本质&quot;&gt;&lt;a href=&quot;#本质&quot; class=&quot;headerlink&quot; title=&quot;本质&quot;&gt;&lt;/a&gt;本质&lt;/h3&gt;&lt;p&gt; 为了区分视图的跳转，可以用上一个、下一个来表示，也可以用源视图、目标视图来表示。 即： sourceViewController 和destinationViewController。  目标视图控制器是指：即将显示（加载）的视图， 而源视图控制器是指：即将被取代的视图控制器。&lt;/p&gt;
+&lt;p&gt; segue虽然实现的是视图之间的跳转，其实是视图控制器之间的切换。 &lt;strong&gt;更确切地说，segue 实现的是Secene（场景）之间的跳转。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt; Scene 是由：  View 、 ViewController、First Responder、Exit  组成的。&lt;/strong&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;storyboard 解决的是页面之间的跳转问题。 一个颇为复杂的页面跳转，一旦使用了storyboard，就会四两拨千斤。你只需简单地拖拽，即可完成UIViewController 之间的跳转。 这里面有个神器，一个极为重要的method :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {}
+
+第一个参数是 segue， 第二个参数是 sender。 
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>pragma声明</title>
+    <link href="http://yoursite.com/2016/06/02/pragma%E5%A3%B0%E6%98%8E/"/>
+    <id>http://yoursite.com/2016/06/02/pragma声明/</id>
+    <published>2016-06-02T13:35:43.000Z</published>
+    <updated>2016-06-02T13:37:36.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;pragma-声明是彰显-Objective-C-工艺的标志之一。&quot;&gt;&lt;a href=&quot;#pragma-声明是彰显-Objective-C-工艺的标志之一。&quot; class=&quot;headerlink&quot; title=&quot;#pragma 声明是彰显 Objective-C 工艺的标志之一。&quot;&gt;&lt;/a&gt;#pragma 声明是彰显 Objective-C 工艺的标志之一。&lt;/h3&gt;&lt;p&gt;虽然 #pragma 最初的目的是为了使得源代码在不同的编译器下兼容的，但精明的Xcode编码器将 #pragma 使用到了极致。在现在的背景下，#pragma 避开了注释和代码之间的界限。作为预处理指令，#pragma 在编译时进行计算。但它并不像如 #ifdef…#endif 之类的宏，#pragma 的使用方式不会改变你的应用运行时的行为。相反的，#pragma 声明主要由 Xcode 用来完成两个主要任务：整理代码和防止编译器警告。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;整理你的代码&quot;&gt;&lt;a href=&quot;#整理你的代码&quot; class=&quot;headerlink&quot; title=&quot;整理你的代码&quot;&gt;&lt;/a&gt;整理你的代码&lt;/h3&gt;&lt;p&gt;代码整理是一个卫生的问题。你如何组织你的代码反映的是你和你的工作。缺少惯性和内部一致性的代码表明要么有疏忽要么无能－－更糟的是，使得一个项目难以维持和协作。&lt;/p&gt;
+&lt;p&gt;在你的 @implementation 中使用 #pragma mark 来将代码分割成逻辑区块。这些逻辑区块不仅仅使得阅读代码本身容易许多，也为Xcode源导航增加了视觉线索（#pragma mark 声明前有一个水平分割并由破折号（－）开始）。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#pragma mark - UITableViewDataSource
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;你的代码应该干净到你可以吃掉它。所以花点时间整理你的.m文件让它们比你生成它们时还干净。&lt;/p&gt;
+&lt;h3 id=&quot;防止警告&quot;&gt;&lt;a href=&quot;#防止警告&quot; class=&quot;headerlink&quot; title=&quot;防止警告&quot;&gt;&lt;/a&gt;防止警告&lt;/h3&gt;&lt;p&gt;#pragma mark十分主流。另一方面，用#pragma声明来防止来自编译器或者静态分析器的警告现在还是很新鲜的。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;* 开启Xcode的困难模式
+
+小提示：试试设置-Weverything标志，并在你的build setting里选择“Treat Warnings as Errors”。这将会开启Xcode的困难模式。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可是有的时候并没有办法避免编译器警告。弃用通知和保留周期误报是这个情况可能发生的常见情况。在这些罕见的，你绝对肯定一个特定的编译器或者稳态分析器警告需要被抑制时，#pragma就派上用场了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;代码片段：
+
+    // completionBlock在AFURLConnectionOperation中被手动的设置为nil来打破保留周期。
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored &amp;quot;-Warc-retain-cycles&amp;quot;
+        self.completionBlock = ^ {
+            ...
+        };
+    #pragma clang diagnostic pop
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;pragma-声明是彰显-Objective-C-工艺的标志之一。&quot;&gt;&lt;a href=&quot;#pragma-声明是彰显-Objective-C-工艺的标志之一。&quot; class=&quot;headerlink&quot; title=&quot;#pragma 声明是彰显 Objective-C 工艺的标志之一。&quot;&gt;&lt;/a&gt;#pragma 声明是彰显 Objective-C 工艺的标志之一。&lt;/h3&gt;&lt;p&gt;虽然 #pragma 最初的目的是为了使得源代码在不同的编译器下兼容的，但精明的Xcode编码器将 #pragma 使用到了极致。在现在的背景下，#pragma 避开了注释和代码之间的界限。作为预处理指令，#pragma 在编译时进行计算。但它并不像如 #ifdef…#endif 之类的宏，#pragma 的使用方式不会改变你的应用运行时的行为。相反的，#pragma 声明主要由 Xcode 用来完成两个主要任务：整理代码和防止编译器警告。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>极光推送实现步骤</title>
@@ -990,177 +1066,6 @@ if (res4) {
     <summary type="html">
     
       &lt;p&gt;NSZone 是苹果对内存分配和释放的优化方式。NSZone不是一个对象；它是一个难懂的C结构，它被用于纪录关于内存处理（管理）一系列对象的信息。你几乎不需要担忧你自己的应用（applications）是怎样管理你自己的空间（zones）的 ；Cocoa透明地管理它。默认的NSZone在程序启动和所有对象被分配时创建。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>错误类error的学习</title>
-    <link href="http://yoursite.com/2016/04/22/%E9%94%99%E8%AF%AF%E7%B1%BBerror%E7%9A%84%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://yoursite.com/2016/04/22/错误类error的学习/</id>
-    <published>2016-04-22T14:24:31.000Z</published>
-    <updated>2016-04-22T14:25:03.000Z</updated>
-    
-    <content type="html">&lt;p&gt;获取系统的错误信息 &lt;/p&gt;
-&lt;p&gt;比如移动文件时，获取文件操作错误：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  NSError *e = nil;
-  [[NSFileManager defaultManager] moveItemAtPath:sourcePath toPath:targetPath error:&amp;amp;e];
-  if (e) {
-  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e localizedDescription]);
-  }
-先定一个空的错误信息
-  NSError *e = nil;
-取地址
-  &amp;amp;e   
-如果有错误信息，打印错误的本地化描述
-  if (e) {
-  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e localizedDescription]);
-  }
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;自定义错误信息&quot;&gt;&lt;a href=&quot;#自定义错误信息&quot; class=&quot;headerlink&quot; title=&quot;自定义错误信息&quot;&gt;&lt;/a&gt;自定义错误信息&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;通常可以通过下面语句，自定义个NSError对象
-
-   #define CustomErrorDomain @&amp;quot;com.xiaodao.test&amp;quot;
-     typedef enum {
-
-   　　  XDefultFailed = -1000,
-   　　  XRegisterFailed,
-   　　  XConnectFailed,
-   　　  XNotBindedFailed
-     }CustomErrorFailed;
-
-   NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@&amp;quot;is a error test&amp;quot;                                                                      forKey:NSLocalizedDescriptionKey];
-   NSError *aError = [NSError errorWithDomain:CustomErrorDomain code:XDefultFailed userInfo:userInfo];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中，自定义错误域对象CustomErrorDomain，通常用域名反写，也可以是任何其他字符串code错误标识, 系统的code一般都大于零，自定code可以用枚举（最好用负数, 但不是必须的）userInfo自定义错误信息，NSLocalizedDescriptionKey是NSError头文件中预定义的键，标识错误的本地化描述可以通过NSError的localizedDescription方法获得对应的值信息&lt;/p&gt;
-&lt;p&gt;主调用函数一般传入NSError指针的指针，来获取错误信息，例如&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (Bool)doSomething:(NSDictionary *)parameter1 error:(NSError **)aError
-{
-   //TODO: do something
-　　*aError = [NSError errorWithDomain:CustomErrorDomain code:XDefultFailed userInfo:userInfo];
-　　return Yes;
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSError头文件解析&quot;&gt;&lt;a href=&quot;#NSError头文件解析&quot; class=&quot;headerlink&quot; title=&quot;NSError头文件解析&quot;&gt;&lt;/a&gt;NSError头文件解析&lt;/h3&gt;&lt;h4 id=&quot;NSError对象中，主要有三个私有变量&quot;&gt;&lt;a href=&quot;#NSError对象中，主要有三个私有变量&quot; class=&quot;headerlink&quot; title=&quot;NSError对象中，主要有三个私有变量&quot;&gt;&lt;/a&gt;NSError对象中，主要有三个私有变量&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;错误域（NSInteger）： _domain
-
-错误标示（NSString *）：_code
-
-错误详细信息（NSDictionary *）：_userInfo
-
-通常用_domain和_code一起标识一个错误信息
-
-
-获取_domain
-- (NSString *)domain;
-
-获取 _code
-- (NSInteger)code;
-
-获取 _userInfo
-- (NSDictionary *)userInfo;
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;预定义域&quot;&gt;&lt;a href=&quot;#预定义域&quot; class=&quot;headerlink&quot; title=&quot;预定义域&quot;&gt;&lt;/a&gt;预定义域&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;AppKit和Foundation库中主要的错误域
-     NSString *const NSCocoaErrorDomain;
-
-其他域
-     NSString *const NSPOSIXErrorDomain;
-     NSString *const NSOSStatusErrorDomain;
-     NSString *const NSMachErrorDomain;
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;预定义的userinfo键名&quot;&gt;&lt;a href=&quot;#预定义的userinfo键名&quot; class=&quot;headerlink&quot; title=&quot;预定义的userinfo键名&quot;&gt;&lt;/a&gt;预定义的userinfo键名&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;推荐的标准方式，通用键
-    NSString *const NSUnderlyingErrorKey;
-
-其他键，对应各自读取信息的方法：
-
-详细描述键
-    NSString *const NSLocalizedDescriptionKey;
-
-取方法
-   - (NSString *)localizedDescription;
-
-失败原因键
-    NSString *const NSLocalizedFailureReasonErrorKey
-
-取方法
-    - (NSString *)localizedFailureReason;
-
-恢复建议键
-    NSString *const NSLocalizedRecoverySuggestionErrorKey;
-
-取方法
-    - (NSString *)localizedRecoverySuggestion;
-
-恢复选项键
-    NSString *const NSLocalizedRecoveryOptionsErrorKey
-
-取方法
-    - (NSArray *)localizedRecoveryOptions;
-
-其他键
-    NSString *const NSRecoveryAttempterErrorKey; 
-    NSString *const NSHelpAnchorErrorKey;
-    NSString *const NSStringEncodingErrorKey ;
-    NSString *const NSURLErrorKey;
-    NSString *const NSFilePathErrorKey;
-用法：
-NSDictionary *userInfo ＝ [NSDictionary dictionaryWithObjectsAndKeys:@&amp;quot;这是错误详细的描述信息&amp;quot;, NSLocalizedDescriptionKey, error, NSUnderlyingErrorKey, nil]];
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;主要的初始化方法：&quot;&gt;&lt;a href=&quot;#主要的初始化方法：&quot; class=&quot;headerlink&quot; title=&quot;主要的初始化方法：&quot;&gt;&lt;/a&gt;主要的初始化方法：&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;- (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict;
-+ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict;
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;获取系统的错误信息 &lt;/p&gt;
-&lt;p&gt;比如移动文件时，获取文件操作错误：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  NSError *e = nil;
-  [[NSFileManager defaultManager] moveItemAtPath:sourcePath toPath:targetPath error:&amp;amp;e];
-  if (e) {
-  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e localizedDescription]);
-  }
-先定一个空的错误信息
-  NSError *e = nil;
-取地址
-  &amp;amp;e   
-如果有错误信息，打印错误的本地化描述
-  if (e) {
-  　　NSLog(@&amp;quot;move failed:%@&amp;quot;, [e localizedDescription]);
-  }
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS程序的五种状态</title>
-    <link href="http://yoursite.com/2016/04/22/iOS%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%BA%94%E7%A7%8D%E7%8A%B6%E6%80%81/"/>
-    <id>http://yoursite.com/2016/04/22/iOS程序的五种状态/</id>
-    <published>2016-04-22T14:21:54.000Z</published>
-    <updated>2016-04-22T14:23:20.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;IOS应用程序5种状态&quot;&gt;&lt;a href=&quot;#IOS应用程序5种状态&quot; class=&quot;headerlink&quot; title=&quot;IOS应用程序5种状态&quot;&gt;&lt;/a&gt;IOS应用程序5种状态&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Not running:应用还没有启动，或者应用正在运行但是途中被系统停止&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Inactive:当前应用正在前台运行，但是并不接收事件（当前 或许正在执行其它代码）。一般每当应用要从一个状态切换到另一个不 同的状态时，中途过渡会短暂停留在此状态。唯一在此状态停留时 间比较长的情况是：当用户 锁屏时，或者系统提示用户去响应某 些（诸如电话来电、有未读短信等）事件的时候。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Active:当前应用正在前台运行，并且接收事件。这是应用正在前台运行时所处的正常状态。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Background:应用处在后台，并且还在执行代码。大多数将 要进入Suspended状态的应用，会先短暂进入此状态。然而，对于请求 需要额外的执行时间的应用，会在此状态保持更长一段时间。另外， 如果一个应用要 求启动时直接进入后台运行，这样的应用会直接 从Not running状态进入Background状态，中途不会经过Inactive状 态。比如没有界面的应用。注此处并不特指没有界面的应用，其实 也可以是 有界面的应用，只是如果要直接进入background状态的 话，该应用界面不会被显示。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Suspended:应用处在后台，并且已停止执行代码。系统自动 的将应用移入此状态，且在此举之前不会对应用做任何通知。当处在 此状态时，应用依然驻留内存但不执行任何程序代码。当系统发生 低内存告警时，系统将会将处 于Suspended状态的应用清除出内 存以为正在前台运行的应用提供足够的内存。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;IOS应用程序5种状态&quot;&gt;&lt;a href=&quot;#IOS应用程序5种状态&quot; class=&quot;headerlink&quot; title=&quot;IOS应用程序5种状态&quot;&gt;&lt;/a&gt;IOS应用程序5种状态&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Not running:应用还没有启动，或者应用正在运行但是途中被系统停止&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Inactive:当前应用正在前台运行，但是并不接收事件（当前 或许正在执行其它代码）。一般每当应用要从一个状态切换到另一个不 同的状态时，中途过渡会短暂停留在此状态。唯一在此状态停留时 间比较长的情况是：当用户 锁屏时，或者系统提示用户去响应某 些（诸如电话来电、有未读短信等）事件的时候。&lt;/p&gt;
     
     </summary>
     

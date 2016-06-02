@@ -4,17 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016 | 第欧根尼的小桶</title>
+  <title>pragma声明 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/2016/page/2/index.html">
+  <meta name="description" content="#pragma 声明是彰显 Objective-C 工艺的标志之一。虽然 #pragma 最初的目的是为了使得源代码在不同的编译器下兼容的，但精明的Xcode编码器将 #pragma 使用到了极致。在现在的背景下，#pragma 避开了注释和代码之间的界限。作为预处理指令，#pragma 在编译时进行计算。但它并不像如 #ifdef…#endif 之类的宏，#pragma 的使用方式不会改变你的应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pragma声明">
+<meta property="og:url" content="http://yoursite.com/2016/06/02/pragma声明/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="#pragma 声明是彰显 Objective-C 工艺的标志之一。虽然 #pragma 最初的目的是为了使得源代码在不同的编译器下兼容的，但精明的Xcode编码器将 #pragma 使用到了极致。在现在的背景下，#pragma 避开了注释和代码之间的界限。作为预处理指令，#pragma 在编译时进行计算。但它并不像如 #ifdef…#endif 之类的宏，#pragma 的使用方式不会改变你的应">
+<meta property="og:updated_time" content="2016-06-02T13:37:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="pragma声明">
+<meta name="twitter:description" content="#pragma 声明是彰显 Objective-C 工艺的标志之一。虽然 #pragma 最初的目的是为了使得源代码在不同的编译器下兼容的，但精明的Xcode编码器将 #pragma 使用到了极致。在现在的背景下，#pragma 避开了注释和代码之间的界限。作为预处理指令，#pragma 在编译时进行计算。但它并不像如 #ifdef…#endif 之类的宏，#pragma 的使用方式不会改变你的应">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,258 +191,133 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-pragma声明" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/06/02/pragma声明/" class="article-date">
+  	<time datetime="2016-06-02T13:35:43.000Z" itemprop="datePublished">2016-06-02</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      pragma声明
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/07/iOS特别技能点总结/" class="archive-article-date">
-  	<time datetime="2016-05-07T11:33:38.000Z" itemprop="datePublished">5月 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/07/iOS特别技能点总结/">iOS特别技能点总结</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="pragma-声明是彰显-Objective-C-工艺的标志之一。"><a href="#pragma-声明是彰显-Objective-C-工艺的标志之一。" class="headerlink" title="#pragma 声明是彰显 Objective-C 工艺的标志之一。"></a>#pragma 声明是彰显 Objective-C 工艺的标志之一。</h3><p>虽然 #pragma 最初的目的是为了使得源代码在不同的编译器下兼容的，但精明的Xcode编码器将 #pragma 使用到了极致。在现在的背景下，#pragma 避开了注释和代码之间的界限。作为预处理指令，#pragma 在编译时进行计算。但它并不像如 #ifdef…#endif 之类的宏，#pragma 的使用方式不会改变你的应用运行时的行为。相反的，#pragma 声明主要由 Xcode 用来完成两个主要任务：整理代码和防止编译器警告。</p>
+<a id="more"></a>
+<h3 id="整理你的代码"><a href="#整理你的代码" class="headerlink" title="整理你的代码"></a>整理你的代码</h3><p>代码整理是一个卫生的问题。你如何组织你的代码反映的是你和你的工作。缺少惯性和内部一致性的代码表明要么有疏忽要么无能－－更糟的是，使得一个项目难以维持和协作。</p>
+<p>在你的 @implementation 中使用 #pragma mark 来将代码分割成逻辑区块。这些逻辑区块不仅仅使得阅读代码本身容易许多，也为Xcode源导航增加了视觉线索（#pragma mark 声明前有一个水平分割并由破折号（－）开始）。</p>
+<pre><code>#pragma mark - UITableViewDataSource
+</code></pre><p>你的代码应该干净到你可以吃掉它。所以花点时间整理你的.m文件让它们比你生成它们时还干净。</p>
+<h3 id="防止警告"><a href="#防止警告" class="headerlink" title="防止警告"></a>防止警告</h3><p>#pragma mark十分主流。另一方面，用#pragma声明来防止来自编译器或者静态分析器的警告现在还是很新鲜的。</p>
+<pre><code>* 开启Xcode的困难模式
 
-        <div class="article-info info-on-right">
-          
-          
+小提示：试试设置-Weverything标志，并在你的build setting里选择“Treat Warnings as Errors”。这将会开启Xcode的困难模式。
+</code></pre><p>可是有的时候并没有办法避免编译器警告。弃用通知和保留周期误报是这个情况可能发生的常见情况。在这些罕见的，你绝对肯定一个特定的编译器或者稳态分析器警告需要被抑制时，#pragma就派上用场了</p>
+<pre><code>代码片段：
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    // completionBlock在AFURLConnectionOperation中被手动的设置为nil来打破保留周期。
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored &quot;-Warc-retain-cycles&quot;
+        self.completionBlock = ^ {
+            ...
+        };
+    #pragma clang diagnostic pop
+</code></pre>
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/02/storyboard之prepareForSegue/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+           storyboard之prepareForSegue
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/29/极光推送实现步骤/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">极光推送实现步骤</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/深度学习（三）/" class="archive-article-date">
-  	<time datetime="2016-05-05T13:11:48.000Z" itemprop="datePublished">5月 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/深度学习（三）/">深度学习（三）</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/深度学习（二）/" class="archive-article-date">
-  	<time datetime="2016-05-05T13:03:45.000Z" itemprop="datePublished">5月 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/深度学习（二）/">深度学习（二）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/深度学习（－）/" class="archive-article-date">
-  	<time datetime="2016-05-05T12:46:40.000Z" itemprop="datePublished">5月 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/深度学习（－）/">深度学习（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/01/单一功能原则/" class="archive-article-date">
-  	<time datetime="2016-05-01T13:29:49.000Z" itemprop="datePublished">5月 1</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/01/单一功能原则/">单一功能原则</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［类的魔法］/">［类的魔法］</a></li></ul>
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/29/基本文件操作filehandle的用法/" class="archive-article-date">
-  	<time datetime="2016-04-29T12:57:38.000Z" itemprop="datePublished">4月 29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/29/基本文件操作filehandle的用法/">基本文件操作filehandle的用法</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/27/位运算/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:21:31.000Z" itemprop="datePublished">4月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/27/位运算/">位运算</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="pragma声明" data-title="pragma声明" data-url="http://yoursite.com/2016/06/02/pragma声明/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/27/字符串加密之Base64/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:18:00.000Z" itemprop="datePublished">4月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/27/字符串加密之Base64/">字符串加密之Base64</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2016/">&laquo; Prev</a><a class="page-number" href="/archives/2016/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2016/page/3/">3</a><a class="page-number" href="/archives/2016/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2016/page/6/">6</a><a class="extend next" rel="next" href="/archives/2016/page/3/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -467,8 +343,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
