@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-02T13:43:30.000Z</updated>
+  <updated>2016-06-30T12:05:05.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OC的三大新特性</title>
+    <link href="http://yoursite.com/2016/06/30/OC%E7%9A%84%E4%B8%89%E5%A4%A7%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>http://yoursite.com/2016/06/30/OC的三大新特性/</id>
+    <published>2016-06-30T12:00:50.000Z</published>
+    <updated>2016-06-30T12:05:05.000Z</updated>
+    
+    <content type="html">&lt;p&gt;三个主要的新特性：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Nullability             判空性
+Lightweight Generics    轻量级泛型
+__kindof
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;Nullability&quot;&gt;&lt;a href=&quot;#Nullability&quot; class=&quot;headerlink&quot; title=&quot;Nullability&quot;&gt;&lt;/a&gt;Nullability&lt;/h3&gt;&lt;p&gt;接口中 nullable 的是少数，所以为了防止写一大堆 nonnull，Foundation 还提供了一对儿宏，包在里面的对象默认加 nonnull 修饰符，只需要把 nullable 的指出来就行，黑话叫 Audited Regions。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NS_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_END
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Nullability 在编译器层面提供了空值的类型检查，在类型不符时给出 warning，方便开发者第一时间发现潜在问题。不过我想更大的意义在于能够更加清楚的描述接口，是主调者和被调者间的一个协议，比多少句文档描述都来得清晰。&lt;/p&gt;
+&lt;p&gt;打个比方：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (nullable instancetype)URLWithString:(NSString *)URLString;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;NSURL 的这个 API 前面加了 nullable 后，更加显式的指出了这个接口可能因为 URLString 的格式错误而创建失败，使用时自然而然的就考虑到了判空处理。&lt;/p&gt;
+&lt;p&gt;不仅是属性和方法中的对象，对于局部的对象、甚至 c 指针都可以用带双下划线的修饰符，可以理解成能用 const 关键字的地方都能用 Nullability。&lt;/p&gt;
+&lt;p&gt;所以 Nullability 总的来说就是，写着丑B，用着舒服 - -&lt;/p&gt;
+&lt;h3 id=&quot;Lightweight-Generics-轻量级泛型&quot;&gt;&lt;a href=&quot;#Lightweight-Generics-轻量级泛型&quot; class=&quot;headerlink&quot; title=&quot;Lightweight Generics  轻量级泛型&quot;&gt;&lt;/a&gt;Lightweight Generics  轻量级泛型&lt;/h3&gt;&lt;p&gt;轻量是因为这是个纯编译器的语法支持（llvm 7.0），和 Nullability 一样，没有借助任何 objc runtime 的升级，也就是说，这个新语法在 Xcode 7 上可以使用且完全向下兼容&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSArray&amp;lt;nsstring *&amp;gt; *strings = @[@&amp;quot;sun&amp;quot;, @&amp;quot;yuan&amp;quot;];
+@property (readonly) NSArray&amp;lt;nsurl *&amp;gt; *imageURLs;
+
+自定义一个 Stack 容器类：
+
+@interface Stack&amp;lt;objecttype&amp;gt; : NSObject
+
+- (void)pushObject:(ObjectType)object;
+
+- (ObjectType)popObject;
+
+@property (nonatomic, readonly) NSArray&amp;lt;objecttype&amp;gt; *allObjects;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 这个 ObjectType 是传入类型的 placeholder，它只能在 @interface 上定义（类声明、类扩展、Category），如果你喜欢用 T 表示也 ok，这个类型在 @interface 和 @end 区间的作用域有效，可以把它作为入参、出参、甚至内部 NSArray 属性的泛型类型，应该说一切都是符合预期的。我们还可以给 ObjectType 增加类型限制，比如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 只接受 NSNumber * 的泛型
+@interface Stack&amp;lt;objecttype: nsnumber *&amp;gt; : NSObject
+
+
+__covariant - 协变性，子类型可以强转到父类型（里氏替换原则）
+
+__contravariant - 逆变性，父类型可以强转到子类型（WTF?）
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;协变是非常好理解的，像 NSArray 的泛型就用了协变的修饰符&lt;/p&gt;
+&lt;h3 id=&quot;kindof&quot;&gt;&lt;a href=&quot;#kindof&quot; class=&quot;headerlink&quot; title=&quot;__kindof&quot;&gt;&lt;/a&gt;__kindof&lt;/h3&gt;&lt;p&gt;__kindof 这修饰符还是很实用的，解决了一个长期以来的小痛点，拿原来的 UITableView 的这个方法来说：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 使用时前面基本会使用 UITableViewCell 子类型的指针来接收返回值，所以这个 API 为了让开发者不必每次都蛋疼的写显式强转，把返回值定义成了 id 类型，而这个 API 实际上的意思是返回一个 UITableViewCell 或 UITableViewCell 子类的实例，于是新的 __kindof 关键字解决了这个问题：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (__kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;既明确表明了返回值，又让使用者不必写强转。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;三个主要的新特性：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Nullability             判空性
+Lightweight Generics    轻量级泛型
+__kindof
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title> storyboard之prepareForSegue</title>
@@ -1035,37 +1100,6 @@ if (res4) {
     
       &lt;h4 id=&quot;获取应用沙盒根路径&quot;&gt;&lt;a href=&quot;#获取应用沙盒根路径&quot; class=&quot;headerlink&quot; title=&quot;获取应用沙盒根路径&quot;&gt;&lt;/a&gt;获取应用沙盒根路径&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;NSString *dirHome = NSHomeDirectory(); 
 &lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>内存空间Zone的挖掘</title>
-    <link href="http://yoursite.com/2016/04/22/%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4Zone%E7%9A%84%E6%8C%96%E6%8E%98/"/>
-    <id>http://yoursite.com/2016/04/22/内存空间Zone的挖掘/</id>
-    <published>2016-04-22T14:26:34.000Z</published>
-    <updated>2016-04-22T14:27:11.000Z</updated>
-    
-    <content type="html">&lt;p&gt;NSZone 是苹果对内存分配和释放的优化方式。NSZone不是一个对象；它是一个难懂的C结构，它被用于纪录关于内存处理（管理）一系列对象的信息。你几乎不需要担忧你自己的应用（applications）是怎样管理你自己的空间（zones）的 ；Cocoa透明地管理它。默认的NSZone在程序启动和所有对象被分配时创建。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;所以你为什么想要去用你自己的NSZone呢？&lt;/p&gt;
-&lt;p&gt;如果你大量分配数百个小对象，事实上你会发现你花费精力来为他们分配内存是有意义的。因为这种标准的（默认的）空间会被一直使用，它会变得斑驳起来；释放对象的过程会给整个内存留下令人尴尬的空隙。标准空间的分配器（allocator）也知道知道这一点，所以它尝试着优先去使用被用户释放的内存，去填补这些空隙，但是这种方式只有在空间(zone) 变得很大时才有明显效果。&lt;/p&gt;
-&lt;p&gt;如果你想为大量对象分配内存，然后，你可以创建你自己的空间（zone）并且告诉它不用去为了为新对象分配内存而去查找那些空隙。分配器现在能够每次跳到内存分配的末尾为你的新对象分配内存，能起到不错的效果。&lt;/p&gt;
-&lt;p&gt;另外，分配器也能为你节省时间，当分配器向操作系统请求更多内存时，分配器去查找哪块空间什么时候被填满，需要花费不少时间。一种更快的时间是一次去请求一大块内存，你也能告诉你的NSZone在这儿做什么。&lt;/p&gt;
-&lt;p&gt;NSZone也能节省你释放内存的时间。它有方法释放大量分配的内存，而不打扰释放器（deallocators）。如果用一个集合（set）包含一系列对象，这样能够节省时间，你可以一次释放它们而不用去乏味地一个个释放它们。&lt;/p&gt;
-&lt;p&gt;NSZone is Apple’s way of optimizing object allocation and freeing. NSZone is not an object; it is an opaque C-struct storing information about how memory should be handled for a set of objects.&lt;/p&gt;
-&lt;p&gt;One rarely needs to worry about handling your own zones in applications; Cocoa handles it transparently. A default NSZone is created&amp;gt;If you are mass-allocating hundreds of cheap objects, you may find the cost of actually allocating space for them becomes significant. Because the standard zone is used all the time, it can become very patchy; deleted objects can leave awkward gaps throughout memory. The allocator for the standard NSZone knows this, and it tries to fill these gaps in preference to grabbing more memory off the system, but this can be costly in time if the zone has grown quite large.&lt;/p&gt;
-&lt;p&gt;If you want to mass-allocate objects, then, you can create your own zone and tell it not to bother with finding gaps to put new objects in. The allocator can now jump to the end of its allotted memory each time and quickly assign memory to your new objects, saving a lot of effort.&lt;/p&gt;
-&lt;p&gt;Allocators can save you time elsewhere, too, as asking the OS for more memory, which a zone needs to do whenever it fills up, is another costly operation if it’s done a lot. Much quicker is to ask for huge chunks of memory at a time, and you can tell your NSZone what to do here as well.&lt;/p&gt;
-&lt;p&gt;Rumor has it that NSZone could save you deallocation time in the Good Old Days, too, with a method that simply chucks away all the allotted memory without bothering to call deallocators. If a set of objects is self-contained, this could save a lot of time, as you can chuck them all away at style=”font-weight:bold”&amp;gt;NSZone method (NSRecycleZone) carefully puts all the objects in a zone neatly style=”font-weight:bold”&amp;gt;NSZone. Not exactly a huge time-saver.&lt;/p&gt;
-&lt;p&gt;So, in summary, zones save you time in mass allocations. &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;NSZone 是苹果对内存分配和释放的优化方式。NSZone不是一个对象；它是一个难懂的C结构，它被用于纪录关于内存处理（管理）一系列对象的信息。你几乎不需要担忧你自己的应用（applications）是怎样管理你自己的空间（zones）的 ；Cocoa透明地管理它。默认的NSZone在程序启动和所有对象被分配时创建。&lt;br&gt;
     
     </summary>
     

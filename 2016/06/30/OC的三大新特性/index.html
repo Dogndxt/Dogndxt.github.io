@@ -4,17 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/6 | 第欧根尼的小桶</title>
+  <title>OC的三大新特性 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/2016/06/index.html">
+  <meta name="description" content="三个主要的新特性：
+Nullability             判空性
+Lightweight Generics    轻量级泛型
+__kindof">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC的三大新特性">
+<meta property="og:url" content="http://yoursite.com/2016/06/30/OC的三大新特性/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="三个主要的新特性：
+Nullability             判空性
+Lightweight Generics    轻量级泛型
+__kindof">
+<meta property="og:updated_time" content="2016-06-30T12:05:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="OC的三大新特性">
+<meta name="twitter:description" content="三个主要的新特性：
+Nullability             判空性
+Lightweight Generics    轻量级泛型
+__kindof">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,103 +200,147 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-OC的三大新特性" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/06/30/OC的三大新特性/" class="article-date">
+  	<time datetime="2016-06-30T12:00:50.000Z" itemprop="datePublished">2016-06-30</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OC的三大新特性
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/30/OC的三大新特性/" class="archive-article-date">
-  	<time datetime="2016-06-30T12:00:50.000Z" itemprop="datePublished">6月 30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/30/OC的三大新特性/">OC的三大新特性</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>三个主要的新特性：</p>
+<pre><code>Nullability             判空性
+Lightweight Generics    轻量级泛型
+__kindof
+</code></pre><a id="more"></a>
+<h3 id="Nullability"><a href="#Nullability" class="headerlink" title="Nullability"></a>Nullability</h3><p>接口中 nullable 的是少数，所以为了防止写一大堆 nonnull，Foundation 还提供了一对儿宏，包在里面的对象默认加 nonnull 修饰符，只需要把 nullable 的指出来就行，黑话叫 Audited Regions。</p>
+<pre><code>NS_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_END
+</code></pre><p>Nullability 在编译器层面提供了空值的类型检查，在类型不符时给出 warning，方便开发者第一时间发现潜在问题。不过我想更大的意义在于能够更加清楚的描述接口，是主调者和被调者间的一个协议，比多少句文档描述都来得清晰。</p>
+<p>打个比方：</p>
+<pre><code>+ (nullable instancetype)URLWithString:(NSString *)URLString;
+</code></pre><p>NSURL 的这个 API 前面加了 nullable 后，更加显式的指出了这个接口可能因为 URLString 的格式错误而创建失败，使用时自然而然的就考虑到了判空处理。</p>
+<p>不仅是属性和方法中的对象，对于局部的对象、甚至 c 指针都可以用带双下划线的修饰符，可以理解成能用 const 关键字的地方都能用 Nullability。</p>
+<p>所以 Nullability 总的来说就是，写着丑B，用着舒服 - -</p>
+<h3 id="Lightweight-Generics-轻量级泛型"><a href="#Lightweight-Generics-轻量级泛型" class="headerlink" title="Lightweight Generics  轻量级泛型"></a>Lightweight Generics  轻量级泛型</h3><p>轻量是因为这是个纯编译器的语法支持（llvm 7.0），和 Nullability 一样，没有借助任何 objc runtime 的升级，也就是说，这个新语法在 Xcode 7 上可以使用且完全向下兼容</p>
+<pre><code>NSArray&lt;nsstring *&gt; *strings = @[@&quot;sun&quot;, @&quot;yuan&quot;];
+@property (readonly) NSArray&lt;nsurl *&gt; *imageURLs;
 
-        <div class="article-info info-on-right">
-          
-          
+自定义一个 Stack 容器类：
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+@interface Stack&lt;objecttype&gt; : NSObject
+
+- (void)pushObject:(ObjectType)object;
+
+- (ObjectType)popObject;
+
+@property (nonatomic, readonly) NSArray&lt;objecttype&gt; *allObjects;
+
+@end
+</code></pre><p> 这个 ObjectType 是传入类型的 placeholder，它只能在 @interface 上定义（类声明、类扩展、Category），如果你喜欢用 T 表示也 ok，这个类型在 @interface 和 @end 区间的作用域有效，可以把它作为入参、出参、甚至内部 NSArray 属性的泛型类型，应该说一切都是符合预期的。我们还可以给 ObjectType 增加类型限制，比如：</p>
+<pre><code>// 只接受 NSNumber * 的泛型
+@interface Stack&lt;objecttype: nsnumber *&gt; : NSObject
+
+
+__covariant - 协变性，子类型可以强转到父类型（里氏替换原则）
+
+__contravariant - 逆变性，父类型可以强转到子类型（WTF?）
+</code></pre><p>协变是非常好理解的，像 NSArray 的泛型就用了协变的修饰符</p>
+<h3 id="kindof"><a href="#kindof" class="headerlink" title="__kindof"></a>__kindof</h3><p>__kindof 这修饰符还是很实用的，解决了一个长期以来的小痛点，拿原来的 UITableView 的这个方法来说：</p>
+<pre><code>- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+</code></pre><p> 使用时前面基本会使用 UITableViewCell 子类型的指针来接收返回值，所以这个 API 为了让开发者不必每次都蛋疼的写显式强转，把返回值定义成了 id 类型，而这个 API 实际上的意思是返回一个 UITableViewCell 或 UITableViewCell 子类的实例，于是新的 __kindof 关键字解决了这个问题：</p>
+<pre><code>- (__kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+</code></pre><p>既明确表明了返回值，又让使用者不必写强转。</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/02/storyboard之prepareForSegue/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"> storyboard之prepareForSegue</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/02/storyboard之prepareForSegue/" class="archive-article-date">
-  	<time datetime="2016-06-02T13:41:03.000Z" itemprop="datePublished">6月 2</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/02/storyboard之prepareForSegue/"> storyboard之prepareForSegue</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/02/pragma声明/" class="archive-article-date">
-  	<time datetime="2016-06-02T13:35:43.000Z" itemprop="datePublished">6月 2</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/02/pragma声明/">pragma声明</a>
-    </h1>
-  
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="OC的三大新特性" data-title="OC的三大新特性" data-url="http://yoursite.com/2016/06/30/OC的三大新特性/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -312,8 +366,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
