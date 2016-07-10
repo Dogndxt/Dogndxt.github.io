@@ -4,27 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>OC的三大新特性 | 第欧根尼的小桶</title>
+  <title>视图控制器的父-子关系 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="三个主要的新特性：
-Nullability             判空性
-Lightweight Generics    轻量级泛型
-__kindof">
+  <meta name="description" content="addChildViewController 优点1.页面逻辑很清晰，相应的View对应相应的ViewController。
+2.当某个子View没有显示时，将不会被Load，减少了内存的使用。
+3.当内存紧张时，没有Load的View将被首先释放，优化了程序的内存释放机制。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OC的三大新特性">
-<meta property="og:url" content="http://yoursite.com/2016/06/30/OC的三大新特性/index.html">
+<meta property="og:title" content="视图控制器的父-子关系">
+<meta property="og:url" content="http://yoursite.com/2016/07/10/视图控制器的父-子关系/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="三个主要的新特性：
-Nullability             判空性
-Lightweight Generics    轻量级泛型
-__kindof">
-<meta property="og:updated_time" content="2016-06-30T12:05:05.000Z">
+<meta property="og:description" content="addChildViewController 优点1.页面逻辑很清晰，相应的View对应相应的ViewController。
+2.当某个子View没有显示时，将不会被Load，减少了内存的使用。
+3.当内存紧张时，没有Load的View将被首先释放，优化了程序的内存释放机制。">
+<meta property="og:updated_time" content="2016-07-10T13:15:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OC的三大新特性">
-<meta name="twitter:description" content="三个主要的新特性：
-Nullability             判空性
-Lightweight Generics    轻量级泛型
-__kindof">
+<meta name="twitter:title" content="视图控制器的父-子关系">
+<meta name="twitter:description" content="addChildViewController 优点1.页面逻辑很清晰，相应的View对应相应的ViewController。
+2.当某个子View没有显示时，将不会被Load，减少了内存的使用。
+3.当内存紧张时，没有Load的View将被首先释放，优化了程序的内存释放机制。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -200,11 +197,11 @@ __kindof">
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-OC的三大新特性" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-视图控制器的父-子关系" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/06/30/OC的三大新特性/" class="article-date">
-  	<time datetime="2016-06-30T12:00:50.000Z" itemprop="datePublished">2016-06-30</time>
+      <a href="/2016/07/10/视图控制器的父-子关系/" class="article-date">
+  	<time datetime="2016-07-10T12:58:37.000Z" itemprop="datePublished">2016-07-10</time>
 </a>
     </div>
   
@@ -217,7 +214,7 @@ __kindof">
         
   
     <h1 class="article-title" itemprop="name">
-      OC的三大新特性
+      视图控制器的父-子关系
     </h1>
   
 
@@ -225,6 +222,10 @@ __kindof">
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
         
 
         <div class="clearfix"></div>
@@ -233,49 +234,37 @@ __kindof">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>三个主要的新特性：</p>
-<pre><code>Nullability             判空性
-Lightweight Generics    轻量级泛型
-__kindof
+        <h3 id="addChildViewController-优点"><a href="#addChildViewController-优点" class="headerlink" title="addChildViewController 优点"></a>addChildViewController 优点</h3><pre><code>1.页面逻辑很清晰，相应的View对应相应的ViewController。
+2.当某个子View没有显示时，将不会被Load，减少了内存的使用。
+3.当内存紧张时，没有Load的View将被首先释放，优化了程序的内存释放机制。
 </code></pre><a id="more"></a>
-<h3 id="Nullability"><a href="#Nullability" class="headerlink" title="Nullability"></a>Nullability</h3><p>接口中 nullable 的是少数，所以为了防止写一大堆 nonnull，Foundation 还提供了一对儿宏，包在里面的对象默认加 nonnull 修饰符，只需要把 nullable 的指出来就行，黑话叫 Audited Regions。</p>
-<pre><code>NS_ASSUME_NONNULL_BEGIN
-NS_ASSUME_NONNULL_END
-</code></pre><p>Nullability 在编译器层面提供了空值的类型检查，在类型不符时给出 warning，方便开发者第一时间发现潜在问题。不过我想更大的意义在于能够更加清楚的描述接口，是主调者和被调者间的一个协议，比多少句文档描述都来得清晰。</p>
-<p>打个比方：</p>
-<pre><code>+ (nullable instancetype)URLWithString:(NSString *)URLString;
-</code></pre><p>NSURL 的这个 API 前面加了 nullable 后，更加显式的指出了这个接口可能因为 URLString 的格式错误而创建失败，使用时自然而然的就考虑到了判空处理。</p>
-<p>不仅是属性和方法中的对象，对于局部的对象、甚至 c 指针都可以用带双下划线的修饰符，可以理解成能用 const 关键字的地方都能用 Nullability。</p>
-<p>所以 Nullability 总的来说就是，写着丑B，用着舒服 - -</p>
-<h3 id="Lightweight-Generics-轻量级泛型"><a href="#Lightweight-Generics-轻量级泛型" class="headerlink" title="Lightweight Generics  轻量级泛型"></a>Lightweight Generics  轻量级泛型</h3><p>轻量是因为这是个纯编译器的语法支持（llvm 7.0），和 Nullability 一样，没有借助任何 objc runtime 的升级，也就是说，这个新语法在 Xcode 7 上可以使用且完全向下兼容</p>
-<pre><code>NSArray&lt;nsstring *&gt; *strings = @[@&quot;sun&quot;, @&quot;yuan&quot;];
-@property (readonly) NSArray&lt;nsurl *&gt; *imageURLs;
-
-自定义一个 Stack 容器类：
-
-@interface Stack&lt;objecttype&gt; : NSObject
-
-- (void)pushObject:(ObjectType)object;
-
-- (ObjectType)popObject;
-
-@property (nonatomic, readonly) NSArray&lt;objecttype&gt; *allObjects;
-
-@end
-</code></pre><p> 这个 ObjectType 是传入类型的 placeholder，它只能在 @interface 上定义（类声明、类扩展、Category），如果你喜欢用 T 表示也 ok，这个类型在 @interface 和 @end 区间的作用域有效，可以把它作为入参、出参、甚至内部 NSArray 属性的泛型类型，应该说一切都是符合预期的。我们还可以给 ObjectType 增加类型限制，比如：</p>
-<pre><code>// 只接受 NSNumber * 的泛型
-@interface Stack&lt;objecttype: nsnumber *&gt; : NSObject
-
-
-__covariant - 协变性，子类型可以强转到父类型（里氏替换原则）
-
-__contravariant - 逆变性，父类型可以强转到子类型（WTF?）
-</code></pre><p>协变是非常好理解的，像 NSArray 的泛型就用了协变的修饰符</p>
-<h3 id="kindof"><a href="#kindof" class="headerlink" title="__kindof"></a>__kindof</h3><p>__kindof 这修饰符还是很实用的，解决了一个长期以来的小痛点，拿原来的 UITableView 的这个方法来说：</p>
-<pre><code>- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier;
-</code></pre><p> 使用时前面基本会使用 UITableViewCell 子类型的指针来接收返回值，所以这个 API 为了让开发者不必每次都蛋疼的写显式强转，把返回值定义成了 id 类型，而这个 API 实际上的意思是返回一个 UITableViewCell 或 UITableViewCell 子类的实例，于是新的 __kindof 关键字解决了这个问题：</p>
-<pre><code>- (__kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
-</code></pre><p>既明确表明了返回值，又让使用者不必写强转。</p>
+<h4 id="在iOS-5-0及以后，iOS为UIViewController类添加了新的属性和方法："><a href="#在iOS-5-0及以后，iOS为UIViewController类添加了新的属性和方法：" class="headerlink" title="在iOS 5.0及以后，iOS为UIViewController类添加了新的属性和方法："></a>在iOS 5.0及以后，iOS为UIViewController类添加了新的属性和方法：</h4><pre><code>@property(nonatomic,readonly) NSArray *childViewControllers
+- (void)addChildViewController:(UIViewController *)childController
+- (void) removeFromParentViewController
+- (void)transitionFromViewController：：：：：：
+- (void)willMoveToParentViewController:(UIViewController *)parent
+- (void)didMoveToParentViewController:(UIViewController *)parent
+</code></pre><p>这样，就能够将一个页面中的UIViewController控制起来，而不是混乱的共用一个UIViewController，最重要的是，编程习惯的革命：<br><strong>降低了功能的耦合度！</strong></p>
+<h4 id="1-父视图控制器-addChildViewController-子视图控制器"><a href="#1-父视图控制器-addChildViewController-子视图控制器" class="headerlink" title="1. [父视图控制器 addChildViewController:子视图控制器];"></a>1. [父视图控制器 addChildViewController:子视图控制器];</h4><p>在此，图控制器A添加了另一个图控制器B，那么A充当父视图控制器，B充当子视图控制器。父视图控制器充当了视图控制器容器的角色。当要添加的子视图控制器已经包含在视图控制器容器中，那么，相当于先从父视图控制器中删除，然后重新添加到父视图控制器中。</p>
+<h4 id="2-void-removeFromParentViewController-从父视图控制器中删除。"><a href="#2-void-removeFromParentViewController-从父视图控制器中删除。" class="headerlink" title="2. - (void)removeFromParentViewController 从父视图控制器中删除。"></a>2. - (void)removeFromParentViewController 从父视图控制器中删除。</h4><h4 id="3-void-transitionFromViewController：：：：：："><a href="#3-void-transitionFromViewController：：：：：：" class="headerlink" title="3.- (void)transitionFromViewController：：：：：："></a>3.- (void)transitionFromViewController：：：：：：</h4><pre><code> - (void)transitionFromViewController:(UIViewController *)fromViewController 
+  toViewController:(UIViewController *)toViewController  duration:(NSTimeInterval)duration  
+  options:(UIViewAnimationOptions)options  animations:(void (^)(void))animations  
+  completion:(void (^)(BOOL finished))completion
+交换两个子视图控制器的位置（由于添加的顺序不同，所以子试图控制器在父视图控制器中存在层次关系）
+fromViewController：当前显示的子试图控制器，将被替换为非显示状态
+toViewController：将要显示的子视图控制器
+duration：交换动画持续的时间，单位秒
+options：动画的方式
+animations：动画Block
+completion：完成后执行的Block
+</code></pre><h4 id="4-void-willMoveToParentViewController-UIViewController-parent"><a href="#4-void-willMoveToParentViewController-UIViewController-parent" class="headerlink" title="4. - (void)willMoveToParentViewController:(UIViewController *)parent"></a>4. - (void)willMoveToParentViewController:(UIViewController *)parent</h4><p>当一个视图控制器从视图控制器容器中被添加或者被删除之前，该方法被调用<br>parent：父视图控制器，如果没有父视图控制器，将为nil</p>
+<pre><code>1. 当我们向我们的视图控制器容器中调用removeFromParentViewController方法时，必须要先调用该方法，且parent参数为nil：
+[将要删除的视图控制器 willMoveToParentViewController:nil];
+2. 当我们调用addChildViewController方法时，不需要显示调用。
+</code></pre><h4 id="5-void-didMoveToParentViewController-UIViewController-parent"><a href="#5-void-didMoveToParentViewController-UIViewController-parent" class="headerlink" title="5. - (void)didMoveToParentViewController:(UIViewController *)parent"></a>5. - (void)didMoveToParentViewController:(UIViewController *)parent</h4><p> 当从一个视图控制容器中添加或者移除viewController后，该方法被调用。<br> parent：父视图控制器，如果没有父视图控制器，将为nil</p>
+<pre><code>1. 当我们向我们的视图控制器容器中调用addChildViewController方法时，必须要先调用该方法，且parent参数为 self：
+2. 当我们调用removeFromParentViewController方法时，不需要显示调用该方法。
+</code></pre><p>注: 需要在transitionFromViewController方法之前调用：[子视图控制器 willMoveToParentViewController:nil];<br>    之后，调用[子视图控制器didMoveToParentViewController:父视图控制器];</p>
 
       
     </div>
@@ -285,18 +274,9 @@ __contravariant - 逆变性，父类型可以强转到子类型（WTF?）
     
 <nav id="article-nav">
   
-    <a href="/2016/07/10/视图控制器的父-子关系/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          视图控制器的父-子关系
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/06/02/storyboard之prepareForSegue/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"> storyboard之prepareForSegue</div>
+    <a href="/2016/06/30/OC的三大新特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">OC的三大新特性</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -331,7 +311,7 @@ __contravariant - 逆变性，父类型可以强转到子类型（WTF?）
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="OC的三大新特性" data-title="OC的三大新特性" data-url="http://yoursite.com/2016/06/30/OC的三大新特性/"></div>
+	<div class="ds-thread" data-thread-key="视图控制器的父-子关系" data-title="视图控制器的父-子关系" data-url="http://yoursite.com/2016/07/10/视图控制器的父-子关系/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
