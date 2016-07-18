@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-10T13:15:31.000Z</updated>
+  <updated>2016-07-18T14:02:20.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cocoapods安装和使用</title>
+    <link href="http://yoursite.com/2016/07/18/cocoapods%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2016/07/18/cocoapods安装和使用/</id>
+    <published>2016-07-18T14:02:20.000Z</published>
+    <updated>2016-07-18T14:02:20.000Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>视图控制器的父-子关系</title>
@@ -1043,51 +1059,6 @@ NSLog(@&amp;quot;%@&amp;quot;, [NSString stringWithContentsOfFile:@&amp;quot;out
     
     
       <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OC的三大特性</title>
-    <link href="http://yoursite.com/2016/04/24/OC%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/"/>
-    <id>http://yoursite.com/2016/04/24/OC的三大特性/</id>
-    <published>2016-04-24T14:38:11.000Z</published>
-    <updated>2016-04-24T14:44:56.000Z</updated>
-    
-    <content type="html">&lt;p&gt; OC中类的三大特性：继承，封装，多态&lt;/p&gt;
-&lt;h3 id=&quot;封装&quot;&gt;&lt;a href=&quot;#封装&quot; class=&quot;headerlink&quot; title=&quot;封装&quot;&gt;&lt;/a&gt;封装&lt;/h3&gt;&lt;p&gt;OC中是有四种访问权限修饰符：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@public、@protected、@private、@package
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中默认的修饰符是@private&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;但是这里要注意的是：OC中的方法是没有修饰符的概念的，这个和Java有很大的区别，一般都是公开访问的，即public的，但是我们怎么做到让OC中的一个方法不能被外界访问呢？&lt;/p&gt;
-&lt;p&gt;OC中是这么做的，如果想让一个方法不被外界访问的话，只需要在.m文件中实现这个方法，不要在头文件中进行定义，说白了就是：该方法有实现，没定义，这样外界在导入头文件的时候，是没有这个方法的，但是这个方法我们可以在自己的.m文件中进行使用。&lt;/p&gt;
-&lt;h3 id=&quot;继承&quot;&gt;&lt;a href=&quot;#继承&quot; class=&quot;headerlink&quot; title=&quot;继承&quot;&gt;&lt;/a&gt;继承&lt;/h3&gt;&lt;p&gt;继承是类中的一个重要的特性，他的出现使得我们没必要别写重复的代码，可重用性很高&lt;/p&gt;
-&lt;p&gt;可以使用 super 关键字来调用父类的方法，同时这里我们也是可以用 self 关键字来调用，这里看到其实这两种方式调用的效果是一样的，当我们在子类重新实现 brake 方法的时候(Java中的重写概念)，那么这时候 super 关键字调用的还是父类的方法，而 self 调用的就是重写之后的 brake 方法了。&lt;/p&gt;
-&lt;h3 id=&quot;多态&quot;&gt;&lt;a href=&quot;#多态&quot; class=&quot;headerlink&quot; title=&quot;多态&quot;&gt;&lt;/a&gt;多态&lt;/h3&gt;&lt;p&gt;定义类型和实际类型，一般是基于接口的形式实现的。&lt;/p&gt;
-&lt;p&gt;下面就来详细讲解一下多态的好处&lt;br&gt;上面的例子是一个彩色打印机和黑白打印机这两种打印机，然后Person类中有一个操作打印的方法，当然这个方法是需要打印机对象的，如果不用多态机制实现的话(Person.h中注释的代码部分)，就是给两种打印机单独定义个操作的方法，然后在Person.m(代码中注释的部分)中用具体的打印机对象进行操作，在main.m文件中，我们看到，当Person需要使用哪个打印机的时候，就去调用指定的方法：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[person printWithBlack:blackPrint];//调用黑白打印机  
-[person printWithColor:colorPrint];//调用彩色打印机  
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这种设计就不好了，为什么呢？假如现在又有一种打印机，那么我们还需要在 Person.h 中定义一种操作这种打印机的方法，那么后续如果在添加新的打印机呢？还在添加方法吗？那么 Person.h 文件就会变得很臃肿。所以这时候多态就体现到好处了，使用父类类型，在 Person.h 中定义一个方法就可以了：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void) doPrint:(Printer *)printer;  
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里看到了，这个方法的参数类型就是父类的类型，这就是多态，定义类型为父类类型，实际类型为子类类型&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void) doPrint:(Printer *)printer{  
-  [printer print];  
- }  
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里调用print方法，就是传递进来的实际类型的print方法。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Printer *p1 = [[ColorPrinter alloc] init];  
-Printer *p2 = [[BlackPrinter alloc] init];  
-
-[person doPrint:p1];  
-[person doPrint:p2];  
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里的p1,p2表面上的类型是Printer，但是实际类型是子类类型，所以会调用他们自己对应的print方法。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt; OC中类的三大特性：继承，封装，多态&lt;/p&gt;
-&lt;h3 id=&quot;封装&quot;&gt;&lt;a href=&quot;#封装&quot; class=&quot;headerlink&quot; title=&quot;封装&quot;&gt;&lt;/a&gt;封装&lt;/h3&gt;&lt;p&gt;OC中是有四种访问权限修饰符：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@public、@protected、@private、@package
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中默认的修饰符是@private&lt;br&gt;
-    
-    </summary>
-    
     
   </entry>
   
