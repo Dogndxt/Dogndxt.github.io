@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-18T14:15:56.000Z</updated>
+  <updated>2016-07-30T13:52:22.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,97 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多种方式搭建tableViewCell</title>
+    <link href="http://yoursite.com/2016/07/30/%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BAtableViewCell/"/>
+    <id>http://yoursite.com/2016/07/30/多种方式搭建tableViewCell/</id>
+    <published>2016-07-30T13:46:44.000Z</published>
+    <updated>2016-07-30T13:52:22.000Z</updated>
+    
+    <content type="html">&lt;p&gt;创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;简单的代码添加&quot;&gt;&lt;a href=&quot;#简单的代码添加&quot; class=&quot;headerlink&quot; title=&quot;简单的代码添加&quot;&gt;&lt;/a&gt;简单的代码添加&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//直接在UITableViewCell的生成方法中实现，代码如下
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @&amp;quot;cell&amp;quot;;
+    UITableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+
+        cell = [[UITableViewCell  alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(190, 0, 130, cell.frame.size.height)];
+        label1.tag = 1;
+        [cell.contentView addSubview:label1];
+    }
+    UILabel *label3 = (UILabel *)[cell.contentView viewWithTag:1];
+    label3.text = @&amp;quot;44444&amp;quot;;
+    return cell;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;自定义的继承UITableViewCell的类&quot;&gt;&lt;a href=&quot;#自定义的继承UITableViewCell的类&quot; class=&quot;headerlink&quot; title=&quot;自定义的继承UITableViewCell的类&quot;&gt;&lt;/a&gt;自定义的继承UITableViewCell的类&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;.h
+   @interface Cell3 : UITableViewCell {
+
+       UILabel *_label1;
+       UILabel *_label2;
+   }
+
+   - (void)setLabel1Text:(NSString *)text1
+              label2Text:(NSString *)text2;
+
+   @end
+
+.m
+   @implementation Cell3
+
+   - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+   {
+       self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+       if (self) {
+
+           _label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, self.frame.size.height)];
+           [self.contentView addSubview:_label1];
+           _label2 = [[UILabel alloc] initWithFrame:CGRectMake(160, 0, 160, self.frame.size.height)];
+           [self.contentView addSubview:_label2];
+       }
+       return self;
+   }
+
+   - (void)setLabel1Text:(NSString *)text1 label2Text:(NSString *)text2
+   {
+       _label1.text = text1;
+       _label2.text = text2;
+   }
+
+控制器中的写法
+
+   - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+   {
+       static NSString *identifier = @&amp;quot;cell&amp;quot;;
+       Cell3 *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+       if (cell == nil) {
+
+           cell = [[Cell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+       }
+       [cell setLabel1Text:@&amp;quot;2222&amp;quot; label2Text:@&amp;quot;3333&amp;quot;];
+       return cell;
+   }
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;xib-创建-cell&quot;&gt;&lt;a href=&quot;#xib-创建-cell&quot; class=&quot;headerlink&quot; title=&quot;xib 创建 cell&quot;&gt;&lt;/a&gt;xib 创建 cell&lt;/h3&gt;&lt;p&gt;  1.先在 xib 中设置 Identifier 设置&lt;/p&gt;
+&lt;p&gt;  2.声明 [self.tableView registerNib:[UINib nibWithNibName:@”Cell2” bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@”Cell2”];&lt;/p&gt;
+&lt;p&gt;  3.在控制器的 UITableView 代理中&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+      Cell2 *cell = [tableView dequeueReusableCellWithIdentifier:@&amp;quot;Cell2&amp;quot;];
+      cell.numLabe.text = @&amp;quot;123&amp;quot;;
+      return cell;
+   }
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title> 库管理工具</title>
@@ -1068,50 +1159,6 @@ NSLog(@&amp;quot;%@&amp;quot;, [NSString stringWithContentsOfFile:@&amp;quot;out
     <summary type="html">
     
       &lt;p&gt;Base64是网络上最常见的用于传输8Bit字节代码的编码方式之一，大家可以查看RFC2045～RFC2049，上面有MIME的详细规范。Base64编码可用于在HTTP环境下传递较长的标识信息。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="［iOS］" scheme="http://yoursite.com/tags/%EF%BC%BBiOS%EF%BC%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>导入头文件的几种方式</title>
-    <link href="http://yoursite.com/2016/04/27/%E5%AF%BC%E5%85%A5%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/04/27/导入头文件的几种方式/</id>
-    <published>2016-04-27T12:05:41.000Z</published>
-    <updated>2016-04-27T12:34:01.000Z</updated>
-    
-    <content type="html">&lt;p&gt;导入头文件的方式有一下几种：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;1. #include &amp;lt; &amp;gt;
-2. #include &amp;quot; &amp;quot;
-3. #import &amp;lt; &amp;gt;
-4. #import &amp;quot; &amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt; #import 相对 #include 可以先检查文件中是否已经引入头文件，如果已经引入则不再引入。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt; &amp;gt; 引用的是编译器的类库里面头文件
-&amp;quot; &amp;quot; 引用的是你程序目录的相对路径中的头文件
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  如果使用””，它是会先在你项目的当前目录查找是否有对应头文件&lt;br&gt;  如果没有，它还是会在对应的引用目录里面查找对应的头文件&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;如果遇到已经导入 文件夹 但是代码显示找不到那个文件夹里面的文件，可以&lt;br&gt; 在 Build Settings -&amp;gt; Search Paths -&amp;gt; Header Search Paths 添加相对路径（添加之后会显示绝对路径 $(PROJECT_DIR)/Tools/Alipay）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;Create-groups-与-Create-folder-references-的区别&quot;&gt;&lt;a href=&quot;#Create-groups-与-Create-folder-references-的区别&quot; class=&quot;headerlink&quot; title=&quot;Create groups 与 Create folder references 的区别&quot;&gt;&lt;/a&gt;Create groups 与 Create folder references 的区别&lt;/h4&gt;&lt;p&gt; 1.使用Create groups ，为任何新增加的文件夹创建组，组的概念也许我们并不陌生，我们在项目中完全可以手动添加一个groups（右键点击选择New Group），但是手动添加的groups实际上并不会存在于项目的目录中，你会发现被添加进groups中的文件仍在位于它原来所在的位置，但是从外部引入进来的groups并不会如此，正如我们刚才那样。groups一旦被创建或添加，都是以黄色文件夹的形式存在的，当你想要使用文件夹中的某个类的头文件时，你可以直接添加它的引用，例如&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#include xxx.h
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 因为groups下的cpp文件是会被编译的。&lt;/p&gt;
-&lt;p&gt; 2.使用Create folder references方法只是将文件单纯的创建了引用，这些文件不会被编译，所以在使用的时候需要加入其路径，比如在我们想要使用上图中的myScripts文件夹下面有某个头文件，则需要按照下面的方法添加声明：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#include myScripts/xxx.h
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 否则编译器就会告诉你找不到xxx.h文件。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;导入头文件的方式有一下几种：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;1. #include &amp;lt; &amp;gt;
-2. #include &amp;quot; &amp;quot;
-3. #import &amp;lt; &amp;gt;
-4. #import &amp;quot; &amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     

@@ -4,20 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title> 继承自NSObject的不常用又很有用的函数－ 函数调用 | 第欧根尼的小桶</title>
+  <title>多种方式搭建tableViewCell | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。">
+  <meta name="description" content="创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" 继承自NSObject的不常用又很有用的函数－ 函数调用">
-<meta property="og:url" content="http://yoursite.com/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/index.html">
+<meta property="og:title" content="多种方式搭建tableViewCell">
+<meta property="og:url" content="http://yoursite.com/2016/07/30/多种方式搭建tableViewCell/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。">
-<meta property="og:image" content="http://yoursite.com/img/objc_msgSend.png">
-<meta property="og:updated_time" content="2016-04-14T13:48:24.000Z">
+<meta property="og:description" content="创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。">
+<meta property="og:updated_time" content="2016-07-30T13:52:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 继承自NSObject的不常用又很有用的函数－ 函数调用">
-<meta name="twitter:description" content="Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。">
-<meta name="twitter:image" content="http://yoursite.com/img/objc_msgSend.png">
+<meta name="twitter:title" content="多种方式搭建tableViewCell">
+<meta name="twitter:description" content="创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -193,11 +191,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-继承自NSObject的不常用又很有用的函数－-函数调用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-多种方式搭建tableViewCell" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/" class="article-date">
-  	<time datetime="2016-04-14T13:20:13.000Z" itemprop="datePublished">2016-04-14</time>
+      <a href="/2016/07/30/多种方式搭建tableViewCell/" class="article-date">
+  	<time datetime="2016-07-30T13:46:44.000Z" itemprop="datePublished">2016-07-30</time>
 </a>
     </div>
   
@@ -210,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-       继承自NSObject的不常用又很有用的函数－ 函数调用
+      多种方式搭建tableViewCell
     </h1>
   
 
@@ -218,10 +216,6 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
         
 
         <div class="clearfix"></div>
@@ -230,25 +224,80 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。<br><a id="more"></a><br>  和现实生活一样，门牌可以随便发（@selector(XXX)），但是不一定都找得到住户，如果找不到系统会给程序几次机会来程序正常运行，实在没出路了才会抛出异常。下图是objc_msgSend调用时，查找SEL的IML的过程。咱们以这个流程为例看看其中涉及的很有用的函数。</p>
-<p> <img src="/img/objc_msgSend.png" alt=""></p>
-<h3 id="resolveInstanceMethod-函数"><a href="#resolveInstanceMethod-函数" class="headerlink" title="resolveInstanceMethod 函数"></a>resolveInstanceMethod 函数</h3><pre><code>+ (BOOL)resolveInstanceMethod:(SEL)name
-</code></pre><p>这个函数在运行时(runtime)，没有找到SEL的IML时就会执行。这个函数是给类利用class_addMethod添加函数的机会。根据文档，如果实现了添加函数代码则返回YES，未实现返回NO。</p>
-<h3 id="forwardingTargetForSelector-函数"><a href="#forwardingTargetForSelector-函数" class="headerlink" title="forwardingTargetForSelector 函数"></a>forwardingTargetForSelector 函数</h3><pre><code>- (id)forwardingTargetForSelector:(SEL)aSelector
-</code></pre><p>流程到了这里，系统给了个将这个SEL转给其他对象的机会。返回参数是一个对象，如果这个对象非nil、非self的话，系统会将运行的消息转发给这个对象执行。否则，继续查找其他流程。</p>
-<h3 id="methodSignatureForSelector-函数"><a href="#methodSignatureForSelector-函数" class="headerlink" title="methodSignatureForSelector 函数"></a>methodSignatureForSelector 函数</h3><pre><code>- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
-</code></pre><p>这个函数和后面的forwardInvocation:是最后一个寻找IML的机会。这个函数让重载方有机会抛出一个函数的签名，再由后面的forwardInvocation:去执行。</p>
-<h3 id="forwardInvocation-函数"><a href="#forwardInvocation-函数" class="headerlink" title="forwardInvocation 函数"></a>forwardInvocation 函数</h3><pre><code>- (void)forwardInvocation:(NSInvocation *)anInvocation
-</code></pre><p>真正执行从methodSignatureForSelector:返回的NSMethodSignature。在这个函数里可以将NSInvocation多次转发到多个对象中，这也是这种方式灵活的地方。（forwardingTargetForSelector只能以Selector的形式转向一个对象）</p>
-<h3 id="doesNotRecognizeSelector-函数"><a href="#doesNotRecognizeSelector-函数" class="headerlink" title="doesNotRecognizeSelector 函数"></a>doesNotRecognizeSelector 函数</h3><pre><code>- (void)doesNotRecognizeSelector:(SEL)aSelector
-</code></pre><p>作为找不到函数实现的最后一步，NSObject实现这个函数只有一个功能，就是抛出异常。</p>
-<p>虽然理论上可以重载这个函数实现保证不抛出异常（不调用super实现），但是苹果文档着重提出“一定不能让这个函数就这么结束掉，必须抛出异常”。</p>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>在一个函数找不到时，Objective-C提供了三种方式去补救：</p>
-<p>1、调用resolveInstanceMethod给个机会让类添加这个实现这个函数</p>
-<p>2、调用forwardingTargetForSelector让别的对象去执行这个函数</p>
-<p>3、调用methodSignatureForSelector（函数符号制造器）和forwardInvocation（函数执行器）灵活的将目标函数以其他形式执行。</p>
-<p>如果都不中，调用doesNotRecognizeSelector抛出异常。</p>
+        <p>创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。<br><a id="more"></a></p>
+<h3 id="简单的代码添加"><a href="#简单的代码添加" class="headerlink" title="简单的代码添加"></a>简单的代码添加</h3><pre><code>//直接在UITableViewCell的生成方法中实现，代码如下
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @&quot;cell&quot;;
+    UITableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
 
+        cell = [[UITableViewCell  alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(190, 0, 130, cell.frame.size.height)];
+        label1.tag = 1;
+        [cell.contentView addSubview:label1];
+    }
+    UILabel *label3 = (UILabel *)[cell.contentView viewWithTag:1];
+    label3.text = @&quot;44444&quot;;
+    return cell;
+}
+</code></pre><h3 id="自定义的继承UITableViewCell的类"><a href="#自定义的继承UITableViewCell的类" class="headerlink" title="自定义的继承UITableViewCell的类"></a>自定义的继承UITableViewCell的类</h3><pre><code>.h
+   @interface Cell3 : UITableViewCell {
+
+       UILabel *_label1;
+       UILabel *_label2;
+   }
+
+   - (void)setLabel1Text:(NSString *)text1
+              label2Text:(NSString *)text2;
+
+   @end
+
+.m
+   @implementation Cell3
+
+   - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+   {
+       self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+       if (self) {
+
+           _label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, self.frame.size.height)];
+           [self.contentView addSubview:_label1];
+           _label2 = [[UILabel alloc] initWithFrame:CGRectMake(160, 0, 160, self.frame.size.height)];
+           [self.contentView addSubview:_label2];
+       }
+       return self;
+   }
+
+   - (void)setLabel1Text:(NSString *)text1 label2Text:(NSString *)text2
+   {
+       _label1.text = text1;
+       _label2.text = text2;
+   }
+
+控制器中的写法
+
+   - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+   {
+       static NSString *identifier = @&quot;cell&quot;;
+       Cell3 *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+       if (cell == nil) {
+
+           cell = [[Cell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+       }
+       [cell setLabel1Text:@&quot;2222&quot; label2Text:@&quot;3333&quot;];
+       return cell;
+   }
+</code></pre><h3 id="xib-创建-cell"><a href="#xib-创建-cell" class="headerlink" title="xib 创建 cell"></a>xib 创建 cell</h3><p>  1.先在 xib 中设置 Identifier 设置</p>
+<p>  2.声明 [self.tableView registerNib:[UINib nibWithNibName:@”Cell2” bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@”Cell2”];</p>
+<p>  3.在控制器的 UITableView 代理中</p>
+<pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+      Cell2 *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;Cell2&quot;];
+      cell.numLabe.text = @&quot;123&quot;;
+      return cell;
+   }
+</code></pre>
       
     </div>
     
@@ -257,18 +306,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-           继承自NSObject的不常用又很有用的函数－ 函数调用2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数load-和-initialize/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"> 继承自NSObject的不常用又很有用的函数load 和 initialize</div>
+    <a href="/2016/07/18/库管理工具/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"> 库管理工具</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -303,7 +343,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="继承自NSObject的不常用又很有用的函数－-函数调用" data-title=" 继承自NSObject的不常用又很有用的函数－ 函数调用" data-url="http://yoursite.com/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/"></div>
+	<div class="ds-thread" data-thread-key="多种方式搭建tableViewCell" data-title="多种方式搭建tableViewCell" data-url="http://yoursite.com/2016/07/30/多种方式搭建tableViewCell/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
