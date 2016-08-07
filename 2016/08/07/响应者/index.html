@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>多种方式搭建tableViewCell | 第欧根尼的小桶</title>
+  <title>响应者 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。">
+  <meta name="description" content="响应者对象（Response object）响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多种方式搭建tableViewCell">
-<meta property="og:url" content="http://yoursite.com/2016/07/30/多种方式搭建tableViewCell/index.html">
+<meta property="og:title" content="响应者">
+<meta property="og:url" content="http://yoursite.com/2016/08/07/响应者/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。">
-<meta property="og:updated_time" content="2016-07-30T13:52:22.000Z">
+<meta property="og:description" content="响应者对象（Response object）响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者">
+<meta property="og:updated_time" content="2016-08-07T11:27:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多种方式搭建tableViewCell">
-<meta name="twitter:description" content="创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。">
+<meta name="twitter:title" content="响应者">
+<meta name="twitter:description" content="响应者对象（Response object）响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -191,11 +191,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-多种方式搭建tableViewCell" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-响应者" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/30/多种方式搭建tableViewCell/" class="article-date">
-  	<time datetime="2016-07-30T13:46:44.000Z" itemprop="datePublished">2016-07-30</time>
+      <a href="/2016/08/07/响应者/" class="article-date">
+  	<time datetime="2016-08-07T11:25:04.000Z" itemprop="datePublished">2016-08-07</time>
 </a>
     </div>
   
@@ -208,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      多种方式搭建tableViewCell
+      响应者
     </h1>
   
 
@@ -224,80 +224,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。<br><a id="more"></a></p>
-<h3 id="简单的代码添加"><a href="#简单的代码添加" class="headerlink" title="简单的代码添加"></a>简单的代码添加</h3><pre><code>//直接在UITableViewCell的生成方法中实现，代码如下
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *identifier = @&quot;cell&quot;;
-    UITableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
+        <h3 id="响应者对象（Response-object）"><a href="#响应者对象（Response-object）" class="headerlink" title="响应者对象（Response object）"></a>响应者对象（Response object）</h3><p>响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者<br><a id="more"></a></p>
+<h3 id="第一响应者（First-responder）"><a href="#第一响应者（First-responder）" class="headerlink" title="第一响应者（First responder）"></a>第一响应者（First responder）</h3><p>当前接受触摸的响应者对象被称为第一响应者，即表示当前该对象正在与用户交互，它是响应者链的开端。</p>
+<h3 id="响应者链（Responder-chain）"><a href="#响应者链（Responder-chain）" class="headerlink" title="响应者链（Responder chain）"></a>响应者链（Responder chain）</h3><p>响应者链表示一系列的响应者对象。事件被交由第一响应者对象处理，如果第一响应者不处理，事件被沿着响应者链向上传递，交给下一个响应者（next responder）。一般来说，第一响应者是个视图对象或者其子类对象，当其被触摸后事件被交由它处理，如果它不处理，事件就会被传递给它的视图控制器对象（如果存在），然后是它的父视图（superview）对象（如果存在），以此类推，直到顶层视图。接下来会沿着顶层视图（top view）到窗口（UIWindow对象）再到程序（UIApplication对象）。如果整个过程都没有响应这个事件，该事件就被丢弃。一般情况下，在响应者链中只要由对象处理事件，事件就停止传递。但有时候可以在视图的响应方法中根据一些条件判断来决定是否需要继续传递事件</p>
+<h3 id="管理事件分发"><a href="#管理事件分发" class="headerlink" title="管理事件分发"></a>管理事件分发</h3><p>视图对触摸事件是否需要作处回应可以通过设置视图的userInteractionEnabled属性。默认状态为YES，如果设置为NO，可以阻止视图接收和分发触摸事件。除此之外，当视图被隐藏（setHidden：YES）或者透明（alpha值为0）也不会收事件。不过这个属性只对视图有效，如果想要整个程序都步响应事件，可以调用UIApplication的beginIngnoringInteractionEvents方法来完全停止事件接收和分发。通过endIngnoringInteractionEvents方法来恢复让程序接收和分发事件。如果要让视图接收多点触摸，需要设置它的multipleTouchEnabled属性为YES，默认状态下这个属性值为NO，即视图默认不接收多点触摸。</p>
+<h3 id="处理用户的触摸事件"><a href="#处理用户的触摸事件" class="headerlink" title="处理用户的触摸事件"></a>处理用户的触摸事件</h3><p>首先触摸的对象是视图，而视图的类UIView继承了UIRespnder类，但是要对事件作出处理，还需要重写UIResponder类中定义的事件处理函数。根据不通的触摸状态，程序会调用相应的处理函数，这些函数包括以下几个：</p>
+<pre><code>-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 
-        cell = [[UITableViewCell  alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(190, 0, 130, cell.frame.size.height)];
-        label1.tag = 1;
-        [cell.contentView addSubview:label1];
-    }
-    UILabel *label3 = (UILabel *)[cell.contentView viewWithTag:1];
-    label3.text = @&quot;44444&quot;;
-    return cell;
-}
-</code></pre><h3 id="自定义的继承UITableViewCell的类"><a href="#自定义的继承UITableViewCell的类" class="headerlink" title="自定义的继承UITableViewCell的类"></a>自定义的继承UITableViewCell的类</h3><pre><code>.h
-   @interface Cell3 : UITableViewCell {
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 
-       UILabel *_label1;
-       UILabel *_label2;
-   }
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 
-   - (void)setLabel1Text:(NSString *)text1
-              label2Text:(NSString *)text2;
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 
-   @end
+当手指接触屏幕时，就会调用touchesBegan:withEvent方法；
 
-.m
-   @implementation Cell3
+当手指在屏幕上移时，动就会调用touchesMoved:withEvent方法；
 
-   - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-   {
-       self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-       if (self) {
+当手指离开屏幕时，就会调用touchesEnded:withEvent方法；
 
-           _label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, self.frame.size.height)];
-           [self.contentView addSubview:_label1];
-           _label2 = [[UILabel alloc] initWithFrame:CGRectMake(160, 0, 160, self.frame.size.height)];
-           [self.contentView addSubview:_label2];
-       }
-       return self;
-   }
+当触摸被取消（比如触摸过程中被来电打断），就会调用touchesCancelled:withEvent方法。而这几个方法被调用时，正好对应了UITouch类中phase属性的4个枚举值。
+</code></pre><p>上面的四个事件方法，在开发过程中并不要求全部实现，可以根据需要重写特定的方法。对于这4个方法，都有两个相同的参数：NSSet类型的touches和UIEvent类型的event。其中touches表示触摸产生的所有UITouch对象，而event表示特定的事件。因为UIEvent包含了整个触摸过程中所有的触摸对象，因此可以调用allTouches方法获取该事件内所有的触摸对象，也可以调用touchesForVIew：或者touchesForWindows：取出特定视图或者窗口上的触摸对象。在这几个事件中，都可以拿到触摸对象，然后根据其位置，状态，时间属性做逻辑处理。</p>
 
-   - (void)setLabel1Text:(NSString *)text1 label2Text:(NSString *)text2
-   {
-       _label1.text = text1;
-       _label2.text = text2;
-   }
-
-控制器中的写法
-
-   - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-   {
-       static NSString *identifier = @&quot;cell&quot;;
-       Cell3 *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-       if (cell == nil) {
-
-           cell = [[Cell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-       }
-       [cell setLabel1Text:@&quot;2222&quot; label2Text:@&quot;3333&quot;];
-       return cell;
-   }
-</code></pre><h3 id="xib-创建-cell"><a href="#xib-创建-cell" class="headerlink" title="xib 创建 cell"></a>xib 创建 cell</h3><p>  1.先在 xib 中设置 Identifier 设置</p>
-<p>  2.声明 [self.tableView registerNib:[UINib nibWithNibName:@”Cell2” bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@”Cell2”];</p>
-<p>  3.在控制器的 UITableView 代理中</p>
-<pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-      Cell2 *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;Cell2&quot;];
-      cell.numLabe.text = @&quot;123&quot;;
-      return cell;
-   }
-</code></pre>
       
     </div>
     
@@ -306,18 +254,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/08/07/iOS特别技能点总结4/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS特别技能点总结4
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/07/18/库管理工具/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"> 库管理工具</div>
+    <a href="/2016/08/07/定时器用法总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">定时器用法总结</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -352,7 +291,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="多种方式搭建tableViewCell" data-title="多种方式搭建tableViewCell" data-url="http://yoursite.com/2016/07/30/多种方式搭建tableViewCell/"></div>
+	<div class="ds-thread" data-thread-key="响应者" data-title="响应者" data-url="http://yoursite.com/2016/08/07/响应者/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

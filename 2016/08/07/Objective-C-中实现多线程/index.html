@@ -4,18 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>多种方式搭建tableViewCell | 第欧根尼的小桶</title>
+  <title>Objective-C 中实现多线程 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。">
+  <meta name="description" content="在多核 CPU 时代，由于硬件上就支持多线程技术，就可以让多个线程真正同时地运行。如果任务能够被拆分，各个子任务就能并行地在 CPU 上运行，这就能显著加快运行速度。
+performSelectors NSObject 提供了以 performSelector 为前缀的一系列方法。它们可以让用户在指定线程中，或者立即，或者延迟执行某个方法调用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多种方式搭建tableViewCell">
-<meta property="og:url" content="http://yoursite.com/2016/07/30/多种方式搭建tableViewCell/index.html">
+<meta property="og:title" content="Objective-C 中实现多线程">
+<meta property="og:url" content="http://yoursite.com/2016/08/07/Objective-C-中实现多线程/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。">
-<meta property="og:updated_time" content="2016-07-30T13:52:22.000Z">
+<meta property="og:description" content="在多核 CPU 时代，由于硬件上就支持多线程技术，就可以让多个线程真正同时地运行。如果任务能够被拆分，各个子任务就能并行地在 CPU 上运行，这就能显著加快运行速度。
+performSelectors NSObject 提供了以 performSelector 为前缀的一系列方法。它们可以让用户在指定线程中，或者立即，或者延迟执行某个方法调用。">
+<meta property="og:updated_time" content="2016-08-07T11:17:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多种方式搭建tableViewCell">
-<meta name="twitter:description" content="创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。">
+<meta name="twitter:title" content="Objective-C 中实现多线程">
+<meta name="twitter:description" content="在多核 CPU 时代，由于硬件上就支持多线程技术，就可以让多个线程真正同时地运行。如果任务能够被拆分，各个子任务就能并行地在 CPU 上运行，这就能显著加快运行速度。
+performSelectors NSObject 提供了以 performSelector 为前缀的一系列方法。它们可以让用户在指定线程中，或者立即，或者延迟执行某个方法调用。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -191,11 +194,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-多种方式搭建tableViewCell" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Objective-C-中实现多线程" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/30/多种方式搭建tableViewCell/" class="article-date">
-  	<time datetime="2016-07-30T13:46:44.000Z" itemprop="datePublished">2016-07-30</time>
+      <a href="/2016/08/07/Objective-C-中实现多线程/" class="article-date">
+  	<time datetime="2016-08-07T11:13:29.000Z" itemprop="datePublished">2016-08-07</time>
 </a>
     </div>
   
@@ -208,7 +211,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      多种方式搭建tableViewCell
+      Objective-C 中实现多线程
     </h1>
   
 
@@ -224,79 +227,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。<br><a id="more"></a></p>
-<h3 id="简单的代码添加"><a href="#简单的代码添加" class="headerlink" title="简单的代码添加"></a>简单的代码添加</h3><pre><code>//直接在UITableViewCell的生成方法中实现，代码如下
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *identifier = @&quot;cell&quot;;
-    UITableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
+        <p>在多核 CPU 时代，由于硬件上就支持多线程技术，就可以让多个线程真正同时地运行。如果任务能够被拆分，各个子任务就能并行地在 CPU 上运行，这就能显著加快运行速度。</p>
+<h3 id="performSelectors"><a href="#performSelectors" class="headerlink" title="performSelectors"></a>performSelectors</h3><p> NSObject 提供了以 performSelector 为前缀的一系列方法。它们可以让用户在指定线程中，或者立即，或者延迟执行某个方法调用。<br><a id="more"></a></p>
+<pre><code>- (void)performSelector:(SEL)aSelector
+- (void)performSelector:(SEL)aSelector withObject:(id)anArgument
+- (void)performSelector:(SEL)aSelector withObject:(id)anArgument withObject:(id)anArgument
+- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay
+- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay: (NSTimeInterval)delay inModes:(NSArray *)modes
 
-        cell = [[UITableViewCell  alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(190, 0, 130, cell.frame.size.height)];
-        label1.tag = 1;
-        [cell.contentView addSubview:label1];
+// 在指定线程中执行方法
+- (void)performSelector:(SEL)aSelector onThread:(NSThread *)thread withObject:(id)arg waitUntilDone:(BOOL)wait
+- (void)performSelector:(SEL)aSelector onThread:(NSThread *)thread withObject: (id)arg waitUntilDone:(BOOL)wait modes:(NSArray *)array
+// 在主线程中执行方法
+- (void)performSelectorOnMainThread: (SEL)selector withObject:(id)argument waitUntilDone:(BOOL)wait
+- (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait modes:(NSArray *)array
+
+// 在后台线程中执行方法
+- (void)performSelectorInBackground:(SEL)aSelector withObject:(id)arg
+</code></pre><p>  这一系列方法简单易用:指定执行的方法（但传入方法的参数数量有限制）；指定是在当前线程，还是在主线程，还是在后台线程执行；指定是否需要阻塞当前线程等待结果。</p>
+<h3 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h3><p>   NSThread 是 OS X 和 iOS 都提供的一个线程对象，它是线程的一个轻量级实现。在执行一些轻量级的简单任务时，NSThread 很有用，但用户仍然需要自己管理线程生命周期，进行线程间同步。比如，线程状态，依赖性，线程间同步等线程相关的主题 NSThread 都没有涉及。比如，涉及到线程间同步仍然需要配合使用 NSLock，NSCondition 或者 @synchronized。所以，遇到复杂任务时，轻量级的 NSThread 可能并不合适。</p>
+<pre><code>- (void)run {
+    while (TRUE) {
+        [_lock lock];
+        if(_cake &gt; 0){
+            [NSThread sleepForTimeInterval:0.5];
+            _cake--;
+            _occupied = kSum - _cake;
+            NSLog(@&quot;Taken by %@\nCurrent free:%ld, occupied: %ld&quot;, [[NSThread currentThread] name], _cake, _occupied);
+        }
+        [_lock unlock];
     }
-    UILabel *label3 = (UILabel *)[cell.contentView viewWithTag:1];
-    label3.text = @&quot;44444&quot;;
-    return cell;
 }
-</code></pre><h3 id="自定义的继承UITableViewCell的类"><a href="#自定义的继承UITableViewCell的类" class="headerlink" title="自定义的继承UITableViewCell的类"></a>自定义的继承UITableViewCell的类</h3><pre><code>.h
-   @interface Cell3 : UITableViewCell {
+</code></pre><h3 id="NSOperation"><a href="#NSOperation" class="headerlink" title="NSOperation"></a>NSOperation</h3><p>NSOperation 做的事情比 NSThread 更多一些。通过继承 NSOperation，可以使子类获得一些线程相关的特性，进而可以安全地管理线程生命周期。<br>比如，以线程安全的方式建立状态，取消线程。配合 NSOperationQueue，可以控制线程间的优先级和依赖性。这就给出了一套线程管理的基本方法。NSOperation 代表了一个独立的计算单元。一般，我们会把计算任务封装进 NSOperation 这个对象。NSOperation 是抽象类，但同时也提供了两个可以直接使用的实体子类：NSInvocationOperation 和 NSBlockOperation。NSInvocationOperation 用于将计算任务封装进方法，NSBlockOperation 用于将计算任务封装进 block。NSOperationQueue 则用于执行计算任务，管理计算任务的优先级，处理计算任务之间的依赖性。NSOperation 被添加到 NSOperationQueue 中之后，队列会按优先级和进入顺序调度任务，NSOperation 对象会被自动执行。</p>
+<pre><code>NSOperation 提供以下任务优先级，以这些优先级设置变量 queuePriority 即可加快或者推迟操作的执行：
+NSOperationQueuePriorityVeryHigh
+NSOperationQueuePriorityHigh
+NSOperationQueuePriorityNormal
+NSOperationQueuePriorityLow
+NSOperationQueuePriorityVeryLow
 
-       UILabel *_label1;
-       UILabel *_label2;
-   }
-
-   - (void)setLabel1Text:(NSString *)text1
-              label2Text:(NSString *)text2;
-
-   @end
-
-.m
-   @implementation Cell3
-
-   - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-   {
-       self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-       if (self) {
-
-           _label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, self.frame.size.height)];
-           [self.contentView addSubview:_label1];
-           _label2 = [[UILabel alloc] initWithFrame:CGRectMake(160, 0, 160, self.frame.size.height)];
-           [self.contentView addSubview:_label2];
-       }
-       return self;
-   }
-
-   - (void)setLabel1Text:(NSString *)text1 label2Text:(NSString *)text2
-   {
-       _label1.text = text1;
-       _label2.text = text2;
-   }
-
-控制器中的写法
-
-   - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-   {
-       static NSString *identifier = @&quot;cell&quot;;
-       Cell3 *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-       if (cell == nil) {
-
-           cell = [[Cell3 alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-       }
-       [cell setLabel1Text:@&quot;2222&quot; label2Text:@&quot;3333&quot;];
-       return cell;
-   }
-</code></pre><h3 id="xib-创建-cell"><a href="#xib-创建-cell" class="headerlink" title="xib 创建 cell"></a>xib 创建 cell</h3><p>  1.先在 xib 中设置 Identifier 设置</p>
-<p>  2.声明 [self.tableView registerNib:[UINib nibWithNibName:@”Cell2” bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@”Cell2”];</p>
-<p>  3.在控制器的 UITableView 代理中</p>
-<pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-      Cell2 *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;Cell2&quot;];
-      cell.numLabe.text = @&quot;123&quot;;
-      return cell;
-   }
+NSOperation 使用状态机模型来表示状态。通常，你可以使用 KVO（Key-Value Observing）观察任务的执行状态。这是其他多线程工具所不具备的功能。NSOperation 提供以下状态：
+    isReady
+    isExecuting
+    isFinished
+NSOperation 对象之间的依赖性可以用如下代码表示：
+ [refreshUIOperation addDependency:requestDataOperation]; [operationQueue addOperation:requestDataOperation]; [operationQueue addOperation:refreshUIOperation];
+除非 requestDataOperation 的状态 isFinished 返回 YES，不然 refreshUIOperation 这个操作不会开始。
 </code></pre>
       
     </div>
@@ -306,18 +282,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/08/07/iOS特别技能点总结4/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/08/07/定时器用法总结/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          iOS特别技能点总结4
+          定时器用法总结
         
       </div>
     </a>
   
   
-    <a href="/2016/07/18/库管理工具/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"> 库管理工具</div>
+    <a href="/2016/08/07/iOS特别技能点总结4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS特别技能点总结4</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -352,7 +328,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="多种方式搭建tableViewCell" data-title="多种方式搭建tableViewCell" data-url="http://yoursite.com/2016/07/30/多种方式搭建tableViewCell/"></div>
+	<div class="ds-thread" data-thread-key="Objective-C-中实现多线程" data-title="Objective-C 中实现多线程" data-url="http://yoursite.com/2016/08/07/Objective-C-中实现多线程/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

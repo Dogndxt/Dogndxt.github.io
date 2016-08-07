@@ -192,6 +192,253 @@
 
       <div class="body-wrap">
   
+    <article id="post-日期类的使用2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/20/日期类的使用2/" class="article-date">
+  	<time datetime="2016-03-20T05:59:29.000Z" itemprop="datePublished">2016-03-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/20/日期类的使用2/"> 日期类的使用2</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>接上一篇：<a href="/2016/03/20/日期类的使用NSDate/">日期类的使用NSDate</a></p>
+<h3 id="NSDateFormatter-的使用"><a href="#NSDateFormatter-的使用" class="headerlink" title="NSDateFormatter 的使用"></a>NSDateFormatter 的使用</h3><pre><code>NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+
+[dateFormatter setDateFormat:@&quot;&apos;公元前/后:&apos;G  &apos;年份:&apos;u&apos;=&apos;yyyy&apos;=&apos;yy &apos;季度:&apos;q&apos;=&apos;qqq&apos;=&apos;qqqq &apos;月份:&apos;M&apos;=&apos;MMM&apos;=&apos;MMMM &apos;今天是今年第几周:&apos;w &apos;今天是本月第几周:&apos;W  &apos;
+今天是今天第几天:&apos;D &apos;今天是本月第几天:&apos;d &apos;星期:&apos;c&apos;=&apos;ccc&apos;=&apos;cccc &apos;上午/下午:&apos;a &apos;小时:&apos;h&apos;=&apos;H &apos;分钟:&apos;m &apos;秒:&apos;s &apos;毫秒:&apos;SSS  &apos;这一天已过多少毫秒:&apos;A  &apos;时区名称:&apos;zzzz&apos;=&apos;vvvv &apos;时区编号:&apos;Z &quot;];
+
+ NSLog(@&quot;%@&quot;, [dateFormatter stringFromDate:[NSDate date]]);
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期，时间/">日期，时间</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/20/日期类的使用2/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-日期类的使用NSDate" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/20/日期类的使用NSDate/" class="article-date">
+  	<time datetime="2016-03-20T05:24:56.000Z" itemprop="datePublished">2016-03-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/20/日期类的使用NSDate/">日期类的使用NSDate</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>日期类在需要记录时间的地方发挥着巨大的作用，也可以实时地获取程序使用的时间。配合 NSLocal ，NSDateFormatter 和 NSTimeZone 这几个类就可以涵盖所有的程序使用的时间日期的数据。<br><img src="/img/date.png" alt=""><br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期，时间/">日期，时间</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/20/日期类的使用NSDate/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-NSData-的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/17/NSData-的使用/" class="article-date">
+  	<time datetime="2016-03-17T14:01:55.000Z" itemprop="datePublished">2016-03-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/17/NSData-的使用/">NSData 的使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>应该说在任何网络中，如何使用数据来传递信息，保存和读取信息，并将其变为可以产生价值的东西，而在计算机的世界里面除了0 和 1 ，我们眼中所见的东西在计算机眼里只不过是一堆 0 和 1 数据而已。那么在 iOS 里，又是如何进行数据间的转化的。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［数据］/">［数据］</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/17/NSData-的使用/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-NSOperation和NSOperationQueue多线程的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/17/NSOperation和NSOperationQueue多线程的使用/" class="article-date">
+  	<time datetime="2016-03-17T11:37:41.000Z" itemprop="datePublished">2016-03-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/17/NSOperation和NSOperationQueue多线程的使用/">NSOperation和NSOperationQueue多线程的使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 最近学习了多线程编程 NSOperationQueue ，才比较清楚的明白了<strong>同步／异步</strong>，<strong>阻塞／非阻塞</strong>所表达的不同含义：所谓的同步／异步是对你得到消息的方式的描述，而阻塞／非阻塞则是你怎么样处理事情的做法，他们讲述的是不同层面的概念。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［博客］/">［博客］</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/17/NSOperation和NSOperationQueue多线程的使用/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-NSURLConnection-基本使用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
