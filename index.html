@@ -192,6 +192,178 @@
 
       <div class="body-wrap">
   
+    <article id="post-initWithNibName-和-loadNibNamed-的区别和联系" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/" class="article-date">
+  	<time datetime="2016-08-13T11:13:03.000Z" itemprop="datePublished">2016-08-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/"> initWithNibName 和 loadNibNamed 的区别和联系</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><p> 可以使用此方法加载用户界面（xib文件）到我们的代码中，这样，可以通过操作这个加载进来的（xib）对象，来操作xib文件内容。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-通知iOS" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/13/通知iOS/" class="article-date">
+  	<time datetime="2016-08-13T11:07:36.000Z" itemprop="datePublished">2016-08-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/13/通知iOS/">通知iOS</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="发送通知-（在程序任何一个地方都可以发送通知）"><a href="#发送通知-（在程序任何一个地方都可以发送通知）" class="headerlink" title="发送通知 （在程序任何一个地方都可以发送通知）"></a>发送通知 （在程序任何一个地方都可以发送通知）</h3><pre><code>- (void)getNotofocation {
+    //发出通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:@&quot;A类通知&quot; object:self userInfo:nil];
+}
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/13/通知iOS/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-控制器初始化方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/13/控制器初始化方法/" class="article-date">
+  	<time datetime="2016-08-13T11:03:07.000Z" itemprop="datePublished">2016-08-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/13/控制器初始化方法/">控制器初始化方法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="控制器初始化方法"><a href="#控制器初始化方法" class="headerlink" title="控制器初始化方法"></a>控制器初始化方法</h3><h4 id="viewWillAppear"><a href="#viewWillAppear" class="headerlink" title="viewWillAppear"></a>viewWillAppear</h4><p>视图即将可见时调用。默认情况下不执行任何操作。 Called when the view is about to made visible. Default does nothing</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/13/控制器初始化方法/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-响应者" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -484,193 +656,9 @@ NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
 
 
   
-    <article id="post-库管理工具" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/18/库管理工具/" class="article-date">
-  	<time datetime="2016-07-18T14:12:13.000Z" itemprop="datePublished">2016-07-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/18/库管理工具/"> 库管理工具</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Cocoapods安装步骤"><a href="#Cocoapods安装步骤" class="headerlink" title="Cocoapods安装步骤"></a>Cocoapods安装步骤</h3><p>1.升级Ruby环境  sudo gem update – system</p>
-<p>2.安装CocoaPods时我们要访问cocoapods.org，用淘宝的RubyGems镜像来代替官方版本，执行以下命令：</p>
-<pre><code>$ gem sources --remove https://rubygems.org/
-//等有反应之后再敲入以下命令
-$ gem sources -a https://ruby.taobao.org/
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/07/18/库管理工具/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-视图控制器的父-子关系" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/10/视图控制器的父-子关系/" class="article-date">
-  	<time datetime="2016-07-10T12:58:37.000Z" itemprop="datePublished">2016-07-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/10/视图控制器的父-子关系/">视图控制器的父-子关系</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="addChildViewController-优点"><a href="#addChildViewController-优点" class="headerlink" title="addChildViewController 优点"></a>addChildViewController 优点</h3><pre><code>1.页面逻辑很清晰，相应的View对应相应的ViewController。
-2.当某个子View没有显示时，将不会被Load，减少了内存的使用。
-3.当内存紧张时，没有Load的View将被首先释放，优化了程序的内存释放机制。
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/07/10/视图控制器的父-子关系/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-OC的三大新特性" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/30/OC的三大新特性/" class="article-date">
-  	<time datetime="2016-06-30T12:00:50.000Z" itemprop="datePublished">2016-06-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/30/OC的三大新特性/">OC的三大新特性</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>三个主要的新特性：</p>
-<pre><code>Nullability             判空性
-Lightweight Generics    轻量级泛型
-__kindof
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/06/30/OC的三大新特性/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>

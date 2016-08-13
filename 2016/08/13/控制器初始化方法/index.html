@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>响应者 | 第欧根尼的小桶</title>
+  <title>控制器初始化方法 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="响应者对象（Response object）响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者">
+  <meta name="description" content="控制器初始化方法viewWillAppear视图即将可见时调用。默认情况下不执行任何操作。 Called when the view is about to made visible. Default does nothing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="响应者">
-<meta property="og:url" content="http://yoursite.com/2016/08/07/响应者/index.html">
+<meta property="og:title" content="控制器初始化方法">
+<meta property="og:url" content="http://yoursite.com/2016/08/13/控制器初始化方法/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="响应者对象（Response object）响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者">
-<meta property="og:updated_time" content="2016-08-07T11:27:33.000Z">
+<meta property="og:description" content="控制器初始化方法viewWillAppear视图即将可见时调用。默认情况下不执行任何操作。 Called when the view is about to made visible. Default does nothing">
+<meta property="og:updated_time" content="2016-08-13T11:06:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="响应者">
-<meta name="twitter:description" content="响应者对象（Response object）响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者">
+<meta name="twitter:title" content="控制器初始化方法">
+<meta name="twitter:description" content="控制器初始化方法viewWillAppear视图即将可见时调用。默认情况下不执行任何操作。 Called when the view is about to made visible. Default does nothing">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -191,11 +191,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-响应者" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-控制器初始化方法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/07/响应者/" class="article-date">
-  	<time datetime="2016-08-07T11:25:04.000Z" itemprop="datePublished">2016-08-07</time>
+      <a href="/2016/08/13/控制器初始化方法/" class="article-date">
+  	<time datetime="2016-08-13T11:03:07.000Z" itemprop="datePublished">2016-08-13</time>
 </a>
     </div>
   
@@ -208,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      响应者
+      控制器初始化方法
     </h1>
   
 
@@ -224,28 +224,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="响应者对象（Response-object）"><a href="#响应者对象（Response-object）" class="headerlink" title="响应者对象（Response object）"></a>响应者对象（Response object）</h3><p>响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者<br><a id="more"></a></p>
-<h3 id="第一响应者（First-responder）"><a href="#第一响应者（First-responder）" class="headerlink" title="第一响应者（First responder）"></a>第一响应者（First responder）</h3><p>当前接受触摸的响应者对象被称为第一响应者，即表示当前该对象正在与用户交互，它是响应者链的开端。</p>
-<h3 id="响应者链（Responder-chain）"><a href="#响应者链（Responder-chain）" class="headerlink" title="响应者链（Responder chain）"></a>响应者链（Responder chain）</h3><p>响应者链表示一系列的响应者对象。事件被交由第一响应者对象处理，如果第一响应者不处理，事件被沿着响应者链向上传递，交给下一个响应者（next responder）。一般来说，第一响应者是个视图对象或者其子类对象，当其被触摸后事件被交由它处理，如果它不处理，事件就会被传递给它的视图控制器对象（如果存在），然后是它的父视图（superview）对象（如果存在），以此类推，直到顶层视图。接下来会沿着顶层视图（top view）到窗口（UIWindow对象）再到程序（UIApplication对象）。如果整个过程都没有响应这个事件，该事件就被丢弃。一般情况下，在响应者链中只要由对象处理事件，事件就停止传递。但有时候可以在视图的响应方法中根据一些条件判断来决定是否需要继续传递事件</p>
-<h3 id="管理事件分发"><a href="#管理事件分发" class="headerlink" title="管理事件分发"></a>管理事件分发</h3><p>视图对触摸事件是否需要作处回应可以通过设置视图的userInteractionEnabled属性。默认状态为YES，如果设置为NO，可以阻止视图接收和分发触摸事件。除此之外，当视图被隐藏（setHidden：YES）或者透明（alpha值为0）也不会收事件。不过这个属性只对视图有效，如果想要整个程序都步响应事件，可以调用UIApplication的beginIngnoringInteractionEvents方法来完全停止事件接收和分发。通过endIngnoringInteractionEvents方法来恢复让程序接收和分发事件。如果要让视图接收多点触摸，需要设置它的multipleTouchEnabled属性为YES，默认状态下这个属性值为NO，即视图默认不接收多点触摸。</p>
-<h3 id="处理用户的触摸事件"><a href="#处理用户的触摸事件" class="headerlink" title="处理用户的触摸事件"></a>处理用户的触摸事件</h3><p>首先触摸的对象是视图，而视图的类UIView继承了UIRespnder类，但是要对事件作出处理，还需要重写UIResponder类中定义的事件处理函数。根据不通的触摸状态，程序会调用相应的处理函数，这些函数包括以下几个：</p>
-<pre><code>-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+        <h3 id="控制器初始化方法"><a href="#控制器初始化方法" class="headerlink" title="控制器初始化方法"></a>控制器初始化方法</h3><h4 id="viewWillAppear"><a href="#viewWillAppear" class="headerlink" title="viewWillAppear"></a>viewWillAppear</h4><p>视图即将可见时调用。默认情况下不执行任何操作。 Called when the view is about to made visible. Default does nothing</p>
+<a id="more"></a>
+<h4 id="viewDidAppear"><a href="#viewDidAppear" class="headerlink" title="viewDidAppear"></a>viewDidAppear</h4><p>视图已完全过渡到屏幕上时调用。。默认情况下不执行任何操作。 Called when the view has been fully transitioned onto the screen. Default does nothing</p>
+<h4 id="viewWillDisappear"><a href="#viewWillDisappear" class="headerlink" title="viewWillDisappear"></a>viewWillDisappear</h4><p>视图被消失时调用，覆盖或以其他方式隐藏。默认情况下不执行任何操作。 Called when the view is dismissed, covered or otherwise hidden. Default does nothing</p>
+<h4 id="viewDidDisappear"><a href="#viewDidDisappear" class="headerlink" title="viewDidDisappear"></a>viewDidDisappear</h4><p>视图被消失后调用，覆盖或以其他方式隐藏。默认情况下不执行任何操作。 Called after the view was dismissed, covered or otherwise hidden. Default does nothing</p>
+<h4 id="viewDidLoad"><a href="#viewDidLoad" class="headerlink" title="viewDidLoad"></a>viewDidLoad</h4><p>在视图加载后被调用，如果是在代码中创建的视图加载器，他将会在loadView方法后被调用，如果是从nib视图页面输出，他将会在视图设置好后后被调用。<br>Called after the view has been loaded. For view controllers created in code, this is after -loadView. For view controllers unarchived from a nib, this is after the view is set.</p>
+<h4 id="「didReceiveMemoryWarning」收到系统传来的内存警告通知后会执行的方法"><a href="#「didReceiveMemoryWarning」收到系统传来的内存警告通知后会执行的方法" class="headerlink" title="「didReceiveMemoryWarning」收到系统传来的内存警告通知后会执行的方法"></a>「didReceiveMemoryWarning」收到系统传来的内存警告通知后会执行的方法</h4><h4 id="视图控制器发生旋转调用的方法"><a href="#视图控制器发生旋转调用的方法" class="headerlink" title="视图控制器发生旋转调用的方法"></a>视图控制器发生旋转调用的方法</h4><pre><code>- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id&lt;UIViewControllerTransitionCoordinator&gt;)coordinator {
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+     NSLog(@&quot;%f&quot;, size.height);
+ }  
+</code></pre><h3 id="当一个视图控制器被创建，并在屏幕上显示的时候。-代码的执行顺序"><a href="#当一个视图控制器被创建，并在屏幕上显示的时候。-代码的执行顺序" class="headerlink" title="当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序"></a>当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序</h3><pre><code>1、 alloc                   创建对象，分配空间
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+2、init (initWithNibName)    初始化对象，初始化数据
 
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+3、loadView                  从nib载入视图 ，通常这一步不需要去干涉。除非你没有使用xib文件创建视图
 
-当手指接触屏幕时，就会调用touchesBegan:withEvent方法；
+4、viewDidLoad               载入完成，可以进行自定义数据以及动态创建其他控件
 
-当手指在屏幕上移时，动就会调用touchesMoved:withEvent方法；
+5、viewWillAppear            视图将出现在屏幕之前，马上这个视图就会被展现在屏幕上了
 
-当手指离开屏幕时，就会调用touchesEnded:withEvent方法；
+6、viewDidAppear             视图已在屏幕上渲染完成
+</code></pre><h3 id="当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反"><a href="#当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反" class="headerlink" title="当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反"></a>当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反</h3><pre><code>1、viewWillDisappear          视图将被从屏幕上移除之前执行
 
-当触摸被取消（比如触摸过程中被来电打断），就会调用touchesCancelled:withEvent方法。而这几个方法被调用时，正好对应了UITouch类中phase属性的4个枚举值。
-</code></pre><p>上面的四个事件方法，在开发过程中并不要求全部实现，可以根据需要重写特定的方法。对于这4个方法，都有两个相同的参数：NSSet类型的touches和UIEvent类型的event。其中touches表示触摸产生的所有UITouch对象，而event表示特定的事件。因为UIEvent包含了整个触摸过程中所有的触摸对象，因此可以调用allTouches方法获取该事件内所有的触摸对象，也可以调用touchesForVIew：或者touchesForWindows：取出特定视图或者窗口上的触摸对象。在这几个事件中，都可以拿到触摸对象，然后根据其位置，状态，时间属性做逻辑处理。</p>
+2、viewDidDisappear           视图已经被从屏幕上移除，用户看不到这个视图了
 
+3、dealloc                    视图被销毁，此处需要对你在init和viewDidLoad中创建的对象进行释放
+</code></pre>
       
     </div>
     
@@ -254,18 +259,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/08/13/控制器初始化方法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/08/13/通知iOS/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          控制器初始化方法
+          通知iOS
         
       </div>
     </a>
   
   
-    <a href="/2016/08/07/定时器用法总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">定时器用法总结</div>
+    <a href="/2016/08/07/响应者/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">响应者</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -300,7 +305,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="响应者" data-title="响应者" data-url="http://yoursite.com/2016/08/07/响应者/"></div>
+	<div class="ds-thread" data-thread-key="控制器初始化方法" data-title="控制器初始化方法" data-url="http://yoursite.com/2016/08/13/控制器初始化方法/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
