@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-13T11:14:02.000Z</updated>
+  <updated>2016-08-28T12:00:01.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,319 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>代理设计模式</title>
+    <link href="http://yoursite.com/2016/08/28/%E4%BB%A3%E7%90%86%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2016/08/28/代理设计模式/</id>
+    <published>2016-08-28T11:56:17.000Z</published>
+    <updated>2016-08-28T12:00:01.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;代理设计模式&quot;&gt;&lt;a href=&quot;#代理设计模式&quot; class=&quot;headerlink&quot; title=&quot;代理设计模式&quot;&gt;&lt;/a&gt;代理设计模式&lt;/h3&gt;&lt;p&gt;代理delegate就是委托另一个对象来帮忙完成一件事情&lt;/p&gt;
+&lt;p&gt;为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了 MVC 设计模式，项目小还好，随着功能的扩展，我们就会发现越写越难写；还有一种情况，就是这件事情做不到，只能委托给其他对象来做了.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;例子&quot;&gt;&lt;a href=&quot;#例子&quot; class=&quot;headerlink&quot; title=&quot;例子&quot;&gt;&lt;/a&gt;例子&lt;/h3&gt;&lt;p&gt;场景描述如下：TableView 上面有多个 CustomTableViewCell，cell上面显示的是文字信息和一个详情Button，点击button以后push到一个新的页面。为什么说这个场景用到了代理delegate？因为button是在自定义的CustomTableViewCell上面，而cell没有能力实现push的功能，因为push到新页面的代码是这样的，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[self.navigationController pushViewController...];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;所以这时候 CustomTableViewCell 就要委托它所在的 Controller 去做这件事情了。&lt;/p&gt;
+&lt;h3 id=&quot;代码使用&quot;&gt;&lt;a href=&quot;#代码使用&quot; class=&quot;headerlink&quot; title=&quot;代码使用&quot;&gt;&lt;/a&gt;代码使用&lt;/h3&gt;&lt;p&gt;1.在任意的一个头文件里面编写委托的协议&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol CustomCellDelegate &amp;lt;NSObject&amp;gt;
+
+ - (void)pushToNewPage;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.在想要发出这份委托的头文件添加&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface CustomTableViewCell : UITableViewCell
+
+@property(nonatomic, assign) id&amp;lt;CustomCellDelegate&amp;gt; delegate;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.在委托者的 .m 文件的某个需要调用协议方法的方法中&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)btnClicked:(UIButton *)btn {
+
+    if (self.delegate &amp;amp;&amp;amp; [self.delegaterespondsToSelector:@selector(pushToNewPage)]) {
+
+      [self.delegate pushToNewPage];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;4.在受到委托申请的类的头部中添加&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ViewController ()&amp;lt;CustomCellDelegate&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;5.在然后是委托申请的类中实现CustomCellDelegate协议中的pushToNewPage方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)pushToNewPage {
+
+    DetailViewController*detailVC = [[DetailViewController alloc] init];
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;6.最后设置CumtomTableViewCell对象cell的delegate&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//下面代码很关键
+cell.delegate = self;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;总结：委托的协议可以写在任何的头文件中，代理设计模式的六个步骤缺一不可。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;代理设计模式&quot;&gt;&lt;a href=&quot;#代理设计模式&quot; class=&quot;headerlink&quot; title=&quot;代理设计模式&quot;&gt;&lt;/a&gt;代理设计模式&lt;/h3&gt;&lt;p&gt;代理delegate就是委托另一个对象来帮忙完成一件事情&lt;/p&gt;
+&lt;p&gt;为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了 MVC 设计模式，项目小还好，随着功能的扩展，我们就会发现越写越难写；还有一种情况，就是这件事情做不到，只能委托给其他对象来做了.&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ios技能点总结和存取方法</title>
+    <link href="http://yoursite.com/2016/08/28/ios%E6%8A%80%E8%83%BD%E7%82%B9%E6%80%BB%E7%BB%93%E5%92%8C%E5%AD%98%E5%8F%96%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/08/28/ios技能点总结和存取方法/</id>
+    <published>2016-08-28T11:45:40.000Z</published>
+    <updated>2016-08-28T11:52:38.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot;&gt;&lt;a href=&quot;#存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot; class=&quot;headerlink&quot; title=&quot;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot;&gt;&lt;/a&gt;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&lt;/h3&gt;&lt;p&gt;在Cocoa的术语中，一个检索对象属性值的方法提及为getter方法，或者”getter;”，一个改变对象属性值的方法提及为setter方法，或者“setter.”这些方法通常成对建立，提供获得或者设置对象属性值的API。&lt;/p&gt;
+&lt;p&gt;我们应该使用存储方法而不是直接存储状态数据因为他们提供了一个抽象的层。下面是存储方法所提供的两个好处：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我们不需要重写我们的代码如果一个描述或者存储属性的方法改变。&lt;/li&gt;
+&lt;li&gt;存储方法常常实现重要行为是无论何时一个值被检索或者设置都会被重现。例如，设置方法频繁的实现内存管理代码并且通知其他对象当一个值被改变的时候。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;命名规则&quot;&gt;&lt;a href=&quot;#命名规则&quot; class=&quot;headerlink&quot; title=&quot;命名规则&quot;&gt;&lt;/a&gt;命名规则&lt;/h3&gt;&lt;p&gt;给出一个属性的类型type和称呼name，我们应该通过下面的格式，典型的实现存储方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-(type)name;
+-(void)setName:(type)newName;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;有个例外是属性为Boolean值。getter方法名字应该是isName。例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-(BOOL)isHidden;
+-(void)setHidden:(BOOL)newHidden;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这种命名惯例很重要因为在Cocoa中的很多其他的功能都依赖它，特别的key-value coding。Cocoa不使用getName因为以get开始的方法表明方法返回引用类型的值。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;(&lt;em&gt;w&lt;/em&gt;) 报错：__NSCFString containsString:]: unrecognized selector sent to instance 0x7f876b79e160&lt;/p&gt;
+&lt;p&gt; 原因：因为该属性提前释放了。&lt;/p&gt;
+&lt;p&gt;(&lt;em&gt;w&lt;/em&gt;) 报错：This application is modifying the autolayout engine from a background thread&lt;/p&gt;
+&lt;p&gt;原因：把需要更新UI的放在的主线程就好了。（通过打印 [NSThreadcurrentThread],就可以知道当前不是在主线程;&lt;/p&gt;
+&lt;p&gt; NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:@”value1”, @”key1”, @”value2”, @”key2”, nil];&lt;/p&gt;
+&lt;p&gt;(&lt;em&gt;w&lt;/em&gt;) Dealloc 时取 weak self 时崩溃  （&lt;a href=&quot;http://blog.csdn.net/kaihaodir/article/details/51586616）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/kaihaodir/article/details/51586616）&lt;/a&gt;&lt;br&gt;    先上引起崩溃的代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)dealloc
+{
+    __weak __typeof(self)weak_self = self;
+    NSLog(@&amp;quot;%@&amp;quot;, weak_self);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;说明不允许在 dealloc 的时候取 weak self.&lt;/p&gt;
+&lt;h3 id=&quot;获取当前年份和月份和天数&quot;&gt;&lt;a href=&quot;#获取当前年份和月份和天数&quot; class=&quot;headerlink&quot; title=&quot;获取当前年份和月份和天数&quot;&gt;&lt;/a&gt;获取当前年份和月份和天数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSCalendar *calendar = [NSCalendar currentCalendar];
+unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
+NSInteger iCurYear = [components year];  //当前的年份
+NSInteger iCurMonth = [components month];  //当前的月份
+NSInteger iCurDay = [components day];  // 当前的号数
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;根据传入的年份和月份获得该月份的天数&quot;&gt;&lt;a href=&quot;#根据传入的年份和月份获得该月份的天数&quot; class=&quot;headerlink&quot; title=&quot;根据传入的年份和月份获得该月份的天数&quot;&gt;&lt;/a&gt;根据传入的年份和月份获得该月份的天数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;/**  
+ * 根据传入的年份和月份获得该月份的天数  
+ *   
+ * @param year  
+ *            年份-正整数  
+ * @param month  
+ *            月份-正整数  
+ * @return 返回天数  
+ */    
+public int getDayNumber(int year, int month) {    
+    int days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };    
+    if (2 == month &amp;amp;&amp;amp; 0 == (year % 4) &amp;amp;&amp;amp; (0 != (year % 100) || 0 == (year % 400))) {    
+        days[1] = 29;    
+    }    
+    return (days[month - 1]);    
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot;&gt;&lt;a href=&quot;#存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot; class=&quot;headerlink&quot; title=&quot;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot;&gt;&lt;/a&gt;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&lt;/h3&gt;&lt;p&gt;在Cocoa的术语中，一个检索对象属性值的方法提及为getter方法，或者”getter;”，一个改变对象属性值的方法提及为setter方法，或者“setter.”这些方法通常成对建立，提供获得或者设置对象属性值的API。&lt;/p&gt;
+&lt;p&gt;我们应该使用存储方法而不是直接存储状态数据因为他们提供了一个抽象的层。下面是存储方法所提供的两个好处：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我们不需要重写我们的代码如果一个描述或者存储属性的方法改变。&lt;/li&gt;
+&lt;li&gt;存储方法常常实现重要行为是无论何时一个值被检索或者设置都会被重现。例如，设置方法频繁的实现内存管理代码并且通知其他对象当一个值被改变的时候。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>block的使用</title>
+    <link href="http://yoursite.com/2016/08/28/block%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2016/08/28/block的使用/</id>
+    <published>2016-08-28T11:40:33.000Z</published>
+    <updated>2016-08-28T11:42:30.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Block是一个C语言的特性，它就是C语言的函数指针，在使用中最多的就是进行函数回调或者事件传递，比如发送数据到服务器，等待服务器反馈是成功还是失败，此时block就派上用场了.&lt;/p&gt;
+&lt;h3 id=&quot;基本语法&quot;&gt;&lt;a href=&quot;#基本语法&quot; class=&quot;headerlink&quot; title=&quot;基本语法&quot;&gt;&lt;/a&gt;基本语法&lt;/h3&gt;&lt;h4 id=&quot;As-a-local-variable&quot;&gt;&lt;a href=&quot;#As-a-local-variable&quot; class=&quot;headerlink&quot; title=&quot;As a local variable:&quot;&gt;&lt;/a&gt;As a local variable:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;returnType (^blockName)(parameterTypes) = ^returnType(parameters) {...};
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;As-a-property&quot;&gt;&lt;a href=&quot;#As-a-property&quot; class=&quot;headerlink&quot; title=&quot;As a property:&quot;&gt;&lt;/a&gt;As a property:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;@property (nonatomic, copy, nullability) returnType (^blockName)(parameterTypes);
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;As-a-method-parameter&quot;&gt;&lt;a href=&quot;#As-a-method-parameter&quot; class=&quot;headerlink&quot; title=&quot;As a method parameter:&quot;&gt;&lt;/a&gt;As a method parameter:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;- (void)someMethodThatTakesABlock:(returnType (^nullability)(parameterTypes))blockName;
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;As-an-argument-to-a-method-call&quot;&gt;&lt;a href=&quot;#As-an-argument-to-a-method-call&quot; class=&quot;headerlink&quot; title=&quot;As an argument to a method call:&quot;&gt;&lt;/a&gt;As an argument to a method call:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;[someObject someMethodThatTakesABlock:^returnType (parameters) {...}];
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;As-a-typedef&quot;&gt;&lt;a href=&quot;#As-a-typedef&quot; class=&quot;headerlink&quot; title=&quot;As a typedef:&quot;&gt;&lt;/a&gt;As a typedef:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;typedef returnType (^TypeName)(parameterTypes);
+TypeName blockName = ^returnType(parameters) {...};
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;代码示例&quot;&gt;&lt;a href=&quot;#代码示例&quot; class=&quot;headerlink&quot; title=&quot;代码示例&quot;&gt;&lt;/a&gt;代码示例&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+@interface ViewController ()
+
+@property (nonatomic, assign) void (^block)(NSString *);
+
+@end
+
+typedef void (^block)(NSString *);
+typedef NSString *(^block2)(NSString *);
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    int (^num)(int) = ^(int a) {
+
+        return a * 6;
+    };
+    NSLog(@&amp;quot;%d&amp;quot;, num(5));
+
+    block b = ^(NSString *string) {
+
+        NSLog(@&amp;quot;%@&amp;quot;, string);
+    };
+    b(@&amp;quot;4677646974&amp;quot;);
+
+    block2 b2 = ^(NSString *string) {
+        NSLog(@&amp;quot;%@&amp;quot;, string);
+        return string;
+    };
+    NSLog(@&amp;quot;%@&amp;quot;, b2(@&amp;quot;456&amp;quot;));
+
+    [self methodsBlock:^(NSString *block3) {
+
+        NSLog(@&amp;quot;%@&amp;quot;, block3);
+    }];
+
+    [self methodsBlock2:^NSString *(NSString *block4) {
+
+        NSLog(@&amp;quot;%@&amp;quot;, block4);
+        return @&amp;quot;1&amp;quot;;
+    }];
+    NSLog(@&amp;quot;%@&amp;quot;, [self methodsBlock3:^NSString *(NSString *block5) {
+        NSLog(@&amp;quot;%@&amp;quot;, block5);
+        return @&amp;quot;2&amp;quot;;
+    }]);
+
+    int (^num2)(int, int, int, int, int, int, int) = ^(int a, int b, int c, int d, int e, int f, int g) {
+
+        return a * b * c * d * e * f * g;
+    };
+    NSLog(@&amp;quot;num2 = %d&amp;quot;, num2(10, 2, 5, 1, 45, 4, 4));
+
+
+}
+
+- (void)methodsBlock:(void(^)(NSString *))block3 {
+
+    block3(@&amp;quot;block3&amp;quot;);
+}
+
+
+- (void)methodsBlock2:(NSString *(^)(NSString *))block4 {
+
+    block4(@&amp;quot;block4&amp;quot;);
+    NSLog(@&amp;quot;%@&amp;quot;, block4(@&amp;quot;block4&amp;quot;));
+}
+
+
+- (NSString *)methodsBlock3:(NSString *(^ __nullable)(NSString *))block5 {
+
+    block5(@&amp;quot;block5&amp;quot;);
+    NSLog(@&amp;quot;block5 = %@&amp;quot;, block5(@&amp;quot;block5&amp;quot;));
+    return @&amp;quot;block5&amp;quot;;
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Block是一个C语言的特性，它就是C语言的函数指针，在使用中最多的就是进行函数回调或者事件传递，比如发送数据到服务器，等待服务器反馈是成功还是失败，此时block就派上用场了.&lt;/p&gt;
+&lt;h3 id=&quot;基本语法&quot;&gt;&lt;a href=&quot;#基本语法&quot; class=&quot;headerlink&quot; title=&quot;基本语法&quot;&gt;&lt;/a&gt;基本语法&lt;/h3&gt;&lt;h4 id=&quot;As-a-local-variable&quot;&gt;&lt;a href=&quot;#As-a-local-variable&quot; class=&quot;headerlink&quot; title=&quot;As a local variable:&quot;&gt;&lt;/a&gt;As a local variable:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;returnType (^blockName)(parameterTypes) = ^returnType(parameters) {...};
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title> 系统定位</title>
+    <link href="http://yoursite.com/2016/08/28/%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%BD%8D/"/>
+    <id>http://yoursite.com/2016/08/28/系统定位/</id>
+    <published>2016-08-28T11:35:47.000Z</published>
+    <updated>2016-08-28T11:37:19.000Z</updated>
+    
+    <content type="html">&lt;p&gt;首先导入CoreLocation.framework，然后再引入头文件#import&lt;/p&gt;
+&lt;h3 id=&quot;定义属性&quot;&gt;&lt;a href=&quot;#定义属性&quot; class=&quot;headerlink&quot; title=&quot;定义属性&quot;&gt;&lt;/a&gt;定义属性&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;@property (nonatomic , strong)CLLocationManager *locationManager;
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;初始化定位服务&quot;&gt;&lt;a href=&quot;#初始化定位服务&quot; class=&quot;headerlink&quot; title=&quot;初始化定位服务&quot;&gt;&lt;/a&gt;初始化定位服务&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;#pragma mark - 私有方法
+///初始化定位服务
+- (void)settupLocation
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+
+    if ([CLLocationManager locationServicesEnabled] &amp;amp;&amp;amp;
+        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        //定位功能可用，开始定位
+        [self.locationManager startUpdatingLocation];
+
+    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+        //请求授权
+        [self.locationManager requestWhenInUseAuthorization];
+
+    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied
+              || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted){
+    }
+    if (self.schoolStr.length &amp;lt; 2) {
+        // 开始定位
+        [_locationManager startUpdatingLocation];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;然后使用代理-CLLocationManagerDelegate&quot;&gt;&lt;a href=&quot;#然后使用代理-CLLocationManagerDelegate&quot; class=&quot;headerlink&quot; title=&quot;然后使用代理 CLLocationManagerDelegate&quot;&gt;&lt;/a&gt;然后使用代理 CLLocationManagerDelegate&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;#pragma mark - &amp;lt;CLLocationManagerDelegate&amp;gt;
+///成功定位
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray&amp;lt;CLLocation *&amp;gt; *)locations
+{
+    //经纬度信息
+    CLLocation *location = [locations lastObject];
+
+    //反地理编码
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray&amp;lt;CLPlacemark *&amp;gt; * _Nullable placemarks, NSError * _Nullable error) {
+        //编码成功
+        if (!error &amp;amp;&amp;amp; placemarks.count &amp;gt; 0) {
+            //获取地址对象
+            CLPlacemark *address = placemarks.firstObject;
+            //获取城市名称
+            NSMutableString *city = [NSMutableString stringWithString:address.locality];
+            if ([city containsString:@&amp;quot;市&amp;quot;]) {
+                [city deleteCharactersInRange:[city rangeOfString: @&amp;quot;市&amp;quot;]];
+            }
+            //显示定位信息
+            self.schoolStr = city;
+            [self.tableView reloadData];
+            //停止定位
+            [self.locationManager stopUpdatingLocation];
+
+        } else {
+            //编码失败
+        }
+    }];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;在Info-plist文件中添加如下配置：&quot;&gt;&lt;a href=&quot;#在Info-plist文件中添加如下配置：&quot; class=&quot;headerlink&quot; title=&quot;在Info.plist文件中添加如下配置：&quot;&gt;&lt;/a&gt;在Info.plist文件中添加如下配置：&lt;/h3&gt;&lt;p&gt;（1）NSLocationAlwaysUsageDescription&lt;br&gt;（2）NSLocationWhenInUseUsageDescription&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先导入CoreLocation.framework，然后再引入头文件#import&lt;/p&gt;
+&lt;h3 id=&quot;定义属性&quot;&gt;&lt;a href=&quot;#定义属性&quot; class=&quot;headerlink&quot; title=&quot;定义属性&quot;&gt;&lt;/a&gt;定义属性&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;@property (nonatomic , strong)CLLocationManager *locationManager;
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title> initWithNibName 和 loadNibNamed 的区别和联系</title>
@@ -884,279 +1197,6 @@ NSLog(@&amp;quot;Enumeration Time: %f&amp;quot;, date_e - date_s);
     
       &lt;p&gt;性能测试   &lt;/p&gt;
 &lt;p&gt;通常enumerateObjectsUsingBlock: 和 (for(… in …)在效率上基本一致，有时会快些。主要是因为它们都是基于 NSFastEnumeration 实现的. 快速迭代在处理的过程中需要多一次转换，当然也会消耗掉一些时间. 基于Block的迭代可以达到本机存储一样快的遍历集合. 对于字典同样适用，而数组的迭代却不行。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>iOS特别技能点总结2</title>
-    <link href="http://yoursite.com/2016/05/20/iOS%E7%89%B9%E5%88%AB%E6%8A%80%E8%83%BD%E7%82%B9%E6%80%BB%E7%BB%932/"/>
-    <id>http://yoursite.com/2016/05/20/iOS特别技能点总结2/</id>
-    <published>2016-05-20T14:53:45.000Z</published>
-    <updated>2016-05-20T14:58:01.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;iOS-通知&quot;&gt;&lt;a href=&quot;#iOS-通知&quot; class=&quot;headerlink&quot; title=&quot;iOS 通知&quot;&gt;&lt;/a&gt;iOS 通知&lt;/h3&gt;&lt;p&gt;1.在数据发生变化的界面进行通知注册和发送&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; NSArray *saveImageArray = [[NSArray alloc] initWithObjects:@&amp;quot;123&amp;quot;, nil];
-[[NSNotificationCenter defaultCenter] postNotificationName:@&amp;quot;postData&amp;quot; object:saveImageArray];
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;2.在通知接收界面进行通知监测和作出反应&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[[NSNotificationCenter defaultCenter] addObserver:self
-                                      selector:@selector(PostImage:)//接收消息方法
-                                          name:@&amp;quot;postData&amp;quot;//消息识别名称
-                                        object:nil];
-//实现方法
--(void)PostImage:(NSArray *)array {
-
-    self.messageSign.hidden = NO;
-    NSLog(@&amp;quot;array ===  %@&amp;quot;, array);
-    //接收传送过来的消息
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.在接收通知的界面消失的时候进行–通知观察者的移除&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; //移除observer   
-[[NSNotificationCenter defaultCenter] removeObserver:self name:@&amp;quot;postData&amp;quot; object:nil];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;界面间的跳转-–-（storyboard方式搭建界面）&quot;&gt;&lt;a href=&quot;#界面间的跳转-–-（storyboard方式搭建界面）&quot; class=&quot;headerlink&quot; title=&quot;界面间的跳转 – （storyboard方式搭建界面）&quot;&gt;&lt;/a&gt;界面间的跳转 – （storyboard方式搭建界面）&lt;/h3&gt;&lt;p&gt;1.界面间有 segue 的界面跳转&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[self performSegueWithIdentifier:@&amp;quot;segue的Identifier&amp;quot; sender:nil]; // 添加在需要跳转的地方
-
-// 有 segue 的跳转都会调用到的方法
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-   // 传送的数据
-   ViewController *lVC = [segue destinationViewController];
-   VC.team_id = self.team_id1;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.界面间没有连线或者在不同的 storyboard 界面跳转&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 获取要跳转的 Storyboard
-UIStoryboard *scoreStoryboard = [UIStoryboard storyboardWithName:@&amp;quot;Personal&amp;quot; bundle:nil];
-
-// 需要在目标界面设置 Storyboard ID
-PayViewController *payVC = [scoreStoryboard instantiateViewControllerWithIdentifier:@&amp;quot;PayViewController&amp;quot;];
-payVC.diamondCount = 1;
-
-[self.navigationController pushViewController:payVC animated:YES];
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;错误 ：UIImage stringByDeletingPathExtension]: unrecognized selector sent to instance 0xbe79910&lt;/p&gt;
-&lt;p&gt;原因 ：你所使用的对象已经是 UIImage ，不能再分割成其他对象&lt;/p&gt;
-&lt;p&gt;解决方案： 寻找使用了这个对象的地方，并修改。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;单独对一些文件设置-ARC-或者设置-非ARC&quot;&gt;&lt;a href=&quot;#单独对一些文件设置-ARC-或者设置-非ARC&quot; class=&quot;headerlink&quot; title=&quot;单独对一些文件设置 ARC 或者设置 非ARC&quot;&gt;&lt;/a&gt;单独对一些文件设置 ARC 或者设置 非ARC&lt;/h3&gt;&lt;p&gt;1.如果项目建立时未使用ARC，想将其改为ARC，可以在building setting中修改&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;在Building Setting中搜索auto reference
-
-将Objective-C Automatic Reference Counting一行设置为YES即可
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.因为之前没有ARC机制，好多比较好的类库都是使用的非ARC，或是有些大牛还是不喜欢用ARC，封装的类也是非ARC的，想要在自己的ARC项目中使用这些非ARC类库，只需要简单的设置一下就可以了。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;在TARGETS-Bulid Phares-Compile Sources中找到非ARC的文件，双击，在弹出的框中添加
-
-   -fno-objc-arc
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.UIImage转化成NSData&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSData *data;
-if (UIImagePNGRepresentation(image) == nil) {
-
-      data = UIImageJPEGRepresentation(image, 1);
-    } else {
-
-      data = UIImagePNGRepresentation(image);
-} 
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;iOS-通知&quot;&gt;&lt;a href=&quot;#iOS-通知&quot; class=&quot;headerlink&quot; title=&quot;iOS 通知&quot;&gt;&lt;/a&gt;iOS 通知&lt;/h3&gt;&lt;p&gt;1.在数据发生变化的界面进行通知注册和发送&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; NSArray *saveImageArray = [[NSArray alloc] initWithObjects:@&amp;quot;123&amp;quot;, nil];
-[[NSNotificationCenter defaultCenter] postNotificationName:@&amp;quot;postData&amp;quot; object:saveImageArray];
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式kvo</title>
-    <link href="http://yoursite.com/2016/05/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8Fkvo/"/>
-    <id>http://yoursite.com/2016/05/17/设计模式kvo/</id>
-    <published>2016-05-17T13:32:36.000Z</published>
-    <updated>2016-05-17T13:33:52.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。&lt;/p&gt;
-&lt;p&gt;   在初始化方法中加入：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[_tableView addObserver:self forKeyPath:@&amp;quot;contentOffset&amp;quot; options:NSKeyValueObservingOptionNew context:nil];
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;   在dealloc中移除KVO监听：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[_tableView removeObserver:self forKeyPath:@&amp;quot;contentOffset&amp;quot; context:nil];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  添加默认的响应回调方法：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-
-  [self doSomethingWhenContentOffsetChanges];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot; title=&quot;注意事项&quot;&gt;&lt;/a&gt;注意事项&lt;/h3&gt;&lt;p&gt;1.当你在controller中添加多个KVO时，所有的回调都是走同上述函数，那就必须对触发回调函数的来源进行判断。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;判断如下：
-
- - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-
-       if (object == _tableView &amp;amp;&amp;amp; [keyPath isEqualToString:@&amp;quot;contentOffset&amp;quot;]) {
-
-           [self doSomethingWhenContentOffsetChanges];
-        }
-   }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.假设当前类(在例子中为UITableViewController)还有父类，并且父类也有自己绑定了一些其他KVO呢？我们看到，上述回调函数体中只有一个判断，如果这个if不成立，这次KVO事件的触发就会到此中断了。但事实上，若当前类无法捕捉到这个KVO，那很有可能是在他的superClass，或者super-superClass…中，上述处理砍断了这个链。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;合理的处理方式应该是这样的：
-
-   - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-     {
-       if (object == _tableView &amp;amp;&amp;amp; [keyPath isEqualToString:@&amp;quot;contentOffset&amp;quot;]) {
-
-           [self doSomethingWhenContentOffsetChanges];
-       } else {
-
-          [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-       }
-     }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.潜在的问题有可能出现在dealloc中对KVO的注销上。KVO的一种缺陷(其实不能称为缺陷，应该称为特性)是，当对同一个keypath进行两次removeObserver时会导致程序crash，这种情况常常出现在父类有一个kvo，父类在dealloc中remove了一次，子类又remove了一次的情况下。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;* 我们可以分别在父类以及本类中定义各自的context字符串，比如在本类中定义context为@&amp;quot;ThisIsMyKVOContextNotSuper&amp;quot;;然后在dealloc中remove observer时指定移除的自身添加的observer。
-这样iOS就能知道移除的是自己的kvo，而不是父类中的kvo，避免二次remove造成crash。
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。&lt;/p&gt;
-&lt;p&gt;   在初始化方法中加入：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[_tableView addObserver:self forKeyPath:@&amp;quot;contentOffset&amp;quot; options:NSKeyValueObservingOptionNew context:nil];
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>预编译指令</title>
-    <link href="http://yoursite.com/2016/05/16/%E9%A2%84%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4/"/>
-    <id>http://yoursite.com/2016/05/16/预编译指令/</id>
-    <published>2016-05-16T13:38:49.000Z</published>
-    <updated>2016-05-16T13:43:13.000Z</updated>
-    
-    <content type="html">&lt;p&gt;常见的预处理功能&lt;/p&gt;
-&lt;p&gt;预处理器的主要作用就是把通过预处理的内建功能对一个资源进行等价替换，最常见的预处理有：文件包含，条件编译、布局控制和宏替换4种。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;＊ 文件包含：#include 是一种最为常见的预处理，主要是做为文件的引用组合源程序正文。
-
-＊ 条件编译：#if,#ifndef,#ifdef,#endif,#undef等也是比较常见的预处理，主要是进行编译时进行有选择的挑选，注释掉一些指定的代码，以达到版本控制、防止对文件重复包含的功能。
-
-＊ 布局控制：#pragma，这也是我们应用预处理的一个重要方面，主要功能是为编译程序提供非常规的控制流信息。
-
-＊ 宏替换：#define，这是最常见的用法，它可以定义符号常量、函数功能、重新命名、字符串的拼接等各种功能。
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt; 预处理过程扫描源代码，对其进行初步的转换，产生新的源代码提供给编译器。可见预处理过程先于编译器对源代码进行处理。&lt;/p&gt;
-&lt;p&gt; 预处理指令是以#开头的代码行，#后是指令关键字，在关键字和#号之间允许存在任意个数的空白字符。正行语句构成了一条预处理指令，该指令酱紫啊编译器进行编译之前对源代码做某些转换，下面是一些&lt;/p&gt;
-&lt;h3 id=&quot;常用的预处理指令&quot;&gt;&lt;a href=&quot;#常用的预处理指令&quot; class=&quot;headerlink&quot; title=&quot;常用的预处理指令&quot;&gt;&lt;/a&gt;常用的预处理指令&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;#   空指令，没有任何效果
-
-#include 包含一个源代码文件
-
-#define 定义宏
-
-#undef 取消定义宏
-
-#if 如果条件为真，则编译下面的代码
-
-#elif 如果前面的#if不为真，则编译下面的代码
-
-#endif 结束一个#if...#elif条件编译块
-
-#ifdef 如果已经定义了某个宏，则编译下面的代码
-
-#ifndef 如果没有定义某个宏，则编译下面的代码
-
-#error 停止编译并显示错误信息
-
-#pragma 为编译程序提供非常规的控制流信息
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 这些指令的主要目的是进行编译时进行有选择的挑选，注释掉一些指定的代码，以达到版本控制、防止对文件重复包含的功能。&lt;/p&gt;
-&lt;h3 id=&quot;预定义标识符&quot;&gt;&lt;a href=&quot;#预定义标识符&quot; class=&quot;headerlink&quot; title=&quot;预定义标识符&quot;&gt;&lt;/a&gt;预定义标识符&lt;/h3&gt;&lt;p&gt;  为了处理一些有用的信息，预处理定义了一些预处理标识符，虽然各种编译器的预处理标识符不尽相同，但是他们都会处理下面的4种：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;__FILE__ 正在编译的文件的名字
-__LINE__ 正在编译的文件的行号
-__DATE__ 编译时刻的日期字符串，例如： &amp;quot;25 Jan 2006&amp;quot;
-__TIME__ 编译时刻的时间字符串，例如： &amp;quot;12:30:55&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;常见的预处理功能&lt;/p&gt;
-&lt;p&gt;预处理器的主要作用就是把通过预处理的内建功能对一个资源进行等价替换，最常见的预处理有：文件包含，条件编译、布局控制和宏替换4种。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;＊ 文件包含：#include 是一种最为常见的预处理，主要是做为文件的引用组合源程序正文。
-
-＊ 条件编译：#if,#ifndef,#ifdef,#endif,#undef等也是比较常见的预处理，主要是进行编译时进行有选择的挑选，注释掉一些指定的代码，以达到版本控制、防止对文件重复包含的功能。
-
-＊ 布局控制：#pragma，这也是我们应用预处理的一个重要方面，主要功能是为编译程序提供非常规的控制流信息。
-
-＊ 宏替换：#define，这是最常见的用法，它可以定义符号常量、函数功能、重新命名、字符串的拼接等各种功能。
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS特别技能点总结</title>
-    <link href="http://yoursite.com/2016/05/07/iOS%E7%89%B9%E5%88%AB%E6%8A%80%E8%83%BD%E7%82%B9%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2016/05/07/iOS特别技能点总结/</id>
-    <published>2016-05-07T11:33:38.000Z</published>
-    <updated>2016-05-16T13:55:07.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;修改状态栏颜色&quot;&gt;&lt;a href=&quot;#修改状态栏颜色&quot; class=&quot;headerlink&quot; title=&quot;修改状态栏颜色&quot;&gt;&lt;/a&gt;修改状态栏颜色&lt;/h3&gt;&lt;p&gt;1.在 info.plist 添加 View controller-based status bar appearance 并设置为 NO（白色），YES（黑色）， 如果为NO，并在 Appdelegate 里面添加&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-则可设置为白色。
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;2.在有 navigationbar 的时候需要 添加方法 ：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (UIStatusBarStyle)preferredStatusBarStyle {
-
-return UIStatusBarStyleLightContent;
-} 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;并且在 viewDidload 中添加：self.navigationController.navigationBar.barStyle = UIBarStyleBlack;&lt;/p&gt;
-&lt;p&gt;这样可以设置为白色&lt;/p&gt;
-&lt;h3 id=&quot;修改-Bar-Button-Item-的颜色&quot;&gt;&lt;a href=&quot;#修改-Bar-Button-Item-的颜色&quot; class=&quot;headerlink&quot; title=&quot;修改 Bar Button Item 的颜色&quot;&gt;&lt;/a&gt;修改 Bar Button Item 的颜色&lt;/h3&gt;&lt;p&gt;如果要修改 Right Bar Button Items 的颜色，需要在 Bar Button Item 里面修改它的 Tint 的颜色。因为自定义右按钮Right Bar Button Items 有两个图层：Bar Button Item 和 View。&lt;/p&gt;
-&lt;h3 id=&quot;警告：Plain-style-unsupported-in-a-Navigation-item&quot;&gt;&lt;a href=&quot;#警告：Plain-style-unsupported-in-a-Navigation-item&quot; class=&quot;headerlink&quot; title=&quot;警告：Plain style unsupported in a Navigation item&quot;&gt;&lt;/a&gt;警告：Plain style unsupported in a Navigation item&lt;/h3&gt;&lt;p&gt; 解决方法： 将 plain 设置成：Bordered 。&lt;/p&gt;
-&lt;h3 id=&quot;怎样设置UITableView的cell之间的距离&quot;&gt;&lt;a href=&quot;#怎样设置UITableView的cell之间的距离&quot; class=&quot;headerlink&quot; title=&quot;怎样设置UITableView的cell之间的距离?&quot;&gt;&lt;/a&gt;怎样设置UITableView的cell之间的距离?&lt;/h3&gt;&lt;p&gt;分为两种情况：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;1. 分组表格    - 每段一个cell设置表头的高度 
-2. 非分组表格  - 将tableViewCell的背景色，contentView的背景色设置为透明，在contentView中添加一个UIImageView做为背景，使UIImageView的高度小于cell的高度，这样创建出的tableView就可以使每个cell之间看起来有一定间隔。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;performSegueWithIdentifier-produce-no-segue-with-identifier-error&quot;&gt;&lt;a href=&quot;#performSegueWithIdentifier-produce-no-segue-with-identifier-error&quot; class=&quot;headerlink&quot; title=&quot;performSegueWithIdentifier produce no segue with identifier error&quot;&gt;&lt;/a&gt;performSegueWithIdentifier produce no segue with identifier error&lt;/h3&gt;&lt;p&gt;   解决方法：先检查要跳转的界面和目的界面的表格的协议（delegate和datasource）是否有代理。然后检查是否给控制器添加了类。&lt;/p&gt;
-&lt;p&gt;1.在 ios 中如果遇到添加的图片没有显示出来，可以先检查图片的名称是否正确，&lt;br&gt; 然后检查图片的格式是否是 PNG 格式，最后检查是否已经添加到工程当中了。&lt;/p&gt;
-&lt;p&gt;2.在tableView 中 cell 的跳转，需要使用控制器间的跳转。 &lt;/p&gt;
-&lt;p&gt;3.异常：Terminating app due to uncaught exception ‘NSInvalidArgumentException’, reason: ‘&lt;em&gt;*&lt;/em&gt; -[UIViewController tableView:numberOfRowsInSection:]: unrecognized selector sent to instance 0x3b02120’&lt;/p&gt;
-&lt;p&gt;   解决方法：检测视图控制器是否绑定了具体的类。&lt;/p&gt;
-&lt;p&gt;4.this class is not key value coding-compliant for the key XXX错误的解决方法&lt;/p&gt;
-&lt;p&gt;   解决方法：在设置IBAction和IBOutlet时有多余的连线，按下ctrl键检查控件的连接将多余的连续删除后程序正常运行。&lt;/p&gt;
-&lt;p&gt;5.this class is not key value coding-compliant for the key leftTitle.&lt;/p&gt;
-&lt;p&gt;   解决方法： 因为sb 或者 xib 中的控件链接的属性有些没有出现在页面绑定的控制器上，造成引用上的健值错误。&lt;/p&gt;
-&lt;p&gt;6.OC之OBJC2_UNAVAILABLE&lt;/p&gt;
-&lt;p&gt;  意即在OBJC2.0中，这些东西将被删除。&lt;/p&gt;
-&lt;h3 id=&quot;去除-tableView-的-sectionView-的粘性&quot;&gt;&lt;a href=&quot;#去除-tableView-的-sectionView-的粘性&quot; class=&quot;headerlink&quot; title=&quot;去除 tableView 的 sectionView 的粘性&quot;&gt;&lt;/a&gt;去除 tableView 的 sectionView 的粘性&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
-   CGFloat sectionHeaderHeight = 45;
-   if (scrollView.contentOffset.y &amp;lt;= sectionHeaderHeight&amp;amp;&amp;amp;scrollView.contentOffset.y &amp;gt;= 0) {
-
-       scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-   }
-   else if (scrollView.contentOffset.y &amp;gt;= sectionHeaderHeight) {
-
-       scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-   }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;修改-textField-的-placeholder-的字体颜色，大小&quot;&gt;&lt;a href=&quot;#修改-textField-的-placeholder-的字体颜色，大小&quot; class=&quot;headerlink&quot; title=&quot;修改 textField 的 placeholder 的字体颜色，大小&quot;&gt;&lt;/a&gt;修改 textField 的 placeholder 的字体颜色，大小&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[textField setValue:[UIColor redColor] forKeyPath:@&amp;quot;_placeholderLabel.textColor&amp;quot;];  
-
-[textField setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@&amp;quot;_placeholderLabel.font&amp;quot;]; 
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;修改状态栏颜色&quot;&gt;&lt;a href=&quot;#修改状态栏颜色&quot; class=&quot;headerlink&quot; title=&quot;修改状态栏颜色&quot;&gt;&lt;/a&gt;修改状态栏颜色&lt;/h3&gt;&lt;p&gt;1.在 info.plist 添加 View controller-based status bar appearance 并设置为 NO（白色），YES（黑色）， 如果为NO，并在 Appdelegate 里面添加&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-则可设置为白色。
-&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     

@@ -4,18 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title> initWithNibName 和 loadNibNamed 的区别和联系 | 第欧根尼的小桶</title>
+  <title>ios技能点总结和存取方法 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="联系 可以使用此方法加载用户界面（xib文件）到我们的代码中，这样，可以通过操作这个加载进来的（xib）对象，来操作xib文件内容。">
+  <meta name="description" content="存储方法是一个可以获得或者设置一个对象的属性值的实例方法在Cocoa的术语中，一个检索对象属性值的方法提及为getter方法，或者”getter;”，一个改变对象属性值的方法提及为setter方法，或者“setter.”这些方法通常成对建立，提供获得或者设置对象属性值的API。
+我们应该使用存储方法而不是直接存储状态数据因为他们提供了一个抽象的层。下面是存储方法所提供的两个好处：
+
+我们不需要重写">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" initWithNibName 和 loadNibNamed 的区别和联系">
-<meta property="og:url" content="http://yoursite.com/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/index.html">
+<meta property="og:title" content="ios技能点总结和存取方法">
+<meta property="og:url" content="http://yoursite.com/2016/08/28/ios技能点总结和存取方法/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="联系 可以使用此方法加载用户界面（xib文件）到我们的代码中，这样，可以通过操作这个加载进来的（xib）对象，来操作xib文件内容。">
-<meta property="og:updated_time" content="2016-08-13T11:14:02.000Z">
+<meta property="og:description" content="存储方法是一个可以获得或者设置一个对象的属性值的实例方法在Cocoa的术语中，一个检索对象属性值的方法提及为getter方法，或者”getter;”，一个改变对象属性值的方法提及为setter方法，或者“setter.”这些方法通常成对建立，提供获得或者设置对象属性值的API。
+我们应该使用存储方法而不是直接存储状态数据因为他们提供了一个抽象的层。下面是存储方法所提供的两个好处：
+
+我们不需要重写">
+<meta property="og:updated_time" content="2016-08-28T11:52:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" initWithNibName 和 loadNibNamed 的区别和联系">
-<meta name="twitter:description" content="联系 可以使用此方法加载用户界面（xib文件）到我们的代码中，这样，可以通过操作这个加载进来的（xib）对象，来操作xib文件内容。">
+<meta name="twitter:title" content="ios技能点总结和存取方法">
+<meta name="twitter:description" content="存储方法是一个可以获得或者设置一个对象的属性值的实例方法在Cocoa的术语中，一个检索对象属性值的方法提及为getter方法，或者”getter;”，一个改变对象属性值的方法提及为setter方法，或者“setter.”这些方法通常成对建立，提供获得或者设置对象属性值的API。
+我们应该使用存储方法而不是直接存储状态数据因为他们提供了一个抽象的层。下面是存储方法所提供的两个好处：
+
+我们不需要重写">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -191,11 +200,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-initWithNibName-和-loadNibNamed-的区别和联系" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-ios技能点总结和存取方法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/" class="article-date">
-  	<time datetime="2016-08-13T11:13:03.000Z" itemprop="datePublished">2016-08-13</time>
+      <a href="/2016/08/28/ios技能点总结和存取方法/" class="article-date">
+  	<time datetime="2016-08-28T11:45:40.000Z" itemprop="datePublished">2016-08-28</time>
 </a>
     </div>
   
@@ -208,7 +217,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-       initWithNibName 和 loadNibNamed 的区别和联系
+      ios技能点总结和存取方法
     </h1>
   
 
@@ -224,19 +233,54 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><p> 可以使用此方法加载用户界面（xib文件）到我们的代码中，这样，可以通过操作这个加载进来的（xib）对象，来操作xib文件内容。</p>
+        <h3 id="存储方法是一个可以获得或者设置一个对象的属性值的实例方法"><a href="#存储方法是一个可以获得或者设置一个对象的属性值的实例方法" class="headerlink" title="存储方法是一个可以获得或者设置一个对象的属性值的实例方法"></a>存储方法是一个可以获得或者设置一个对象的属性值的实例方法</h3><p>在Cocoa的术语中，一个检索对象属性值的方法提及为getter方法，或者”getter;”，一个改变对象属性值的方法提及为setter方法，或者“setter.”这些方法通常成对建立，提供获得或者设置对象属性值的API。</p>
+<p>我们应该使用存储方法而不是直接存储状态数据因为他们提供了一个抽象的层。下面是存储方法所提供的两个好处：</p>
+<ol>
+<li>我们不需要重写我们的代码如果一个描述或者存储属性的方法改变。</li>
+<li>存储方法常常实现重要行为是无论何时一个值被检索或者设置都会被重现。例如，设置方法频繁的实现内存管理代码并且通知其他对象当一个值被改变的时候。</li>
+</ol>
 <a id="more"></a>
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>1.集成类不一样</p>
-<p>initWithNibName要加载的xib的类为我们定义的视图控制器类<br>loadNibNamed要加载的xib的类为NSOjbect</p>
-<p>2.加载方式不同</p>
-<p>initWithNibName方法：是延迟加载，这个View上的控件是 nil 的，只有到 需要显示时，才会不是 nil<br>loadNibNamed方法：即时加载，用该方法加载的xib对象中的各个元素都已经存在。</p>
-<h3 id="获取想要的-view"><a href="#获取想要的-view" class="headerlink" title="获取想要的 view"></a>获取想要的 view</h3><pre><code>NSArray* nib = [[NSBundle mainBundle] loadNibNamed／@&quot;CustomCell&quot; owner:self options:nil];
-for(id item in nib) {
-
-    if([is isKindOfClass:[youview class]]) {
-
-    //找到了你自己需要得view
-    }
+<h3 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h3><p>给出一个属性的类型type和称呼name，我们应该通过下面的格式，典型的实现存储方法：</p>
+<pre><code>-(type)name;
+-(void)setName:(type)newName;
+</code></pre><p>有个例外是属性为Boolean值。getter方法名字应该是isName。例如：</p>
+<pre><code>-(BOOL)isHidden;
+-(void)setHidden:(BOOL)newHidden;
+</code></pre><p>这种命名惯例很重要因为在Cocoa中的很多其他的功能都依赖它，特别的key-value coding。Cocoa不使用getName因为以get开始的方法表明方法返回引用类型的值。</p>
+<hr>
+<p>(<em>w</em>) 报错：__NSCFString containsString:]: unrecognized selector sent to instance 0x7f876b79e160</p>
+<p> 原因：因为该属性提前释放了。</p>
+<p>(<em>w</em>) 报错：This application is modifying the autolayout engine from a background thread</p>
+<p>原因：把需要更新UI的放在的主线程就好了。（通过打印 [NSThreadcurrentThread],就可以知道当前不是在主线程;</p>
+<p> NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:@”value1”, @”key1”, @”value2”, @”key2”, nil];</p>
+<p>(<em>w</em>) Dealloc 时取 weak self 时崩溃  （<a href="http://blog.csdn.net/kaihaodir/article/details/51586616）" target="_blank" rel="external">http://blog.csdn.net/kaihaodir/article/details/51586616）</a><br>    先上引起崩溃的代码：</p>
+<pre><code>- (void)dealloc
+{
+    __weak __typeof(self)weak_self = self;
+    NSLog(@&quot;%@&quot;, weak_self);
+}
+</code></pre><p>说明不允许在 dealloc 的时候取 weak self.</p>
+<h3 id="获取当前年份和月份和天数"><a href="#获取当前年份和月份和天数" class="headerlink" title="获取当前年份和月份和天数"></a>获取当前年份和月份和天数</h3><pre><code>NSCalendar *calendar = [NSCalendar currentCalendar];
+unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
+NSInteger iCurYear = [components year];  //当前的年份
+NSInteger iCurMonth = [components month];  //当前的月份
+NSInteger iCurDay = [components day];  // 当前的号数
+</code></pre><h3 id="根据传入的年份和月份获得该月份的天数"><a href="#根据传入的年份和月份获得该月份的天数" class="headerlink" title="根据传入的年份和月份获得该月份的天数"></a>根据传入的年份和月份获得该月份的天数</h3><pre><code>/**  
+ * 根据传入的年份和月份获得该月份的天数  
+ *   
+ * @param year  
+ *            年份-正整数  
+ * @param month  
+ *            月份-正整数  
+ * @return 返回天数  
+ */    
+public int getDayNumber(int year, int month) {    
+    int days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };    
+    if (2 == month &amp;&amp; 0 == (year % 4) &amp;&amp; (0 != (year % 100) || 0 == (year % 400))) {    
+        days[1] = 29;    
+    }    
+    return (days[month - 1]);    
 }
 </code></pre>
       
@@ -247,18 +291,18 @@ for(id item in nib) {
     
 <nav id="article-nav">
   
-    <a href="/2016/08/28/系统定位/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/08/28/代理设计模式/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-           系统定位
+          代理设计模式
         
       </div>
     </a>
   
   
-    <a href="/2016/08/13/通知iOS/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">通知iOS</div>
+    <a href="/2016/08/28/block的使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">block的使用</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -293,7 +337,7 @@ for(id item in nib) {
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="initWithNibName-和-loadNibNamed-的区别和联系" data-title=" initWithNibName 和 loadNibNamed 的区别和联系" data-url="http://yoursite.com/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/"></div>
+	<div class="ds-thread" data-thread-key="ios技能点总结和存取方法" data-title="ios技能点总结和存取方法" data-url="http://yoursite.com/2016/08/28/ios技能点总结和存取方法/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
