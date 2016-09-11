@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-28T12:00:01.000Z</updated>
+  <updated>2016-09-11T14:34:54.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,157 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>property在声明中可以指定的属性</title>
+    <link href="http://yoursite.com/2016/09/11/property%E5%9C%A8%E5%A3%B0%E6%98%8E%E4%B8%AD%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%AE%9A%E7%9A%84%E5%B1%9E%E6%80%A7/"/>
+    <id>http://yoursite.com/2016/09/11/property在声明中可以指定的属性/</id>
+    <published>2016-09-11T14:18:58.000Z</published>
+    <updated>2016-09-11T14:34:54.000Z</updated>
+    
+    <content type="html">&lt;p&gt;assign, retain, strong, weak, unsafe_unretained, copy &lt;/p&gt;
+&lt;p&gt;这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。&lt;/p&gt;
+&lt;h3 id=&quot;Non-ARC&quot;&gt;&lt;a href=&quot;#Non-ARC&quot; class=&quot;headerlink&quot; title=&quot;Non-ARC&quot;&gt;&lt;/a&gt;Non-ARC&lt;/h3&gt;&lt;p&gt;从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十分建议在可能的情况下通过accessor方法来操纵property，而不是操纵它对应的实例变量。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;assign&quot;&gt;&lt;a href=&quot;#assign&quot; class=&quot;headerlink&quot; title=&quot;assign&quot;&gt;&lt;/a&gt;assign&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;在Non-ARC内存管理模式下，assign是一个property的默认属性，无论这个property代表一个简单数据类型，还是一个指向对象的指针
+也就是说：
+
+@property (nonatomic) NSNumber *count;
+等价于：
+
+@property (nonatomic, assign) NSNumber *count;
+
+assign主要应用于代表简单数据类型的property，比如int，float等。
+如果这个用assign属性修饰的property代表一个指向对象的指针，那么当这个指针指向某个对象时，这个对象的引用计数不应该被改变。
+也就是说，用assign属性修饰的property，不应该持有一个对象。
+因为这个property不持有对象，所以它所指向的对象很可能已经在别处被释放了。这时它就有可能成为一枚悬垂指针，访问它指向的内存地址时，可能会发生意想不到的状况。
+
+
+retain
+
+retain不能修饰用来代表简单数据类型的property，否则编译器会报错：
+
+@property (nonatomic, retain) int num;//编译器报错：Property with &amp;apos;retain (or strong)&amp;apos; attribute must be of object type
+如果一个property被retain修饰，这代表着这个property应该持有它所指向的对象。
+官方文档中展示了一个被retain修饰的property：
+
+@property (nonatomic, retain) NSNumber *count;
+
+编译器可能为它实现的accessor方法：
+
+- (NSNumber *)count {
+    return _count;
+}
+- (void)setCount:(NSNumber *)newCount {
+    [newCount retain];
+    [_count release];
+    // Make the new assignment.
+    _count = newCount;
+}
+
+注意，考虑到newCount和_count可能指向同一个对象，所以在setter方法中，必须首先调用retain，以防这个对象被释放。
+
+
+ copy
+
+copy也不能修饰用来代表简单数据类型的property，否则编译器会报错：
+
+    @property (nonatomic, copy) int num;//编译器报错：Property with &amp;apos;copy&amp;apos; attribute must be of object type
+
+如果一个property被copy修饰，那么赋值到这个property的对象，应该是原有对象的一份拷贝。
+只有实现了NSCopying协议，并且实现了其中的copyWithZone:方法的对象才能被拷贝。
+但是并不是所有的拷贝都产生了新的对象，有些类在实现copyWithZone:方法时，有着它们自己的考虑。比如NSString：
+
+    @property (nonatomic, copy) NSString *myString;
+    NSString *string = [[NSString alloc] initWithString:@&amp;quot;Hello&amp;quot;];
+    self.myString = string;
+    NSLog(@&amp;quot;%d&amp;quot;, string == _myString);//输出1
+
+在这里，property的指针和原先的指针指向的是同一个地址。
+
+unsafe_unretained
+
+人认为unsafe_unretained与assign是等价的。
+
+
+strong
+
+个人认为strong与retain是等价的。
+官方文档中有这样的示例代码：
+
+// The following declaration is a synonym for: @property(retain) MyClass *myObject;
+@property(strong) MyClass *myObject;
+
+表示了strong和retain是同义词。
+
+
+weak
+
+Non-ARC内存管理模式下无法使用weak来修饰一个property，编译器会报错。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;ARC&quot;&gt;&lt;a href=&quot;#ARC&quot; class=&quot;headerlink&quot; title=&quot;ARC&quot;&gt;&lt;/a&gt;ARC&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;ARC有效时，对象类型的变量将有所有权修饰符来修饰。一共有以下四种所有权修饰符：
+
+__strong 修饰符
+__weak 修饰符
+__unsafe_unretained 修饰符
+__autoreleasing 修饰符
+
+四种修饰符的具体意思，就不在这里解释了(´･_･`)
+
+编译器在为一个property合成实例变量时，也会使用所有权修饰符来修饰这个实例变量。根据property属性的不同，用来修饰实例变量的所有权修饰符也不尽相同。
+
+
+strong
+
+在ARC内存管理模式下，strong是一个代表对象类型的property的默认属性，并且它不能修饰用来代表简单数据类型的property。
+编译器在合成实例变量时，将使用__strong修饰符。
+如果另外自定义了用其他修饰符修饰的实例变量，编译器会报错。可以用这个方法来验证property的各个属性对应的实例变量的所有权修饰符。
+
+@interface ViewController ()
+{
+    __weak NSObject *_obj;//编译器报错：Existing instance variable &amp;apos;_obj&amp;apos; for strong property &amp;apos;obj&amp;apos; may not be weak
+}
+
+@property (nonatomic, strong) NSObject *obj;
+
+@end
+
+
+weak
+
+weak也不能修饰用来代表简单数据类型的property。
+编译器将为weak修饰的property生成带__weak所有权修饰符的实例变量。
+
+copy
+
+copy也不能修饰用来代表简单数据类型的property。
+编译器将为copy修饰的property生成带__strong所有权修饰符的实例变量。
+编译器自动合成的setter方法会调用对象的copyWithZone:方法。虽然第三方程序员可以自定义setter方法，但是为了程序的可读性，
+也应该在其中执行拷贝的逻辑。
+
+retain
+
+和Non-ARC的理由一样，个人认为retain和strong是等价的。
+
+unsafe_unretained
+
+编译器将为unsafe_unretained修饰的property生成带__unsafe_unretained所有权修饰符的实例变量。
+与weak和strong不同的是，unsafe_unretained也可以修饰代表简单数据类型的property。
+
+assign
+
+个人认为assign和unsafe_unretained等价。
+assign在ARC内存管理模式下，仍然是代表简单数据类型的property的默认属性。
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;assign, retain, strong, weak, unsafe_unretained, copy &lt;/p&gt;
+&lt;p&gt;这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。&lt;/p&gt;
+&lt;h3 id=&quot;Non-ARC&quot;&gt;&lt;a href=&quot;#Non-ARC&quot; class=&quot;headerlink&quot; title=&quot;Non-ARC&quot;&gt;&lt;/a&gt;Non-ARC&lt;/h3&gt;&lt;p&gt;从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十分建议在可能的情况下通过accessor方法来操纵property，而不是操纵它对应的实例变量。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>代理设计模式</title>
@@ -1154,49 +1305,6 @@ S:毫秒
     <summary type="html">
     
       &lt;p&gt;CFAbsoluteTimeGetCurrent()&lt;br&gt; 获取系统运行的当前绝对时间&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>方法性能方法</title>
-    <link href="http://yoursite.com/2016/05/20/%E6%96%B9%E6%B3%95%E6%80%A7%E8%83%BD%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2016/05/20/方法性能方法/</id>
-    <published>2016-05-20T14:59:25.000Z</published>
-    <updated>2016-05-20T15:01:59.000Z</updated>
-    
-    <content type="html">&lt;p&gt;性能测试   &lt;/p&gt;
-&lt;p&gt;通常enumerateObjectsUsingBlock: 和 (for(… in …)在效率上基本一致，有时会快些。主要是因为它们都是基于 NSFastEnumeration 实现的. 快速迭代在处理的过程中需要多一次转换，当然也会消耗掉一些时间. 基于Block的迭代可以达到本机存储一样快的遍历集合. 对于字典同样适用，而数组的迭代却不行。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;（ &lt;a href=&quot;http://stackoverflow.com/questions/4486622/when-to-use-enumerateobjectsusingblock-vs-for&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/questions/4486622/when-to-use-enumerateobjectsusingblock-vs-for&lt;/a&gt; ）&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSMutableArray *test = [NSMutableArray array];
-for (int i= 0; i &amp;lt; 10000000; i++) {
-    [test addObject:@(i)];
-}
-int sum = 0;
-
-double date_s = CFAbsoluteTimeGetCurrent();
-for (int i = 0;i &amp;lt; test.count; i++) {
-    sum += 1;
-}
-double date_e =  CFAbsoluteTimeGetCurrent();
-NSLog(@&amp;quot;ForLoop Time: %f&amp;quot;, date_e - date_s);
-
-date_s =  CFAbsoluteTimeGetCurrent();
-for (id obj in test) {
-    sum += 1;
-}
-date_e =  CFAbsoluteTimeGetCurrent();
-NSLog(@&amp;quot;Enumeration Time: %f&amp;quot;, date_e - date_s);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  注意”enumerateObjectsUsingBlock” 修改局部变量时， 你需要声明局部变量为 __block 类型.&lt;/p&gt;
-&lt;p&gt;  enumerateObjectsWithOptions:usingBlock: 支持并发迭代或反向迭代，并发迭代时效率也非常高.&lt;/p&gt;
-&lt;p&gt;  对于字典而言, enumerateObjectsWithOptions:usingBlock 也是唯一的方式可以并发实现恢复Key-Value值.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;性能测试   &lt;/p&gt;
-&lt;p&gt;通常enumerateObjectsUsingBlock: 和 (for(… in …)在效率上基本一致，有时会快些。主要是因为它们都是基于 NSFastEnumeration 实现的. 快速迭代在处理的过程中需要多一次转换，当然也会消耗掉一些时间. 基于Block的迭代可以达到本机存储一样快的遍历集合. 对于字典同样适用，而数组的迭代却不行。&lt;br&gt;
     
     </summary>
     

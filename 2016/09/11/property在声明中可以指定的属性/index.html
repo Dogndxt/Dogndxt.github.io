@@ -4,21 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>代理设计模式 | 第欧根尼的小桶</title>
+  <title>property在声明中可以指定的属性 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="代理设计模式代理delegate就是委托另一个对象来帮忙完成一件事情
-为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了">
+  <meta name="description" content="assign, retain, strong, weak, unsafe_unretained, copy 
+这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。
+Non-ARC从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十">
 <meta property="og:type" content="article">
-<meta property="og:title" content="代理设计模式">
-<meta property="og:url" content="http://yoursite.com/2016/08/28/代理设计模式/index.html">
+<meta property="og:title" content="property在声明中可以指定的属性">
+<meta property="og:url" content="http://yoursite.com/2016/09/11/property在声明中可以指定的属性/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="代理设计模式代理delegate就是委托另一个对象来帮忙完成一件事情
-为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了">
-<meta property="og:updated_time" content="2016-08-28T12:00:01.000Z">
+<meta property="og:description" content="assign, retain, strong, weak, unsafe_unretained, copy 
+这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。
+Non-ARC从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十">
+<meta property="og:updated_time" content="2016-09-11T14:34:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="代理设计模式">
-<meta name="twitter:description" content="代理设计模式代理delegate就是委托另一个对象来帮忙完成一件事情
-为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了">
+<meta name="twitter:title" content="property在声明中可以指定的属性">
+<meta name="twitter:description" content="assign, retain, strong, weak, unsafe_unretained, copy 
+这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。
+Non-ARC从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -194,11 +197,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-代理设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-property在声明中可以指定的属性" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/28/代理设计模式/" class="article-date">
-  	<time datetime="2016-08-28T11:56:17.000Z" itemprop="datePublished">2016-08-28</time>
+      <a href="/2016/09/11/property在声明中可以指定的属性/" class="article-date">
+  	<time datetime="2016-09-11T14:18:58.000Z" itemprop="datePublished">2016-09-11</time>
 </a>
     </div>
   
@@ -211,7 +214,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      代理设计模式
+      property在声明中可以指定的属性
     </h1>
   
 
@@ -227,45 +230,138 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="代理设计模式"><a href="#代理设计模式" class="headerlink" title="代理设计模式"></a>代理设计模式</h3><p>代理delegate就是委托另一个对象来帮忙完成一件事情</p>
-<p>为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了 MVC 设计模式，项目小还好，随着功能的扩展，我们就会发现越写越难写；还有一种情况，就是这件事情做不到，只能委托给其他对象来做了.</p>
-<a id="more"></a>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>场景描述如下：TableView 上面有多个 CustomTableViewCell，cell上面显示的是文字信息和一个详情Button，点击button以后push到一个新的页面。为什么说这个场景用到了代理delegate？因为button是在自定义的CustomTableViewCell上面，而cell没有能力实现push的功能，因为push到新页面的代码是这样的，</p>
-<pre><code>[self.navigationController pushViewController...];
-</code></pre><p>所以这时候 CustomTableViewCell 就要委托它所在的 Controller 去做这件事情了。</p>
-<h3 id="代码使用"><a href="#代码使用" class="headerlink" title="代码使用"></a>代码使用</h3><p>1.在任意的一个头文件里面编写委托的协议</p>
-<pre><code>@protocol CustomCellDelegate &lt;NSObject&gt;
+        <p>assign, retain, strong, weak, unsafe_unretained, copy </p>
+<p>这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。</p>
+<h3 id="Non-ARC"><a href="#Non-ARC" class="headerlink" title="Non-ARC"></a>Non-ARC</h3><p>从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十分建议在可能的情况下通过accessor方法来操纵property，而不是操纵它对应的实例变量。<br><a id="more"></a></p>
+<h4 id="assign"><a href="#assign" class="headerlink" title="assign"></a>assign</h4><pre><code>在Non-ARC内存管理模式下，assign是一个property的默认属性，无论这个property代表一个简单数据类型，还是一个指向对象的指针
+也就是说：
 
- - (void)pushToNewPage;
+@property (nonatomic) NSNumber *count;
+等价于：
+
+@property (nonatomic, assign) NSNumber *count;
+
+assign主要应用于代表简单数据类型的property，比如int，float等。
+如果这个用assign属性修饰的property代表一个指向对象的指针，那么当这个指针指向某个对象时，这个对象的引用计数不应该被改变。
+也就是说，用assign属性修饰的property，不应该持有一个对象。
+因为这个property不持有对象，所以它所指向的对象很可能已经在别处被释放了。这时它就有可能成为一枚悬垂指针，访问它指向的内存地址时，可能会发生意想不到的状况。
+
+
+retain
+
+retain不能修饰用来代表简单数据类型的property，否则编译器会报错：
+
+@property (nonatomic, retain) int num;//编译器报错：Property with &apos;retain (or strong)&apos; attribute must be of object type
+如果一个property被retain修饰，这代表着这个property应该持有它所指向的对象。
+官方文档中展示了一个被retain修饰的property：
+
+@property (nonatomic, retain) NSNumber *count;
+
+编译器可能为它实现的accessor方法：
+
+- (NSNumber *)count {
+    return _count;
+}
+- (void)setCount:(NSNumber *)newCount {
+    [newCount retain];
+    [_count release];
+    // Make the new assignment.
+    _count = newCount;
+}
+
+注意，考虑到newCount和_count可能指向同一个对象，所以在setter方法中，必须首先调用retain，以防这个对象被释放。
+
+
+ copy
+
+copy也不能修饰用来代表简单数据类型的property，否则编译器会报错：
+
+    @property (nonatomic, copy) int num;//编译器报错：Property with &apos;copy&apos; attribute must be of object type
+
+如果一个property被copy修饰，那么赋值到这个property的对象，应该是原有对象的一份拷贝。
+只有实现了NSCopying协议，并且实现了其中的copyWithZone:方法的对象才能被拷贝。
+但是并不是所有的拷贝都产生了新的对象，有些类在实现copyWithZone:方法时，有着它们自己的考虑。比如NSString：
+
+    @property (nonatomic, copy) NSString *myString;
+    NSString *string = [[NSString alloc] initWithString:@&quot;Hello&quot;];
+    self.myString = string;
+    NSLog(@&quot;%d&quot;, string == _myString);//输出1
+
+在这里，property的指针和原先的指针指向的是同一个地址。
+
+unsafe_unretained
+
+人认为unsafe_unretained与assign是等价的。
+
+
+strong
+
+个人认为strong与retain是等价的。
+官方文档中有这样的示例代码：
+
+// The following declaration is a synonym for: @property(retain) MyClass *myObject;
+@property(strong) MyClass *myObject;
+
+表示了strong和retain是同义词。
+
+
+weak
+
+Non-ARC内存管理模式下无法使用weak来修饰一个property，编译器会报错。
+</code></pre><h3 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h3><pre><code>ARC有效时，对象类型的变量将有所有权修饰符来修饰。一共有以下四种所有权修饰符：
+
+__strong 修饰符
+__weak 修饰符
+__unsafe_unretained 修饰符
+__autoreleasing 修饰符
+
+四种修饰符的具体意思，就不在这里解释了(´･_･`)
+
+编译器在为一个property合成实例变量时，也会使用所有权修饰符来修饰这个实例变量。根据property属性的不同，用来修饰实例变量的所有权修饰符也不尽相同。
+
+
+strong
+
+在ARC内存管理模式下，strong是一个代表对象类型的property的默认属性，并且它不能修饰用来代表简单数据类型的property。
+编译器在合成实例变量时，将使用__strong修饰符。
+如果另外自定义了用其他修饰符修饰的实例变量，编译器会报错。可以用这个方法来验证property的各个属性对应的实例变量的所有权修饰符。
+
+@interface ViewController ()
+{
+    __weak NSObject *_obj;//编译器报错：Existing instance variable &apos;_obj&apos; for strong property &apos;obj&apos; may not be weak
+}
+
+@property (nonatomic, strong) NSObject *obj;
 
 @end
-</code></pre><p>2.在想要发出这份委托的头文件添加</p>
-<pre><code>@interface CustomTableViewCell : UITableViewCell
 
-@property(nonatomic, assign) id&lt;CustomCellDelegate&gt; delegate;
 
-@end
-</code></pre><p>3.在委托者的 .m 文件的某个需要调用协议方法的方法中</p>
-<pre><code>- (void)btnClicked:(UIButton *)btn {
+weak
 
-    if (self.delegate &amp;&amp; [self.delegaterespondsToSelector:@selector(pushToNewPage)]) {
+weak也不能修饰用来代表简单数据类型的property。
+编译器将为weak修饰的property生成带__weak所有权修饰符的实例变量。
 
-      [self.delegate pushToNewPage];
-    }
-}
-</code></pre><p>4.在受到委托申请的类的头部中添加</p>
-<pre><code>@interface ViewController ()&lt;CustomCellDelegate&gt;
-</code></pre><p>5.在然后是委托申请的类中实现CustomCellDelegate协议中的pushToNewPage方法</p>
-<pre><code>- (void)pushToNewPage {
+copy
 
-    DetailViewController*detailVC = [[DetailViewController alloc] init];
-    [self.navigationController pushViewController:detailVC animated:YES];
-}
-</code></pre><p>6.最后设置CumtomTableViewCell对象cell的delegate</p>
-<pre><code>//下面代码很关键
-cell.delegate = self;
-</code></pre><p>总结：委托的协议可以写在任何的头文件中，代理设计模式的六个步骤缺一不可。</p>
+copy也不能修饰用来代表简单数据类型的property。
+编译器将为copy修饰的property生成带__strong所有权修饰符的实例变量。
+编译器自动合成的setter方法会调用对象的copyWithZone:方法。虽然第三方程序员可以自定义setter方法，但是为了程序的可读性，
+也应该在其中执行拷贝的逻辑。
 
+retain
+
+和Non-ARC的理由一样，个人认为retain和strong是等价的。
+
+unsafe_unretained
+
+编译器将为unsafe_unretained修饰的property生成带__unsafe_unretained所有权修饰符的实例变量。
+与weak和strong不同的是，unsafe_unretained也可以修饰代表简单数据类型的property。
+
+assign
+
+个人认为assign和unsafe_unretained等价。
+assign在ARC内存管理模式下，仍然是代表简单数据类型的property的默认属性。
+</code></pre>
       
     </div>
     
@@ -274,18 +370,9 @@ cell.delegate = self;
     
 <nav id="article-nav">
   
-    <a href="/2016/09/11/property在声明中可以指定的属性/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          property在声明中可以指定的属性
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/08/28/ios技能点总结和存取方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ios技能点总结和存取方法</div>
+    <a href="/2016/08/28/代理设计模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">代理设计模式</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -320,7 +407,7 @@ cell.delegate = self;
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="代理设计模式" data-title="代理设计模式" data-url="http://yoursite.com/2016/08/28/代理设计模式/"></div>
+	<div class="ds-thread" data-thread-key="property在声明中可以指定的属性" data-title="property在声明中可以指定的属性" data-url="http://yoursite.com/2016/09/11/property在声明中可以指定的属性/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
