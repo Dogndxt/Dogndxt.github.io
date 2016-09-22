@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-11T14:34:54.000Z</updated>
+  <updated>2016-09-22T14:40:10.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,259 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title> NSString 字符串处理</title>
+    <link href="http://yoursite.com/2016/09/22/NSString-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/"/>
+    <id>http://yoursite.com/2016/09/22/NSString-字符串处理/</id>
+    <published>2016-09-22T14:39:16.000Z</published>
+    <updated>2016-09-22T14:40:10.000Z</updated>
+    
+    <content type="html">&lt;p&gt;iphone NSString 字符串处理：截取字符串、匹配字符串、分隔字符串    &lt;/p&gt;
+&lt;p&gt;1.截取字符串&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString*string = @&amp;quot;sdfsfsfsAdfsdf&amp;quot;;
+string = [string substringToIndex:7];//截取掉下标7之后的字符串
+NSLog(@&amp;quot;截取的值为：%@&amp;quot;,string);
+[string substringFromIndex:2];//截取掉下标2之前的字符串
+NSLog(@&amp;quot;截取的值为：%@&amp;quot;,string);
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;2.匹配字符串&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString*string = @&amp;quot;sdfsfsfsAdfsdf&amp;quot;;
+NSRange range = [stringrangeOfString:@&amp;quot;f&amp;quot;];//匹配得到的下标
+NSLog(@&amp;quot;rang:%@&amp;quot;,NSStringFromRange(range));
+string = [string substringWithRange:range];//截取范围类的字符串
+NSLog(@&amp;quot;截取的值为：%@&amp;quot;,string);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.分隔字符串&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString *string = @&amp;quot;sdfsfsfsAdfsdf&amp;quot;;
+NSArray *array = [string componentsSeparatedByString:@&amp;quot;A&amp;quot;]; //从字符A中分隔成2个元素的数组
+NSLog(@&amp;quot;array:%@&amp;quot;,array); //结果是adfsfsfs和dfsdf
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;iphone NSString 字符串处理：截取字符串、匹配字符串、分隔字符串    &lt;/p&gt;
+&lt;p&gt;1.截取字符串&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString*string = @&amp;quot;sdfsfsfsAdfsdf&amp;quot;;
+string = [string substringToIndex:7];//截取掉下标7之后的字符串
+NSLog(@&amp;quot;截取的值为：%@&amp;quot;,string);
+[string substringFromIndex:2];//截取掉下标2之前的字符串
+NSLog(@&amp;quot;截取的值为：%@&amp;quot;,string);
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>UISlide属性</title>
+    <link href="http://yoursite.com/2016/09/22/UISlide%E5%B1%9E%E6%80%A7/"/>
+    <id>http://yoursite.com/2016/09/22/UISlide属性/</id>
+    <published>2016-09-22T14:39:02.000Z</published>
+    <updated>2016-09-22T14:43:35.000Z</updated>
+    
+    <content type="html">&lt;p&gt;1.minimumValue &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;当值可以改变时，滑块可以滑动到最小位置的值，默认为0.0
+
+_slider.minimumValue = 10.0;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.maximumValue &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;当值可以改变时，滑块可以滑动到最大位置的值，默认为1.0
+
+_slider.maximumValue = 100.0;
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;3.continuous &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;如果设置YES，在拖动滑块的任何时候，滑块的值都会改变。默认设置为YES
+
+[_slider setContinuous:NO]; // 在滑块滑动结束时才获取滑块的值
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;4.minimumValueImage &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;滑块条最小值处设置的图片，默认为nil
+
+_slider.minimumValueImage = [UIImage imageNamed:@&amp;quot;003.png&amp;quot;];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;5.maximumValueImage&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;滑块条最大值处设置的图片,默认为nil
+
+_slider.maximumValueImage = [UIImage imageNamed:@&amp;quot;002.png&amp;quot;];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;6.minimumTrackTintColor :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;小于滑块当前值滑块条的颜色，默认为蓝色
+
+_slider.minimumTrackTintColor = [UIColor redColor];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;7.maximumTrackTintColor:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;大于滑块当前值滑块条的颜色，默认为白色
+
+_slider.maximumTrackTintColor = [UIColor greenColor];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;8.thumbTintColor :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;当前滑块的颜色，默认为白色
+
+_slider.thumbTintColor = [UIColor yellowColor];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;9.currentMaximumTrackImage &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;滑块条最大值处设置的图片
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;10.currentMinimumTrackImage &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;滑块条最小值处设置的图片
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;11.currentThumbImage&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;当前滑块的图片
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1.minimumValue &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;当值可以改变时，滑块可以滑动到最小位置的值，默认为0.0
+
+_slider.minimumValue = 10.0;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.maximumValue &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;当值可以改变时，滑块可以滑动到最大位置的值，默认为1.0
+
+_slider.maximumValue = 100.0;
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>利用 AFNetworking 监听网络状态</title>
+    <link href="http://yoursite.com/2016/09/22/%E5%88%A9%E7%94%A8-AFNetworking-%E7%9B%91%E5%90%AC%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81/"/>
+    <id>http://yoursite.com/2016/09/22/利用-AFNetworking-监听网络状态/</id>
+    <published>2016-09-22T14:33:42.000Z</published>
+    <updated>2016-09-22T14:37:46.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;1-创建网络监听者管理者对象&quot;&gt;&lt;a href=&quot;#1-创建网络监听者管理者对象&quot; class=&quot;headerlink&quot; title=&quot;1.创建网络监听者管理者对象&quot;&gt;&lt;/a&gt;1.创建网络监听者管理者对象&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;2-设置监听&quot;&gt;&lt;a href=&quot;#2-设置监听&quot; class=&quot;headerlink&quot; title=&quot;2.设置监听&quot;&gt;&lt;/a&gt;2.设置监听&lt;/h3&gt;&lt;p&gt;1)网络状态&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//显然是枚举值
+typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+    AFNetworkReachabilityStatusUnknown          = -1,//未识别的网络
+    AFNetworkReachabilityStatusNotReachable     = 0,//不可达的网络
+    AFNetworkReachabilityStatusReachableViaWWAN = 1,//2G,3G,4G...
+    AFNetworkReachabilityStatusReachableViaWiFi = 2,//wifi网络
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;2)设置网络监听&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+    switch (status) {
+        case AFNetworkReachabilityStatusUnknown:
+            NSLog(@&amp;quot;未识别的网络&amp;quot;);
+            break;
+
+        case AFNetworkReachabilityStatusNotReachable:
+            NSLog(@&amp;quot;不可达的网络(未连接)&amp;quot;);
+            break;
+
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+            NSLog(@&amp;quot;2G,3G,4G...的网络&amp;quot;);
+            break;
+
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+            NSLog(@&amp;quot;wifi的网络&amp;quot;);
+            break;
+        default:
+            break;
+    }
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;3-开始监听&quot;&gt;&lt;a href=&quot;#3-开始监听&quot; class=&quot;headerlink&quot; title=&quot;3.开始监听&quot;&gt;&lt;/a&gt;3.开始监听&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[manager startMonitoring];
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-创建网络监听者管理者对象&quot;&gt;&lt;a href=&quot;#1-创建网络监听者管理者对象&quot; class=&quot;headerlink&quot; title=&quot;1.创建网络监听者管理者对象&quot;&gt;&lt;/a&gt;1.创建网络监听者管理者对象&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;2-设置监听&quot;&gt;&lt;a href=&quot;#2-设置监听&quot; class=&quot;headerlink&quot; title=&quot;2.设置监听&quot;&gt;&lt;/a&gt;2.设置监听&lt;/h3&gt;&lt;p&gt;1)网络状态&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//显然是枚举值
+typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+    AFNetworkReachabilityStatusUnknown          = -1,//未识别的网络
+    AFNetworkReachabilityStatusNotReachable     = 0,//不可达的网络
+    AFNetworkReachabilityStatusReachableViaWWAN = 1,//2G,3G,4G...
+    AFNetworkReachabilityStatusReachableViaWiFi = 2,//wifi网络
+    }
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>仿射变换(CGAffineTransform)使用小结</title>
+    <link href="http://yoursite.com/2016/09/22/%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2-CGAffineTransform-%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%BB%93/"/>
+    <id>http://yoursite.com/2016/09/22/仿射变换-CGAffineTransform-使用小结/</id>
+    <published>2016-09-22T14:28:02.000Z</published>
+    <updated>2016-09-22T14:32:43.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;一、理论基础&quot;&gt;&lt;a href=&quot;#一、理论基础&quot; class=&quot;headerlink&quot; title=&quot;一、理论基础&quot;&gt;&lt;/a&gt;一、理论基础&lt;/h3&gt;&lt;p&gt;在几何上定义为两个向量空间之间的一个仿射变换或者仿射映射由一个线性变换(运用一次函数进行的变换)接上一个平移组成。&lt;/p&gt;
+&lt;p&gt;CGAffineTransform简单分析（&lt;a href=&quot;http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;二、射变换的种类&quot;&gt;&lt;a href=&quot;#二、射变换的种类&quot; class=&quot;headerlink&quot; title=&quot;二、射变换的种类&quot;&gt;&lt;/a&gt;二、射变换的种类&lt;/h3&gt;&lt;p&gt;1.自定义变换&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMake(1.0, 0, 0, 1.0, 20, 20);
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;2.平移&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; x &amp;gt; 0 右边  x &amp;lt; 0 左边
+ y &amp;gt; 0 下边  y &amp;lt; 0 上边 
+ _demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMakeTranslation(100, -50);
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.缩放      x 轴缩放 ， y 轴缩放&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMakeScale(2, 0.5);
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;4.旋转     angle &amp;gt; 0 顺时针 ， angle &amp;lt; 0逆时针&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+   _demoView.transform = CGAffineTransformMakeRotation(20);
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;5.旋转 ＋ 平移 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMakeRotation(20);
+}];
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformTranslate(_demoView.transform, 150, 150);
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;6.旋转 ＋ 缩放&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMakeRotation(20);
+    //        NSLog(@&amp;quot;%d&amp;quot;, CGAffineTransformIsIdentity(_demoView.transform));
+}];
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformScale(_demoView.transform, 0.5, 2);
+    //        NSLog(@&amp;quot;%d&amp;quot;, CGAffineTransformIsIdentity(_demoView.transform));
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;7.相反 （逆旋转，逆移动等）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformInvert(CGAffineTransformMakeRotation(20));
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;8.合并多个变换&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(20), CGAffineTransformScale(_demoView.transform, 0.5, 2));
+    NSLog(@&amp;quot;%d&amp;quot;, CGAffineTransformEqualToTransform(CGAffineTransformMakeRotation(20), CGAffineTransformScale(_demoView.transform, 0.5, 2)));
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;三、补充&quot;&gt;&lt;a href=&quot;#三、补充&quot; class=&quot;headerlink&quot; title=&quot;三、补充&quot;&gt;&lt;/a&gt;三、补充&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;CGAffineTransformIdentity ： 单位矩阵变换，一般用于仿射变换的初始化或者还原。
+CGAffineTransformEqualToTransform(CGAffineTransform t1, CGAffineTransform t2) ： 判断两个变换矩阵是否相等
+CGAffineTransformConcat(CGAffineTransform t1, CGAffineTransform t2) ： 得到两个矩阵相加后得到的最终矩阵
+CGPoint CGPointApplyAffineTransform(CGPoint point, CGAffineTransform t) ： 某点通过矩阵变换之后的点
+CGSize CGSizeApplyAffineTransform(CGSize size, CGAffineTransform t) ： 某个size通过矩阵变换之后的size
+CGRect CGRectApplyAffineTransform(CGRect rect, CGAffineTransform t) ： 某个Rect通过矩阵变换之后的区域
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;一、理论基础&quot;&gt;&lt;a href=&quot;#一、理论基础&quot; class=&quot;headerlink&quot; title=&quot;一、理论基础&quot;&gt;&lt;/a&gt;一、理论基础&lt;/h3&gt;&lt;p&gt;在几何上定义为两个向量空间之间的一个仿射变换或者仿射映射由一个线性变换(运用一次函数进行的变换)接上一个平移组成。&lt;/p&gt;
+&lt;p&gt;CGAffineTransform简单分析（&lt;a href=&quot;http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）&quot;&gt;http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;二、射变换的种类&quot;&gt;&lt;a href=&quot;#二、射变换的种类&quot; class=&quot;headerlink&quot; title=&quot;二、射变换的种类&quot;&gt;&lt;/a&gt;二、射变换的种类&lt;/h3&gt;&lt;p&gt;1.自定义变换&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMake(1.0, 0, 0, 1.0, 20, 20);
+}];
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>property在声明中可以指定的属性</title>
@@ -1085,226 +1338,6 @@ __contravariant - 逆变性，父类型可以强转到子类型（WTF?）
 Lightweight Generics    轻量级泛型
 __kindof
 &lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title> storyboard之prepareForSegue</title>
-    <link href="http://yoursite.com/2016/06/02/storyboard%E4%B9%8BprepareForSegue/"/>
-    <id>http://yoursite.com/2016/06/02/storyboard之prepareForSegue/</id>
-    <published>2016-06-02T13:41:03.000Z</published>
-    <updated>2016-06-02T13:43:30.000Z</updated>
-    
-    <content type="html">&lt;p&gt;storyboard 解决的是页面之间的跳转问题。 一个颇为复杂的页面跳转，一旦使用了storyboard，就会四两拨千斤。你只需简单地拖拽，即可完成UIViewController 之间的跳转。 这里面有个神器，一个极为重要的method :&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {}
-
-第一个参数是 segue， 第二个参数是 sender。 
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;这个method 主要解决2个问题：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;（1） 获取所要跳转到的视图控制器 （ViewController）；
-（2） 同时，将上一个视图的数据，传递给下一个视图。 （比如： 上一个视图是TableView， 那么，就要将点击cell的行号传递到下一个视图）。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; UIViewController *destination = segue.destinationViewController;&lt;br&gt; 只要是 prepareForSegue：sender： 总会声明一个目标视图控制器（destination viewcontroller）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;有一种灵活的传递方法，通过遵循 KVC （Key -Value- Coding）规则来传值。 具体来说， 就是通过 [viewController setValue: forKey: ] 来存储数据。  既然提供了存储方式，就有对应的获取的方式。 以技术用语表达，就是： 读写操作是成对出现的。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;该方法的触发条件&quot;&gt;&lt;a href=&quot;#该方法的触发条件&quot; class=&quot;headerlink&quot; title=&quot;该方法的触发条件&quot;&gt;&lt;/a&gt;该方法的触发条件&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;当前的视图控制器即将被另一个视图控制器所替代时，segue将处于激活状态，从而调用prepareForSegue:sender: 方法。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;本质&quot;&gt;&lt;a href=&quot;#本质&quot; class=&quot;headerlink&quot; title=&quot;本质&quot;&gt;&lt;/a&gt;本质&lt;/h3&gt;&lt;p&gt; 为了区分视图的跳转，可以用上一个、下一个来表示，也可以用源视图、目标视图来表示。 即： sourceViewController 和destinationViewController。  目标视图控制器是指：即将显示（加载）的视图， 而源视图控制器是指：即将被取代的视图控制器。&lt;/p&gt;
-&lt;p&gt; segue虽然实现的是视图之间的跳转，其实是视图控制器之间的切换。 &lt;strong&gt;更确切地说，segue 实现的是Secene（场景）之间的跳转。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt; Scene 是由：  View 、 ViewController、First Responder、Exit  组成的。&lt;/strong&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;storyboard 解决的是页面之间的跳转问题。 一个颇为复杂的页面跳转，一旦使用了storyboard，就会四两拨千斤。你只需简单地拖拽，即可完成UIViewController 之间的跳转。 这里面有个神器，一个极为重要的method :&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {}
-
-第一个参数是 segue， 第二个参数是 sender。 
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>pragma声明</title>
-    <link href="http://yoursite.com/2016/06/02/pragma%E5%A3%B0%E6%98%8E/"/>
-    <id>http://yoursite.com/2016/06/02/pragma声明/</id>
-    <published>2016-06-02T13:35:43.000Z</published>
-    <updated>2016-06-02T13:37:36.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;pragma-声明是彰显-Objective-C-工艺的标志之一。&quot;&gt;&lt;a href=&quot;#pragma-声明是彰显-Objective-C-工艺的标志之一。&quot; class=&quot;headerlink&quot; title=&quot;#pragma 声明是彰显 Objective-C 工艺的标志之一。&quot;&gt;&lt;/a&gt;#pragma 声明是彰显 Objective-C 工艺的标志之一。&lt;/h3&gt;&lt;p&gt;虽然 #pragma 最初的目的是为了使得源代码在不同的编译器下兼容的，但精明的Xcode编码器将 #pragma 使用到了极致。在现在的背景下，#pragma 避开了注释和代码之间的界限。作为预处理指令，#pragma 在编译时进行计算。但它并不像如 #ifdef…#endif 之类的宏，#pragma 的使用方式不会改变你的应用运行时的行为。相反的，#pragma 声明主要由 Xcode 用来完成两个主要任务：整理代码和防止编译器警告。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;整理你的代码&quot;&gt;&lt;a href=&quot;#整理你的代码&quot; class=&quot;headerlink&quot; title=&quot;整理你的代码&quot;&gt;&lt;/a&gt;整理你的代码&lt;/h3&gt;&lt;p&gt;代码整理是一个卫生的问题。你如何组织你的代码反映的是你和你的工作。缺少惯性和内部一致性的代码表明要么有疏忽要么无能－－更糟的是，使得一个项目难以维持和协作。&lt;/p&gt;
-&lt;p&gt;在你的 @implementation 中使用 #pragma mark 来将代码分割成逻辑区块。这些逻辑区块不仅仅使得阅读代码本身容易许多，也为Xcode源导航增加了视觉线索（#pragma mark 声明前有一个水平分割并由破折号（－）开始）。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#pragma mark - UITableViewDataSource
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;你的代码应该干净到你可以吃掉它。所以花点时间整理你的.m文件让它们比你生成它们时还干净。&lt;/p&gt;
-&lt;h3 id=&quot;防止警告&quot;&gt;&lt;a href=&quot;#防止警告&quot; class=&quot;headerlink&quot; title=&quot;防止警告&quot;&gt;&lt;/a&gt;防止警告&lt;/h3&gt;&lt;p&gt;#pragma mark十分主流。另一方面，用#pragma声明来防止来自编译器或者静态分析器的警告现在还是很新鲜的。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;* 开启Xcode的困难模式
-
-小提示：试试设置-Weverything标志，并在你的build setting里选择“Treat Warnings as Errors”。这将会开启Xcode的困难模式。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可是有的时候并没有办法避免编译器警告。弃用通知和保留周期误报是这个情况可能发生的常见情况。在这些罕见的，你绝对肯定一个特定的编译器或者稳态分析器警告需要被抑制时，#pragma就派上用场了&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;代码片段：
-
-    // completionBlock在AFURLConnectionOperation中被手动的设置为nil来打破保留周期。
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored &amp;quot;-Warc-retain-cycles&amp;quot;
-        self.completionBlock = ^ {
-            ...
-        };
-    #pragma clang diagnostic pop
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;pragma-声明是彰显-Objective-C-工艺的标志之一。&quot;&gt;&lt;a href=&quot;#pragma-声明是彰显-Objective-C-工艺的标志之一。&quot; class=&quot;headerlink&quot; title=&quot;#pragma 声明是彰显 Objective-C 工艺的标志之一。&quot;&gt;&lt;/a&gt;#pragma 声明是彰显 Objective-C 工艺的标志之一。&lt;/h3&gt;&lt;p&gt;虽然 #pragma 最初的目的是为了使得源代码在不同的编译器下兼容的，但精明的Xcode编码器将 #pragma 使用到了极致。在现在的背景下，#pragma 避开了注释和代码之间的界限。作为预处理指令，#pragma 在编译时进行计算。但它并不像如 #ifdef…#endif 之类的宏，#pragma 的使用方式不会改变你的应用运行时的行为。相反的，#pragma 声明主要由 Xcode 用来完成两个主要任务：整理代码和防止编译器警告。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>极光推送实现步骤</title>
-    <link href="http://yoursite.com/2016/05/29/%E6%9E%81%E5%85%89%E6%8E%A8%E9%80%81%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4/"/>
-    <id>http://yoursite.com/2016/05/29/极光推送实现步骤/</id>
-    <published>2016-05-29T12:24:30.000Z</published>
-    <updated>2016-05-29T12:42:21.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;1-创建应用程序ID&quot;&gt;&lt;a href=&quot;#1-创建应用程序ID&quot; class=&quot;headerlink&quot; title=&quot;1. 创建应用程序ID&quot;&gt;&lt;/a&gt;1. 创建应用程序ID&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;登陆 iOS Dev Center 选择进入iOS Provisioning Portal  ---&amp;gt; 点击App IDs进入App ID列表
- ---&amp;gt; 为 App 开启 Push Notification 功能。如果是已经创建的 App ID 也可以通过设置开启 Push Notification 功能。
-  --&amp;gt; 根据实际情况完善 App ID 信息并提交,注意此处需要指定具体的 Bundle ID 不要使用通配符。
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;2-配置和下载证书&quot;&gt;&lt;a href=&quot;#2-配置和下载证书&quot; class=&quot;headerlink&quot; title=&quot;2. 配置和下载证书&quot;&gt;&lt;/a&gt;2. 配置和下载证书&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;Certificate --&amp;gt; All --&amp;gt; 新建证书需要注意选择证书种类（开发证书用于开发和调试使用，生产证书用于 App Store 发布）
---&amp;gt; 点击 Continue 后选择证书对应的应用ID，然后继续会出现“About Creating a Certificate Signing Request (CSR)”。 
---&amp;gt;  根据它的说明创建打开KeychainAccess 创建 Certificate Signing Request 
---&amp;gt; 填写“User Email Address”和“Common Name” 后选择 Saved to disk 进行保存 。 
---&amp;gt; 继续返回Apple developer 网站点击 Continue ，上传刚刚生成的 .certSigningRequest 文件生成 APNs Push Certificate。
-下载并双击打开证书，证书打开时会启动“钥匙串访问”工具。在“钥匙串访问”中你的证书会显示在“我的证书”中，
-注意选择“My Certificates” 和&amp;quot;login&amp;quot; 
---&amp;gt;  导出 .p12 证书文件(将文件保存为Personal Information Exchange (.p12)格式。)
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;3-上传证书&quot;&gt;&lt;a href=&quot;#3-上传证书&quot; class=&quot;headerlink&quot; title=&quot;3. 上传证书&quot;&gt;&lt;/a&gt;3. 上传证书&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;在 JPush 管理 Portal 上，针对某应用程序，上传上面步骤得到 .p12 证书文件。
-这是 iOS SDK 能够接收到 JPush 推送消息的必要步骤。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Provisioning-Profile的创建&quot;&gt;&lt;a href=&quot;#Provisioning-Profile的创建&quot; class=&quot;headerlink&quot; title=&quot;Provisioning Profile的创建&quot;&gt;&lt;/a&gt;Provisioning Profile的创建&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;创建Provisioning Profile的前提，已在Apple Developer网站创建待发布应用所使用的Bundle ID的App ID，
-且为该App ID创建了APNs证书
- --&amp;gt; 在苹果开发者账号的Provisioning Profile页面点击&amp;quot;+&amp;quot;按钮，创建Provisioning Profile 
- --&amp;gt; 选择此Provisioning Profile的环境后点击[Continue]： 
- --&amp;gt;  选择要创建Provisioning Profile的App ID后点击[Continue]：
- --&amp;gt; 选择所属的开发者证书，（这里创建了多个开发者证书，建议只创建一个，方便管理）为了方便，
- 选择了[Select All],再点击[Continue]进入下一步
---&amp;gt; 为该Provisioning Profile选择将要安装的设备（一般选择[Select All]），点击[Continue] 
---&amp;gt; 给该Provisioning Profile填写Profile Name，点击[generate]完成创建 
---&amp;gt; 填写完Profile Name后点击[generate]完成创建，之后点击[DownLoad]下载Provisioning Profile 
---&amp;gt; 双击下载下来的Provisioning Profile，添加到xcode。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;XCode的证书配置教程&quot;&gt;&lt;a href=&quot;#XCode的证书配置教程&quot; class=&quot;headerlink&quot; title=&quot;XCode的证书配置教程&quot;&gt;&lt;/a&gt;XCode的证书配置教程&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1.打开xxx-info.plist的Bundle identifier项把上传到JPush 控制台的bundle id填写进去
-2.点击项目，选择目标TARGETS后进入Build Setting 界面，搜索“Code signing”配置注册的证书
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;客户端设置&quot;&gt;&lt;a href=&quot;#客户端设置&quot; class=&quot;headerlink&quot; title=&quot;客户端设置&quot;&gt;&lt;/a&gt;客户端设置&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;开启Remote notifications
-需要在Xcode 中修改应用的 Capabilities 开启Remote notifications
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取自定义消息推送内容&quot;&gt;&lt;a href=&quot;#获取自定义消息推送内容&quot; class=&quot;headerlink&quot; title=&quot;获取自定义消息推送内容&quot;&gt;&lt;/a&gt;获取自定义消息推送内容&lt;/h3&gt;&lt;p&gt;功能说明: 只有在前端运行的时候才能收到自定义消息的推送。从jpush服务器获取用户推送的自定义消息内容和标题以及附加字段等。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;获取iOS的推送内容需要在delegate类中注册通知并实现回调方法。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取-RegistrationID&quot;&gt;&lt;a href=&quot;#获取-RegistrationID&quot; class=&quot;headerlink&quot; title=&quot;获取 RegistrationID&quot;&gt;&lt;/a&gt;获取 RegistrationID&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;+(NSString *)registrationID
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;标签与别名-API-iOS&quot;&gt;&lt;a href=&quot;#标签与别名-API-iOS&quot; class=&quot;headerlink&quot; title=&quot;标签与别名 API (iOS)&quot;&gt;&lt;/a&gt;标签与别名 API (iOS)&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;+ (void)setTags:(NSSet *)tags alias:(NSString *)alias callbackSelector:(SEL)cbSelector object:(id)theTarget;
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1-创建应用程序ID&quot;&gt;&lt;a href=&quot;#1-创建应用程序ID&quot; class=&quot;headerlink&quot; title=&quot;1. 创建应用程序ID&quot;&gt;&lt;/a&gt;1. 创建应用程序ID&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;登陆 iOS Dev Center 选择进入iOS Provisioning Portal  ---&amp;gt; 点击App IDs进入App ID列表
- ---&amp;gt; 为 App 开启 Push Notification 功能。如果是已经创建的 App ID 也可以通过设置开启 Push Notification 功能。
-  --&amp;gt; 根据实际情况完善 App ID 信息并提交,注意此处需要指定具体的 Bundle ID 不要使用通配符。
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>iOS特别技能点总结3</title>
-    <link href="http://yoursite.com/2016/05/22/iOS%E7%89%B9%E5%88%AB%E6%8A%80%E8%83%BD%E7%82%B9%E6%80%BB%E7%BB%933/"/>
-    <id>http://yoursite.com/2016/05/22/iOS特别技能点总结3/</id>
-    <published>2016-05-22T02:42:01.000Z</published>
-    <updated>2016-05-22T02:54:25.000Z</updated>
-    
-    <content type="html">&lt;p&gt;CFAbsoluteTimeGetCurrent()&lt;br&gt; 获取系统运行的当前绝对时间&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;nsarray-类定义的方法&quot;&gt;&lt;a href=&quot;#nsarray-类定义的方法&quot; class=&quot;headerlink&quot; title=&quot;nsarray 类定义的方法&quot;&gt;&lt;/a&gt;nsarray 类定义的方法&lt;/h3&gt;&lt;p&gt;1.makeObjectsPerformSelector:@select（aMethod）&lt;br&gt;简介：让数组中的每个元素 都调用 aMethod &lt;/p&gt;
-&lt;p&gt;2.makeObjectsPerformSelector:@select（aMethod） withObject:oneObject&lt;br&gt;简介：让数组中的每个元素 都调用 aMethod  并把 withObject 后边的 oneObject 对象做为参数传给方法aMethod&lt;/p&gt;
-&lt;h3 id=&quot;支付宝的接入注意点总结&quot;&gt;&lt;a href=&quot;#支付宝的接入注意点总结&quot; class=&quot;headerlink&quot; title=&quot;支付宝的接入注意点总结&quot;&gt;&lt;/a&gt;支付宝的接入注意点总结&lt;/h3&gt;&lt;p&gt;1.确保需要的库全部导入&lt;/p&gt;
-&lt;p&gt;2.partner ,seller ,privateKey   三个参数的完整&lt;/p&gt;
-&lt;p&gt;3.支付完成跳回程序需要设置 appScheme ， 最好使用英文，中文识别可能出错，造成无法跳回。 &lt;/p&gt;
-&lt;h3 id=&quot;去除点击-cell-的效果&quot;&gt;&lt;a href=&quot;#去除点击-cell-的效果&quot; class=&quot;headerlink&quot; title=&quot;去除点击 cell 的效果&quot;&gt;&lt;/a&gt;去除点击 cell 的效果&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[tableView deselectRowAtIndexPath:indexPath animated:YES];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;时间日期的格式转化&quot;&gt;&lt;a href=&quot;#时间日期的格式转化&quot; class=&quot;headerlink&quot; title=&quot;时间日期的格式转化&quot;&gt;&lt;/a&gt;时间日期的格式转化&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSNumber *startTime = [temp objectForKey:@&amp;quot;addtime&amp;quot;];
-NSDate *startTimeDate = [NSDate dateWithTimeIntervalSince1970:[startTime intValue]];
-NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-[formatter setDateFormat:@&amp;quot;yyyy-MM-dd HH:mm&amp;quot;];//设置源时间字符串的格式
-NSString *targetTime = [formatter stringFromDate:startTimeDate];//将时间转化成目标时间字符串
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;修改-tableCell-里面的图片圆角&quot;&gt;&lt;a href=&quot;#修改-tableCell-里面的图片圆角&quot; class=&quot;headerlink&quot; title=&quot;修改 tableCell 里面的图片圆角&quot;&gt;&lt;/a&gt;修改 tableCell 里面的图片圆角&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;在 cell 的 .m 文件里面修改
-
-- (void)awakeFromNib {
-    _imgHead.clipsToBounds = YES;
-    _imgHead.layer.cornerRadius = 30;
- }
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;下拉刷新的时候如何防止-crash-（不判断是否有新数据加入，直接刷新，会有轻微的不适感）&quot;&gt;&lt;a href=&quot;#下拉刷新的时候如何防止-crash-（不判断是否有新数据加入，直接刷新，会有轻微的不适感）&quot; class=&quot;headerlink&quot; title=&quot;下拉刷新的时候如何防止 crash （不判断是否有新数据加入，直接刷新，会有轻微的不适感）&quot;&gt;&lt;/a&gt;下拉刷新的时候如何防止 crash （不判断是否有新数据加入，直接刷新，会有轻微的不适感）&lt;/h3&gt;&lt;p&gt;   在下拉刷新的时候，需要将数组内所有的数据移除，并且将界面刷新一遍，这样可以防止 crash。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[self.trainRoutineArray removeAllObjects];
-[self.table reloadData];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;在解析-json-数据的时候需要在循环体内初始化-Model-，这样才是正确的，在外部初始化会导致添加的数据重复。&quot;&gt;&lt;a href=&quot;#在解析-json-数据的时候需要在循环体内初始化-Model-，这样才是正确的，在外部初始化会导致添加的数据重复。&quot; class=&quot;headerlink&quot; title=&quot;在解析 json 数据的时候需要在循环体内初始化 Model ，这样才是正确的，在外部初始化会导致添加的数据重复。&quot;&gt;&lt;/a&gt;在解析 json 数据的时候需要在循环体内初始化 Model ，这样才是正确的，在外部初始化会导致添加的数据重复。&lt;/h3&gt;&lt;p&gt;   原因： 在外部初始化，会导致内存空间只分配一次，在第一次赋值之后，会因为 Model 里面的 NSString 类型的数据无法被第二次赋值，造成了第二次添加数据到数组的时候还是第一次的数据。&lt;/p&gt;
-&lt;p&gt;   常用日期结构：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yyyy-MM-dd HH:mm:ss.SSS
-yyyy-MM-dd HH:mm:ss
-yyyy-MM-dd
-MM dd yyyy
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  iOS-NSDateFormatter 格式说明：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;G: 公元时代，例如AD公元
-yy:年的后2位
-yyyy:完整年
-MM:月，显示为1-12
-MMM:月，显示为英文月份简写,如 Jan
-MMMM:月，显示为英文月份全称，如 Janualy
-dd:日，2位数表示，如02
-d:日，1-2位显示，如 2
-EEE:简写星期几，如Sun
-EEEE:全写星期几，如Sunday
-aa:上下午，AM/PM
-H:时，24小时制，0-23
-K：时，12小时制，0-11
-m:分，1-2位
-mm:分，2位
-s:秒，1-2位
-ss:秒，2位
-S:毫秒
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;错误： &lt;em&gt; Terminating app due to uncaught exception ‘NSInvalidArgumentException’, reason: ‘-[__NSCFNumber length]: unrecognized selector sent to instance 0x15580c90’ &lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;原因： 因为在接收的 Model 里面有些数据类型跟 json 数据的字段类型不同 （一般是非字符串的类型造成的）&lt;br&gt;解决方案： 将 json 数据里面的 int 或者 double 类型直接使用中间类型 NSNumber 类型来接收，并转化成 NSString 类型。 &lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;上传图片&quot;&gt;&lt;a href=&quot;#上传图片&quot; class=&quot;headerlink&quot; title=&quot;上传图片&quot;&gt;&lt;/a&gt;上传图片&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[afManager POST:url parameters:parameters constructingBodyWithBlock:^(id&amp;lt;AFMultipartFormData&amp;gt; formData) {
-
-     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-     formatter.dateFormat = @&amp;quot;yyyyMMddHHmmss&amp;quot;;
-     NSString *str = [formatter stringFromDate:[NSDate date]];
-
-     [formData appendPartWithFileData:filename name:@&amp;quot;file&amp;quot; fileName:[NSString stringWithFormat:@&amp;quot;%@image1.png&amp;quot;,str] mimeType:@&amp;quot;image/png&amp;quot;];
- } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-
-     if (success) {
-
-         success(responseObject);
-      }
-
- } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-
-     if (failure) {
-
-       failure(error);
-    }
- }];
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;CFAbsoluteTimeGetCurrent()&lt;br&gt; 获取系统运行的当前绝对时间&lt;br&gt;
     
     </summary>
     

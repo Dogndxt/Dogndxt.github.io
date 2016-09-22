@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2016/09/22/UISlide%E5%B1%9E%E6%80%A7/</loc>
+    
+    <lastmod>2016-09-22T14:43:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/09/22/NSString-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/</loc>
+    
+    <lastmod>2016-09-22T14:40:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/09/22/%E5%88%A9%E7%94%A8-AFNetworking-%E7%9B%91%E5%90%AC%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81/</loc>
+    
+    <lastmod>2016-09-22T14:37:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2016/09/22/%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2-CGAffineTransform-%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%BB%93/</loc>
+    
+    <lastmod>2016-09-22T14:32:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2016/09/11/property%E5%9C%A8%E5%A3%B0%E6%98%8E%E4%B8%AD%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%AE%9A%E7%9A%84%E5%B1%9E%E6%80%A7/</loc>
     
     <lastmod>2016-09-11T14:34:54.000Z</lastmod>

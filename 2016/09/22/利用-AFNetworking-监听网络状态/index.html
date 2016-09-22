@@ -4,17 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016 | 第欧根尼的小桶</title>
+  <title>利用 AFNetworking 监听网络状态 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/2016/page/3/index.html">
+  <meta name="description" content="1.创建网络监听者管理者对象AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+2.设置监听1)网络状态
+//显然是枚举值
+typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+    AFNetworkReachab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用 AFNetworking 监听网络状态">
+<meta property="og:url" content="http://yoursite.com/2016/09/22/利用-AFNetworking-监听网络状态/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="1.创建网络监听者管理者对象AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+2.设置监听1)网络状态
+//显然是枚举值
+typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+    AFNetworkReachab">
+<meta property="og:updated_time" content="2016-09-22T14:37:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="利用 AFNetworking 监听网络状态">
+<meta name="twitter:description" content="1.创建网络监听者管理者对象AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+2.设置监听1)网络状态
+//显然是枚举值
+typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+    AFNetworkReachab">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,246 +203,146 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-利用-AFNetworking-监听网络状态" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/09/22/利用-AFNetworking-监听网络状态/" class="article-date">
+  	<time datetime="2016-09-22T14:33:42.000Z" itemprop="datePublished">2016-09-22</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用 AFNetworking 监听网络状态
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/30/多种方式搭建tableViewCell/" class="archive-article-date">
-  	<time datetime="2016-07-30T13:46:44.000Z" itemprop="datePublished">7月 30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/30/多种方式搭建tableViewCell/">多种方式搭建tableViewCell</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-创建网络监听者管理者对象"><a href="#1-创建网络监听者管理者对象" class="headerlink" title="1.创建网络监听者管理者对象"></a>1.创建网络监听者管理者对象</h3><pre><code>AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+</code></pre><h3 id="2-设置监听"><a href="#2-设置监听" class="headerlink" title="2.设置监听"></a>2.设置监听</h3><p>1)网络状态</p>
+<pre><code>//显然是枚举值
+typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+    AFNetworkReachabilityStatusUnknown          = -1,//未识别的网络
+    AFNetworkReachabilityStatusNotReachable     = 0,//不可达的网络
+    AFNetworkReachabilityStatusReachableViaWWAN = 1,//2G,3G,4G...
+    AFNetworkReachabilityStatusReachableViaWiFi = 2,//wifi网络
+    }
+</code></pre><a id="more"></a>
+<p>2)设置网络监听</p>
+<pre><code>[manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+    switch (status) {
+        case AFNetworkReachabilityStatusUnknown:
+            NSLog(@&quot;未识别的网络&quot;);
+            break;
 
-        <div class="article-info info-on-right">
-          
-          
+        case AFNetworkReachabilityStatusNotReachable:
+            NSLog(@&quot;不可达的网络(未连接)&quot;);
+            break;
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+            NSLog(@&quot;2G,3G,4G...的网络&quot;);
+            break;
+
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+            NSLog(@&quot;wifi的网络&quot;);
+            break;
+        default:
+            break;
+    }
+}];
+</code></pre><h3 id="3-开始监听"><a href="#3-开始监听" class="headerlink" title="3.开始监听"></a>3.开始监听</h3><pre><code>[manager startMonitoring];
+</code></pre>
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/09/22/UISlide属性/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          UISlide属性
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">仿射变换(CGAffineTransform)使用小结</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/18/库管理工具/" class="archive-article-date">
-  	<time datetime="2016-07-18T14:12:13.000Z" itemprop="datePublished">7月 18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/18/库管理工具/"> 库管理工具</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/10/视图控制器的父-子关系/" class="archive-article-date">
-  	<time datetime="2016-07-10T12:58:37.000Z" itemprop="datePublished">7月 10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/10/视图控制器的父-子关系/">视图控制器的父-子关系</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/30/OC的三大新特性/" class="archive-article-date">
-  	<time datetime="2016-06-30T12:00:50.000Z" itemprop="datePublished">6月 30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/30/OC的三大新特性/">OC的三大新特性</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/02/storyboard之prepareForSegue/" class="archive-article-date">
-  	<time datetime="2016-06-02T13:41:03.000Z" itemprop="datePublished">6月 2</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/02/storyboard之prepareForSegue/"> storyboard之prepareForSegue</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/02/pragma声明/" class="archive-article-date">
-  	<time datetime="2016-06-02T13:35:43.000Z" itemprop="datePublished">6月 2</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/02/pragma声明/">pragma声明</a>
-    </h1>
-  
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="利用-AFNetworking-监听网络状态" data-title="利用 AFNetworking 监听网络状态" data-url="http://yoursite.com/2016/09/22/利用-AFNetworking-监听网络状态/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/29/极光推送实现步骤/" class="archive-article-date">
-  	<time datetime="2016-05-29T12:24:30.000Z" itemprop="datePublished">5月 29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/29/极光推送实现步骤/">极光推送实现步骤</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/22/iOS特别技能点总结3/" class="archive-article-date">
-  	<time datetime="2016-05-22T02:42:01.000Z" itemprop="datePublished">5月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/22/iOS特别技能点总结3/">iOS特别技能点总结3</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2016/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2016/">1</a><a class="page-number" href="/archives/2016/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2016/page/4/">4</a><a class="page-number" href="/archives/2016/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2016/page/9/">9</a><a class="extend next" rel="next" href="/archives/2016/page/4/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -455,8 +368,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

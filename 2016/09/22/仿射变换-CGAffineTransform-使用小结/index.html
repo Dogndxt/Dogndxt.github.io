@@ -4,24 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>property在声明中可以指定的属性 | 第欧根尼的小桶</title>
+  <title>仿射变换(CGAffineTransform)使用小结 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="assign, retain, strong, weak, unsafe_unretained, copy 
-这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。
-Non-ARC从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十">
+  <meta name="description" content="一、理论基础在几何上定义为两个向量空间之间的一个仿射变换或者仿射映射由一个线性变换(运用一次函数进行的变换)接上一个平移组成。
+CGAffineTransform简单分析（http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）
+二、射变换的种类1.自定义变换
+_demoView.transform = CGAffineTra">
 <meta property="og:type" content="article">
-<meta property="og:title" content="property在声明中可以指定的属性">
-<meta property="og:url" content="http://yoursite.com/2016/09/11/property在声明中可以指定的属性/index.html">
+<meta property="og:title" content="仿射变换(CGAffineTransform)使用小结">
+<meta property="og:url" content="http://yoursite.com/2016/09/22/仿射变换-CGAffineTransform-使用小结/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="assign, retain, strong, weak, unsafe_unretained, copy 
-这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。
-Non-ARC从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十">
-<meta property="og:updated_time" content="2016-09-11T14:34:54.000Z">
+<meta property="og:description" content="一、理论基础在几何上定义为两个向量空间之间的一个仿射变换或者仿射映射由一个线性变换(运用一次函数进行的变换)接上一个平移组成。
+CGAffineTransform简单分析（http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）
+二、射变换的种类1.自定义变换
+_demoView.transform = CGAffineTra">
+<meta property="og:updated_time" content="2016-09-22T14:32:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="property在声明中可以指定的属性">
-<meta name="twitter:description" content="assign, retain, strong, weak, unsafe_unretained, copy 
-这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。
-Non-ARC从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十">
+<meta name="twitter:title" content="仿射变换(CGAffineTransform)使用小结">
+<meta name="twitter:description" content="一、理论基础在几何上定义为两个向量空间之间的一个仿射变换或者仿射映射由一个线性变换(运用一次函数进行的变换)接上一个平移组成。
+CGAffineTransform简单分析（http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）
+二、射变换的种类1.自定义变换
+_demoView.transform = CGAffineTra">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -197,11 +200,11 @@ Non-ARC从官方文档的描述上看，Non-ARC的内存管理模式下，编译
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-property在声明中可以指定的属性" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-仿射变换-CGAffineTransform-使用小结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/11/property在声明中可以指定的属性/" class="article-date">
-  	<time datetime="2016-09-11T14:18:58.000Z" itemprop="datePublished">2016-09-11</time>
+      <a href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/" class="article-date">
+  	<time datetime="2016-09-22T14:28:02.000Z" itemprop="datePublished">2016-09-22</time>
 </a>
     </div>
   
@@ -214,7 +217,7 @@ Non-ARC从官方文档的描述上看，Non-ARC的内存管理模式下，编译
         
   
     <h1 class="article-title" itemprop="name">
-      property在声明中可以指定的属性
+      仿射变换(CGAffineTransform)使用小结
     </h1>
   
 
@@ -230,137 +233,66 @@ Non-ARC从官方文档的描述上看，Non-ARC的内存管理模式下，编译
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>assign, retain, strong, weak, unsafe_unretained, copy </p>
-<p>这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。</p>
-<h3 id="Non-ARC"><a href="#Non-ARC" class="headerlink" title="Non-ARC"></a>Non-ARC</h3><p>从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十分建议在可能的情况下通过accessor方法来操纵property，而不是操纵它对应的实例变量。<br><a id="more"></a></p>
-<h4 id="assign"><a href="#assign" class="headerlink" title="assign"></a>assign</h4><pre><code>在Non-ARC内存管理模式下，assign是一个property的默认属性，无论这个property代表一个简单数据类型，还是一个指向对象的指针
-也就是说：
-
-@property (nonatomic) NSNumber *count;
-等价于：
-
-@property (nonatomic, assign) NSNumber *count;
-
-assign主要应用于代表简单数据类型的property，比如int，float等。
-如果这个用assign属性修饰的property代表一个指向对象的指针，那么当这个指针指向某个对象时，这个对象的引用计数不应该被改变。
-也就是说，用assign属性修饰的property，不应该持有一个对象。
-因为这个property不持有对象，所以它所指向的对象很可能已经在别处被释放了。这时它就有可能成为一枚悬垂指针，访问它指向的内存地址时，可能会发生意想不到的状况。
-
-
-retain
-
-retain不能修饰用来代表简单数据类型的property，否则编译器会报错：
-
-@property (nonatomic, retain) int num;//编译器报错：Property with &apos;retain (or strong)&apos; attribute must be of object type
-如果一个property被retain修饰，这代表着这个property应该持有它所指向的对象。
-官方文档中展示了一个被retain修饰的property：
-
-@property (nonatomic, retain) NSNumber *count;
-
-编译器可能为它实现的accessor方法：
-
-- (NSNumber *)count {
-    return _count;
-}
-- (void)setCount:(NSNumber *)newCount {
-    [newCount retain];
-    [_count release];
-    // Make the new assignment.
-    _count = newCount;
-}
-
-注意，考虑到newCount和_count可能指向同一个对象，所以在setter方法中，必须首先调用retain，以防这个对象被释放。
-
-
- copy
-
-copy也不能修饰用来代表简单数据类型的property，否则编译器会报错：
-
-    @property (nonatomic, copy) int num;//编译器报错：Property with &apos;copy&apos; attribute must be of object type
-
-如果一个property被copy修饰，那么赋值到这个property的对象，应该是原有对象的一份拷贝。
-只有实现了NSCopying协议，并且实现了其中的copyWithZone:方法的对象才能被拷贝。
-但是并不是所有的拷贝都产生了新的对象，有些类在实现copyWithZone:方法时，有着它们自己的考虑。比如NSString：
-
-    @property (nonatomic, copy) NSString *myString;
-    NSString *string = [[NSString alloc] initWithString:@&quot;Hello&quot;];
-    self.myString = string;
-    NSLog(@&quot;%d&quot;, string == _myString);//输出1
-
-在这里，property的指针和原先的指针指向的是同一个地址。
-
-unsafe_unretained
-
-人认为unsafe_unretained与assign是等价的。
-
-
-strong
-
-个人认为strong与retain是等价的。
-官方文档中有这样的示例代码：
-
-// The following declaration is a synonym for: @property(retain) MyClass *myObject;
-@property(strong) MyClass *myObject;
-
-表示了strong和retain是同义词。
-
-
-weak
-
-Non-ARC内存管理模式下无法使用weak来修饰一个property，编译器会报错。
-</code></pre><h3 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h3><pre><code>ARC有效时，对象类型的变量将有所有权修饰符来修饰。一共有以下四种所有权修饰符：
-
-__strong 修饰符
-__weak 修饰符
-__unsafe_unretained 修饰符
-__autoreleasing 修饰符
-
-四种修饰符的具体意思，就不在这里解释了(´･_･`)
-
-编译器在为一个property合成实例变量时，也会使用所有权修饰符来修饰这个实例变量。根据property属性的不同，用来修饰实例变量的所有权修饰符也不尽相同。
-
-
-strong
-
-在ARC内存管理模式下，strong是一个代表对象类型的property的默认属性，并且它不能修饰用来代表简单数据类型的property。
-编译器在合成实例变量时，将使用__strong修饰符。
-如果另外自定义了用其他修饰符修饰的实例变量，编译器会报错。可以用这个方法来验证property的各个属性对应的实例变量的所有权修饰符。
-
-@interface ViewController ()
-{
-    __weak NSObject *_obj;//编译器报错：Existing instance variable &apos;_obj&apos; for strong property &apos;obj&apos; may not be weak
-}
-
-@property (nonatomic, strong) NSObject *obj;
-
-@end
-
-
-weak
-
-weak也不能修饰用来代表简单数据类型的property。
-编译器将为weak修饰的property生成带__weak所有权修饰符的实例变量。
-
-copy
-
-copy也不能修饰用来代表简单数据类型的property。
-编译器将为copy修饰的property生成带__strong所有权修饰符的实例变量。
-编译器自动合成的setter方法会调用对象的copyWithZone:方法。虽然第三方程序员可以自定义setter方法，但是为了程序的可读性，
-也应该在其中执行拷贝的逻辑。
-
-retain
-
-和Non-ARC的理由一样，个人认为retain和strong是等价的。
-
-unsafe_unretained
-
-编译器将为unsafe_unretained修饰的property生成带__unsafe_unretained所有权修饰符的实例变量。
-与weak和strong不同的是，unsafe_unretained也可以修饰代表简单数据类型的property。
-
-assign
-
-个人认为assign和unsafe_unretained等价。
-assign在ARC内存管理模式下，仍然是代表简单数据类型的property的默认属性。
+        <h3 id="一、理论基础"><a href="#一、理论基础" class="headerlink" title="一、理论基础"></a>一、理论基础</h3><p>在几何上定义为两个向量空间之间的一个仿射变换或者仿射映射由一个线性变换(运用一次函数进行的变换)接上一个平移组成。</p>
+<p>CGAffineTransform简单分析（<a href="http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）" target="_blank" rel="external">http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）</a></p>
+<h3 id="二、射变换的种类"><a href="#二、射变换的种类" class="headerlink" title="二、射变换的种类"></a>二、射变换的种类</h3><p>1.自定义变换</p>
+<pre><code>_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMake(1.0, 0, 0, 1.0, 20, 20);
+}];
+</code></pre><a id="more"></a>
+<p>2.平移</p>
+<pre><code> x &gt; 0 右边  x &lt; 0 左边
+ y &gt; 0 下边  y &lt; 0 上边 
+ _demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMakeTranslation(100, -50);
+}];
+</code></pre><p>3.缩放      x 轴缩放 ， y 轴缩放</p>
+<pre><code>_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMakeScale(2, 0.5);
+}];
+</code></pre><p>4.旋转     angle &gt; 0 顺时针 ， angle &lt; 0逆时针</p>
+<pre><code>_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+   _demoView.transform = CGAffineTransformMakeRotation(20);
+}];
+</code></pre><p>5.旋转 ＋ 平移 </p>
+<pre><code>_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMakeRotation(20);
+}];
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformTranslate(_demoView.transform, 150, 150);
+}];
+</code></pre><p>6.旋转 ＋ 缩放</p>
+<pre><code>_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMakeRotation(20);
+    //        NSLog(@&quot;%d&quot;, CGAffineTransformIsIdentity(_demoView.transform));
+}];
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformScale(_demoView.transform, 0.5, 2);
+    //        NSLog(@&quot;%d&quot;, CGAffineTransformIsIdentity(_demoView.transform));
+}];
+</code></pre><p>7.相反 （逆旋转，逆移动等）</p>
+<pre><code>_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformInvert(CGAffineTransformMakeRotation(20));
+}];
+</code></pre><p>8.合并多个变换</p>
+<pre><code>_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(20), CGAffineTransformScale(_demoView.transform, 0.5, 2));
+    NSLog(@&quot;%d&quot;, CGAffineTransformEqualToTransform(CGAffineTransformMakeRotation(20), CGAffineTransformScale(_demoView.transform, 0.5, 2)));
+}];
+</code></pre><h3 id="三、补充"><a href="#三、补充" class="headerlink" title="三、补充"></a>三、补充</h3><pre><code>CGAffineTransformIdentity ： 单位矩阵变换，一般用于仿射变换的初始化或者还原。
+CGAffineTransformEqualToTransform(CGAffineTransform t1, CGAffineTransform t2) ： 判断两个变换矩阵是否相等
+CGAffineTransformConcat(CGAffineTransform t1, CGAffineTransform t2) ： 得到两个矩阵相加后得到的最终矩阵
+CGPoint CGPointApplyAffineTransform(CGPoint point, CGAffineTransform t) ： 某点通过矩阵变换之后的点
+CGSize CGSizeApplyAffineTransform(CGSize size, CGAffineTransform t) ： 某个size通过矩阵变换之后的size
+CGRect CGRectApplyAffineTransform(CGRect rect, CGAffineTransform t) ： 某个Rect通过矩阵变换之后的区域
 </code></pre>
       
     </div>
@@ -370,18 +302,18 @@ assign在ARC内存管理模式下，仍然是代表简单数据类型的property
     
 <nav id="article-nav">
   
-    <a href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/09/22/利用-AFNetworking-监听网络状态/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          仿射变换(CGAffineTransform)使用小结
+          利用 AFNetworking 监听网络状态
         
       </div>
     </a>
   
   
-    <a href="/2016/08/28/代理设计模式/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">代理设计模式</div>
+    <a href="/2016/09/11/property在声明中可以指定的属性/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">property在声明中可以指定的属性</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -416,7 +348,7 @@ assign在ARC内存管理模式下，仍然是代表简单数据类型的property
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="property在声明中可以指定的属性" data-title="property在声明中可以指定的属性" data-url="http://yoursite.com/2016/09/11/property在声明中可以指定的属性/"></div>
+	<div class="ds-thread" data-thread-key="仿射变换-CGAffineTransform-使用小结" data-title="仿射变换(CGAffineTransform)使用小结" data-url="http://yoursite.com/2016/09/22/仿射变换-CGAffineTransform-使用小结/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
