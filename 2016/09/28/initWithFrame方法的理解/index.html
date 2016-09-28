@@ -4,17 +4,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives | 第欧根尼的小桶</title>
+  <title>initWithFrame方法的理解 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="initWithFrame方法是什么？initWithFrame方法用来初始化并返回一个新的视图对象,根据指定的CGRect（尺寸）。
+什么时候用initWithFrame方法？简单的说，我们用编程方式申明，创建UIView对象时，使用initWithFrame方法。在此，我们必须搞清楚，两种方式来进行初始化UIView。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="initWithFrame方法的理解">
+<meta property="og:url" content="http://yoursite.com/2016/09/28/initWithFrame方法的理解/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="initWithFrame方法是什么？initWithFrame方法用来初始化并返回一个新的视图对象,根据指定的CGRect（尺寸）。
+什么时候用initWithFrame方法？简单的说，我们用编程方式申明，创建UIView对象时，使用initWithFrame方法。在此，我们必须搞清楚，两种方式来进行初始化UIView。">
+<meta property="og:updated_time" content="2016-09-28T11:36:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="initWithFrame方法的理解">
+<meta name="twitter:description" content="initWithFrame方法是什么？initWithFrame方法用来初始化并返回一个新的视图对象,根据指定的CGRect（尺寸）。
+什么时候用initWithFrame方法？简单的说，我们用编程方式申明，创建UIView对象时，使用initWithFrame方法。在此，我们必须搞清楚，两种方式来进行初始化UIView。">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,242 +194,126 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-initWithFrame方法的理解" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/09/28/initWithFrame方法的理解/" class="article-date">
+  	<time datetime="2016-09-28T11:33:37.000Z" itemprop="datePublished">2016-09-28</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      initWithFrame方法的理解
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/28/block的使用/" class="archive-article-date">
-  	<time datetime="2016-08-28T11:40:33.000Z" itemprop="datePublished">8月 28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/28/block的使用/">block的使用</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="initWithFrame方法是什么？"><a href="#initWithFrame方法是什么？" class="headerlink" title="initWithFrame方法是什么？"></a>initWithFrame方法是什么？</h4><p>initWithFrame方法用来初始化并返回一个新的视图对象,根据指定的CGRect（尺寸）。</p>
+<h4 id="什么时候用initWithFrame方法？"><a href="#什么时候用initWithFrame方法？" class="headerlink" title="什么时候用initWithFrame方法？"></a>什么时候用initWithFrame方法？</h4><p>简单的说，我们用编程方式申明，创建UIView对象时，使用initWithFrame方法。<br>在此，我们必须搞清楚，两种方式来进行初始化UIView。</p>
+<a id="more"></a>
+<h4 id="1-使用-Interface-Builder-方式"><a href="#1-使用-Interface-Builder-方式" class="headerlink" title="1) 使用 Interface Builder 方式"></a>1) 使用 Interface Builder 方式</h4><p> 这种方式，就是使用nib文件。通常我们说的“拖控件” 的方式。</p>
+<p>实际编程中，我们如果用Interface Builder 方式创建了UIView对象。（也就是，用拖控件的方式）<br>那么，initWithFrame方法方法是不会被调用的。因为nib文件已经知道如何初始化该View。（因为，我们在拖该view的时候，就定义好了长、宽、背景等属性）。<br>这时候，会调用initWithCoder方法，我们可以用initWithCoder方法来重新定义我们在nib中已经设置的各项属性。</p>
+<h4 id="2-使用编程方式"><a href="#2-使用编程方式" class="headerlink" title="2) 使用编程方式"></a>2) 使用编程方式</h4><p>实际编程中，我们使用编程方式下，来创建一个UIView或者创建UIView的子类。这时候，将调用initWithFrame方法，来实例化UIView。<br>特别注意，如果在子类中重载initWithFrame方法，必须先调用父类的initWithFrame方法。在对自定义的UIView子类进行初始化操作。<br>比如：</p>
+<pre><code>- (id)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];// 先调用父类的initWithFrame方法
+    if (self) {
 
-        <div class="article-info info-on-right">
-          
-          
+        // 再自定义该类（UIView子类）的初始化操作。
+        _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+        [_scrollView setFrame:CGRectMake(0, 0, 320, 480)];
+        _scrollView.contentSize = CGSizeMake(320*3, 480);
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+        [self addSubview:_scrollView];
+    }
+    return self;
+}
+</code></pre><h4 id="那么，用Interface-Builder-方式创建的nib文件是什么？"><a href="#那么，用Interface-Builder-方式创建的nib文件是什么？" class="headerlink" title="那么，用Interface Builder 方式创建的nib文件是什么？"></a>那么，用Interface Builder 方式创建的nib文件是什么？</h4><p>对于应用程序，资源是一种数据文件，伴随可程序执行程序的一种数据文件。（可以理解为可执行程序的，一种不可缺少的组陈部分）。<br>资源文件，是一种可移动的，由适合的工具编写的一种特殊的代码。<br>如：plish文件，txt文件，图像，视频等文件。都可以被xCode识别和引用。</p>
+<p>一个应用程序可以包含多种形式的资源文件。</p>
+<p>当然，nib文件也不例外，仅仅是一种资源文件。<br>通过Interface Builder 方式，可以创建nib文件，存储应用程序的UI对象。供应用程序来读取。</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/09/22/NSString-字符串处理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"> NSString 字符串处理</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/28/系统定位/" class="archive-article-date">
-  	<time datetime="2016-08-28T11:35:47.000Z" itemprop="datePublished">8月 28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/28/系统定位/"> 系统定位</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/" class="archive-article-date">
-  	<time datetime="2016-08-13T11:13:03.000Z" itemprop="datePublished">8月 13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/"> initWithNibName 和 loadNibNamed 的区别和联系</a>
-    </h1>
-  
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/13/通知iOS/" class="archive-article-date">
-  	<time datetime="2016-08-13T11:07:36.000Z" itemprop="datePublished">8月 13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/13/通知iOS/">通知iOS</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/13/控制器初始化方法/" class="archive-article-date">
-  	<time datetime="2016-08-13T11:03:07.000Z" itemprop="datePublished">8月 13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/13/控制器初始化方法/">控制器初始化方法</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/07/响应者/" class="archive-article-date">
-  	<time datetime="2016-08-07T11:25:04.000Z" itemprop="datePublished">8月 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/07/响应者/">响应者</a>
-    </h1>
-  
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="initWithFrame方法的理解" data-title="initWithFrame方法的理解" data-url="http://yoursite.com/2016/09/28/initWithFrame方法的理解/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/07/定时器用法总结/" class="archive-article-date">
-  	<time datetime="2016-08-07T11:18:19.000Z" itemprop="datePublished">8月 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/07/定时器用法总结/">定时器用法总结</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/07/Objective-C-中实现多线程/" class="archive-article-date">
-  	<time datetime="2016-08-07T11:13:29.000Z" itemprop="datePublished">8月 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/07/Objective-C-中实现多线程/">Objective-C 中实现多线程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/9/">9</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -451,8 +339,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
