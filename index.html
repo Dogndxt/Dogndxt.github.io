@@ -192,6 +192,68 @@
 
       <div class="body-wrap">
   
+    <article id="post-iOS开发使用系统的拷贝剪切功能" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/19/iOS开发使用系统的拷贝剪切功能/" class="article-date">
+  	<time datetime="2016-10-19T11:15:58.000Z" itemprop="datePublished">2016-10-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/19/iOS开发使用系统的拷贝剪切功能/">iOS开发使用系统的拷贝剪切功能</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自定义(这里主要是改掉系统拷贝的名字为复制) <a href="http://www.jianshu.com/p/557530bcd417">http://www.jianshu.com/p/557530bcd417</a></p>
+<p>1)添加手势</p>
+<pre><code>//在自定义cell中的init方法加入
+UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCellHandle:)];
+self.longGesture = longPressGesture;
+[self addGestureRecognizer:longPressGesture];
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/10/19/iOS开发使用系统的拷贝剪切功能/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-iOS开发之旅之懒加载" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -609,63 +671,6 @@ typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
       
         <p class="article-more-link">
           <a  href="/2016/09/11/property在声明中可以指定的属性/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-代理设计模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/28/代理设计模式/" class="article-date">
-  	<time datetime="2016-08-28T11:56:17.000Z" itemprop="datePublished">2016-08-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/28/代理设计模式/">代理设计模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="代理设计模式"><a href="#代理设计模式" class="headerlink" title="代理设计模式"></a>代理设计模式</h3><p>代理delegate就是委托另一个对象来帮忙完成一件事情</p>
-<p>为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了 MVC 设计模式，项目小还好，随着功能的扩展，我们就会发现越写越难写；还有一种情况，就是这件事情做不到，只能委托给其他对象来做了.</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/28/代理设计模式/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

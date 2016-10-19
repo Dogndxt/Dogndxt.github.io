@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-18T14:56:00.000Z</updated>
+  <updated>2016-10-19T11:19:30.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS开发使用系统的拷贝剪切功能</title>
+    <link href="http://yoursite.com/2016/10/19/iOS%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8B%B7%E8%B4%9D%E5%89%AA%E5%88%87%E5%8A%9F%E8%83%BD/"/>
+    <id>http://yoursite.com/2016/10/19/iOS开发使用系统的拷贝剪切功能/</id>
+    <published>2016-10-19T11:15:58.000Z</published>
+    <updated>2016-10-19T11:19:30.000Z</updated>
+    
+    <content type="html">&lt;p&gt;自定义(这里主要是改掉系统拷贝的名字为复制) &lt;a href=&quot;http://www.jianshu.com/p/557530bcd417&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.jianshu.com/p/557530bcd417&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1)添加手势&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//在自定义cell中的init方法加入
+UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCellHandle:)];
+self.longGesture = longPressGesture;
+[self addGestureRecognizer:longPressGesture];
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;2）响应事件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//并加上几个方法
+-(void)longPressCellHandle:(UILongPressGestureRecognizer *)gesture {
+
+    [self becomeFirstResponder];
+    UIMenuController *menuController = [UIMenuController sharedMenuController];
+    UIMenuItem *copyItem = [[UIMenuItem alloc] initWithTitle:@&amp;quot;复制&amp;quot; action:@selector(menuCopyBtnPressed:)];
+    menuController.menuItems = @[copyItem];
+    [menuController setTargetRect:gesture.view.frame inView:gesture.view.superview];
+    [menuController setMenuVisible:YES animated:YES];
+    [UIMenuController sharedMenuController].menuItems=nil;
+}
+
+// 将要复制的内容复制到系统的剪贴板
+- (void)menuCopyBtnPressed:(UIMenuItem *)menuItem {
+    //  通用的粘贴板
+    [UIPasteboard generalPasteboard].string = self.messageLab.text;
+}
+
+- (BOOL)canBecomeFirstResponder {
+
+    return YES;
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+
+    if (action == @selector(menuCopyBtnPressed:)) {
+        return YES;
+    }
+    return NO;
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;自定义(这里主要是改掉系统拷贝的名字为复制) &lt;a href=&quot;http://www.jianshu.com/p/557530bcd417&quot;&gt;http://www.jianshu.com/p/557530bcd417&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1)添加手势&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//在自定义cell中的init方法加入
+UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCellHandle:)];
+self.longGesture = longPressGesture;
+[self addGestureRecognizer:longPressGesture];
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS开发之旅之懒加载</title>
@@ -1226,80 +1288,6 @@ NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
     <summary type="html">
     
       &lt;p&gt;创建 UITableViewCell 的方式主要有四种，使用系统自带的 cell 样式，自定义的继承 UITableViewCell 的方式 ， xib 创建 cell 和 sb 中创建 cell。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title> 库管理工具</title>
-    <link href="http://yoursite.com/2016/07/18/%E5%BA%93%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/"/>
-    <id>http://yoursite.com/2016/07/18/库管理工具/</id>
-    <published>2016-07-18T14:12:13.000Z</published>
-    <updated>2016-07-18T14:15:56.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;Cocoapods安装步骤&quot;&gt;&lt;a href=&quot;#Cocoapods安装步骤&quot; class=&quot;headerlink&quot; title=&quot;Cocoapods安装步骤&quot;&gt;&lt;/a&gt;Cocoapods安装步骤&lt;/h3&gt;&lt;p&gt;1.升级Ruby环境  sudo gem update – system&lt;/p&gt;
-&lt;p&gt;2.安装CocoaPods时我们要访问cocoapods.org，用淘宝的RubyGems镜像来代替官方版本，执行以下命令：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ gem sources --remove https://rubygems.org/
-//等有反应之后再敲入以下命令
-$ gem sources -a https://ruby.taobao.org/
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;为了验证你的Ruby镜像是并且仅是taobao，可以用以下命令查看： $ gem sources -l&lt;/p&gt;
-&lt;p&gt;3.安装 Cocoapods&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo gem install -n /usr/local/bin cocoapods
-再加一句，完美解决
-sudo xcode-select --switch /Applications/Xcode.app
-
-在终端中输入如下命令来完成安装：
-
-//将 CocoaPods Specs repository复制到你电脑上~/.cocoapods目录下
-pod setup
-
-如果安装失败 ~/.cocoapods 里面是空的，就需要重新setup
-命令如下：
-
-
-pod repo remove master  
-pod setup
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Cocoapods使用&quot;&gt;&lt;a href=&quot;#Cocoapods使用&quot; class=&quot;headerlink&quot; title=&quot;Cocoapods使用&quot;&gt;&lt;/a&gt;Cocoapods使用&lt;/h3&gt;&lt;p&gt;1.使用search命令搜索类库名&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ pod search AFNetworking
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.打开xcode,新建一个工程，工程名为CocoapodsSample。&lt;/p&gt;
-&lt;p&gt;  使用命令cd，cd后面跟的是工程目录名，可以直接拉进来，回车后，输入命令创建Podfile文件&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ touch Podfile
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.使用vim编辑podfile文件，使用命令&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ vim Podfile
-
-然后在Podfile文件中输入以下文字：
-
-platform :ios, &amp;apos;7.0&amp;apos;
-pod &amp;quot;AFNetworking&amp;quot;, &amp;quot;2.5.0&amp;quot;
-
-在编辑完后按 esc,然后按&amp;quot;:&amp;quot;,这个时候输入wq保存退出
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;4.这时候，你就可以利用CocoPods下载AFNetworking类库了。还是在终端中的当前项目目录下，运行以下命令：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ pod install 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 如果有一些包已经存在了，或者我们更改了Podfile里面的版本，可以使用以下命令更新&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ pod update
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 注：&lt;br&gt;  关于Podfile文件编辑时，第三方库版本号的各种写法：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;pod ‘AFNetworking’      //不显式指定依赖库版本，表示每次都获取最新版本
-pod ‘AFNetworking’,  ‘2.0’     //只使用2.0版本
-pod ‘AFNetworking’, ‘&amp;gt;2.0′     //使用高于2.0的版本
-pod ‘AFNetworking’, ‘&amp;gt;=2.0′     //使用大于或等于2.0的版本
-pod ‘AFNetworking’, ‘&amp;lt;2.0′     //使用小于2.0的版本
-pod ‘AFNetworking’, ‘&amp;lt;=2.0′     //使用小于或等于2.0的版本
-pod ‘AFNetworking’, ‘~&amp;gt;0.1.2′     //使用大于等于0.1.2但小于0.2的版本，相当于&amp;gt;=0.1.2并且&amp;lt;0.2.0
-pod ‘AFNetworking’, ‘~&amp;gt;0.1′     //使用大于等于0.1但小于1.0的版本
-pod ‘AFNetworking’, ‘~&amp;gt;0′     //高于0的版本，写这个限制和什么都不写是一个效果，都表示使用最新版本
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Cocoapods安装步骤&quot;&gt;&lt;a href=&quot;#Cocoapods安装步骤&quot; class=&quot;headerlink&quot; title=&quot;Cocoapods安装步骤&quot;&gt;&lt;/a&gt;Cocoapods安装步骤&lt;/h3&gt;&lt;p&gt;1.升级Ruby环境  sudo gem update – system&lt;/p&gt;
-&lt;p&gt;2.安装CocoaPods时我们要访问cocoapods.org，用淘宝的RubyGems镜像来代替官方版本，执行以下命令：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ gem sources --remove https://rubygems.org/
-//等有反应之后再敲入以下命令
-$ gem sources -a https://ruby.taobao.org/
-&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
