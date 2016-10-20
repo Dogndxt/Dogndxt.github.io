@@ -4,17 +4,36 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives | 第欧根尼的小桶</title>
+  <title>iOS特别知识点总结六 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/page/3/index.html">
+  <meta name="description" content="//判断内容是否全部为空格  yes 全部为空格  no 不是
+- (BOOL)isEmpty:(NSString *) str {
+
+    if (!str) {
+        return true;
+    } else {
+        //A character set containing only the whitespace characters space (U+0020)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS特别知识点总结六">
+<meta property="og:url" content="http://yoursite.com/2016/10/20/iOS特别知识点总结六/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="//判断内容是否全部为空格  yes 全部为空格  no 不是
+- (BOOL)isEmpty:(NSString *) str {
+
+    if (!str) {
+        return true;
+    } else {
+        //A character set containing only the whitespace characters space (U+0020)">
+<meta property="og:updated_time" content="2016-10-20T14:06:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="iOS特别知识点总结六">
+<meta name="twitter:description" content="//判断内容是否全部为空格  yes 全部为空格  no 不是
+- (BOOL)isEmpty:(NSString *) str {
+
+    if (!str) {
+        return true;
+    } else {
+        //A character set containing only the whitespace characters space (U+0020)">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,246 +209,160 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-iOS特别知识点总结六" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/10/20/iOS特别知识点总结六/" class="article-date">
+  	<time datetime="2016-10-20T14:04:41.000Z" itemprop="datePublished">2016-10-20</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS特别知识点总结六
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/13/控制器初始化方法/" class="archive-article-date">
-  	<time datetime="2016-08-13T11:03:07.000Z" itemprop="datePublished">8月 13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/13/控制器初始化方法/">控制器初始化方法</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>//判断内容是否全部为空格  yes 全部为空格  no 不是</p>
+<pre><code>- (BOOL)isEmpty:(NSString *) str {
 
-        <div class="article-info info-on-right">
-          
-          
+    if (!str) {
+        return true;
+    } else {
+        //A character set containing only the whitespace characters space (U+0020) and tab (U+0009) and the newline and nextline characters (U+000A–U+000D, U+0085).
+        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+        //Returns a new string made by removing from both ends of the receiver characters contained in a given character set.
+        NSString *trimedString = [str stringByTrimmingCharactersInSet:set];
+
+        if ([trimedString length] == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+</code></pre><a id="more"></a>
+<h3 id="UITabBarController"><a href="#UITabBarController" class="headerlink" title="UITabBarController"></a>UITabBarController</h3><pre><code>//1.创建Window
+ self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+ self.window.backgroundColor = [UIColor whiteColor];
+
+ //a.初始化一个tabBar控制器
+ UITabBarController *tb=[[UITabBarController alloc]init];
+ //设置控制器为Window的根控制器
+ self.window.rootViewController=tb;
+
+ //b.创建子控制器
+ UIViewController *c1=[[UIViewController alloc]init];
+ c1.view.backgroundColor=[UIColor grayColor];
+ c1.view.backgroundColor=[UIColor greenColor];
+ c1.tabBarItem.title=@&quot;消息&quot;;
+ c1.tabBarItem.image=[UIImage imageNamed:@&quot;tab_recent_nor&quot;];
+ c1.tabBarItem.badgeValue=@&quot;123&quot;;
+
+ UIViewController *c2=[[UIViewController alloc]init];
+ c2.view.backgroundColor=[UIColor brownColor];
+ c2.tabBarItem.title=@&quot;联系人&quot;;
+ c2.tabBarItem.image=[UIImage imageNamed:@&quot;tab_buddy_nor&quot;];
+
+ UIViewController *c3=[[UIViewController alloc]init];
+ c3.tabBarItem.title=@&quot;动态&quot;;
+ c3.tabBarItem.image=[UIImage imageNamed:@&quot;tab_qworld_nor&quot;];
+
+ UIViewController *c4=[[UIViewController alloc]init];
+ c4.tabBarItem.title=@&quot;设置&quot;;
+ c4.tabBarItem.image=[UIImage imageNamed:@&quot;tab_me_nor&quot;]; 
+</code></pre><h3 id="weak-typeof-self-weakSelf-self"><a href="#weak-typeof-self-weakSelf-self" class="headerlink" title="_weak typeof(self) weakSelf = self;"></a>_weak typeof(self) weakSelf = self;</h3><p>内存管理原则<br>1、默认strong，可选weak。strong下不管成员变量还是property，每次使用指针指向一个对象，等于自动调用retain(), 并对旧对象调用release(),所以设为nil等于release。<br>2、只要某个对象被任一strong指针指向，那么它将不会被销毁，否则立即释放，不用等runloop结束。所有strong指针变量不需要在dealloc中手动设为nil，iOS会自动处理，debug可以看到全部被置为nil，最先声明的变量最后调用dealloc释放。</p>
+<p>3、官方建议IBOutlet加上__weak，实际上不用加也会自动释放；</p>
+<p>4、优先使用私有成员变量，除非需要公开属性才用property。</p>
+<p>5、避免循环引用，否则手动设置nil释放。</p>
+<p>6、block方法常用声明：@property (copy) void(^MyBlock)(void); 如果超出当前作用域之后仍然继续使用block，那么最好使用copy关键字，拷贝到堆区，防止栈区变量销毁。</p>
+<p>7、创建block匿名函数之前一般需要对self进行weak化，否则造成循环引用无法释放controller:</p>
+<p> <strong>weak MyController *weakSelf = self 或者 </strong>weak __typeof(self) weakSelf = self;<br>执行block方法体的时候也可以转换为强引用之后再使用：MyController* strongSelf = weakSelf; if (!strongSelf) { return; }</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS开发之顶部状态栏statusBar颜色变化小结</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/07/响应者/" class="archive-article-date">
-  	<time datetime="2016-08-07T11:25:04.000Z" itemprop="datePublished">8月 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/07/响应者/">响应者</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/07/定时器用法总结/" class="archive-article-date">
-  	<time datetime="2016-08-07T11:18:19.000Z" itemprop="datePublished">8月 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/07/定时器用法总结/">定时器用法总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/07/Objective-C-中实现多线程/" class="archive-article-date">
-  	<time datetime="2016-08-07T11:13:29.000Z" itemprop="datePublished">8月 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/07/Objective-C-中实现多线程/">Objective-C 中实现多线程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/07/iOS特别技能点总结4/" class="archive-article-date">
-  	<time datetime="2016-08-07T11:06:12.000Z" itemprop="datePublished">8月 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/07/iOS特别技能点总结4/">iOS特别技能点总结4</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/30/多种方式搭建tableViewCell/" class="archive-article-date">
-  	<time datetime="2016-07-30T13:46:44.000Z" itemprop="datePublished">7月 30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/30/多种方式搭建tableViewCell/">多种方式搭建tableViewCell</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/18/库管理工具/" class="archive-article-date">
-  	<time datetime="2016-07-18T14:12:13.000Z" itemprop="datePublished">7月 18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/18/库管理工具/"> 库管理工具</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/10/视图控制器的父-子关系/" class="archive-article-date">
-  	<time datetime="2016-07-10T12:58:37.000Z" itemprop="datePublished">7月 10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/10/视图控制器的父-子关系/">视图控制器的父-子关系</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/10/">10</a><a class="extend next" rel="next" href="/archives/page/4/">Next &raquo;</a>
-    </nav>
-  
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS特别知识点总结六" data-title="iOS特别知识点总结六" data-url="http://yoursite.com/2016/10/20/iOS特别知识点总结六/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -455,8 +388,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

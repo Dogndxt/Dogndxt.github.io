@@ -4,17 +4,33 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016 | 第欧根尼的小桶</title>
+  <title>iOS开发之顶部状态栏statusBar颜色变化小结 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/2016/page/2/index.html">
+  <meta name="description" content="iOS开发之顶部状态栏statusBar颜色变化小结
+1.单个视图View没有导航控制器包装的情况下
+(1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化
+a. General 中的 Status Bar Style   --&amp;gt;  Light
+
+b. plist 中增加 Status Bar Style">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发之顶部状态栏statusBar颜色变化小结">
+<meta property="og:url" content="http://yoursite.com/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="iOS开发之顶部状态栏statusBar颜色变化小结
+1.单个视图View没有导航控制器包装的情况下
+(1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化
+a. General 中的 Status Bar Style   --&amp;gt;  Light
+
+b. plist 中增加 Status Bar Style">
+<meta property="og:updated_time" content="2016-10-20T14:03:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="iOS开发之顶部状态栏statusBar颜色变化小结">
+<meta name="twitter:description" content="iOS开发之顶部状态栏statusBar颜色变化小结
+1.单个视图View没有导航控制器包装的情况下
+(1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化
+a. General 中的 Status Bar Style   --&amp;gt;  Light
+
+b. plist 中增加 Status Bar Style">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,242 +206,147 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-iOS开发之顶部状态栏statusBar颜色变化小结" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/" class="article-date">
+  	<time datetime="2016-10-20T14:01:28.000Z" itemprop="datePublished">2016-10-20</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS开发之顶部状态栏statusBar颜色变化小结
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/" class="archive-article-date">
-  	<time datetime="2016-09-22T14:28:02.000Z" itemprop="datePublished">9月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/">仿射变换(CGAffineTransform)使用小结</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>iOS开发之顶部状态栏statusBar颜色变化小结</p>
+<p>1.单个视图View没有导航控制器包装的情况下</p>
+<p>(1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化</p>
+<pre><code>a. General 中的 Status Bar Style   --&gt;  Light
 
-        <div class="article-info info-on-right">
-          
-          
+b. plist 中增加 Status Bar Style   --&gt;  UIStatusBarStyleLightContent
+</code></pre><a id="more"></a>
+<p>(2).设置启动状态栏颜色改变(白色)，视图中的状态栏也变成白色(保持上面的设置)，有两种设置方式：</p>
+<pre><code>a. 在Info.plist里面添加一行View controller-based status bar appearance ＝ NO 即可
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+b.在视图控制器中添加代码
+
+  - (UIStatusBarStyle)preferredStatusBarStyle {
+
+    return UIStatusBarStyleLightContent;
+  }
+</code></pre><p>(3).设置视图中状态栏的颜色为白色，启动程序时的状态栏为默认颜色(黑色)，没有做1.中的任何设置情况下，在控制器.m文件中添加如下代码(即2.-&gt;b.)</p>
+<p>2.视图作为导航控制器的根控制器的情况下</p>
+<p>(1) .设置启动画面的状态栏为白色，视图中的状态栏为默认(黑色)，如1.-&gt;1.中的设置即可，</p>
+<p>(2) .设置启动画面和视图中的状态栏颜色都为白色(保持2.-&gt;1.中的设置)，方式同样有两种：</p>
+<pre><code>a.在Info.plist里面添加一行View controller-based status bar appearance ＝ NO 即可
+
+
+b.此时如果单单在视图控制器.m文件中添加如下代码是不够的，
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+同时需要在导航控制器.m文件中添加下面的代码才能达到效果(careful)
+
+- (UIViewController *)childViewControllerForStatusBarStyle{
+    return self.topViewController;
+}
+</code></pre><p>(3).只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认(黑色)，把Info.plist文件中的 Status bar style = UIStatusBarStyleLightContent设置去掉，保持2.-&gt;2.-&gt;b.中的代码设置即可</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/20/iOS特别知识点总结六/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          iOS特别知识点总结六
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/19/iOS开发使用系统的拷贝剪切功能/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS开发使用系统的拷贝剪切功能</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/11/property在声明中可以指定的属性/" class="archive-article-date">
-  	<time datetime="2016-09-11T14:18:58.000Z" itemprop="datePublished">9月 11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/11/property在声明中可以指定的属性/">property在声明中可以指定的属性</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/28/代理设计模式/" class="archive-article-date">
-  	<time datetime="2016-08-28T11:56:17.000Z" itemprop="datePublished">8月 28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/28/代理设计模式/">代理设计模式</a>
-    </h1>
-  
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/28/ios技能点总结和存取方法/" class="archive-article-date">
-  	<time datetime="2016-08-28T11:45:40.000Z" itemprop="datePublished">8月 28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/28/ios技能点总结和存取方法/">ios技能点总结和存取方法</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/28/block的使用/" class="archive-article-date">
-  	<time datetime="2016-08-28T11:40:33.000Z" itemprop="datePublished">8月 28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/28/block的使用/">block的使用</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/28/系统定位/" class="archive-article-date">
-  	<time datetime="2016-08-28T11:35:47.000Z" itemprop="datePublished">8月 28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/28/系统定位/"> 系统定位</a>
-    </h1>
-  
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS开发之顶部状态栏statusBar颜色变化小结" data-title="iOS开发之顶部状态栏statusBar颜色变化小结" data-url="http://yoursite.com/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/" class="archive-article-date">
-  	<time datetime="2016-08-13T11:13:03.000Z" itemprop="datePublished">8月 13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/"> initWithNibName 和 loadNibNamed 的区别和联系</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/13/通知iOS/" class="archive-article-date">
-  	<time datetime="2016-08-13T11:07:36.000Z" itemprop="datePublished">8月 13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/13/通知iOS/">通知iOS</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2016/">&laquo; Prev</a><a class="page-number" href="/archives/2016/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2016/page/3/">3</a><a class="page-number" href="/archives/2016/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2016/page/10/">10</a><a class="extend next" rel="next" href="/archives/2016/page/3/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -451,8 +372,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

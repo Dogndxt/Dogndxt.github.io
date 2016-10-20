@@ -192,6 +192,127 @@
 
       <div class="body-wrap">
   
+    <article id="post-仿射变换-CGAffineTransform-使用小结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/" class="article-date">
+  	<time datetime="2016-09-22T14:28:02.000Z" itemprop="datePublished">2016-09-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/">仿射变换(CGAffineTransform)使用小结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、理论基础"><a href="#一、理论基础" class="headerlink" title="一、理论基础"></a>一、理论基础</h3><p>在几何上定义为两个向量空间之间的一个仿射变换或者仿射映射由一个线性变换(运用一次函数进行的变换)接上一个平移组成。</p>
+<p>CGAffineTransform简单分析（<a href="http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）">http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）</a></p>
+<h3 id="二、射变换的种类"><a href="#二、射变换的种类" class="headerlink" title="二、射变换的种类"></a>二、射变换的种类</h3><p>1.自定义变换</p>
+<pre><code>_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMake(1.0, 0, 0, 1.0, 20, 20);
+}];
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-property在声明中可以指定的属性" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/11/property在声明中可以指定的属性/" class="article-date">
+  	<time datetime="2016-09-11T14:18:58.000Z" itemprop="datePublished">2016-09-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/11/property在声明中可以指定的属性/">property在声明中可以指定的属性</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>assign, retain, strong, weak, unsafe_unretained, copy </p>
+<p>这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。</p>
+<h3 id="Non-ARC"><a href="#Non-ARC" class="headerlink" title="Non-ARC"></a>Non-ARC</h3><p>从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十分建议在可能的情况下通过accessor方法来操纵property，而不是操纵它对应的实例变量。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/11/property在声明中可以指定的属性/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-代理设计模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -542,121 +663,9 @@
 
 
   
-    <article id="post-控制器初始化方法" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/13/控制器初始化方法/" class="article-date">
-  	<time datetime="2016-08-13T11:03:07.000Z" itemprop="datePublished">2016-08-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/13/控制器初始化方法/">控制器初始化方法</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="控制器初始化方法"><a href="#控制器初始化方法" class="headerlink" title="控制器初始化方法"></a>控制器初始化方法</h3><h4 id="viewWillAppear"><a href="#viewWillAppear" class="headerlink" title="viewWillAppear"></a>viewWillAppear</h4><p>视图即将可见时调用。默认情况下不执行任何操作。 Called when the view is about to made visible. Default does nothing</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/13/控制器初始化方法/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-响应者" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/07/响应者/" class="article-date">
-  	<time datetime="2016-08-07T11:25:04.000Z" itemprop="datePublished">2016-08-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/07/响应者/">响应者</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="响应者对象（Response-object）"><a href="#响应者对象（Response-object）" class="headerlink" title="响应者对象（Response object）"></a>响应者对象（Response object）</h3><p>响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/07/响应者/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </div>
