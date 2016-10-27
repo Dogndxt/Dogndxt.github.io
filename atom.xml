@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-20T14:06:04.000Z</updated>
+  <updated>2016-10-27T11:28:05.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>layoutSubviews 总结</title>
+    <link href="http://yoursite.com/2016/10/27/layoutSubviews-%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2016/10/27/layoutSubviews-总结/</id>
+    <published>2016-10-27T11:23:57.000Z</published>
+    <updated>2016-10-27T11:28:05.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;ios-layout机制相关方法&quot;&gt;&lt;a href=&quot;#ios-layout机制相关方法&quot; class=&quot;headerlink&quot; title=&quot;ios layout机制相关方法&quot;&gt;&lt;/a&gt;ios layout机制相关方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (CGSize)sizeThatFits:(CGSize)size
+- (void)sizeToFit
+——————-
+- (void)layoutSubviews
+- (void)layoutIfNeeded
+- (void)setNeedsLayout
+——————–
+- (void)setNeedsDisplay
+- (void)drawRect
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;layoutSubviews在以下情况下会被调用：&quot;&gt;&lt;a href=&quot;#layoutSubviews在以下情况下会被调用：&quot; class=&quot;headerlink&quot; title=&quot;layoutSubviews在以下情况下会被调用：&quot;&gt;&lt;/a&gt;layoutSubviews在以下情况下会被调用：&lt;/h4&gt;&lt;p&gt;1、init初始化不会触发layoutSubviews&lt;/p&gt;
+&lt;p&gt;但是是用initWithFrame 进行初始化时，当rect的值不为CGRectZero时,也会触发&lt;/p&gt;
+&lt;p&gt;2、addSubview会触发layoutSubviews&lt;/p&gt;
+&lt;p&gt;3、设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化&lt;/p&gt;
+&lt;p&gt;4、滚动一个UIScrollView会触发layoutSubviews&lt;/p&gt;
+&lt;p&gt;5、旋转Screen会触发父UIView上的layoutSubviews事件&lt;/p&gt;
+&lt;p&gt;6、改变一个UIView大小的时候也会触发父UIView上的layoutSubviews事件&lt;/p&gt;
+&lt;h3 id=&quot;刷新子对象布局&quot;&gt;&lt;a href=&quot;#刷新子对象布局&quot; class=&quot;headerlink&quot; title=&quot;刷新子对象布局&quot;&gt;&lt;/a&gt;刷新子对象布局&lt;/h3&gt;&lt;p&gt;-layoutSubviews方法：这个方法，默认没有做任何事情，需要子类进行重写&lt;br&gt;-setNeedsLayout方法： 标记为需要重新布局，异步调用layoutIfNeeded刷新布局，不立即刷新，但layoutSubviews一定会被调用&lt;br&gt;-layoutIfNeeded方法：如果，有需要刷新的标记，立即调用layoutSubviews进行布局（如果没有标记，不会调用layoutSubviews）&lt;/p&gt;
+&lt;p&gt;如果要立即刷新，要先调用[view setNeedsLayout]，把标记设为需要布局，然后马上调用[view layoutIfNeeded]，实现布局&lt;/p&gt;
+&lt;p&gt;在视图第一次显示之前，标记总是“需要刷新”的，可以直接调用[view layoutIfNeeded]&lt;/p&gt;
+&lt;h3 id=&quot;重绘&quot;&gt;&lt;a href=&quot;#重绘&quot; class=&quot;headerlink&quot; title=&quot;重绘&quot;&gt;&lt;/a&gt;重绘&lt;/h3&gt;&lt;p&gt;-drawRect:(CGRect)rect方法：重写此方法，执行重绘任务&lt;br&gt;-setNeedsDisplay方法：标记为需要重绘，异步调用drawRect&lt;br&gt;-setNeedsDisplayInRect:(CGRect)invalidRect方法：标记为需要局部重绘&lt;/p&gt;
+&lt;p&gt;sizeToFit会自动调用sizeThatFits方法；&lt;/p&gt;
+&lt;p&gt;sizeToFit不应该在子类中被重写，应该重写sizeThatFits&lt;/p&gt;
+&lt;p&gt;sizeThatFits传入的参数是receiver当前的size，返回一个适合的size&lt;/p&gt;
+&lt;p&gt;sizeToFit可以被手动直接调用&lt;/p&gt;
+&lt;p&gt;sizeToFit和sizeThatFits方法都没有递归，对subviews也不负责，只负责自己&lt;/p&gt;
+&lt;p&gt;layoutSubviews对subviews重新布局&lt;/p&gt;
+&lt;p&gt;layoutSubviews方法调用先于drawRect&lt;/p&gt;
+&lt;p&gt;setNeedsLayout在receiver标上一个需要被重新布局的标记，在系统runloop的下一个周期自动调用layoutSubviews&lt;/p&gt;
+&lt;p&gt;layoutIfNeeded方法如其名，UIKit会判断该receiver是否需要layout.根据Apple官方文档,layoutIfNeeded方法应该是这样的&lt;/p&gt;
+&lt;p&gt;layoutIfNeeded遍历的不是superview链，应该是subviews链&lt;/p&gt;
+&lt;p&gt;drawRect是对receiver的重绘，能获得context&lt;/p&gt;
+&lt;p&gt;setNeedDisplay在receiver标上一个需要被重新绘图的标记，在下一个draw周期自动重绘，iphone device的刷新频率是60hz，也就是1/60秒后重绘 &lt;/p&gt;
+&lt;h3 id=&quot;sizeToFit&quot;&gt;&lt;a href=&quot;#sizeToFit&quot; class=&quot;headerlink&quot; title=&quot;sizeToFit&quot;&gt;&lt;/a&gt;sizeToFit&lt;/h3&gt;&lt;p&gt;sizeToFit会自动调用sizeThatFits方法；&lt;br&gt;sizeToFit不应该在子类中被重写，应该重写sizeThatFits&lt;br&gt;sizeThatFits传入的参数是receiver当前的size，返回一个适合的size&lt;br&gt;sizeToFit可以被手动直接调用sizeToFit和sizeThatFits方法都没有递归，对subviews也不负责，只负责自己&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;ios-layout机制相关方法&quot;&gt;&lt;a href=&quot;#ios-layout机制相关方法&quot; class=&quot;headerlink&quot; title=&quot;ios layout机制相关方法&quot;&gt;&lt;/a&gt;ios layout机制相关方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (CGSize)sizeThatFits:(CGSize)size
+- (void)sizeToFit
+——————-
+- (void)layoutSubviews
+- (void)layoutIfNeeded
+- (void)setNeedsLayout
+——————–
+- (void)setNeedsDisplay
+- (void)drawRect
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS特别知识点总结六</title>
@@ -1226,71 +1287,6 @@ time = [NSTimer timerWithTimeInterval:1 invocation:invo repeats:YES];
 [time fire];
 [[NSRunLoop mainRunLoop] addTimer:time forMode:NSDefaultRunLoopMode];
 &lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Objective-C 中实现多线程</title>
-    <link href="http://yoursite.com/2016/08/07/Objective-C-%E4%B8%AD%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    <id>http://yoursite.com/2016/08/07/Objective-C-中实现多线程/</id>
-    <published>2016-08-07T11:13:29.000Z</published>
-    <updated>2016-08-07T11:17:16.000Z</updated>
-    
-    <content type="html">&lt;p&gt;在多核 CPU 时代，由于硬件上就支持多线程技术，就可以让多个线程真正同时地运行。如果任务能够被拆分，各个子任务就能并行地在 CPU 上运行，这就能显著加快运行速度。&lt;/p&gt;
-&lt;h3 id=&quot;performSelectors&quot;&gt;&lt;a href=&quot;#performSelectors&quot; class=&quot;headerlink&quot; title=&quot;performSelectors&quot;&gt;&lt;/a&gt;performSelectors&lt;/h3&gt;&lt;p&gt; NSObject 提供了以 performSelector 为前缀的一系列方法。它们可以让用户在指定线程中，或者立即，或者延迟执行某个方法调用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)performSelector:(SEL)aSelector
-- (void)performSelector:(SEL)aSelector withObject:(id)anArgument
-- (void)performSelector:(SEL)aSelector withObject:(id)anArgument withObject:(id)anArgument
-- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay
-- (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay: (NSTimeInterval)delay inModes:(NSArray *)modes
-
-// 在指定线程中执行方法
-- (void)performSelector:(SEL)aSelector onThread:(NSThread *)thread withObject:(id)arg waitUntilDone:(BOOL)wait
-- (void)performSelector:(SEL)aSelector onThread:(NSThread *)thread withObject: (id)arg waitUntilDone:(BOOL)wait modes:(NSArray *)array
-// 在主线程中执行方法
-- (void)performSelectorOnMainThread: (SEL)selector withObject:(id)argument waitUntilDone:(BOOL)wait
-- (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)arg waitUntilDone:(BOOL)wait modes:(NSArray *)array
-
-// 在后台线程中执行方法
-- (void)performSelectorInBackground:(SEL)aSelector withObject:(id)arg
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  这一系列方法简单易用:指定执行的方法（但传入方法的参数数量有限制）；指定是在当前线程，还是在主线程，还是在后台线程执行；指定是否需要阻塞当前线程等待结果。&lt;/p&gt;
-&lt;h3 id=&quot;NSThread&quot;&gt;&lt;a href=&quot;#NSThread&quot; class=&quot;headerlink&quot; title=&quot;NSThread&quot;&gt;&lt;/a&gt;NSThread&lt;/h3&gt;&lt;p&gt;   NSThread 是 OS X 和 iOS 都提供的一个线程对象，它是线程的一个轻量级实现。在执行一些轻量级的简单任务时，NSThread 很有用，但用户仍然需要自己管理线程生命周期，进行线程间同步。比如，线程状态，依赖性，线程间同步等线程相关的主题 NSThread 都没有涉及。比如，涉及到线程间同步仍然需要配合使用 NSLock，NSCondition 或者 @synchronized。所以，遇到复杂任务时，轻量级的 NSThread 可能并不合适。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)run {
-    while (TRUE) {
-        [_lock lock];
-        if(_cake &amp;gt; 0){
-            [NSThread sleepForTimeInterval:0.5];
-            _cake--;
-            _occupied = kSum - _cake;
-            NSLog(@&amp;quot;Taken by %@\nCurrent free:%ld, occupied: %ld&amp;quot;, [[NSThread currentThread] name], _cake, _occupied);
-        }
-        [_lock unlock];
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;NSOperation&quot;&gt;&lt;a href=&quot;#NSOperation&quot; class=&quot;headerlink&quot; title=&quot;NSOperation&quot;&gt;&lt;/a&gt;NSOperation&lt;/h3&gt;&lt;p&gt;NSOperation 做的事情比 NSThread 更多一些。通过继承 NSOperation，可以使子类获得一些线程相关的特性，进而可以安全地管理线程生命周期。&lt;br&gt;比如，以线程安全的方式建立状态，取消线程。配合 NSOperationQueue，可以控制线程间的优先级和依赖性。这就给出了一套线程管理的基本方法。NSOperation 代表了一个独立的计算单元。一般，我们会把计算任务封装进 NSOperation 这个对象。NSOperation 是抽象类，但同时也提供了两个可以直接使用的实体子类：NSInvocationOperation 和 NSBlockOperation。NSInvocationOperation 用于将计算任务封装进方法，NSBlockOperation 用于将计算任务封装进 block。NSOperationQueue 则用于执行计算任务，管理计算任务的优先级，处理计算任务之间的依赖性。NSOperation 被添加到 NSOperationQueue 中之后，队列会按优先级和进入顺序调度任务，NSOperation 对象会被自动执行。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSOperation 提供以下任务优先级，以这些优先级设置变量 queuePriority 即可加快或者推迟操作的执行：
-NSOperationQueuePriorityVeryHigh
-NSOperationQueuePriorityHigh
-NSOperationQueuePriorityNormal
-NSOperationQueuePriorityLow
-NSOperationQueuePriorityVeryLow
-
-NSOperation 使用状态机模型来表示状态。通常，你可以使用 KVO（Key-Value Observing）观察任务的执行状态。这是其他多线程工具所不具备的功能。NSOperation 提供以下状态：
-    isReady
-    isExecuting
-    isFinished
-NSOperation 对象之间的依赖性可以用如下代码表示：
- [refreshUIOperation addDependency:requestDataOperation]; [operationQueue addOperation:requestDataOperation]; [operationQueue addOperation:refreshUIOperation];
-除非 requestDataOperation 的状态 isFinished 返回 YES，不然 refreshUIOperation 这个操作不会开始。
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在多核 CPU 时代，由于硬件上就支持多线程技术，就可以让多个线程真正同时地运行。如果任务能够被拆分，各个子任务就能并行地在 CPU 上运行，这就能显著加快运行速度。&lt;/p&gt;
-&lt;h3 id=&quot;performSelectors&quot;&gt;&lt;a href=&quot;#performSelectors&quot; class=&quot;headerlink&quot; title=&quot;performSelectors&quot;&gt;&lt;/a&gt;performSelectors&lt;/h3&gt;&lt;p&gt; NSObject 提供了以 performSelector 为前缀的一系列方法。它们可以让用户在指定线程中，或者立即，或者延迟执行某个方法调用。&lt;br&gt;
     
     </summary>
     

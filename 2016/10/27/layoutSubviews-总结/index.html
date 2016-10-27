@@ -4,17 +4,42 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016 | 第欧根尼的小桶</title>
+  <title>layoutSubviews 总结 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/2016/page/4/index.html">
+  <meta name="description" content="ios layout机制相关方法- (CGSize)sizeThatFits:(CGSize)size
+- (void)sizeToFit
+——————-
+- (void)layoutSubviews
+- (void)layoutIfNeeded
+- (void)setNeedsLayout
+——————–
+- (void)setNeedsDisplay
+- (void)drawRect">
+<meta property="og:type" content="article">
+<meta property="og:title" content="layoutSubviews 总结">
+<meta property="og:url" content="http://yoursite.com/2016/10/27/layoutSubviews-总结/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="ios layout机制相关方法- (CGSize)sizeThatFits:(CGSize)size
+- (void)sizeToFit
+——————-
+- (void)layoutSubviews
+- (void)layoutIfNeeded
+- (void)setNeedsLayout
+——————–
+- (void)setNeedsDisplay
+- (void)drawRect">
+<meta property="og:updated_time" content="2016-10-27T11:28:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="layoutSubviews 总结">
+<meta name="twitter:description" content="ios layout机制相关方法- (CGSize)sizeThatFits:(CGSize)size
+- (void)sizeToFit
+——————-
+- (void)layoutSubviews
+- (void)layoutIfNeeded
+- (void)setNeedsLayout
+——————–
+- (void)setNeedsDisplay
+- (void)drawRect">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,246 +215,138 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-layoutSubviews-总结" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/10/视图控制器的父-子关系/" class="archive-article-date">
-  	<time datetime="2016-07-10T12:58:37.000Z" itemprop="datePublished">7月 10</time>
+    <div class="article-meta">
+      <a href="/2016/10/27/layoutSubviews-总结/" class="article-date">
+  	<time datetime="2016-10-27T11:23:57.000Z" itemprop="datePublished">2016-10-27</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/10/视图控制器的父-子关系/">视图控制器的父-子关系</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      layoutSubviews 总结
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ios-layout机制相关方法"><a href="#ios-layout机制相关方法" class="headerlink" title="ios layout机制相关方法"></a>ios layout机制相关方法</h3><pre><code>- (CGSize)sizeThatFits:(CGSize)size
+- (void)sizeToFit
+——————-
+- (void)layoutSubviews
+- (void)layoutIfNeeded
+- (void)setNeedsLayout
+——————–
+- (void)setNeedsDisplay
+- (void)drawRect
+</code></pre><a id="more"></a>
+<h4 id="layoutSubviews在以下情况下会被调用："><a href="#layoutSubviews在以下情况下会被调用：" class="headerlink" title="layoutSubviews在以下情况下会被调用："></a>layoutSubviews在以下情况下会被调用：</h4><p>1、init初始化不会触发layoutSubviews</p>
+<p>但是是用initWithFrame 进行初始化时，当rect的值不为CGRectZero时,也会触发</p>
+<p>2、addSubview会触发layoutSubviews</p>
+<p>3、设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化</p>
+<p>4、滚动一个UIScrollView会触发layoutSubviews</p>
+<p>5、旋转Screen会触发父UIView上的layoutSubviews事件</p>
+<p>6、改变一个UIView大小的时候也会触发父UIView上的layoutSubviews事件</p>
+<h3 id="刷新子对象布局"><a href="#刷新子对象布局" class="headerlink" title="刷新子对象布局"></a>刷新子对象布局</h3><p>-layoutSubviews方法：这个方法，默认没有做任何事情，需要子类进行重写<br>-setNeedsLayout方法： 标记为需要重新布局，异步调用layoutIfNeeded刷新布局，不立即刷新，但layoutSubviews一定会被调用<br>-layoutIfNeeded方法：如果，有需要刷新的标记，立即调用layoutSubviews进行布局（如果没有标记，不会调用layoutSubviews）</p>
+<p>如果要立即刷新，要先调用[view setNeedsLayout]，把标记设为需要布局，然后马上调用[view layoutIfNeeded]，实现布局</p>
+<p>在视图第一次显示之前，标记总是“需要刷新”的，可以直接调用[view layoutIfNeeded]</p>
+<h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>-drawRect:(CGRect)rect方法：重写此方法，执行重绘任务<br>-setNeedsDisplay方法：标记为需要重绘，异步调用drawRect<br>-setNeedsDisplayInRect:(CGRect)invalidRect方法：标记为需要局部重绘</p>
+<p>sizeToFit会自动调用sizeThatFits方法；</p>
+<p>sizeToFit不应该在子类中被重写，应该重写sizeThatFits</p>
+<p>sizeThatFits传入的参数是receiver当前的size，返回一个适合的size</p>
+<p>sizeToFit可以被手动直接调用</p>
+<p>sizeToFit和sizeThatFits方法都没有递归，对subviews也不负责，只负责自己</p>
+<p>layoutSubviews对subviews重新布局</p>
+<p>layoutSubviews方法调用先于drawRect</p>
+<p>setNeedsLayout在receiver标上一个需要被重新布局的标记，在系统runloop的下一个周期自动调用layoutSubviews</p>
+<p>layoutIfNeeded方法如其名，UIKit会判断该receiver是否需要layout.根据Apple官方文档,layoutIfNeeded方法应该是这样的</p>
+<p>layoutIfNeeded遍历的不是superview链，应该是subviews链</p>
+<p>drawRect是对receiver的重绘，能获得context</p>
+<p>setNeedDisplay在receiver标上一个需要被重新绘图的标记，在下一个draw周期自动重绘，iphone device的刷新频率是60hz，也就是1/60秒后重绘 </p>
+<h3 id="sizeToFit"><a href="#sizeToFit" class="headerlink" title="sizeToFit"></a>sizeToFit</h3><p>sizeToFit会自动调用sizeThatFits方法；<br>sizeToFit不应该在子类中被重写，应该重写sizeThatFits<br>sizeThatFits传入的参数是receiver当前的size，返回一个适合的size<br>sizeToFit可以被手动直接调用sizeToFit和sizeThatFits方法都没有递归，对subviews也不负责，只负责自己</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/20/iOS特别知识点总结六/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS特别知识点总结六</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/30/OC的三大新特性/" class="archive-article-date">
-  	<time datetime="2016-06-30T12:00:50.000Z" itemprop="datePublished">6月 30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/30/OC的三大新特性/">OC的三大新特性</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/02/storyboard之prepareForSegue/" class="archive-article-date">
-  	<time datetime="2016-06-02T13:41:03.000Z" itemprop="datePublished">6月 2</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/02/storyboard之prepareForSegue/"> storyboard之prepareForSegue</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/02/pragma声明/" class="archive-article-date">
-  	<time datetime="2016-06-02T13:35:43.000Z" itemprop="datePublished">6月 2</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/02/pragma声明/">pragma声明</a>
-    </h1>
-  
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="layoutSubviews-总结" data-title="layoutSubviews 总结" data-url="http://yoursite.com/2016/10/27/layoutSubviews-总结/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/29/极光推送实现步骤/" class="archive-article-date">
-  	<time datetime="2016-05-29T12:24:30.000Z" itemprop="datePublished">5月 29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/29/极光推送实现步骤/">极光推送实现步骤</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/22/iOS特别技能点总结3/" class="archive-article-date">
-  	<time datetime="2016-05-22T02:42:01.000Z" itemprop="datePublished">5月 22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/22/iOS特别技能点总结3/">iOS特别技能点总结3</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/20/方法性能方法/" class="archive-article-date">
-  	<time datetime="2016-05-20T14:59:25.000Z" itemprop="datePublished">5月 20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/20/方法性能方法/">方法性能方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/20/iOS特别技能点总结2/" class="archive-article-date">
-  	<time datetime="2016-05-20T14:53:45.000Z" itemprop="datePublished">5月 20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/20/iOS特别技能点总结2/">iOS特别技能点总结2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2016/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/2016/">1</a><a class="page-number" href="/archives/2016/page/2/">2</a><a class="page-number" href="/archives/2016/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2016/page/5/">5</a><a class="page-number" href="/archives/2016/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2016/page/10/">10</a><a class="extend next" rel="next" href="/archives/2016/page/5/">Next &raquo;</a>
-    </nav>
-  
 
 </div>
       <footer id="footer">
@@ -455,8 +372,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

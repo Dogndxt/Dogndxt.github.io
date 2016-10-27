@@ -192,6 +192,71 @@
 
       <div class="body-wrap">
   
+    <article id="post-layoutSubviews-总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/27/layoutSubviews-总结/" class="article-date">
+  	<time datetime="2016-10-27T11:23:57.000Z" itemprop="datePublished">2016-10-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/27/layoutSubviews-总结/">layoutSubviews 总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ios-layout机制相关方法"><a href="#ios-layout机制相关方法" class="headerlink" title="ios layout机制相关方法"></a>ios layout机制相关方法</h3><pre><code>- (CGSize)sizeThatFits:(CGSize)size
+- (void)sizeToFit
+——————-
+- (void)layoutSubviews
+- (void)layoutIfNeeded
+- (void)setNeedsLayout
+——————–
+- (void)setNeedsDisplay
+- (void)drawRect
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/10/27/layoutSubviews-总结/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-iOS特别知识点总结六" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -622,71 +687,6 @@ _slider.maximumValue = 100.0;
       
         <p class="article-more-link">
           <a  href="/2016/09/22/UISlide属性/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-利用-AFNetworking-监听网络状态" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/22/利用-AFNetworking-监听网络状态/" class="article-date">
-  	<time datetime="2016-09-22T14:33:42.000Z" itemprop="datePublished">2016-09-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/22/利用-AFNetworking-监听网络状态/">利用 AFNetworking 监听网络状态</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-创建网络监听者管理者对象"><a href="#1-创建网络监听者管理者对象" class="headerlink" title="1.创建网络监听者管理者对象"></a>1.创建网络监听者管理者对象</h3><pre><code>AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-</code></pre><h3 id="2-设置监听"><a href="#2-设置监听" class="headerlink" title="2.设置监听"></a>2.设置监听</h3><p>1)网络状态</p>
-<pre><code>//显然是枚举值
-typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
-    AFNetworkReachabilityStatusUnknown          = -1,//未识别的网络
-    AFNetworkReachabilityStatusNotReachable     = 0,//不可达的网络
-    AFNetworkReachabilityStatusReachableViaWWAN = 1,//2G,3G,4G...
-    AFNetworkReachabilityStatusReachableViaWiFi = 2,//wifi网络
-    }
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/09/22/利用-AFNetworking-监听网络状态/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

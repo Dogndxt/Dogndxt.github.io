@@ -192,6 +192,69 @@
 
       <div class="body-wrap">
   
+    <article id="post-视图控制器的父-子关系" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/10/视图控制器的父-子关系/" class="article-date">
+  	<time datetime="2016-07-10T12:58:37.000Z" itemprop="datePublished">2016-07-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/10/视图控制器的父-子关系/">视图控制器的父-子关系</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="addChildViewController-优点"><a href="#addChildViewController-优点" class="headerlink" title="addChildViewController 优点"></a>addChildViewController 优点</h3><pre><code>1.页面逻辑很清晰，相应的View对应相应的ViewController。
+2.当某个子View没有显示时，将不会被Load，减少了内存的使用。
+3.当内存紧张时，没有Load的View将被首先释放，优化了程序的内存释放机制。
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/07/10/视图控制器的父-子关系/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-OC的三大新特性" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -581,66 +644,6 @@ __kindof
       
         <p class="article-more-link">
           <a  href="/2016/05/20/iOS特别技能点总结2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-设计模式kvo" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/17/设计模式kvo/" class="article-date">
-  	<time datetime="2016-05-17T13:32:36.000Z" itemprop="datePublished">2016-05-17</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/17/设计模式kvo/">设计模式kvo</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>KVO，全称为Key-Value Observing，是iOS中的一种设计模式，用于检测对象的某些属性的实时变化情况并作出响应</strong></p>
-<p>首先，假设我们的目标是在一个UITableViewController内对tableview的contentOffset进行实时监测，很容易地使用KVO来实现为。</p>
-<p>   在初始化方法中加入：</p>
-<pre><code>[_tableView addObserver:self forKeyPath:@&quot;contentOffset&quot; options:NSKeyValueObservingOptionNew context:nil];
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/05/17/设计模式kvo/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
