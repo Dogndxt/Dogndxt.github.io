@@ -4,18 +4,39 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>单例UIApplication-总结 | 第欧根尼的小桶</title>
+  <title>YYModel字典转模型的几种详细用法 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate cla">
+  <meta name="description" content="常用的几个方法json转模型
++ (instancetype)yy_modelWithJSON:(id)json;
+模型转字符串
+- (NSString *)yy_modelToJSONString 
+字典转模型
++ (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary ;
+ 声明数组、字典或者集合里的元素类型时要重写
++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例UIApplication-总结">
-<meta property="og:url" content="http://yoursite.com/2016/04/22/单例UIApplication-总结/index.html">
+<meta property="og:title" content="YYModel字典转模型的几种详细用法">
+<meta property="og:url" content="http://yoursite.com/2016/11/14/YYModel字典转模型的几种详细用法/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate cla">
-<meta property="og:updated_time" content="2016-04-22T14:21:05.000Z">
+<meta property="og:description" content="常用的几个方法json转模型
++ (instancetype)yy_modelWithJSON:(id)json;
+模型转字符串
+- (NSString *)yy_modelToJSONString 
+字典转模型
++ (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary ;
+ 声明数组、字典或者集合里的元素类型时要重写
++">
+<meta property="og:updated_time" content="2016-11-14T11:51:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例UIApplication-总结">
-<meta name="twitter:description" content="If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate cla">
+<meta name="twitter:title" content="YYModel字典转模型的几种详细用法">
+<meta name="twitter:description" content="常用的几个方法json转模型
++ (instancetype)yy_modelWithJSON:(id)json;
+模型转字符串
+- (NSString *)yy_modelToJSONString 
+字典转模型
++ (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary ;
+ 声明数组、字典或者集合里的元素类型时要重写
++">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -191,11 +212,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-单例UIApplication-总结" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-YYModel字典转模型的几种详细用法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/22/单例UIApplication-总结/" class="article-date">
-  	<time datetime="2016-04-22T14:16:58.000Z" itemprop="datePublished">2016-04-22</time>
+      <a href="/2016/11/14/YYModel字典转模型的几种详细用法/" class="article-date">
+  	<time datetime="2016-11-14T11:47:06.000Z" itemprop="datePublished">2016-11-14</time>
 </a>
     </div>
   
@@ -208,7 +229,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      单例UIApplication-总结
+      YYModel字典转模型的几种详细用法
     </h1>
   
 
@@ -216,10 +237,6 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
         
 
         <div class="clearfix"></div>
@@ -228,31 +245,80 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>If nil is specified for principalClassName, the value for NSPrincipalClass from the Info.plist is used. If there is no NSPrincipalClass key specified, the UIApplication class is used. The delegate class will be instantiated using init.</p>
-<pre><code>UIKIT_EXTERN int UIApplicationMain (
-
-   int argc, 
-   char *argv[], 
-   NSString * __nullable principalClassName, 
-   NSString * __nullable delegateClassName
-);
+        <h4 id="常用的几个方法"><a href="#常用的几个方法" class="headerlink" title="常用的几个方法"></a>常用的几个方法</h4><p>json转模型</p>
+<pre><code>+ (instancetype)yy_modelWithJSON:(id)json;
+</code></pre><p>模型转字符串</p>
+<pre><code>- (NSString *)yy_modelToJSONString 
+</code></pre><p>字典转模型</p>
+<pre><code>+ (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary ;
+</code></pre><p> 声明数组、字典或者集合里的元素类型时要重写</p>
+<pre><code>+ (nullable NSDictionary&lt;NSString *, id&gt; *)modelContainerPropertyGenericClass；
 </code></pre><a id="more"></a>
-<h3 id="那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责-三件-事情："><a href="#那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责-三件-事情：" class="headerlink" title="那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责 三件 事情："></a>那么UIApplicationMain函数到底做了哪些事情呢？这个函数主要负责 三件 事情：</h3><pre><code>1）从给定的类名初始化应用程序对象，也就是初始化UIApplication或者子类对象的一个实例，
-如果你在这里给定的是nil，那么 系统会默认UIApplication类，也就主要是这个类来控制以及协调应用程序的运行。
-在后续的工作中，你可以用静态方法sharedApplication 来获取应用程序的句柄。 
-2）从给定的应用程序委托类，初始化一个应用程序委托。并把该委托设置为应用程序的委托，这里就有如果传入参数为nil，会调用函数访问 Info.plist文件来寻找主nib文件，获取应用程序委托。 
-3）启动主事件循环，并开始接收事件。
-</code></pre><h3 id="UIApplication（或-者子类）对象的职责，这个对象主要做下面几件事："><a href="#UIApplication（或-者子类）对象的职责，这个对象主要做下面几件事：" class="headerlink" title="UIApplication（或 者子类）对象的职责，这个对象主要做下面几件事："></a>UIApplication（或 者子类）对象的职责，这个对象主要做下面几件事：</h3><pre><code>1）负责处理到来的用户事件，并分发事件消息到应该处理该消息的目标对象（sender,  action)。 
-2）管理以及控制视图，包括呈现、控制行为、当前显示视图等。 
-3）该对象有一个应用程序委托对象，当一些生命周期内重要事件（可以包括系统事件或者生命周期控制事件）发生时，应用程序通知该对象。
-例如，应用程序启动、内存不够了或者应用程序结束等，让这些事件发生时，应用程序委托去响应。 
-</code></pre><h3 id="我们可以从应用程序的单例类对象中得到应用程序委托的对象"><a href="#我们可以从应用程序的单例类对象中得到应用程序委托的对象" class="headerlink" title="我们可以从应用程序的单例类对象中得到应用程序委托的对象"></a>我们可以从应用程序的单例类对象中得到应用程序委托的对象</h3><pre><code>UIApplicationDelegate* myDelegate = [[UIApplication sharedApplication] delegate]; 
+<p>例子：</p>
+<pre><code># YYAlbum.h
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSArray *photos; # Array&lt;YYPhoto&gt;
+@property (nonatomic, strong) NSDictionary *likedUsers; # Key:name(NSString) Value:user(YYUser)
+@property (nonatomic, strong) NSSet *likedUserIds; # Set&lt;NSNumber&gt;
 
-UIApplication 接收到所有的系统事件和生命周期事件时，都会把事件传递给UIApplicationDelegate进行处理，
-对于用户输入 事件，则传递给相应的目标对象去处理
-</code></pre><h3 id="创建UIApplication对象并指定其代理"><a href="#创建UIApplication对象并指定其代理" class="headerlink" title="创建UIApplication对象并指定其代理"></a>创建UIApplication对象并指定其代理</h3><p>通过UIApplicationMain函数创建UIApplication对象并 指定其代理对象AppDelegate;第三个参数为指定 UIApplication的子类来生成UIApplication对象，为nil时由 UIApplication类初始化默认对象；第四个参数为指定代理 对象。</p>
-<h3 id="UIApplication的代理对象"><a href="#UIApplication的代理对象" class="headerlink" title="UIApplication的代理对象"></a>UIApplication的代理对象</h3><p>作为UIApplication的代理类，必须要先实现 UIApplicationDelegate协议，协议里明确了作为代理应 该做或可以做哪些事情。 UIApplication对象负责监听应用程序的生命周期事件， 并将生命周期事件交由UIApplication代理对象处理。</p>
+# YYPhoto.h
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *desc;
 
+# YYAlbum.m
+#把数组里面带有对象的类型专门按照这个方法，这个格式写出来
+-(nullable NSDictionary&lt;NSString *, id&gt; *)modelContainerPropertyGenericClass{
+    return @{
+             @&quot;photos&quot;       : YYPhoto.class,
+             @&quot;likedUsers&quot;   : YYUser.class,
+             @&quot;likedUserIds&quot; : NSNumber.class
+             };
+}
+</code></pre><p>字典里的key值与模型的属性值不一致要重置</p>
+<pre><code>+ (nullable NSDictionary&lt;NSString *, id&gt; *)modelCustomPropertyMapper;
+</code></pre><p>事例：</p>
+<pre><code># YYMessage.h
+@property (nonatomic, assign) uint64_t messageId;
+@property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) NSDate *time;
+
+# YYMessage.m
+/*!
+ *  1.该方法是 `字典里的属性Key` 和 `要转化为模型里的属性名` 不一样 而重写的
+ *  前：模型的属性   后：字典里的属性
+ */
+
++ (nullable NSDictionary&lt;NSString *, id&gt; *)modelCustomPropertyMapper{
+
+    return @{@&quot;messageId&quot;:@&quot;i&quot;,
+             @&quot;content&quot;:@&quot;c&quot;,
+             @&quot;time&quot;:@&quot;t&quot;};
+}
+
+/*!
+ *  2. 下面的两个方法 `字典里值`与`模型的值`类型不一样`需要转换`而重写的方法
+ *   NSDate *time     dic[@&quot;t&quot;]是double类型的的秒数
+ */
+
+/// Dic -&gt; model
+- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
+
+    self.time = (NSDate *)[NSDate dateWithTimeIntervalSince1970:[dic[@&quot;t&quot;] doubleValue]/1000];
+
+    return YES;
+}
+
+/// model -&gt; Dic
+- (BOOL)modelCustomTransformToDictionary:(NSMutableDictionary *)dic {
+
+    dic[@&quot;t&quot;] = @([self.time timeIntervalSince1970] * 1000).description;
+
+    return YES;
+}
+</code></pre><p>下面两者是属性值在两个dic与模型之间的转化方法</p>
+<pre><code>- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic ；
+- (BOOL)modelCustomTransformToDictionary:(NSMutableDictionary *)dic；
+</code></pre>
       
     </div>
     
@@ -261,18 +327,9 @@ UIApplication 接收到所有的系统事件和生命周期事件时，都会把
     
 <nav id="article-nav">
   
-    <a href="/2016/04/22/iOS程序的五种状态/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS程序的五种状态
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/15/OC关键字/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">OC关键字</div>
+    <a href="/2016/10/27/layoutSubviews-总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">layoutSubviews 总结</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -307,7 +364,7 @@ UIApplication 接收到所有的系统事件和生命周期事件时，都会把
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="单例UIApplication-总结" data-title="单例UIApplication-总结" data-url="http://yoursite.com/2016/04/22/单例UIApplication-总结/"></div>
+	<div class="ds-thread" data-thread-key="YYModel字典转模型的几种详细用法" data-title="YYModel字典转模型的几种详细用法" data-url="http://yoursite.com/2016/11/14/YYModel字典转模型的几种详细用法/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

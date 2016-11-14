@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-27T11:28:05.000Z</updated>
+  <updated>2016-11-14T11:51:09.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,105 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>YYModel字典转模型的几种详细用法</title>
+    <link href="http://yoursite.com/2016/11/14/YYModel%E5%AD%97%E5%85%B8%E8%BD%AC%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%87%A0%E7%A7%8D%E8%AF%A6%E7%BB%86%E7%94%A8%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/11/14/YYModel字典转模型的几种详细用法/</id>
+    <published>2016-11-14T11:47:06.000Z</published>
+    <updated>2016-11-14T11:51:09.000Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;常用的几个方法&quot;&gt;&lt;a href=&quot;#常用的几个方法&quot; class=&quot;headerlink&quot; title=&quot;常用的几个方法&quot;&gt;&lt;/a&gt;常用的几个方法&lt;/h4&gt;&lt;p&gt;json转模型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (instancetype)yy_modelWithJSON:(id)json;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;模型转字符串&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (NSString *)yy_modelToJSONString 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;字典转模型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary ;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 声明数组、字典或者集合里的元素类型时要重写&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (nullable NSDictionary&amp;lt;NSString *, id&amp;gt; *)modelContainerPropertyGenericClass；
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# YYAlbum.h
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSArray *photos; # Array&amp;lt;YYPhoto&amp;gt;
+@property (nonatomic, strong) NSDictionary *likedUsers; # Key:name(NSString) Value:user(YYUser)
+@property (nonatomic, strong) NSSet *likedUserIds; # Set&amp;lt;NSNumber&amp;gt;
+
+# YYPhoto.h
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *desc;
+
+# YYAlbum.m
+#把数组里面带有对象的类型专门按照这个方法，这个格式写出来
+-(nullable NSDictionary&amp;lt;NSString *, id&amp;gt; *)modelContainerPropertyGenericClass{
+    return @{
+             @&amp;quot;photos&amp;quot;       : YYPhoto.class,
+             @&amp;quot;likedUsers&amp;quot;   : YYUser.class,
+             @&amp;quot;likedUserIds&amp;quot; : NSNumber.class
+             };
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;字典里的key值与模型的属性值不一致要重置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (nullable NSDictionary&amp;lt;NSString *, id&amp;gt; *)modelCustomPropertyMapper;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;事例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# YYMessage.h
+@property (nonatomic, assign) uint64_t messageId;
+@property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) NSDate *time;
+
+# YYMessage.m
+/*!
+ *  1.该方法是 `字典里的属性Key` 和 `要转化为模型里的属性名` 不一样 而重写的
+ *  前：模型的属性   后：字典里的属性
+ */
+
++ (nullable NSDictionary&amp;lt;NSString *, id&amp;gt; *)modelCustomPropertyMapper{
+
+    return @{@&amp;quot;messageId&amp;quot;:@&amp;quot;i&amp;quot;,
+             @&amp;quot;content&amp;quot;:@&amp;quot;c&amp;quot;,
+             @&amp;quot;time&amp;quot;:@&amp;quot;t&amp;quot;};
+}
+
+/*!
+ *  2. 下面的两个方法 `字典里值`与`模型的值`类型不一样`需要转换`而重写的方法
+ *   NSDate *time     dic[@&amp;quot;t&amp;quot;]是double类型的的秒数
+ */
+
+/// Dic -&amp;gt; model
+- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
+
+    self.time = (NSDate *)[NSDate dateWithTimeIntervalSince1970:[dic[@&amp;quot;t&amp;quot;] doubleValue]/1000];
+
+    return YES;
+}
+
+/// model -&amp;gt; Dic
+- (BOOL)modelCustomTransformToDictionary:(NSMutableDictionary *)dic {
+
+    dic[@&amp;quot;t&amp;quot;] = @([self.time timeIntervalSince1970] * 1000).description;
+
+    return YES;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;下面两者是属性值在两个dic与模型之间的转化方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic ；
+- (BOOL)modelCustomTransformToDictionary:(NSMutableDictionary *)dic；
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;常用的几个方法&quot;&gt;&lt;a href=&quot;#常用的几个方法&quot; class=&quot;headerlink&quot; title=&quot;常用的几个方法&quot;&gt;&lt;/a&gt;常用的几个方法&lt;/h4&gt;&lt;p&gt;json转模型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (instancetype)yy_modelWithJSON:(id)json;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;模型转字符串&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (NSString *)yy_modelToJSONString 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;字典转模型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary ;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 声明数组、字典或者集合里的元素类型时要重写&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (nullable NSDictionary&amp;lt;NSString *, id&amp;gt; *)modelContainerPropertyGenericClass；
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>layoutSubviews 总结</title>
@@ -1239,54 +1338,6 @@ userInfo: 消息传递的数据信息
     <summary type="html">
     
       &lt;h3 id=&quot;响应者对象（Response-object）&quot;&gt;&lt;a href=&quot;#响应者对象（Response-object）&quot; class=&quot;headerlink&quot; title=&quot;响应者对象（Response object）&quot;&gt;&lt;/a&gt;响应者对象（Response object）&lt;/h3&gt;&lt;p&gt;响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>定时器用法总结</title>
-    <link href="http://yoursite.com/2016/08/07/%E5%AE%9A%E6%97%B6%E5%99%A8%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2016/08/07/定时器用法总结/</id>
-    <published>2016-08-07T11:18:19.000Z</published>
-    <updated>2016-08-07T11:19:17.000Z</updated>
-    
-    <content type="html">&lt;p&gt;NSTimer在IOS开发中会经常用到，尤其是小型游戏，然而对于初学者时常会注意不到其中的内存释放问题，将其基本用法总结如下：&lt;/p&gt;
-&lt;h3 id=&quot;方法-1&quot;&gt;&lt;a href=&quot;#方法-1&quot; class=&quot;headerlink&quot; title=&quot;方法 1&quot;&gt;&lt;/a&gt;方法 1&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSInvocation *invo = [NSInvocation invocationWithMethodSignature:[[self class] instanceMethodSignatureForSelector:@selector(f)]];
-[invo setTarget:self];
-[invo setSelector:@selector(myLog)];
-time = [NSTimer timerWithTimeInterval:1 invocation:invo repeats:YES];
-[time fire];
-[[NSRunLoop mainRunLoop] addTimer:time forMode:NSDefaultRunLoopMode];
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;方法-2&quot;&gt;&lt;a href=&quot;#方法-2&quot; class=&quot;headerlink&quot; title=&quot;方法 2&quot;&gt;&lt;/a&gt;方法 2&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;time = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(myLog) userInfo:nil repeats:YES];
-[[NSRunLoop mainRunLoop] addTimer:time forMode:NSDefaultRunLoopMode];
-[time fire];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;方法-3&quot;&gt;&lt;a href=&quot;#方法-3&quot; class=&quot;headerlink&quot; title=&quot;方法 3&quot;&gt;&lt;/a&gt;方法 3&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;time = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(myLog) userInfo:nil repeats:YES];
-[time fire];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;方法-4&quot;&gt;&lt;a href=&quot;#方法-4&quot; class=&quot;headerlink&quot; title=&quot;方法 4&quot;&gt;&lt;/a&gt;方法 4&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSInvocation *invo = [NSInvocation invocationWithMethodSignature:[[self class] instanceMethodSignatureForSelector:@selector(myLog)]];
-[invo setTarget:self];
-[invo setSelector:@selector(myLog)];
-time = [NSTimer scheduledTimerWithTimeInterval:1 invocation:invo repeats:YES];
-[time fire];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;方法-5&quot;&gt;&lt;a href=&quot;#方法-5&quot; class=&quot;headerlink&quot; title=&quot;方法 5&quot;&gt;&lt;/a&gt;方法 5&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;time = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:1 target:self selector:@selector(myLog) userInfo:nil repeats:YES];
-[[NSRunLoop mainRunLoop] addTimer:time forMode:NSDefaultRunLoopMode];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;关于内存释放&quot;&gt;&lt;a href=&quot;#关于内存释放&quot; class=&quot;headerlink&quot; title=&quot;关于内存释放&quot;&gt;&lt;/a&gt;关于内存释放&lt;/h3&gt;&lt;p&gt;   如果我们启动了一个定时器，在某个界面释放前，将这个定时器停止，甚至置为nil，都不能是这个界面释放，原因是系统的循环池中还保有这个对象。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[timer invalidate];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   在官方文档中我们可以看到 [timer invalidate]是唯一的方法将定时器从循环池中移除。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;NSTimer在IOS开发中会经常用到，尤其是小型游戏，然而对于初学者时常会注意不到其中的内存释放问题，将其基本用法总结如下：&lt;/p&gt;
-&lt;h3 id=&quot;方法-1&quot;&gt;&lt;a href=&quot;#方法-1&quot; class=&quot;headerlink&quot; title=&quot;方法 1&quot;&gt;&lt;/a&gt;方法 1&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSInvocation *invo = [NSInvocation invocationWithMethodSignature:[[self class] instanceMethodSignatureForSelector:@selector(f)]];
-[invo setTarget:self];
-[invo setSelector:@selector(myLog)];
-time = [NSTimer timerWithTimeInterval:1 invocation:invo repeats:YES];
-[time fire];
-[[NSRunLoop mainRunLoop] addTimer:time forMode:NSDefaultRunLoopMode];
-&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
