@@ -77,7 +77,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -191,6 +191,81 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-错误类error的学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/22/错误类error的学习/" class="article-date">
+  	<time datetime="2016-04-22T14:24:31.000Z" itemprop="datePublished">2016-04-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/22/错误类error的学习/">错误类error的学习</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>获取系统的错误信息 </p>
+<p>比如移动文件时，获取文件操作错误：</p>
+<pre><code>  NSError *e = nil;
+  [[NSFileManager defaultManager] moveItemAtPath:sourcePath toPath:targetPath error:&amp;e];
+  if (e) {
+  　　NSLog(@&quot;move failed:%@&quot;, [e localizedDescription]);
+  }
+先定一个空的错误信息
+  NSError *e = nil;
+取地址
+  &amp;e   
+如果有错误信息，打印错误的本地化描述
+  if (e) {
+  　　NSLog(@&quot;move failed:%@&quot;, [e localizedDescription]);
+  }
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［iOS］/">［iOS］</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/22/错误类error的学习/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-iOS程序的五种状态" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -609,66 +684,6 @@
       
         <p class="article-more-link">
           <a  href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-继承自NSObject的不常用又很有用的函数－-函数调用" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/" class="article-date">
-  	<time datetime="2016-04-14T13:20:13.000Z" itemprop="datePublished">2016-04-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/"> 继承自NSObject的不常用又很有用的函数－ 函数调用</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

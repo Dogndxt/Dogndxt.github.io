@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-14T11:51:09.000Z</updated>
+  <updated>2016-11-22T12:57:50.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,117 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UIWebView 实现长按保存图片功能</title>
+    <link href="http://yoursite.com/2016/11/22/UIWebView-%E5%AE%9E%E7%8E%B0%E9%95%BF%E6%8C%89%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD/"/>
+    <id>http://yoursite.com/2016/11/22/UIWebView-实现长按保存图片功能/</id>
+    <published>2016-11-22T12:50:24.000Z</published>
+    <updated>2016-11-22T12:57:50.000Z</updated>
+    
+    <content type="html">&lt;p&gt;拿到需求之后分析了一下，其实主要功能点就是如何才能通过手指按压位置获取到相应的图片资源。&lt;/p&gt;
+&lt;p&gt;首先是给UiWebView加一个长按手势 :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;UILongPressGestureRecognizer* longPressed = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
+longPressed.delegate = self;
+[self.webView addGestureRecognizer:longPressed];
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;响应方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)longPressed:(UILongPressGestureRecognizer*)recognizer
+{
+
+    if (recognizer.state != UIGestureRecognizerStateBegan) {
+        return;
+    }
+
+    CGPoint touchPoint = [recognizer locationInView:self.webView];
+    NSString *jsForTagName = [NSString stringWithFormat:@&amp;quot;document.elementFromPoint(%f, %f).tagName&amp;quot;, touchPoint.x, touchPoint.y];
+    NSString * tagName = [self.webView stringByEvaluatingJavaScriptFromString:jsForTagName];
+    if (![tagName isEqualToString:@&amp;quot;img&amp;quot;] &amp;amp;&amp;amp; ![tagName isEqualToString:@&amp;quot;IMG&amp;quot;]) {
+        return;
+    }
+    NSString *imgURL = [NSString stringWithFormat:@&amp;quot;document.elementFromPoint(%f, %f).src&amp;quot;, touchPoint.x, touchPoint.y];
+    self.urlToSave = [self.webView stringByEvaluatingJavaScriptFromString:imgURL];
+
+    if (self.urlToSave.length == 0) {
+        return;
+    }
+
+    [self showImageOptionsWithUrl:self.urlToSave];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;弹窗提示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)showImageOptionsWithUrl:(NSString *)imageUrl
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@&amp;quot;取消&amp;quot;
+                                  destructiveButtonTitle:@&amp;quot;保存图片&amp;quot;
+                                  otherButtonTitles: nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    [actionSheet showInView:self.view];
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self saveImageToDiskWithUrl:self.urlToSave];
+    }
+}
+
+// 执行保存操作
+- (void)saveImageToDiskWithUrl:(NSString *)imageUrl
+{
+    NSURL *url = [NSURL URLWithString:imageUrl];
+    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self  delegateQueue:[NSOperationQueue new]];
+    NSURLRequest *imgRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
+
+    NSURLSessionDownloadTask  *task = [session downloadTaskWithRequest:imgRequest completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            return ;
+        }
+
+        NSData * imageData = [NSData dataWithContentsOfURL:location];
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            UIImage * image = [UIImage imageWithData:imageData];
+
+            UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+        });
+    }];
+
+    [task resume];
+}
+
+／／ 监测是否保存成功
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if (error) {
+        NSLog(@&amp;quot;保存fail&amp;quot;);
+        [UMComShowToast fetchFailWithNoticeMessage:@&amp;quot;保存失败&amp;quot;];
+        //        [[RAProgressHUD sharedHUD] showErrorWithMessage:@&amp;quot;保存失败&amp;quot;];
+    } else {
+        NSLog(@&amp;quot;保存成功&amp;quot;);
+        //        [[RAProgressHUD sharedHUD] showSuccessWithMessage:@&amp;quot;保存成功&amp;quot;];
+        [UMComShowToast fetchFailWithNoticeMessage:@&amp;quot;保存成功&amp;quot;];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;拿到需求之后分析了一下，其实主要功能点就是如何才能通过手指按压位置获取到相应的图片资源。&lt;/p&gt;
+&lt;p&gt;首先是给UiWebView加一个长按手势 :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;UILongPressGestureRecognizer* longPressed = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
+longPressed.delegate = self;
+[self.webView addGestureRecognizer:longPressed];
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>YYModel字典转模型的几种详细用法</title>
@@ -1299,45 +1410,6 @@ userInfo: 消息传递的数据信息
     <summary type="html">
     
       &lt;h3 id=&quot;控制器初始化方法&quot;&gt;&lt;a href=&quot;#控制器初始化方法&quot; class=&quot;headerlink&quot; title=&quot;控制器初始化方法&quot;&gt;&lt;/a&gt;控制器初始化方法&lt;/h3&gt;&lt;h4 id=&quot;viewWillAppear&quot;&gt;&lt;a href=&quot;#viewWillAppear&quot; class=&quot;headerlink&quot; title=&quot;viewWillAppear&quot;&gt;&lt;/a&gt;viewWillAppear&lt;/h4&gt;&lt;p&gt;视图即将可见时调用。默认情况下不执行任何操作。 Called when the view is about to made visible. Default does nothing&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>响应者</title>
-    <link href="http://yoursite.com/2016/08/07/%E5%93%8D%E5%BA%94%E8%80%85/"/>
-    <id>http://yoursite.com/2016/08/07/响应者/</id>
-    <published>2016-08-07T11:25:04.000Z</published>
-    <updated>2016-08-07T11:27:33.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;响应者对象（Response-object）&quot;&gt;&lt;a href=&quot;#响应者对象（Response-object）&quot; class=&quot;headerlink&quot; title=&quot;响应者对象（Response object）&quot;&gt;&lt;/a&gt;响应者对象（Response object）&lt;/h3&gt;&lt;p&gt;响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;第一响应者（First-responder）&quot;&gt;&lt;a href=&quot;#第一响应者（First-responder）&quot; class=&quot;headerlink&quot; title=&quot;第一响应者（First responder）&quot;&gt;&lt;/a&gt;第一响应者（First responder）&lt;/h3&gt;&lt;p&gt;当前接受触摸的响应者对象被称为第一响应者，即表示当前该对象正在与用户交互，它是响应者链的开端。&lt;/p&gt;
-&lt;h3 id=&quot;响应者链（Responder-chain）&quot;&gt;&lt;a href=&quot;#响应者链（Responder-chain）&quot; class=&quot;headerlink&quot; title=&quot;响应者链（Responder chain）&quot;&gt;&lt;/a&gt;响应者链（Responder chain）&lt;/h3&gt;&lt;p&gt;响应者链表示一系列的响应者对象。事件被交由第一响应者对象处理，如果第一响应者不处理，事件被沿着响应者链向上传递，交给下一个响应者（next responder）。一般来说，第一响应者是个视图对象或者其子类对象，当其被触摸后事件被交由它处理，如果它不处理，事件就会被传递给它的视图控制器对象（如果存在），然后是它的父视图（superview）对象（如果存在），以此类推，直到顶层视图。接下来会沿着顶层视图（top view）到窗口（UIWindow对象）再到程序（UIApplication对象）。如果整个过程都没有响应这个事件，该事件就被丢弃。一般情况下，在响应者链中只要由对象处理事件，事件就停止传递。但有时候可以在视图的响应方法中根据一些条件判断来决定是否需要继续传递事件&lt;/p&gt;
-&lt;h3 id=&quot;管理事件分发&quot;&gt;&lt;a href=&quot;#管理事件分发&quot; class=&quot;headerlink&quot; title=&quot;管理事件分发&quot;&gt;&lt;/a&gt;管理事件分发&lt;/h3&gt;&lt;p&gt;视图对触摸事件是否需要作处回应可以通过设置视图的userInteractionEnabled属性。默认状态为YES，如果设置为NO，可以阻止视图接收和分发触摸事件。除此之外，当视图被隐藏（setHidden：YES）或者透明（alpha值为0）也不会收事件。不过这个属性只对视图有效，如果想要整个程序都步响应事件，可以调用UIApplication的beginIngnoringInteractionEvents方法来完全停止事件接收和分发。通过endIngnoringInteractionEvents方法来恢复让程序接收和分发事件。如果要让视图接收多点触摸，需要设置它的multipleTouchEnabled属性为YES，默认状态下这个属性值为NO，即视图默认不接收多点触摸。&lt;/p&gt;
-&lt;h3 id=&quot;处理用户的触摸事件&quot;&gt;&lt;a href=&quot;#处理用户的触摸事件&quot; class=&quot;headerlink&quot; title=&quot;处理用户的触摸事件&quot;&gt;&lt;/a&gt;处理用户的触摸事件&lt;/h3&gt;&lt;p&gt;首先触摸的对象是视图，而视图的类UIView继承了UIRespnder类，但是要对事件作出处理，还需要重写UIResponder类中定义的事件处理函数。根据不通的触摸状态，程序会调用相应的处理函数，这些函数包括以下几个：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
-
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
-
-当手指接触屏幕时，就会调用touchesBegan:withEvent方法；
-
-当手指在屏幕上移时，动就会调用touchesMoved:withEvent方法；
-
-当手指离开屏幕时，就会调用touchesEnded:withEvent方法；
-
-当触摸被取消（比如触摸过程中被来电打断），就会调用touchesCancelled:withEvent方法。而这几个方法被调用时，正好对应了UITouch类中phase属性的4个枚举值。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面的四个事件方法，在开发过程中并不要求全部实现，可以根据需要重写特定的方法。对于这4个方法，都有两个相同的参数：NSSet类型的touches和UIEvent类型的event。其中touches表示触摸产生的所有UITouch对象，而event表示特定的事件。因为UIEvent包含了整个触摸过程中所有的触摸对象，因此可以调用allTouches方法获取该事件内所有的触摸对象，也可以调用touchesForVIew：或者touchesForWindows：取出特定视图或者窗口上的触摸对象。在这几个事件中，都可以拿到触摸对象，然后根据其位置，状态，时间属性做逻辑处理。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;响应者对象（Response-object）&quot;&gt;&lt;a href=&quot;#响应者对象（Response-object）&quot; class=&quot;headerlink&quot; title=&quot;响应者对象（Response object）&quot;&gt;&lt;/a&gt;响应者对象（Response object）&lt;/h3&gt;&lt;p&gt;响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者&lt;br&gt;
     
     </summary>
     

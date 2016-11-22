@@ -4,20 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title> 继承自NSObject的不常用又很有用的函数－ 函数调用 | 第欧根尼的小桶</title>
+  <title>UIWebView 实现长按保存图片功能 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。">
+  <meta name="description" content="拿到需求之后分析了一下，其实主要功能点就是如何才能通过手指按压位置获取到相应的图片资源。
+首先是给UiWebView加一个长按手势 :
+UILongPressGestureRecognizer* longPressed = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" 继承自NSObject的不常用又很有用的函数－ 函数调用">
-<meta property="og:url" content="http://yoursite.com/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/index.html">
+<meta property="og:title" content="UIWebView 实现长按保存图片功能">
+<meta property="og:url" content="http://yoursite.com/2016/11/22/UIWebView-实现长按保存图片功能/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。">
-<meta property="og:image" content="http://yoursite.com/img/objc_msgSend.png">
-<meta property="og:updated_time" content="2016-04-14T13:48:24.000Z">
+<meta property="og:description" content="拿到需求之后分析了一下，其实主要功能点就是如何才能通过手指按压位置获取到相应的图片资源。
+首先是给UiWebView加一个长按手势 :
+UILongPressGestureRecognizer* longPressed = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)">
+<meta property="og:updated_time" content="2016-11-22T12:57:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 继承自NSObject的不常用又很有用的函数－ 函数调用">
-<meta name="twitter:description" content="Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。">
-<meta name="twitter:image" content="http://yoursite.com/img/objc_msgSend.png">
+<meta name="twitter:title" content="UIWebView 实现长按保存图片功能">
+<meta name="twitter:description" content="拿到需求之后分析了一下，其实主要功能点就是如何才能通过手指按压位置获取到相应的图片资源。
+首先是给UiWebView加一个长按手势 :
+UILongPressGestureRecognizer* longPressed = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -193,11 +197,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-继承自NSObject的不常用又很有用的函数－-函数调用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-UIWebView-实现长按保存图片功能" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/" class="article-date">
-  	<time datetime="2016-04-14T13:20:13.000Z" itemprop="datePublished">2016-04-14</time>
+      <a href="/2016/11/22/UIWebView-实现长按保存图片功能/" class="article-date">
+  	<time datetime="2016-11-22T12:50:24.000Z" itemprop="datePublished">2016-11-22</time>
 </a>
     </div>
   
@@ -210,7 +214,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-       继承自NSObject的不常用又很有用的函数－ 函数调用
+      UIWebView 实现长按保存图片功能
     </h1>
   
 
@@ -218,10 +222,6 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
         
 
         <div class="clearfix"></div>
@@ -230,25 +230,95 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。<br><a id="more"></a><br>  和现实生活一样，门牌可以随便发（@selector(XXX)），但是不一定都找得到住户，如果找不到系统会给程序几次机会来程序正常运行，实在没出路了才会抛出异常。下图是objc_msgSend调用时，查找SEL的IML的过程。咱们以这个流程为例看看其中涉及的很有用的函数。</p>
-<p> <img src="/img/objc_msgSend.png" alt=""></p>
-<h3 id="resolveInstanceMethod-函数"><a href="#resolveInstanceMethod-函数" class="headerlink" title="resolveInstanceMethod 函数"></a>resolveInstanceMethod 函数</h3><pre><code>+ (BOOL)resolveInstanceMethod:(SEL)name
-</code></pre><p>这个函数在运行时(runtime)，没有找到SEL的IML时就会执行。这个函数是给类利用class_addMethod添加函数的机会。根据文档，如果实现了添加函数代码则返回YES，未实现返回NO。</p>
-<h3 id="forwardingTargetForSelector-函数"><a href="#forwardingTargetForSelector-函数" class="headerlink" title="forwardingTargetForSelector 函数"></a>forwardingTargetForSelector 函数</h3><pre><code>- (id)forwardingTargetForSelector:(SEL)aSelector
-</code></pre><p>流程到了这里，系统给了个将这个SEL转给其他对象的机会。返回参数是一个对象，如果这个对象非nil、非self的话，系统会将运行的消息转发给这个对象执行。否则，继续查找其他流程。</p>
-<h3 id="methodSignatureForSelector-函数"><a href="#methodSignatureForSelector-函数" class="headerlink" title="methodSignatureForSelector 函数"></a>methodSignatureForSelector 函数</h3><pre><code>- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
-</code></pre><p>这个函数和后面的forwardInvocation:是最后一个寻找IML的机会。这个函数让重载方有机会抛出一个函数的签名，再由后面的forwardInvocation:去执行。</p>
-<h3 id="forwardInvocation-函数"><a href="#forwardInvocation-函数" class="headerlink" title="forwardInvocation 函数"></a>forwardInvocation 函数</h3><pre><code>- (void)forwardInvocation:(NSInvocation *)anInvocation
-</code></pre><p>真正执行从methodSignatureForSelector:返回的NSMethodSignature。在这个函数里可以将NSInvocation多次转发到多个对象中，这也是这种方式灵活的地方。（forwardingTargetForSelector只能以Selector的形式转向一个对象）</p>
-<h3 id="doesNotRecognizeSelector-函数"><a href="#doesNotRecognizeSelector-函数" class="headerlink" title="doesNotRecognizeSelector 函数"></a>doesNotRecognizeSelector 函数</h3><pre><code>- (void)doesNotRecognizeSelector:(SEL)aSelector
-</code></pre><p>作为找不到函数实现的最后一步，NSObject实现这个函数只有一个功能，就是抛出异常。</p>
-<p>虽然理论上可以重载这个函数实现保证不抛出异常（不调用super实现），但是苹果文档着重提出“一定不能让这个函数就这么结束掉，必须抛出异常”。</p>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>在一个函数找不到时，Objective-C提供了三种方式去补救：</p>
-<p>1、调用resolveInstanceMethod给个机会让类添加这个实现这个函数</p>
-<p>2、调用forwardingTargetForSelector让别的对象去执行这个函数</p>
-<p>3、调用methodSignatureForSelector（函数符号制造器）和forwardInvocation（函数执行器）灵活的将目标函数以其他形式执行。</p>
-<p>如果都不中，调用doesNotRecognizeSelector抛出异常。</p>
+        <p>拿到需求之后分析了一下，其实主要功能点就是如何才能通过手指按压位置获取到相应的图片资源。</p>
+<p>首先是给UiWebView加一个长按手势 :</p>
+<pre><code>UILongPressGestureRecognizer* longPressed = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
+longPressed.delegate = self;
+[self.webView addGestureRecognizer:longPressed];
+</code></pre><a id="more"></a>
+<p>响应方法：</p>
+<pre><code>- (void)longPressed:(UILongPressGestureRecognizer*)recognizer
+{
 
+    if (recognizer.state != UIGestureRecognizerStateBegan) {
+        return;
+    }
+
+    CGPoint touchPoint = [recognizer locationInView:self.webView];
+    NSString *jsForTagName = [NSString stringWithFormat:@&quot;document.elementFromPoint(%f, %f).tagName&quot;, touchPoint.x, touchPoint.y];
+    NSString * tagName = [self.webView stringByEvaluatingJavaScriptFromString:jsForTagName];
+    if (![tagName isEqualToString:@&quot;img&quot;] &amp;&amp; ![tagName isEqualToString:@&quot;IMG&quot;]) {
+        return;
+    }
+    NSString *imgURL = [NSString stringWithFormat:@&quot;document.elementFromPoint(%f, %f).src&quot;, touchPoint.x, touchPoint.y];
+    self.urlToSave = [self.webView stringByEvaluatingJavaScriptFromString:imgURL];
+
+    if (self.urlToSave.length == 0) {
+        return;
+    }
+
+    [self showImageOptionsWithUrl:self.urlToSave];
+}
+</code></pre><p>弹窗提示：</p>
+<pre><code>- (void)showImageOptionsWithUrl:(NSString *)imageUrl
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@&quot;取消&quot;
+                                  destructiveButtonTitle:@&quot;保存图片&quot;
+                                  otherButtonTitles: nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    [actionSheet showInView:self.view];
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self saveImageToDiskWithUrl:self.urlToSave];
+    }
+}
+
+// 执行保存操作
+- (void)saveImageToDiskWithUrl:(NSString *)imageUrl
+{
+    NSURL *url = [NSURL URLWithString:imageUrl];
+    NSURLSessionConfiguration * configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self  delegateQueue:[NSOperationQueue new]];
+    NSURLRequest *imgRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
+
+    NSURLSessionDownloadTask  *task = [session downloadTaskWithRequest:imgRequest completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            return ;
+        }
+
+        NSData * imageData = [NSData dataWithContentsOfURL:location];
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            UIImage * image = [UIImage imageWithData:imageData];
+
+            UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+        });
+    }];
+
+    [task resume];
+}
+
+／／ 监测是否保存成功
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if (error) {
+        NSLog(@&quot;保存fail&quot;);
+        [UMComShowToast fetchFailWithNoticeMessage:@&quot;保存失败&quot;];
+        //        [[RAProgressHUD sharedHUD] showErrorWithMessage:@&quot;保存失败&quot;];
+    } else {
+        NSLog(@&quot;保存成功&quot;);
+        //        [[RAProgressHUD sharedHUD] showSuccessWithMessage:@&quot;保存成功&quot;];
+        [UMComShowToast fetchFailWithNoticeMessage:@&quot;保存成功&quot;];
+    }
+}
+</code></pre>
       
     </div>
     
@@ -257,18 +327,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-           继承自NSObject的不常用又很有用的函数－ 函数调用2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数load-和-initialize/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"> 继承自NSObject的不常用又很有用的函数load 和 initialize</div>
+    <a href="/2016/11/14/YYModel字典转模型的几种详细用法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">YYModel字典转模型的几种详细用法</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -303,7 +364,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="继承自NSObject的不常用又很有用的函数－-函数调用" data-title=" 继承自NSObject的不常用又很有用的函数－ 函数调用" data-url="http://yoursite.com/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/"></div>
+	<div class="ds-thread" data-thread-key="UIWebView-实现长按保存图片功能" data-title="UIWebView 实现长按保存图片功能" data-url="http://yoursite.com/2016/11/22/UIWebView-实现长按保存图片功能/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
