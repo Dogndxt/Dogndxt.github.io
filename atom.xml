@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-22T12:57:50.000Z</updated>
+  <updated>2016-11-27T13:17:53.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,90 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UIAlertController 弹框</title>
+    <link href="http://yoursite.com/2016/11/27/UIAlertController-%E5%BC%B9%E6%A1%86/"/>
+    <id>http://yoursite.com/2016/11/27/UIAlertController-弹框/</id>
+    <published>2016-11-27T13:15:28.000Z</published>
+    <updated>2016-11-27T13:17:53.000Z</updated>
+    
+    <content type="html">&lt;p&gt;一. 标准的Alert样式&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//UIAlertController风格：UIAlertControllerStyleAlert
+UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;主标题&amp;quot; message:@&amp;quot;提示文字&amp;quot;preferredStyle:UIAlertControllerStyleAlert ];
+
+//添加取消到UIAlertController中
+UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&amp;quot;取消&amp;quot; style:UIAlertActionStyleDefault handler:nil];
+[alertController addAction:cancelAction];
+
+//添加确定到UIAlertController中
+UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@&amp;quot;确定&amp;quot; style:UIAlertActionStyleDefault handler:nil];
+[alertController addAction:OKAction];
+
+[self presentViewController:alertController animated:YES completion:nil]
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;二. 标准的Alert Sheet样式&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;标准的Action Sheet样式&amp;quot; message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+//取消:style:UIAlertActionStyleCancel//
+UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&amp;quot;取消&amp;quot; style:UIAlertActionStyleCancel handler:nil];
+[alertController addAction:cancelAction];
+//了解更多:style:UIAlertActionStyleDestructive
+UIAlertAction *moreAction = [UIAlertAction actionWithTitle:@&amp;quot;了解更多&amp;quot; style:UIAlertActionStyleDestructive handler:nil];
+[alertController addAction:moreAction];
+//原来如此:style:UIAlertActionStyleDefault
+UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@&amp;quot;原来如此&amp;quot; style:UIAlertActionStyleDefault handler:nil];
+[alertController addAction:OKAction];
+
+[self presentViewController:alertController animated:YES completion:nil];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;三. 新功能&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;style:UIAlertActionStyleDefault//对按钮应用标准样式
+style:UIAlertActionStyleCancel//对按钮应用取消样式，即取消操作
+style:UIAlertActionStyleDestructive//对按钮应用警示性样式，提示用户这样做可能会删除或者改变某些数据
+
+
+UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;主标题:标题党&amp;quot;message:@&amp;quot;子标题:提示信息&amp;quot; preferredStyle:UIAlertControllerStyleAlert ];
+//取消style:UIAlertActionStyleDefault
+UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&amp;quot;取消&amp;quot; style:UIAlertActionStyleDefault handler:nil];
+[alertController addAction:cancelAction];
+
+//style:UIAlertActionStyleDestructive(警告提示)
+UIAlertAction *rubbishAction = [UIAlertAction actionWithTitle:@&amp;quot;确定修改&amp;quot; style:UIAlertActionStyleDestructive handler:nil];
+[alertController addAction:rubbishAction];
+
+[self presentViewController:alertController animated:YES completion:nil];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;四. 弹出文本框&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 只有在alert情况下才可以添加文本框
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @&amp;quot;用户名&amp;quot;;
+        textField.secureTextEntry = YES;
+    }];
+
+//    // 取出文本
+//    UITextField *text = alertController.textFields.firstObject;
+//    UIAlertAction *action = alertController.actions.firstObject;
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一. 标准的Alert样式&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//UIAlertController风格：UIAlertControllerStyleAlert
+UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;主标题&amp;quot; message:@&amp;quot;提示文字&amp;quot;preferredStyle:UIAlertControllerStyleAlert ];
+
+//添加取消到UIAlertController中
+UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&amp;quot;取消&amp;quot; style:UIAlertActionStyleDefault handler:nil];
+[alertController addAction:cancelAction];
+
+//添加确定到UIAlertController中
+UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@&amp;quot;确定&amp;quot; style:UIAlertActionStyleDefault handler:nil];
+[alertController addAction:OKAction];
+
+[self presentViewController:alertController animated:YES completion:nil]
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>UIWebView 实现长按保存图片功能</title>
@@ -1366,50 +1450,6 @@ userInfo: 消息传递的数据信息
     [[NSNotificationCenter defaultCenter] postNotificationName:@&amp;quot;A类通知&amp;quot; object:self userInfo:nil];
 }
 &lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>控制器初始化方法</title>
-    <link href="http://yoursite.com/2016/08/13/%E6%8E%A7%E5%88%B6%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2016/08/13/控制器初始化方法/</id>
-    <published>2016-08-13T11:03:07.000Z</published>
-    <updated>2016-08-13T11:06:34.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;控制器初始化方法&quot;&gt;&lt;a href=&quot;#控制器初始化方法&quot; class=&quot;headerlink&quot; title=&quot;控制器初始化方法&quot;&gt;&lt;/a&gt;控制器初始化方法&lt;/h3&gt;&lt;h4 id=&quot;viewWillAppear&quot;&gt;&lt;a href=&quot;#viewWillAppear&quot; class=&quot;headerlink&quot; title=&quot;viewWillAppear&quot;&gt;&lt;/a&gt;viewWillAppear&lt;/h4&gt;&lt;p&gt;视图即将可见时调用。默认情况下不执行任何操作。 Called when the view is about to made visible. Default does nothing&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h4 id=&quot;viewDidAppear&quot;&gt;&lt;a href=&quot;#viewDidAppear&quot; class=&quot;headerlink&quot; title=&quot;viewDidAppear&quot;&gt;&lt;/a&gt;viewDidAppear&lt;/h4&gt;&lt;p&gt;视图已完全过渡到屏幕上时调用。。默认情况下不执行任何操作。 Called when the view has been fully transitioned onto the screen. Default does nothing&lt;/p&gt;
-&lt;h4 id=&quot;viewWillDisappear&quot;&gt;&lt;a href=&quot;#viewWillDisappear&quot; class=&quot;headerlink&quot; title=&quot;viewWillDisappear&quot;&gt;&lt;/a&gt;viewWillDisappear&lt;/h4&gt;&lt;p&gt;视图被消失时调用，覆盖或以其他方式隐藏。默认情况下不执行任何操作。 Called when the view is dismissed, covered or otherwise hidden. Default does nothing&lt;/p&gt;
-&lt;h4 id=&quot;viewDidDisappear&quot;&gt;&lt;a href=&quot;#viewDidDisappear&quot; class=&quot;headerlink&quot; title=&quot;viewDidDisappear&quot;&gt;&lt;/a&gt;viewDidDisappear&lt;/h4&gt;&lt;p&gt;视图被消失后调用，覆盖或以其他方式隐藏。默认情况下不执行任何操作。 Called after the view was dismissed, covered or otherwise hidden. Default does nothing&lt;/p&gt;
-&lt;h4 id=&quot;viewDidLoad&quot;&gt;&lt;a href=&quot;#viewDidLoad&quot; class=&quot;headerlink&quot; title=&quot;viewDidLoad&quot;&gt;&lt;/a&gt;viewDidLoad&lt;/h4&gt;&lt;p&gt;在视图加载后被调用，如果是在代码中创建的视图加载器，他将会在loadView方法后被调用，如果是从nib视图页面输出，他将会在视图设置好后后被调用。&lt;br&gt;Called after the view has been loaded. For view controllers created in code, this is after -loadView. For view controllers unarchived from a nib, this is after the view is set.&lt;/p&gt;
-&lt;h4 id=&quot;「didReceiveMemoryWarning」收到系统传来的内存警告通知后会执行的方法&quot;&gt;&lt;a href=&quot;#「didReceiveMemoryWarning」收到系统传来的内存警告通知后会执行的方法&quot; class=&quot;headerlink&quot; title=&quot;「didReceiveMemoryWarning」收到系统传来的内存警告通知后会执行的方法&quot;&gt;&lt;/a&gt;「didReceiveMemoryWarning」收到系统传来的内存警告通知后会执行的方法&lt;/h4&gt;&lt;h4 id=&quot;视图控制器发生旋转调用的方法&quot;&gt;&lt;a href=&quot;#视图控制器发生旋转调用的方法&quot; class=&quot;headerlink&quot; title=&quot;视图控制器发生旋转调用的方法&quot;&gt;&lt;/a&gt;视图控制器发生旋转调用的方法&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id&amp;lt;UIViewControllerTransitionCoordinator&amp;gt;)coordinator {
-
-     NSLog(@&amp;quot;%f&amp;quot;, size.height);
- }  
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;当一个视图控制器被创建，并在屏幕上显示的时候。-代码的执行顺序&quot;&gt;&lt;a href=&quot;#当一个视图控制器被创建，并在屏幕上显示的时候。-代码的执行顺序&quot; class=&quot;headerlink&quot; title=&quot;当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序&quot;&gt;&lt;/a&gt;当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1、 alloc                   创建对象，分配空间
-
-2、init (initWithNibName)    初始化对象，初始化数据
-
-3、loadView                  从nib载入视图 ，通常这一步不需要去干涉。除非你没有使用xib文件创建视图
-
-4、viewDidLoad               载入完成，可以进行自定义数据以及动态创建其他控件
-
-5、viewWillAppear            视图将出现在屏幕之前，马上这个视图就会被展现在屏幕上了
-
-6、viewDidAppear             视图已在屏幕上渲染完成
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反&quot;&gt;&lt;a href=&quot;#当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反&quot; class=&quot;headerlink&quot; title=&quot;当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反&quot;&gt;&lt;/a&gt;当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1、viewWillDisappear          视图将被从屏幕上移除之前执行
-
-2、viewDidDisappear           视图已经被从屏幕上移除，用户看不到这个视图了
-
-3、dealloc                    视图被销毁，此处需要对你在init和viewDidLoad中创建的对象进行释放
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;控制器初始化方法&quot;&gt;&lt;a href=&quot;#控制器初始化方法&quot; class=&quot;headerlink&quot; title=&quot;控制器初始化方法&quot;&gt;&lt;/a&gt;控制器初始化方法&lt;/h3&gt;&lt;h4 id=&quot;viewWillAppear&quot;&gt;&lt;a href=&quot;#viewWillAppear&quot; class=&quot;headerlink&quot; title=&quot;viewWillAppear&quot;&gt;&lt;/a&gt;viewWillAppear&lt;/h4&gt;&lt;p&gt;视图即将可见时调用。默认情况下不执行任何操作。 Called when the view is about to made visible. Default does nothing&lt;/p&gt;
     
     </summary>
     
