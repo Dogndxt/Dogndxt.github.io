@@ -4,24 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>UIAlertController 弹框 | 第欧根尼的小桶</title>
+  <title>test | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一. 标准的Alert样式
-//UIAlertController风格：UIAlertControllerStyleAlert
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;主标题&amp;quot; message:@&amp;quot;提示文字&amp;quot;preferredStyl">
+  <meta name="description">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UIAlertController 弹框">
-<meta property="og:url" content="http://yoursite.com/2016/11/27/UIAlertController-弹框/index.html">
+<meta property="og:title" content="test">
+<meta property="og:url" content="http://yoursite.com/2016/12/11/test/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="一. 标准的Alert样式
-//UIAlertController风格：UIAlertControllerStyleAlert
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;主标题&amp;quot; message:@&amp;quot;提示文字&amp;quot;preferredStyl">
-<meta property="og:updated_time" content="2016-11-27T13:17:53.000Z">
+<meta property="og:description">
+<meta property="og:updated_time" content="2016-12-11T01:04:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UIAlertController 弹框">
-<meta name="twitter:description" content="一. 标准的Alert样式
-//UIAlertController风格：UIAlertControllerStyleAlert
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;主标题&amp;quot; message:@&amp;quot;提示文字&amp;quot;preferredStyl">
+<meta name="twitter:title" content="test">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -197,11 +191,11 @@ UIAlertController *alertController = [UIAlertController alertControllerWithTitle
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-UIAlertController-弹框" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/11/27/UIAlertController-弹框/" class="article-date">
-  	<time datetime="2016-11-27T13:15:28.000Z" itemprop="datePublished">2016-11-27</time>
+      <a href="/2016/12/11/test/" class="article-date">
+  	<time datetime="2016-12-11T01:04:58.000Z" itemprop="datePublished">2016-12-11</time>
 </a>
     </div>
   
@@ -214,7 +208,7 @@ UIAlertController *alertController = [UIAlertController alertControllerWithTitle
         
   
     <h1 class="article-title" itemprop="name">
-      UIAlertController 弹框
+      test
     </h1>
   
 
@@ -230,60 +224,7 @@ UIAlertController *alertController = [UIAlertController alertControllerWithTitle
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一. 标准的Alert样式</p>
-<pre><code>//UIAlertController风格：UIAlertControllerStyleAlert
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&quot;主标题&quot; message:@&quot;提示文字&quot;preferredStyle:UIAlertControllerStyleAlert ];
-
-//添加取消到UIAlertController中
-UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleDefault handler:nil];
-[alertController addAction:cancelAction];
-
-//添加确定到UIAlertController中
-UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@&quot;确定&quot; style:UIAlertActionStyleDefault handler:nil];
-[alertController addAction:OKAction];
-
-[self presentViewController:alertController animated:YES completion:nil]
-</code></pre><a id="more"></a>
-<p>二. 标准的Alert Sheet样式</p>
-<pre><code>UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&quot;标准的Action Sheet样式&quot; message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-//取消:style:UIAlertActionStyleCancel//
-UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleCancel handler:nil];
-[alertController addAction:cancelAction];
-//了解更多:style:UIAlertActionStyleDestructive
-UIAlertAction *moreAction = [UIAlertAction actionWithTitle:@&quot;了解更多&quot; style:UIAlertActionStyleDestructive handler:nil];
-[alertController addAction:moreAction];
-//原来如此:style:UIAlertActionStyleDefault
-UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@&quot;原来如此&quot; style:UIAlertActionStyleDefault handler:nil];
-[alertController addAction:OKAction];
-
-[self presentViewController:alertController animated:YES completion:nil];
-</code></pre><p>三. 新功能</p>
-<pre><code>style:UIAlertActionStyleDefault//对按钮应用标准样式
-style:UIAlertActionStyleCancel//对按钮应用取消样式，即取消操作
-style:UIAlertActionStyleDestructive//对按钮应用警示性样式，提示用户这样做可能会删除或者改变某些数据
-
-
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&quot;主标题:标题党&quot;message:@&quot;子标题:提示信息&quot; preferredStyle:UIAlertControllerStyleAlert ];
-//取消style:UIAlertActionStyleDefault
-UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleDefault handler:nil];
-[alertController addAction:cancelAction];
-
-//style:UIAlertActionStyleDestructive(警告提示)
-UIAlertAction *rubbishAction = [UIAlertAction actionWithTitle:@&quot;确定修改&quot; style:UIAlertActionStyleDestructive handler:nil];
-[alertController addAction:rubbishAction];
-
-[self presentViewController:alertController animated:YES completion:nil];
-</code></pre><p>四. 弹出文本框</p>
-<pre><code>// 只有在alert情况下才可以添加文本框
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @&quot;用户名&quot;;
-        textField.secureTextEntry = YES;
-    }];
-
-//    // 取出文本
-//    UITextField *text = alertController.textFields.firstObject;
-//    UIAlertAction *action = alertController.actions.firstObject;
-</code></pre>
+        
       
     </div>
     
@@ -292,18 +233,9 @@ UIAlertAction *rubbishAction = [UIAlertAction actionWithTitle:@&quot;确定修�
     
 <nav id="article-nav">
   
-    <a href="/2016/12/11/iOS开发中的几种设计模式介绍/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS开发中的几种设计模式介绍
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/11/22/UIWebView-实现长按保存图片功能/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">UIWebView 实现长按保存图片功能</div>
+    <a href="/2016/11/27/UIAlertController-弹框/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">UIAlertController 弹框</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -338,7 +270,7 @@ UIAlertAction *rubbishAction = [UIAlertAction actionWithTitle:@&quot;确定修�
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="UIAlertController-弹框" data-title="UIAlertController 弹框" data-url="http://yoursite.com/2016/11/27/UIAlertController-弹框/"></div>
+	<div class="ds-thread" data-thread-key="test" data-title="test" data-url="http://yoursite.com/2016/12/11/test/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

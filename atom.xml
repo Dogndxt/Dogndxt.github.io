@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-27T13:17:53.000Z</updated>
+  <updated>2016-12-11T13:12:11.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS开发中的几种设计模式介绍</title>
+    <link href="http://yoursite.com/2016/12/11/iOS%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://yoursite.com/2016/12/11/iOS开发中的几种设计模式介绍/</id>
+    <published>2016-12-11T13:02:50.000Z</published>
+    <updated>2016-12-11T13:12:11.000Z</updated>
+    
+    <content type="html">&lt;p&gt;iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：&lt;/p&gt;
+&lt;h4 id=&quot;代理模式&quot;&gt;&lt;a href=&quot;#代理模式&quot; class=&quot;headerlink&quot; title=&quot;代理模式&quot;&gt;&lt;/a&gt;代理模式&lt;/h4&gt;&lt;p&gt;应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。&lt;br&gt;优势：解耦合&lt;br&gt;敏捷原则：开放-封闭原则&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
+列表row个数delegate
+自定义的delegate
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;观察者模式&quot;&gt;&lt;a href=&quot;#观察者模式&quot; class=&quot;headerlink&quot; title=&quot;观察者模式&quot;&gt;&lt;/a&gt;观察者模式&lt;/h4&gt;&lt;p&gt;应用场景：一般为对model层，controller和view进行的通知方式，不关心谁去接收，只负责发布信息。&lt;br&gt;优势：解耦合&lt;br&gt;敏捷原则：接口隔离原则，开放-封闭原则&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;实例：Notification通知中心，注册通知中心，任何位置可以发送消息，注册观察者的对象可以接收。
+kvo，键值对改变通知的观察者
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;MVC模式&quot;&gt;&lt;a href=&quot;#MVC模式&quot; class=&quot;headerlink&quot; title=&quot;MVC模式&quot;&gt;&lt;/a&gt;MVC模式&lt;/h4&gt;&lt;p&gt;应用场景：是一中非常古老的设计模式，通过数据模型，控制器逻辑，视图展示将应用程序进行逻辑划分。&lt;br&gt;优势：使系统，层次清晰，职责分明，易于维护&lt;br&gt;敏捷原则：对扩展开放-对修改封闭&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;实例：model-即数据模型，view-视图展示，controller进行UI展现和数据交互的逻辑控制。
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;单例模式&quot;&gt;&lt;a href=&quot;#单例模式&quot; class=&quot;headerlink&quot; title=&quot;单例模式&quot;&gt;&lt;/a&gt;单例模式&lt;/h4&gt;&lt;p&gt;应用场景：确保程序运行期某个类，只有一份实例，用于进行资源共享控制。&lt;br&gt;优势：使用简单，延时求值，易于跨模块&lt;br&gt;敏捷原则：单一职责原则&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;实例：[UIApplication sharedApplication]。
+注意事项：确保使用者只能通过 getInstance方法才能获得，单例类的唯一实例。
+java，C++中使其没有公有构造函数，私有化并覆盖其构造函数。
+object c中，重写allocWithZone方法，保证即使用户用 alloc方法直接创建单例类的实例，
+返回的也只是此单例类的唯一静态变量。
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;策略模式&quot;&gt;&lt;a href=&quot;#策略模式&quot; class=&quot;headerlink&quot; title=&quot;策略模式&quot;&gt;&lt;/a&gt;策略模式&lt;/h4&gt;&lt;p&gt;应用场景：定义算法族，封装起来，使他们之间可以相互替换。&lt;br&gt;优势：使算法的变化独立于使用算法的用户&lt;br&gt;敏捷原则：接口隔离原则；多用组合，少用继承；针对接口编程，而非实现。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;实例：排序算法，NSArray的sortedArrayUsingSelector；经典的鸭子会叫，会飞案例。
+注意事项：1，剥离类中易于变化的行为，通过组合的方式嵌入抽象基类
+2，变化的行为抽象基类为，所有可变变化的父类
+3，用户类的最终实例，通过注入行为实例的方式，设定易变行为
+防止了继承行为方式，导致无关行为污染子类。完成了策略封装和可替换性。
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;工厂模式&quot;&gt;&lt;a href=&quot;#工厂模式&quot; class=&quot;headerlink&quot; title=&quot;工厂模式&quot;&gt;&lt;/a&gt;工厂模式&lt;/h4&gt;&lt;p&gt;应用场景：工厂方式创建类的实例，多与proxy模式配合，创建可替换代理类。&lt;br&gt;优势：易于替换，面向抽象编程，application只与抽象工厂和易变类的共性抽象类发生调用关系。&lt;br&gt;敏捷原则：DIP依赖倒置原则&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;实例：项目部署环境中依赖多个不同类型的数据库时，需要使用工厂配合proxy完成易用性替换
+注意事项：项目初期，软件结构和需求都没有稳定下来时，不建议使用此模式，因为其劣势也很明显，
+增 加了代码的复杂度，增加了调用层次，增加了内存负担。所以要注意防止模式的滥用。
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：&lt;/p&gt;
+&lt;h4 id=&quot;代理模式&quot;&gt;&lt;a href=&quot;#代理模式&quot; class=&quot;headerlink&quot; title=&quot;代理模式&quot;&gt;&lt;/a&gt;代理模式&lt;/h4&gt;&lt;p&gt;应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。&lt;br&gt;优势：解耦合&lt;br&gt;敏捷原则：开放-封闭原则&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
+列表row个数delegate
+自定义的delegate
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>UIAlertController 弹框</title>
@@ -1407,49 +1457,6 @@ for(id item in nib) {
     <summary type="html">
     
       &lt;h3 id=&quot;联系&quot;&gt;&lt;a href=&quot;#联系&quot; class=&quot;headerlink&quot; title=&quot;联系&quot;&gt;&lt;/a&gt;联系&lt;/h3&gt;&lt;p&gt; 可以使用此方法加载用户界面（xib文件）到我们的代码中，这样，可以通过操作这个加载进来的（xib）对象，来操作xib文件内容。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>通知iOS</title>
-    <link href="http://yoursite.com/2016/08/13/%E9%80%9A%E7%9F%A5iOS/"/>
-    <id>http://yoursite.com/2016/08/13/通知iOS/</id>
-    <published>2016-08-13T11:07:36.000Z</published>
-    <updated>2016-08-13T11:09:38.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;发送通知-（在程序任何一个地方都可以发送通知）&quot;&gt;&lt;a href=&quot;#发送通知-（在程序任何一个地方都可以发送通知）&quot; class=&quot;headerlink&quot; title=&quot;发送通知 （在程序任何一个地方都可以发送通知）&quot;&gt;&lt;/a&gt;发送通知 （在程序任何一个地方都可以发送通知）&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (void)getNotofocation {
-    //发出通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:@&amp;quot;A类通知&amp;quot; object:self userInfo:nil];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;注册通知&quot;&gt;&lt;a href=&quot;#注册通知&quot; class=&quot;headerlink&quot; title=&quot;注册通知&quot;&gt;&lt;/a&gt;注册通知&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(callBack) name: @&amp;quot;A类通知&amp;quot;  object: nil  userInfo: nil];
-
-Name: 消息名称 
-object: 消息发送者 
-userInfo: 消息传递的数据信息
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;定义回调&quot;&gt;&lt;a href=&quot;#定义回调&quot; class=&quot;headerlink&quot; title=&quot;定义回调&quot;&gt;&lt;/a&gt;定义回调&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (void)callBack {
-
-    NSLog(@&amp;quot;我收到通知了！&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;注销通知&quot;&gt;&lt;a href=&quot;#注销通知&quot; class=&quot;headerlink&quot; title=&quot;注销通知&quot;&gt;&lt;/a&gt;注销通知&lt;/h3&gt;&lt;p&gt;   a. 最优的方法，在 UIViewController.m 中：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)dealloc {
-
- [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;   b. 单个移除&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[[NSNotificationCenter defaultCenter] removeObserver:self name:@&amp;quot;Notification_GetUserProfileSuccess&amp;quot; object:nil];
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;发送通知-（在程序任何一个地方都可以发送通知）&quot;&gt;&lt;a href=&quot;#发送通知-（在程序任何一个地方都可以发送通知）&quot; class=&quot;headerlink&quot; title=&quot;发送通知 （在程序任何一个地方都可以发送通知）&quot;&gt;&lt;/a&gt;发送通知 （在程序任何一个地方都可以发送通知）&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (void)getNotofocation {
-    //发出通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:@&amp;quot;A类通知&amp;quot; object:self userInfo:nil];
-}
-&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     

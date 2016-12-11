@@ -4,24 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>UIAlertController 弹框 | 第欧根尼的小桶</title>
+  <title>iOS开发中的几种设计模式介绍 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一. 标准的Alert样式
-//UIAlertController风格：UIAlertControllerStyleAlert
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;主标题&amp;quot; message:@&amp;quot;提示文字&amp;quot;preferredStyl">
+  <meta name="description" content="iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：
+代理模式应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。优势：解耦合敏捷原则：开放-封闭原则
+实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
+列表row个数delegate
+自定义的delegate">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UIAlertController 弹框">
-<meta property="og:url" content="http://yoursite.com/2016/11/27/UIAlertController-弹框/index.html">
+<meta property="og:title" content="iOS开发中的几种设计模式介绍">
+<meta property="og:url" content="http://yoursite.com/2016/12/11/iOS开发中的几种设计模式介绍/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="一. 标准的Alert样式
-//UIAlertController风格：UIAlertControllerStyleAlert
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;主标题&amp;quot; message:@&amp;quot;提示文字&amp;quot;preferredStyl">
-<meta property="og:updated_time" content="2016-11-27T13:17:53.000Z">
+<meta property="og:description" content="iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：
+代理模式应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。优势：解耦合敏捷原则：开放-封闭原则
+实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
+列表row个数delegate
+自定义的delegate">
+<meta property="og:updated_time" content="2016-12-11T13:12:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UIAlertController 弹框">
-<meta name="twitter:description" content="一. 标准的Alert样式
-//UIAlertController风格：UIAlertControllerStyleAlert
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&amp;quot;主标题&amp;quot; message:@&amp;quot;提示文字&amp;quot;preferredStyl">
+<meta name="twitter:title" content="iOS开发中的几种设计模式介绍">
+<meta name="twitter:description" content="iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：
+代理模式应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。优势：解耦合敏捷原则：开放-封闭原则
+实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
+列表row个数delegate
+自定义的delegate">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -197,11 +203,11 @@ UIAlertController *alertController = [UIAlertController alertControllerWithTitle
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-UIAlertController-弹框" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-iOS开发中的几种设计模式介绍" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/11/27/UIAlertController-弹框/" class="article-date">
-  	<time datetime="2016-11-27T13:15:28.000Z" itemprop="datePublished">2016-11-27</time>
+      <a href="/2016/12/11/iOS开发中的几种设计模式介绍/" class="article-date">
+  	<time datetime="2016-12-11T13:02:50.000Z" itemprop="datePublished">2016-12-11</time>
 </a>
     </div>
   
@@ -214,7 +220,7 @@ UIAlertController *alertController = [UIAlertController alertControllerWithTitle
         
   
     <h1 class="article-title" itemprop="name">
-      UIAlertController 弹框
+      iOS开发中的几种设计模式介绍
     </h1>
   
 
@@ -230,59 +236,33 @@ UIAlertController *alertController = [UIAlertController alertControllerWithTitle
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一. 标准的Alert样式</p>
-<pre><code>//UIAlertController风格：UIAlertControllerStyleAlert
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&quot;主标题&quot; message:@&quot;提示文字&quot;preferredStyle:UIAlertControllerStyleAlert ];
-
-//添加取消到UIAlertController中
-UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleDefault handler:nil];
-[alertController addAction:cancelAction];
-
-//添加确定到UIAlertController中
-UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@&quot;确定&quot; style:UIAlertActionStyleDefault handler:nil];
-[alertController addAction:OKAction];
-
-[self presentViewController:alertController animated:YES completion:nil]
+        <p>iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：</p>
+<h4 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h4><p>应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。<br>优势：解耦合<br>敏捷原则：开放-封闭原则</p>
+<pre><code>实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
+列表row个数delegate
+自定义的delegate
 </code></pre><a id="more"></a>
-<p>二. 标准的Alert Sheet样式</p>
-<pre><code>UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&quot;标准的Action Sheet样式&quot; message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-//取消:style:UIAlertActionStyleCancel//
-UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleCancel handler:nil];
-[alertController addAction:cancelAction];
-//了解更多:style:UIAlertActionStyleDestructive
-UIAlertAction *moreAction = [UIAlertAction actionWithTitle:@&quot;了解更多&quot; style:UIAlertActionStyleDestructive handler:nil];
-[alertController addAction:moreAction];
-//原来如此:style:UIAlertActionStyleDefault
-UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@&quot;原来如此&quot; style:UIAlertActionStyleDefault handler:nil];
-[alertController addAction:OKAction];
-
-[self presentViewController:alertController animated:YES completion:nil];
-</code></pre><p>三. 新功能</p>
-<pre><code>style:UIAlertActionStyleDefault//对按钮应用标准样式
-style:UIAlertActionStyleCancel//对按钮应用取消样式，即取消操作
-style:UIAlertActionStyleDestructive//对按钮应用警示性样式，提示用户这样做可能会删除或者改变某些数据
-
-
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&quot;主标题:标题党&quot;message:@&quot;子标题:提示信息&quot; preferredStyle:UIAlertControllerStyleAlert ];
-//取消style:UIAlertActionStyleDefault
-UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleDefault handler:nil];
-[alertController addAction:cancelAction];
-
-//style:UIAlertActionStyleDestructive(警告提示)
-UIAlertAction *rubbishAction = [UIAlertAction actionWithTitle:@&quot;确定修改&quot; style:UIAlertActionStyleDestructive handler:nil];
-[alertController addAction:rubbishAction];
-
-[self presentViewController:alertController animated:YES completion:nil];
-</code></pre><p>四. 弹出文本框</p>
-<pre><code>// 只有在alert情况下才可以添加文本框
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @&quot;用户名&quot;;
-        textField.secureTextEntry = YES;
-    }];
-
-//    // 取出文本
-//    UITextField *text = alertController.textFields.firstObject;
-//    UIAlertAction *action = alertController.actions.firstObject;
+<h4 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h4><p>应用场景：一般为对model层，controller和view进行的通知方式，不关心谁去接收，只负责发布信息。<br>优势：解耦合<br>敏捷原则：接口隔离原则，开放-封闭原则</p>
+<pre><code>实例：Notification通知中心，注册通知中心，任何位置可以发送消息，注册观察者的对象可以接收。
+kvo，键值对改变通知的观察者
+</code></pre><h4 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h4><p>应用场景：是一中非常古老的设计模式，通过数据模型，控制器逻辑，视图展示将应用程序进行逻辑划分。<br>优势：使系统，层次清晰，职责分明，易于维护<br>敏捷原则：对扩展开放-对修改封闭</p>
+<pre><code>实例：model-即数据模型，view-视图展示，controller进行UI展现和数据交互的逻辑控制。
+</code></pre><h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><p>应用场景：确保程序运行期某个类，只有一份实例，用于进行资源共享控制。<br>优势：使用简单，延时求值，易于跨模块<br>敏捷原则：单一职责原则</p>
+<pre><code>实例：[UIApplication sharedApplication]。
+注意事项：确保使用者只能通过 getInstance方法才能获得，单例类的唯一实例。
+java，C++中使其没有公有构造函数，私有化并覆盖其构造函数。
+object c中，重写allocWithZone方法，保证即使用户用 alloc方法直接创建单例类的实例，
+返回的也只是此单例类的唯一静态变量。
+</code></pre><h4 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h4><p>应用场景：定义算法族，封装起来，使他们之间可以相互替换。<br>优势：使算法的变化独立于使用算法的用户<br>敏捷原则：接口隔离原则；多用组合，少用继承；针对接口编程，而非实现。</p>
+<pre><code>实例：排序算法，NSArray的sortedArrayUsingSelector；经典的鸭子会叫，会飞案例。
+注意事项：1，剥离类中易于变化的行为，通过组合的方式嵌入抽象基类
+2，变化的行为抽象基类为，所有可变变化的父类
+3，用户类的最终实例，通过注入行为实例的方式，设定易变行为
+防止了继承行为方式，导致无关行为污染子类。完成了策略封装和可替换性。
+</code></pre><h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><p>应用场景：工厂方式创建类的实例，多与proxy模式配合，创建可替换代理类。<br>优势：易于替换，面向抽象编程，application只与抽象工厂和易变类的共性抽象类发生调用关系。<br>敏捷原则：DIP依赖倒置原则</p>
+<pre><code>实例：项目部署环境中依赖多个不同类型的数据库时，需要使用工厂配合proxy完成易用性替换
+注意事项：项目初期，软件结构和需求都没有稳定下来时，不建议使用此模式，因为其劣势也很明显，
+增 加了代码的复杂度，增加了调用层次，增加了内存负担。所以要注意防止模式的滥用。
 </code></pre>
       
     </div>
@@ -292,18 +272,9 @@ UIAlertAction *rubbishAction = [UIAlertAction actionWithTitle:@&quot;确定修�
     
 <nav id="article-nav">
   
-    <a href="/2016/12/11/iOS开发中的几种设计模式介绍/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS开发中的几种设计模式介绍
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/11/22/UIWebView-实现长按保存图片功能/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">UIWebView 实现长按保存图片功能</div>
+    <a href="/2016/11/27/UIAlertController-弹框/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">UIAlertController 弹框</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -338,7 +309,7 @@ UIAlertAction *rubbishAction = [UIAlertAction actionWithTitle:@&quot;确定修�
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="UIAlertController-弹框" data-title="UIAlertController 弹框" data-url="http://yoursite.com/2016/11/27/UIAlertController-弹框/"></div>
+	<div class="ds-thread" data-thread-key="iOS开发中的几种设计模式介绍" data-title="iOS开发中的几种设计模式介绍" data-url="http://yoursite.com/2016/12/11/iOS开发中的几种设计模式介绍/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
