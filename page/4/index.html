@@ -192,6 +192,125 @@
 
       <div class="body-wrap">
   
+    <article id="post-响应者" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/07/响应者/" class="article-date">
+  	<time datetime="2016-08-07T11:25:04.000Z" itemprop="datePublished">2016-08-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/07/响应者/">响应者</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="响应者对象（Response-object）"><a href="#响应者对象（Response-object）" class="headerlink" title="响应者对象（Response object）"></a>响应者对象（Response object）</h3><p>响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/07/响应者/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-定时器用法总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/07/定时器用法总结/" class="article-date">
+  	<time datetime="2016-08-07T11:18:19.000Z" itemprop="datePublished">2016-08-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/07/定时器用法总结/">定时器用法总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>NSTimer在IOS开发中会经常用到，尤其是小型游戏，然而对于初学者时常会注意不到其中的内存释放问题，将其基本用法总结如下：</p>
+<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法 1"></a>方法 1</h3><pre><code>NSInvocation *invo = [NSInvocation invocationWithMethodSignature:[[self class] instanceMethodSignatureForSelector:@selector(f)]];
+[invo setTarget:self];
+[invo setSelector:@selector(myLog)];
+time = [NSTimer timerWithTimeInterval:1 invocation:invo repeats:YES];
+[time fire];
+[[NSRunLoop mainRunLoop] addTimer:time forMode:NSDefaultRunLoopMode];
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/07/定时器用法总结/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Objective-C-中实现多线程" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -531,122 +650,6 @@ __kindof
       
         <p class="article-more-link">
           <a  href="/2016/06/30/OC的三大新特性/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-storyboard之prepareForSegue" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/02/storyboard之prepareForSegue/" class="article-date">
-  	<time datetime="2016-06-02T13:41:03.000Z" itemprop="datePublished">2016-06-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/02/storyboard之prepareForSegue/"> storyboard之prepareForSegue</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>storyboard 解决的是页面之间的跳转问题。 一个颇为复杂的页面跳转，一旦使用了storyboard，就会四两拨千斤。你只需简单地拖拽，即可完成UIViewController 之间的跳转。 这里面有个神器，一个极为重要的method :</p>
-<pre><code>- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {}
-
-第一个参数是 segue， 第二个参数是 sender。 
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/06/02/storyboard之prepareForSegue/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-pragma声明" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/02/pragma声明/" class="article-date">
-  	<time datetime="2016-06-02T13:35:43.000Z" itemprop="datePublished">2016-06-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/02/pragma声明/">pragma声明</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="pragma-声明是彰显-Objective-C-工艺的标志之一。"><a href="#pragma-声明是彰显-Objective-C-工艺的标志之一。" class="headerlink" title="#pragma 声明是彰显 Objective-C 工艺的标志之一。"></a>#pragma 声明是彰显 Objective-C 工艺的标志之一。</h3><p>虽然 #pragma 最初的目的是为了使得源代码在不同的编译器下兼容的，但精明的Xcode编码器将 #pragma 使用到了极致。在现在的背景下，#pragma 避开了注释和代码之间的界限。作为预处理指令，#pragma 在编译时进行计算。但它并不像如 #ifdef…#endif 之类的宏，#pragma 的使用方式不会改变你的应用运行时的行为。相反的，#pragma 声明主要由 Xcode 用来完成两个主要任务：整理代码和防止编译器警告。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/06/02/pragma声明/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

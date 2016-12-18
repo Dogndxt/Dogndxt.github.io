@@ -192,6 +192,121 @@
 
       <div class="body-wrap">
   
+    <article id="post-property在声明中可以指定的属性" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/11/property在声明中可以指定的属性/" class="article-date">
+  	<time datetime="2016-09-11T14:18:58.000Z" itemprop="datePublished">2016-09-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/11/property在声明中可以指定的属性/">property在声明中可以指定的属性</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>assign, retain, strong, weak, unsafe_unretained, copy </p>
+<p>这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。</p>
+<h3 id="Non-ARC"><a href="#Non-ARC" class="headerlink" title="Non-ARC"></a>Non-ARC</h3><p>从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十分建议在可能的情况下通过accessor方法来操纵property，而不是操纵它对应的实例变量。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/11/property在声明中可以指定的属性/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-代理设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/28/代理设计模式/" class="article-date">
+  	<time datetime="2016-08-28T11:56:17.000Z" itemprop="datePublished">2016-08-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/28/代理设计模式/">代理设计模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="代理设计模式"><a href="#代理设计模式" class="headerlink" title="代理设计模式"></a>代理设计模式</h3><p>代理delegate就是委托另一个对象来帮忙完成一件事情</p>
+<p>为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了 MVC 设计模式，项目小还好，随着功能的扩展，我们就会发现越写越难写；还有一种情况，就是这件事情做不到，只能委托给其他对象来做了.</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/28/代理设计模式/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-ios技能点总结和存取方法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -523,125 +638,6 @@
       
         <p class="article-more-link">
           <a  href="/2016/08/13/控制器初始化方法/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-响应者" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/07/响应者/" class="article-date">
-  	<time datetime="2016-08-07T11:25:04.000Z" itemprop="datePublished">2016-08-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/07/响应者/">响应者</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="响应者对象（Response-object）"><a href="#响应者对象（Response-object）" class="headerlink" title="响应者对象（Response object）"></a>响应者对象（Response object）</h3><p>响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/07/响应者/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-定时器用法总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/07/定时器用法总结/" class="article-date">
-  	<time datetime="2016-08-07T11:18:19.000Z" itemprop="datePublished">2016-08-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/07/定时器用法总结/">定时器用法总结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>NSTimer在IOS开发中会经常用到，尤其是小型游戏，然而对于初学者时常会注意不到其中的内存释放问题，将其基本用法总结如下：</p>
-<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法 1"></a>方法 1</h3><pre><code>NSInvocation *invo = [NSInvocation invocationWithMethodSignature:[[self class] instanceMethodSignatureForSelector:@selector(f)]];
-[invo setTarget:self];
-[invo setSelector:@selector(myLog)];
-time = [NSTimer timerWithTimeInterval:1 invocation:invo repeats:YES];
-[time fire];
-[[NSRunLoop mainRunLoop] addTimer:time forMode:NSDefaultRunLoopMode];
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/07/定时器用法总结/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

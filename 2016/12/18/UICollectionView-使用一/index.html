@@ -4,30 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>iOS开发中的几种设计模式介绍 | 第欧根尼的小桶</title>
+  <title>UICollectionView - 使用一 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：
-代理模式应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。优势：解耦合敏捷原则：开放-封闭原则
-实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
-列表row个数delegate
-自定义的delegate">
+  <meta name="description" content="什么是UICollectionViewUICollectionView是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView(请一定注意这是UICollectionView的最最简单的形式)。
+最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。标准的UICollectionView包含三个部分，它们都是UIView的子类：
+＊">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS开发中的几种设计模式介绍">
-<meta property="og:url" content="http://yoursite.com/2016/12/11/iOS开发中的几种设计模式介绍/index.html">
+<meta property="og:title" content="UICollectionView - 使用一">
+<meta property="og:url" content="http://yoursite.com/2016/12/18/UICollectionView-使用一/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：
-代理模式应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。优势：解耦合敏捷原则：开放-封闭原则
-实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
-列表row个数delegate
-自定义的delegate">
-<meta property="og:updated_time" content="2016-12-11T13:12:11.000Z">
+<meta property="og:description" content="什么是UICollectionViewUICollectionView是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView(请一定注意这是UICollectionView的最最简单的形式)。
+最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。标准的UICollectionView包含三个部分，它们都是UIView的子类：
+＊">
+<meta property="og:updated_time" content="2016-12-18T11:41:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS开发中的几种设计模式介绍">
-<meta name="twitter:description" content="iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：
-代理模式应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。优势：解耦合敏捷原则：开放-封闭原则
-实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
-列表row个数delegate
-自定义的delegate">
+<meta name="twitter:title" content="UICollectionView - 使用一">
+<meta name="twitter:description" content="什么是UICollectionViewUICollectionView是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView(请一定注意这是UICollectionView的最最简单的形式)。
+最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。标准的UICollectionView包含三个部分，它们都是UIView的子类：
+＊">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -203,11 +197,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-iOS开发中的几种设计模式介绍" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-UICollectionView-使用一" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/11/iOS开发中的几种设计模式介绍/" class="article-date">
-  	<time datetime="2016-12-11T13:02:50.000Z" itemprop="datePublished">2016-12-11</time>
+      <a href="/2016/12/18/UICollectionView-使用一/" class="article-date">
+  	<time datetime="2016-12-18T11:39:38.000Z" itemprop="datePublished">2016-12-18</time>
 </a>
     </div>
   
@@ -220,7 +214,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      iOS开发中的几种设计模式介绍
+      UICollectionView - 使用一
     </h1>
   
 
@@ -236,34 +230,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：</p>
-<h4 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h4><p>应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。<br>优势：解耦合<br>敏捷原则：开放-封闭原则</p>
-<pre><code>实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
-列表row个数delegate
-自定义的delegate
+        <h3 id="什么是UICollectionView"><a href="#什么是UICollectionView" class="headerlink" title="什么是UICollectionView"></a>什么是UICollectionView</h3><p>UICollectionView是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView(请一定注意这是UICollectionView的最最简单的形式)。</p>
+<p>最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。标准的UICollectionView包含三个部分，它们都是UIView的子类：</p>
+<pre><code>＊  Cells 用于展示内容的主体，对于不同的cell可以指定不同尺寸和不同的内容 
+＊  Supplementary Views 追加视图 如果你对UITableView比较熟悉的话，可以理解为每个Section的Header或者Footer，用来标记每个section的view
+＊  Decoration Views 装饰视图 这是每个section的背景，
 </code></pre><a id="more"></a>
-<h4 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h4><p>应用场景：一般为对model层，controller和view进行的通知方式，不关心谁去接收，只负责发布信息。<br>优势：解耦合<br>敏捷原则：接口隔离原则，开放-封闭原则</p>
-<pre><code>实例：Notification通知中心，注册通知中心，任何位置可以发送消息，注册观察者的对象可以接收。
-kvo，键值对改变通知的观察者
-</code></pre><h4 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h4><p>应用场景：是一中非常古老的设计模式，通过数据模型，控制器逻辑，视图展示将应用程序进行逻辑划分。<br>优势：使系统，层次清晰，职责分明，易于维护<br>敏捷原则：对扩展开放-对修改封闭</p>
-<pre><code>实例：model-即数据模型，view-视图展示，controller进行UI展现和数据交互的逻辑控制。
-</code></pre><h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><p>应用场景：确保程序运行期某个类，只有一份实例，用于进行资源共享控制。<br>优势：使用简单，延时求值，易于跨模块<br>敏捷原则：单一职责原则</p>
-<pre><code>实例：[UIApplication sharedApplication]。
-注意事项：确保使用者只能通过 getInstance方法才能获得，单例类的唯一实例。
-java，C++中使其没有公有构造函数，私有化并覆盖其构造函数。
-object c中，重写allocWithZone方法，保证即使用户用 alloc方法直接创建单例类的实例，
-返回的也只是此单例类的唯一静态变量。
-</code></pre><h4 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h4><p>应用场景：定义算法族，封装起来，使他们之间可以相互替换。<br>优势：使算法的变化独立于使用算法的用户<br>敏捷原则：接口隔离原则；多用组合，少用继承；针对接口编程，而非实现。</p>
-<pre><code>实例：排序算法，NSArray的sortedArrayUsingSelector；经典的鸭子会叫，会飞案例。
-注意事项：1，剥离类中易于变化的行为，通过组合的方式嵌入抽象基类
-2，变化的行为抽象基类为，所有可变变化的父类
-3，用户类的最终实例，通过注入行为实例的方式，设定易变行为
-防止了继承行为方式，导致无关行为污染子类。完成了策略封装和可替换性。
-</code></pre><h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><p>应用场景：工厂方式创建类的实例，多与proxy模式配合，创建可替换代理类。<br>优势：易于替换，面向抽象编程，application只与抽象工厂和易变类的共性抽象类发生调用关系。<br>敏捷原则：DIP依赖倒置原则</p>
-<pre><code>实例：项目部署环境中依赖多个不同类型的数据库时，需要使用工厂配合proxy完成易用性替换
-注意事项：项目初期，软件结构和需求都没有稳定下来时，不建议使用此模式，因为其劣势也很明显，
-增 加了代码的复杂度，增加了调用层次，增加了内存负担。所以要注意防止模式的滥用。
-</code></pre>
+<h3 id="实现一个简单的UICollectionView"><a href="#实现一个简单的UICollectionView" class="headerlink" title="实现一个简单的UICollectionView"></a>实现一个简单的UICollectionView</h3><p>实现一个UICollectionView和实现一个UITableView基本没有什么大区别，它们都同样是datasource和delegate设计模式的：datasource为view提供数据源，告诉view要显示些什么东西以及如何显示它们，delegate提供一些样式的小细节以及用户交互的相应。</p>
+<pre><code>＊ UICollectionViewDataSource
+
+        section的数量  ￼-numberOfSectionsInCollection:
+        某个section里有多少个item ￼ -collectionView:numberOfItemsInSection:
+        对于某个位置应该显示什么样的cell ￼ -collectionView:cellForItemAtIndexPath:
+
+  实现以上三个委托方法，基本上就可以保证CollectionView工作正常了。 当然，还有提供Supplementary View的方法
+
+     collectionView:viewForSupplementaryElementOfKind:atIndexPath:
+
+   对于Decoration Views，提供方法并不在UICollectionViewDataSource中，而是直接UICollectionViewLayout类中的(因为它仅仅是视图相关，而与数据无关)
+
+
+＊ UICollectionViewDelegate
+
+    数据无关的view的外形啊，用户交互啊什么的，由UICollectionViewDelegate来负责：
+
+        cell的高亮
+        cell的选中状态
+        可以支持长按后的菜单
+
+    关于用户交互，UICollectionView也做了改进。每个cell现在有独立的高亮事件和选中事件的delegate，用户点击cell的时候，现在会按照以下流程向delegate进行询问：
+
+        -￼collectionView:shouldHighlightItemAtIndexPath: 是否应该高亮？
+        -￼collectionView:didHighlightItemAtIndexPath: 如果1回答为是，那么高亮
+        -￼collectionView:shouldSelectItemAtIndexPath: 无论1结果如何，都询问是否可以被选中？
+        -collectionView:didUnhighlightItemAtIndexPath: 如果1回答为是，那么现在取消高亮
+        -collectionView:didSelectItemAtIndexPath: 如果3回答为是，那么选中cell
+
+    状态控制要比以前灵活一些，对应的高亮和选中状态分别由highlighted和selected两个属性表示。  
+
+
+＊ 关于Cell
+
+    相对于UITableViewCell来说，UICollectionViewCell没有这么多花头。首先UICollectionViewCell不存在各式各样的默认的style，这主要是由于展示对象的性质决定的，因为UICollectionView所用来展示的对象相比UITableView来说要来得灵活，大部分情况下更偏向于图像而非文字，因此需求将会千奇百怪。因此SDK提供给我们的默认的UICollectionViewCell结构上相对比较简单，由下至上：
+
+        首先是cell本身作为容器view
+        然后是一个大小自动适应整个cell的backgroundView，用作cell平时的背景
+        再其上是selectedBackgroundView，是cell被选中时的背景
+        最后是一个contentView，自定义内容应被加在这个view上
+</code></pre><p>这次Apple给我们带来的好康是被选中cell的自动变化，所有的cell中的子view，也包括contentView中的子view，在当cell被选中时，会自动去查找view是否有被选中状态下的改变。比如在contentView里加了一个normal和selected指定了不同图片的imageView，那么选中这个cell的同时这张图片也会从normal变成selected，而不需要额外的任何代码。</p>
+<p>文章后面有两个水平比较高的例子 － <a href="https://onevcat.com/2012/08/advanced-collection-view" target="_blank" rel="external">https://onevcat.com/2012/08/advanced-collection-view</a> 和 <a href="https://objccn.io/issue-12-5/）" target="_blank" rel="external">https://objccn.io/issue-12-5/）</a></p>
+
       
     </div>
     
@@ -272,18 +288,18 @@ object c中，重写allocWithZone方法，保证即使用户用 alloc方法直�
     
 <nav id="article-nav">
   
-    <a href="/2016/12/18/UICollectionView-使用一/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/12/18/UICollectionView-使用二/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          UICollectionView - 使用一
+          UICollectionView - 使用二
         
       </div>
     </a>
   
   
-    <a href="/2016/11/27/UIAlertController-弹框/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">UIAlertController 弹框</div>
+    <a href="/2016/12/11/iOS开发中的几种设计模式介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS开发中的几种设计模式介绍</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -318,7 +334,7 @@ object c中，重写allocWithZone方法，保证即使用户用 alloc方法直�
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="iOS开发中的几种设计模式介绍" data-title="iOS开发中的几种设计模式介绍" data-url="http://yoursite.com/2016/12/11/iOS开发中的几种设计模式介绍/"></div>
+	<div class="ds-thread" data-thread-key="UICollectionView-使用一" data-title="UICollectionView - 使用一" data-url="http://yoursite.com/2016/12/18/UICollectionView-使用一/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

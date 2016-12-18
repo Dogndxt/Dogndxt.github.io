@@ -192,6 +192,133 @@
 
       <div class="body-wrap">
   
+    <article id="post-UICollectionView-使用二" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/18/UICollectionView-使用二/" class="article-date">
+  	<time datetime="2016-12-18T11:43:22.000Z" itemprop="datePublished">2016-12-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/18/UICollectionView-使用二/">UICollectionView - 使用二</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="UICollectionViewLayout"><a href="#UICollectionViewLayout" class="headerlink" title="UICollectionViewLayout"></a>UICollectionViewLayout</h3><p>终于到UICollectionView的精髓了…这也是UICollectionView和UITableView最大的不同。<br>UICollectionViewLayout可以说是UICollectionView的大脑和中枢，它负责了将各个cell、Supplementary View和Decoration Views进行组织，为它们设定各自的属性，包括但不限于：</p>
+<pre><code>    位置
+    尺寸
+    透明度
+    层级关系
+    形状
+    等等等等…
+
+Layout决定了UICollectionView是如何显示在界面上的。
+在展示之前，一般需要生成合适的UICollectionViewLayout子类对象，并将其赋予CollectionView的collectionViewLayout属性。
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/12/18/UICollectionView-使用二/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-UICollectionView-使用一" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/18/UICollectionView-使用一/" class="article-date">
+  	<time datetime="2016-12-18T11:39:38.000Z" itemprop="datePublished">2016-12-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/18/UICollectionView-使用一/">UICollectionView - 使用一</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是UICollectionView"><a href="#什么是UICollectionView" class="headerlink" title="什么是UICollectionView"></a>什么是UICollectionView</h3><p>UICollectionView是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView(请一定注意这是UICollectionView的最最简单的形式)。</p>
+<p>最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。标准的UICollectionView包含三个部分，它们都是UIView的子类：</p>
+<pre><code>＊  Cells 用于展示内容的主体，对于不同的cell可以指定不同尺寸和不同的内容 
+＊  Supplementary Views 追加视图 如果你对UITableView比较熟悉的话，可以理解为每个Section的Header或者Footer，用来标记每个section的view
+＊  Decoration Views 装饰视图 这是每个section的背景，
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/12/18/UICollectionView-使用一/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-iOS开发中的几种设计模式介绍" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -569,130 +696,6 @@ longPressed.delegate = self;
       
         <p class="article-more-link">
           <a  href="/2016/10/20/iOS特别知识点总结六/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS开发之顶部状态栏statusBar颜色变化小结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/" class="article-date">
-  	<time datetime="2016-10-20T14:01:28.000Z" itemprop="datePublished">2016-10-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/">iOS开发之顶部状态栏statusBar颜色变化小结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>iOS开发之顶部状态栏statusBar颜色变化小结</p>
-<p>1.单个视图View没有导航控制器包装的情况下</p>
-<p>(1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化</p>
-<pre><code>a. General 中的 Status Bar Style   --&gt;  Light
-
-b. plist 中增加 Status Bar Style   --&gt;  UIStatusBarStyleLightContent
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS开发使用系统的拷贝剪切功能" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/19/iOS开发使用系统的拷贝剪切功能/" class="article-date">
-  	<time datetime="2016-10-19T11:15:58.000Z" itemprop="datePublished">2016-10-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/19/iOS开发使用系统的拷贝剪切功能/">iOS开发使用系统的拷贝剪切功能</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>自定义(这里主要是改掉系统拷贝的名字为复制) <a href="http://www.jianshu.com/p/557530bcd417">http://www.jianshu.com/p/557530bcd417</a></p>
-<p>1)添加手势</p>
-<pre><code>//在自定义cell中的init方法加入
-UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCellHandle:)];
-self.longGesture = longPressGesture;
-[self addGestureRecognizer:longPressGesture];
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/10/19/iOS开发使用系统的拷贝剪切功能/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

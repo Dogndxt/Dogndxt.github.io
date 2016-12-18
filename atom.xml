@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-11T13:12:11.000Z</updated>
+  <updated>2016-12-18T11:47:40.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,201 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UICollectionView - 使用二</title>
+    <link href="http://yoursite.com/2016/12/18/UICollectionView-%E4%BD%BF%E7%94%A8%E4%BA%8C/"/>
+    <id>http://yoursite.com/2016/12/18/UICollectionView-使用二/</id>
+    <published>2016-12-18T11:43:22.000Z</published>
+    <updated>2016-12-18T11:47:40.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;UICollectionViewLayout&quot;&gt;&lt;a href=&quot;#UICollectionViewLayout&quot; class=&quot;headerlink&quot; title=&quot;UICollectionViewLayout&quot;&gt;&lt;/a&gt;UICollectionViewLayout&lt;/h3&gt;&lt;p&gt;终于到UICollectionView的精髓了…这也是UICollectionView和UITableView最大的不同。&lt;br&gt;UICollectionViewLayout可以说是UICollectionView的大脑和中枢，它负责了将各个cell、Supplementary View和Decoration Views进行组织，为它们设定各自的属性，包括但不限于：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    位置
+    尺寸
+    透明度
+    层级关系
+    形状
+    等等等等…
+
+Layout决定了UICollectionView是如何显示在界面上的。
+在展示之前，一般需要生成合适的UICollectionViewLayout子类对象，并将其赋予CollectionView的collectionViewLayout属性。
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;UICollectionViewFlowLayout&quot;&gt;&lt;a href=&quot;#UICollectionViewFlowLayout&quot; class=&quot;headerlink&quot; title=&quot;UICollectionViewFlowLayout&quot;&gt;&lt;/a&gt;UICollectionViewFlowLayout&lt;/h3&gt;&lt;p&gt;Apple为我们提供了一个最简单可能也是最常用的默认layout对象，￼￼￼UICollectionViewFlowLayout。&lt;br&gt;Flow Layout简单说是一个直线对齐的layout，最常见的Grid View形式即为一种Flow Layout配置。上面的照片架界面就是一个典型的Flow Layout。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 首先一个重要的属性是itemSize，它定义了每一个item的大小。通过设定itemSize可以全局地改变所有cell的尺寸，如果想要对某个cell制定尺寸，可以使用
+     -collectionView:layout:sizeForItemAtIndexPath:方法。
+
+间隔 可以指定item之间的间隔和每一行之间的间隔，和size类似，有全局属性，也可以对每一个item和每一个section做出设定：
+
+    @property (CGSize) minimumInteritemSpacing
+    @property (CGSize) minimumLineSpacing
+    -collectionView:layout:minimumInteritemSpacingForSectionAtIndex:
+    -collectionView:layout:minimumLineSpacingForSectionAtIndex:
+
+滚动方向 由属性scrollDirection确定scroll view的方向，将影响Flow Layout的基本方向和由header及footer确定的section之间的宽度
+
+    UICollectionViewScrollDirectionVertical
+    UICollectionViewScrollDirectionHorizontal
+
+Header和Footer尺寸 同样地分为全局和部分。需要注意根据滚动方向不同，header和footer的高和宽中只有一个会起作用。
+垂直滚动时section间宽度为该尺寸的高，而水平滚动时为宽度起作用。
+
+    @property (CGSize) headerReferenceSize
+    @property (CGSize) footerReferenceSize
+    -collectionView:layout:referenceSizeForHeaderInSection:
+    -collectionView:layout:referenceSizeForFooterInSection:
+缩进
+
+    @property UIEdgeInsets sectionInset;
+    -collectionView:layout:insetForSectionAtIndex:
+
+总结
+    一个UICollectionView的实现包括两个必要部分：UICollectionViewDataSource和UICollectionViewLayout，和一个交互部分：
+    UICollectionViewDelegate。而Apple给出的UICollectionViewFlowLayout已经是一个很强力的layout方案了。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;UICollectionViewLayoutAttributes&quot;&gt;&lt;a href=&quot;#UICollectionViewLayoutAttributes&quot; class=&quot;headerlink&quot; title=&quot;UICollectionViewLayoutAttributes&quot;&gt;&lt;/a&gt;UICollectionViewLayoutAttributes&lt;/h3&gt;&lt;pre&gt;&lt;code&gt; UICollectionViewLayoutAttributes是一个非常重要的类，先来看看property列表：
+
+     @property (nonatomic) CGRect frame
+     @property (nonatomic) CGPoint center
+     @property (nonatomic) CGSize size
+     @property (nonatomic) CATransform3D transform3D
+     @property (nonatomic) CGFloat alpha
+     @property (nonatomic) NSInteger zIndex
+     @property (nonatomic, getter=isHidden) BOOL hidden
+
+可以看到，UICollectionViewLayoutAttributes的实例中包含了诸如边框，中心点，大小，形状，透明度，层次关系和是否隐藏等信息。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;自定义的UICollectionViewLayout&quot;&gt;&lt;a href=&quot;#自定义的UICollectionViewLayout&quot; class=&quot;headerlink&quot; title=&quot;自定义的UICollectionViewLayout&quot;&gt;&lt;/a&gt;自定义的UICollectionViewLayout&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;UICollectionViewLayout的功能为向UICollectionView提供布局信息，不仅包括cell的布局信息，也包括追加视图和装饰视图的布局信息。
+实现一个自定义layout的常规做法是继承UICollectionViewLayout类，然后重载下列方法：
+
+
+  - (CGSize)collectionViewContentSize    返回collectionView的内容的尺寸
+
+  -(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
+
+    返回rect中的所有的元素的布局属性
+    返回的是包含 UICollectionViewLayoutAttributes的NSArray
+    UICollectionViewLayoutAttributes可以是cell，追加视图或装饰视图的信息，
+    通过不同的UICollectionViewLayoutAttributes初始化方法可以得到不同类型的UICollectionViewLayoutAttributes：
+
+        layoutAttributesForItemAtIndexPath:
+        layoutAttributesForSupplementaryViewOfKind:withIndexPath:
+        layoutAttributesForDecorationViewOfKind:withIndexPath:
+
+ -(UICollectionViewLayoutAttributes _)layoutAttributesForItemAtIndexPath:(NSIndexPath _)indexPath
+
+     返回对应于indexPath的位置的cell的布局属性
+
+ -(UICollectionViewLayoutAttributes _)layoutAttributesForSupplementaryViewOfKind:(NSString _)kind atIndexPath:(NSIndexPath *)indexPath
+
+     回对应于indexPath的位置的追加视图的布局属性，如果没有追加视图可不重载
+
+ -(UICollectionViewLayoutAttributes * )layoutAttributesForDecorationViewOfKind:(NSString_)decorationViewKind atIndexPath:(NSIndexPath _)indexPath
+
+     返回对应于indexPath的位置的装饰视图的布局属性，如果没有装饰视图可不重载
+
+ -(BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+
+    当边界发生改变时，是否应该刷新布局。如果YES则在边界变化（一般是scroll到其他地方）时，将重新计算需要的布局信息。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;另外需要了解的是&lt;/strong&gt;，在初始化一个UICollectionViewLayout实例后，会有一系列准备方法被自动调用，以保证layout实例的正确。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;首先，-(void)prepareLayout将被调用，默认下该方法什么没做，但是在自己的子类实现中，一般在该方法中设定一些必要的layout的结构和初始需要的参数等。
+
+之后，-(CGSize) collectionViewContentSize将被调用，以确定collection应该占据的尺寸。注意这里的尺寸不是指可视部分的尺寸，
+而应该是所有内容所占的尺寸。collectionView的本质是一个scrollView，因此需要这个尺寸来配置滚动行为。
+
+接下来-(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect被调用，这个没什么值得多说的。初始的layout的外观将由该方法返回的UICollectionViewLayoutAttributes来决定。
+
+另外，在需要更新layout时，需要给当前layout发送 -invalidateLayout，该消息会立即返回，并且预约在下一个loop的时候刷新当前layout，这一点和UIView的setNeedsLayout方法十分类似。
+在-invalidateLayout后的下一个collectionView的刷新loop中，又会从prepareLayout开始，依次再调用-collectionViewContentSize和-layoutAttributesForElementsInRect来生成更新后的布局。
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;UICollectionViewLayout&quot;&gt;&lt;a href=&quot;#UICollectionViewLayout&quot; class=&quot;headerlink&quot; title=&quot;UICollectionViewLayout&quot;&gt;&lt;/a&gt;UICollectionViewLayout&lt;/h3&gt;&lt;p&gt;终于到UICollectionView的精髓了…这也是UICollectionView和UITableView最大的不同。&lt;br&gt;UICollectionViewLayout可以说是UICollectionView的大脑和中枢，它负责了将各个cell、Supplementary View和Decoration Views进行组织，为它们设定各自的属性，包括但不限于：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    位置
+    尺寸
+    透明度
+    层级关系
+    形状
+    等等等等…
+
+Layout决定了UICollectionView是如何显示在界面上的。
+在展示之前，一般需要生成合适的UICollectionViewLayout子类对象，并将其赋予CollectionView的collectionViewLayout属性。
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>UICollectionView - 使用一</title>
+    <link href="http://yoursite.com/2016/12/18/UICollectionView-%E4%BD%BF%E7%94%A8%E4%B8%80/"/>
+    <id>http://yoursite.com/2016/12/18/UICollectionView-使用一/</id>
+    <published>2016-12-18T11:39:38.000Z</published>
+    <updated>2016-12-18T11:41:50.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;什么是UICollectionView&quot;&gt;&lt;a href=&quot;#什么是UICollectionView&quot; class=&quot;headerlink&quot; title=&quot;什么是UICollectionView&quot;&gt;&lt;/a&gt;什么是UICollectionView&lt;/h3&gt;&lt;p&gt;UICollectionView是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView(请一定注意这是UICollectionView的最最简单的形式)。&lt;/p&gt;
+&lt;p&gt;最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。标准的UICollectionView包含三个部分，它们都是UIView的子类：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;＊  Cells 用于展示内容的主体，对于不同的cell可以指定不同尺寸和不同的内容 
+＊  Supplementary Views 追加视图 如果你对UITableView比较熟悉的话，可以理解为每个Section的Header或者Footer，用来标记每个section的view
+＊  Decoration Views 装饰视图 这是每个section的背景，
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;实现一个简单的UICollectionView&quot;&gt;&lt;a href=&quot;#实现一个简单的UICollectionView&quot; class=&quot;headerlink&quot; title=&quot;实现一个简单的UICollectionView&quot;&gt;&lt;/a&gt;实现一个简单的UICollectionView&lt;/h3&gt;&lt;p&gt;实现一个UICollectionView和实现一个UITableView基本没有什么大区别，它们都同样是datasource和delegate设计模式的：datasource为view提供数据源，告诉view要显示些什么东西以及如何显示它们，delegate提供一些样式的小细节以及用户交互的相应。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;＊ UICollectionViewDataSource
+
+        section的数量  ￼-numberOfSectionsInCollection:
+        某个section里有多少个item ￼ -collectionView:numberOfItemsInSection:
+        对于某个位置应该显示什么样的cell ￼ -collectionView:cellForItemAtIndexPath:
+
+  实现以上三个委托方法，基本上就可以保证CollectionView工作正常了。 当然，还有提供Supplementary View的方法
+
+     collectionView:viewForSupplementaryElementOfKind:atIndexPath:
+
+   对于Decoration Views，提供方法并不在UICollectionViewDataSource中，而是直接UICollectionViewLayout类中的(因为它仅仅是视图相关，而与数据无关)
+
+
+＊ UICollectionViewDelegate
+
+    数据无关的view的外形啊，用户交互啊什么的，由UICollectionViewDelegate来负责：
+
+        cell的高亮
+        cell的选中状态
+        可以支持长按后的菜单
+
+    关于用户交互，UICollectionView也做了改进。每个cell现在有独立的高亮事件和选中事件的delegate，用户点击cell的时候，现在会按照以下流程向delegate进行询问：
+
+        -￼collectionView:shouldHighlightItemAtIndexPath: 是否应该高亮？
+        -￼collectionView:didHighlightItemAtIndexPath: 如果1回答为是，那么高亮
+        -￼collectionView:shouldSelectItemAtIndexPath: 无论1结果如何，都询问是否可以被选中？
+        -collectionView:didUnhighlightItemAtIndexPath: 如果1回答为是，那么现在取消高亮
+        -collectionView:didSelectItemAtIndexPath: 如果3回答为是，那么选中cell
+
+    状态控制要比以前灵活一些，对应的高亮和选中状态分别由highlighted和selected两个属性表示。  
+
+
+＊ 关于Cell
+
+    相对于UITableViewCell来说，UICollectionViewCell没有这么多花头。首先UICollectionViewCell不存在各式各样的默认的style，这主要是由于展示对象的性质决定的，因为UICollectionView所用来展示的对象相比UITableView来说要来得灵活，大部分情况下更偏向于图像而非文字，因此需求将会千奇百怪。因此SDK提供给我们的默认的UICollectionViewCell结构上相对比较简单，由下至上：
+
+        首先是cell本身作为容器view
+        然后是一个大小自动适应整个cell的backgroundView，用作cell平时的背景
+        再其上是selectedBackgroundView，是cell被选中时的背景
+        最后是一个contentView，自定义内容应被加在这个view上
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这次Apple给我们带来的好康是被选中cell的自动变化，所有的cell中的子view，也包括contentView中的子view，在当cell被选中时，会自动去查找view是否有被选中状态下的改变。比如在contentView里加了一个normal和selected指定了不同图片的imageView，那么选中这个cell的同时这张图片也会从normal变成selected，而不需要额外的任何代码。&lt;/p&gt;
+&lt;p&gt;文章后面有两个水平比较高的例子 － &lt;a href=&quot;https://onevcat.com/2012/08/advanced-collection-view&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://onevcat.com/2012/08/advanced-collection-view&lt;/a&gt; 和 &lt;a href=&quot;https://objccn.io/issue-12-5/）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://objccn.io/issue-12-5/）&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是UICollectionView&quot;&gt;&lt;a href=&quot;#什么是UICollectionView&quot; class=&quot;headerlink&quot; title=&quot;什么是UICollectionView&quot;&gt;&lt;/a&gt;什么是UICollectionView&lt;/h3&gt;&lt;p&gt;UICollectionView是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView(请一定注意这是UICollectionView的最最简单的形式)。&lt;/p&gt;
+&lt;p&gt;最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。标准的UICollectionView包含三个部分，它们都是UIView的子类：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;＊  Cells 用于展示内容的主体，对于不同的cell可以指定不同尺寸和不同的内容 
+＊  Supplementary Views 追加视图 如果你对UITableView比较熟悉的话，可以理解为每个Section的Header或者Footer，用来标记每个section的view
+＊  Decoration Views 装饰视图 这是每个section的背景，
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS开发中的几种设计模式介绍</title>
@@ -1346,117 +1541,6 @@ typedef NSString *(^block2)(NSString *);
       &lt;p&gt;Block是一个C语言的特性，它就是C语言的函数指针，在使用中最多的就是进行函数回调或者事件传递，比如发送数据到服务器，等待服务器反馈是成功还是失败，此时block就派上用场了.&lt;/p&gt;
 &lt;h3 id=&quot;基本语法&quot;&gt;&lt;a href=&quot;#基本语法&quot; class=&quot;headerlink&quot; title=&quot;基本语法&quot;&gt;&lt;/a&gt;基本语法&lt;/h3&gt;&lt;h4 id=&quot;As-a-local-variable&quot;&gt;&lt;a href=&quot;#As-a-local-variable&quot; class=&quot;headerlink&quot; title=&quot;As a local variable:&quot;&gt;&lt;/a&gt;As a local variable:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;returnType (^blockName)(parameterTypes) = ^returnType(parameters) {...};
 &lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title> 系统定位</title>
-    <link href="http://yoursite.com/2016/08/28/%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%BD%8D/"/>
-    <id>http://yoursite.com/2016/08/28/系统定位/</id>
-    <published>2016-08-28T11:35:47.000Z</published>
-    <updated>2016-08-28T11:37:19.000Z</updated>
-    
-    <content type="html">&lt;p&gt;首先导入CoreLocation.framework，然后再引入头文件#import&lt;/p&gt;
-&lt;h3 id=&quot;定义属性&quot;&gt;&lt;a href=&quot;#定义属性&quot; class=&quot;headerlink&quot; title=&quot;定义属性&quot;&gt;&lt;/a&gt;定义属性&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;@property (nonatomic , strong)CLLocationManager *locationManager;
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;初始化定位服务&quot;&gt;&lt;a href=&quot;#初始化定位服务&quot; class=&quot;headerlink&quot; title=&quot;初始化定位服务&quot;&gt;&lt;/a&gt;初始化定位服务&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;#pragma mark - 私有方法
-///初始化定位服务
-- (void)settupLocation
-{
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-
-    if ([CLLocationManager locationServicesEnabled] &amp;amp;&amp;amp;
-        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        //定位功能可用，开始定位
-        [self.locationManager startUpdatingLocation];
-
-    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-        //请求授权
-        [self.locationManager requestWhenInUseAuthorization];
-
-    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied
-              || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted){
-    }
-    if (self.schoolStr.length &amp;lt; 2) {
-        // 开始定位
-        [_locationManager startUpdatingLocation];
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;然后使用代理-CLLocationManagerDelegate&quot;&gt;&lt;a href=&quot;#然后使用代理-CLLocationManagerDelegate&quot; class=&quot;headerlink&quot; title=&quot;然后使用代理 CLLocationManagerDelegate&quot;&gt;&lt;/a&gt;然后使用代理 CLLocationManagerDelegate&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;#pragma mark - &amp;lt;CLLocationManagerDelegate&amp;gt;
-///成功定位
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray&amp;lt;CLLocation *&amp;gt; *)locations
-{
-    //经纬度信息
-    CLLocation *location = [locations lastObject];
-
-    //反地理编码
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray&amp;lt;CLPlacemark *&amp;gt; * _Nullable placemarks, NSError * _Nullable error) {
-        //编码成功
-        if (!error &amp;amp;&amp;amp; placemarks.count &amp;gt; 0) {
-            //获取地址对象
-            CLPlacemark *address = placemarks.firstObject;
-            //获取城市名称
-            NSMutableString *city = [NSMutableString stringWithString:address.locality];
-            if ([city containsString:@&amp;quot;市&amp;quot;]) {
-                [city deleteCharactersInRange:[city rangeOfString: @&amp;quot;市&amp;quot;]];
-            }
-            //显示定位信息
-            self.schoolStr = city;
-            [self.tableView reloadData];
-            //停止定位
-            [self.locationManager stopUpdatingLocation];
-
-        } else {
-            //编码失败
-        }
-    }];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;在Info-plist文件中添加如下配置：&quot;&gt;&lt;a href=&quot;#在Info-plist文件中添加如下配置：&quot; class=&quot;headerlink&quot; title=&quot;在Info.plist文件中添加如下配置：&quot;&gt;&lt;/a&gt;在Info.plist文件中添加如下配置：&lt;/h3&gt;&lt;p&gt;（1）NSLocationAlwaysUsageDescription&lt;br&gt;（2）NSLocationWhenInUseUsageDescription&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先导入CoreLocation.framework，然后再引入头文件#import&lt;/p&gt;
-&lt;h3 id=&quot;定义属性&quot;&gt;&lt;a href=&quot;#定义属性&quot; class=&quot;headerlink&quot; title=&quot;定义属性&quot;&gt;&lt;/a&gt;定义属性&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;@property (nonatomic , strong)CLLocationManager *locationManager;
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title> initWithNibName 和 loadNibNamed 的区别和联系</title>
-    <link href="http://yoursite.com/2016/08/13/initWithNibName-%E5%92%8C-loadNibNamed-%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB/"/>
-    <id>http://yoursite.com/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/</id>
-    <published>2016-08-13T11:13:03.000Z</published>
-    <updated>2016-08-13T11:14:02.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;联系&quot;&gt;&lt;a href=&quot;#联系&quot; class=&quot;headerlink&quot; title=&quot;联系&quot;&gt;&lt;/a&gt;联系&lt;/h3&gt;&lt;p&gt; 可以使用此方法加载用户界面（xib文件）到我们的代码中，这样，可以通过操作这个加载进来的（xib）对象，来操作xib文件内容。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;区别&quot;&gt;&lt;a href=&quot;#区别&quot; class=&quot;headerlink&quot; title=&quot;区别&quot;&gt;&lt;/a&gt;区别&lt;/h3&gt;&lt;p&gt;1.集成类不一样&lt;/p&gt;
-&lt;p&gt;initWithNibName要加载的xib的类为我们定义的视图控制器类&lt;br&gt;loadNibNamed要加载的xib的类为NSOjbect&lt;/p&gt;
-&lt;p&gt;2.加载方式不同&lt;/p&gt;
-&lt;p&gt;initWithNibName方法：是延迟加载，这个View上的控件是 nil 的，只有到 需要显示时，才会不是 nil&lt;br&gt;loadNibNamed方法：即时加载，用该方法加载的xib对象中的各个元素都已经存在。&lt;/p&gt;
-&lt;h3 id=&quot;获取想要的-view&quot;&gt;&lt;a href=&quot;#获取想要的-view&quot; class=&quot;headerlink&quot; title=&quot;获取想要的 view&quot;&gt;&lt;/a&gt;获取想要的 view&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSArray* nib = [[NSBundle mainBundle] loadNibNamed／@&amp;quot;CustomCell&amp;quot; owner:self options:nil];
-for(id item in nib) {
-
-    if([is isKindOfClass:[youview class]]) {
-
-    //找到了你自己需要得view
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;联系&quot;&gt;&lt;a href=&quot;#联系&quot; class=&quot;headerlink&quot; title=&quot;联系&quot;&gt;&lt;/a&gt;联系&lt;/h3&gt;&lt;p&gt; 可以使用此方法加载用户界面（xib文件）到我们的代码中，这样，可以通过操作这个加载进来的（xib）对象，来操作xib文件内容。&lt;/p&gt;
     
     </summary>
     

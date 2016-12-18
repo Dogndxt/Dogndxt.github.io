@@ -4,30 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>iOS开发中的几种设计模式介绍 | 第欧根尼的小桶</title>
+  <title>UICollectionView - 使用二 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：
-代理模式应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。优势：解耦合敏捷原则：开放-封闭原则
-实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
-列表row个数delegate
-自定义的delegate">
+  <meta name="description" content="UICollectionViewLayout终于到UICollectionView的精髓了…这也是UICollectionView和UITableView最大的不同。UICollectionViewLayout可以说是UICollectionView的大脑和中枢，它负责了将各个cell、Supplementary View和Decoration Views进行组织，为它们设定各自的属性，包括但不限">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS开发中的几种设计模式介绍">
-<meta property="og:url" content="http://yoursite.com/2016/12/11/iOS开发中的几种设计模式介绍/index.html">
+<meta property="og:title" content="UICollectionView - 使用二">
+<meta property="og:url" content="http://yoursite.com/2016/12/18/UICollectionView-使用二/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：
-代理模式应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。优势：解耦合敏捷原则：开放-封闭原则
-实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
-列表row个数delegate
-自定义的delegate">
-<meta property="og:updated_time" content="2016-12-11T13:12:11.000Z">
+<meta property="og:description" content="UICollectionViewLayout终于到UICollectionView的精髓了…这也是UICollectionView和UITableView最大的不同。UICollectionViewLayout可以说是UICollectionView的大脑和中枢，它负责了将各个cell、Supplementary View和Decoration Views进行组织，为它们设定各自的属性，包括但不限">
+<meta property="og:updated_time" content="2016-12-18T11:47:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS开发中的几种设计模式介绍">
-<meta name="twitter:description" content="iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：
-代理模式应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。优势：解耦合敏捷原则：开放-封闭原则
-实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
-列表row个数delegate
-自定义的delegate">
+<meta name="twitter:title" content="UICollectionView - 使用二">
+<meta name="twitter:description" content="UICollectionViewLayout终于到UICollectionView的精髓了…这也是UICollectionView和UITableView最大的不同。UICollectionViewLayout可以说是UICollectionView的大脑和中枢，它负责了将各个cell、Supplementary View和Decoration Views进行组织，为它们设定各自的属性，包括但不限">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -203,11 +191,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-iOS开发中的几种设计模式介绍" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-UICollectionView-使用二" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/11/iOS开发中的几种设计模式介绍/" class="article-date">
-  	<time datetime="2016-12-11T13:02:50.000Z" itemprop="datePublished">2016-12-11</time>
+      <a href="/2016/12/18/UICollectionView-使用二/" class="article-date">
+  	<time datetime="2016-12-18T11:43:22.000Z" itemprop="datePublished">2016-12-18</time>
 </a>
     </div>
   
@@ -220,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      iOS开发中的几种设计模式介绍
+      UICollectionView - 使用二
     </h1>
   
 
@@ -236,33 +224,101 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：</p>
-<h4 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h4><p>应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。<br>优势：解耦合<br>敏捷原则：开放-封闭原则</p>
-<pre><code>实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
-列表row个数delegate
-自定义的delegate
+        <h3 id="UICollectionViewLayout"><a href="#UICollectionViewLayout" class="headerlink" title="UICollectionViewLayout"></a>UICollectionViewLayout</h3><p>终于到UICollectionView的精髓了…这也是UICollectionView和UITableView最大的不同。<br>UICollectionViewLayout可以说是UICollectionView的大脑和中枢，它负责了将各个cell、Supplementary View和Decoration Views进行组织，为它们设定各自的属性，包括但不限于：</p>
+<pre><code>    位置
+    尺寸
+    透明度
+    层级关系
+    形状
+    等等等等…
+
+Layout决定了UICollectionView是如何显示在界面上的。
+在展示之前，一般需要生成合适的UICollectionViewLayout子类对象，并将其赋予CollectionView的collectionViewLayout属性。
 </code></pre><a id="more"></a>
-<h4 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h4><p>应用场景：一般为对model层，controller和view进行的通知方式，不关心谁去接收，只负责发布信息。<br>优势：解耦合<br>敏捷原则：接口隔离原则，开放-封闭原则</p>
-<pre><code>实例：Notification通知中心，注册通知中心，任何位置可以发送消息，注册观察者的对象可以接收。
-kvo，键值对改变通知的观察者
-</code></pre><h4 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h4><p>应用场景：是一中非常古老的设计模式，通过数据模型，控制器逻辑，视图展示将应用程序进行逻辑划分。<br>优势：使系统，层次清晰，职责分明，易于维护<br>敏捷原则：对扩展开放-对修改封闭</p>
-<pre><code>实例：model-即数据模型，view-视图展示，controller进行UI展现和数据交互的逻辑控制。
-</code></pre><h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><p>应用场景：确保程序运行期某个类，只有一份实例，用于进行资源共享控制。<br>优势：使用简单，延时求值，易于跨模块<br>敏捷原则：单一职责原则</p>
-<pre><code>实例：[UIApplication sharedApplication]。
-注意事项：确保使用者只能通过 getInstance方法才能获得，单例类的唯一实例。
-java，C++中使其没有公有构造函数，私有化并覆盖其构造函数。
-object c中，重写allocWithZone方法，保证即使用户用 alloc方法直接创建单例类的实例，
-返回的也只是此单例类的唯一静态变量。
-</code></pre><h4 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h4><p>应用场景：定义算法族，封装起来，使他们之间可以相互替换。<br>优势：使算法的变化独立于使用算法的用户<br>敏捷原则：接口隔离原则；多用组合，少用继承；针对接口编程，而非实现。</p>
-<pre><code>实例：排序算法，NSArray的sortedArrayUsingSelector；经典的鸭子会叫，会飞案例。
-注意事项：1，剥离类中易于变化的行为，通过组合的方式嵌入抽象基类
-2，变化的行为抽象基类为，所有可变变化的父类
-3，用户类的最终实例，通过注入行为实例的方式，设定易变行为
-防止了继承行为方式，导致无关行为污染子类。完成了策略封装和可替换性。
-</code></pre><h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><p>应用场景：工厂方式创建类的实例，多与proxy模式配合，创建可替换代理类。<br>优势：易于替换，面向抽象编程，application只与抽象工厂和易变类的共性抽象类发生调用关系。<br>敏捷原则：DIP依赖倒置原则</p>
-<pre><code>实例：项目部署环境中依赖多个不同类型的数据库时，需要使用工厂配合proxy完成易用性替换
-注意事项：项目初期，软件结构和需求都没有稳定下来时，不建议使用此模式，因为其劣势也很明显，
-增 加了代码的复杂度，增加了调用层次，增加了内存负担。所以要注意防止模式的滥用。
+<h3 id="UICollectionViewFlowLayout"><a href="#UICollectionViewFlowLayout" class="headerlink" title="UICollectionViewFlowLayout"></a>UICollectionViewFlowLayout</h3><p>Apple为我们提供了一个最简单可能也是最常用的默认layout对象，￼￼￼UICollectionViewFlowLayout。<br>Flow Layout简单说是一个直线对齐的layout，最常见的Grid View形式即为一种Flow Layout配置。上面的照片架界面就是一个典型的Flow Layout。</p>
+<pre><code> 首先一个重要的属性是itemSize，它定义了每一个item的大小。通过设定itemSize可以全局地改变所有cell的尺寸，如果想要对某个cell制定尺寸，可以使用
+     -collectionView:layout:sizeForItemAtIndexPath:方法。
+
+间隔 可以指定item之间的间隔和每一行之间的间隔，和size类似，有全局属性，也可以对每一个item和每一个section做出设定：
+
+    @property (CGSize) minimumInteritemSpacing
+    @property (CGSize) minimumLineSpacing
+    -collectionView:layout:minimumInteritemSpacingForSectionAtIndex:
+    -collectionView:layout:minimumLineSpacingForSectionAtIndex:
+
+滚动方向 由属性scrollDirection确定scroll view的方向，将影响Flow Layout的基本方向和由header及footer确定的section之间的宽度
+
+    UICollectionViewScrollDirectionVertical
+    UICollectionViewScrollDirectionHorizontal
+
+Header和Footer尺寸 同样地分为全局和部分。需要注意根据滚动方向不同，header和footer的高和宽中只有一个会起作用。
+垂直滚动时section间宽度为该尺寸的高，而水平滚动时为宽度起作用。
+
+    @property (CGSize) headerReferenceSize
+    @property (CGSize) footerReferenceSize
+    -collectionView:layout:referenceSizeForHeaderInSection:
+    -collectionView:layout:referenceSizeForFooterInSection:
+缩进
+
+    @property UIEdgeInsets sectionInset;
+    -collectionView:layout:insetForSectionAtIndex:
+
+总结
+    一个UICollectionView的实现包括两个必要部分：UICollectionViewDataSource和UICollectionViewLayout，和一个交互部分：
+    UICollectionViewDelegate。而Apple给出的UICollectionViewFlowLayout已经是一个很强力的layout方案了。
+</code></pre><h3 id="UICollectionViewLayoutAttributes"><a href="#UICollectionViewLayoutAttributes" class="headerlink" title="UICollectionViewLayoutAttributes"></a>UICollectionViewLayoutAttributes</h3><pre><code> UICollectionViewLayoutAttributes是一个非常重要的类，先来看看property列表：
+
+     @property (nonatomic) CGRect frame
+     @property (nonatomic) CGPoint center
+     @property (nonatomic) CGSize size
+     @property (nonatomic) CATransform3D transform3D
+     @property (nonatomic) CGFloat alpha
+     @property (nonatomic) NSInteger zIndex
+     @property (nonatomic, getter=isHidden) BOOL hidden
+
+可以看到，UICollectionViewLayoutAttributes的实例中包含了诸如边框，中心点，大小，形状，透明度，层次关系和是否隐藏等信息。
+</code></pre><h3 id="自定义的UICollectionViewLayout"><a href="#自定义的UICollectionViewLayout" class="headerlink" title="自定义的UICollectionViewLayout"></a>自定义的UICollectionViewLayout</h3><pre><code>UICollectionViewLayout的功能为向UICollectionView提供布局信息，不仅包括cell的布局信息，也包括追加视图和装饰视图的布局信息。
+实现一个自定义layout的常规做法是继承UICollectionViewLayout类，然后重载下列方法：
+
+
+  - (CGSize)collectionViewContentSize    返回collectionView的内容的尺寸
+
+  -(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
+
+    返回rect中的所有的元素的布局属性
+    返回的是包含 UICollectionViewLayoutAttributes的NSArray
+    UICollectionViewLayoutAttributes可以是cell，追加视图或装饰视图的信息，
+    通过不同的UICollectionViewLayoutAttributes初始化方法可以得到不同类型的UICollectionViewLayoutAttributes：
+
+        layoutAttributesForItemAtIndexPath:
+        layoutAttributesForSupplementaryViewOfKind:withIndexPath:
+        layoutAttributesForDecorationViewOfKind:withIndexPath:
+
+ -(UICollectionViewLayoutAttributes _)layoutAttributesForItemAtIndexPath:(NSIndexPath _)indexPath
+
+     返回对应于indexPath的位置的cell的布局属性
+
+ -(UICollectionViewLayoutAttributes _)layoutAttributesForSupplementaryViewOfKind:(NSString _)kind atIndexPath:(NSIndexPath *)indexPath
+
+     回对应于indexPath的位置的追加视图的布局属性，如果没有追加视图可不重载
+
+ -(UICollectionViewLayoutAttributes * )layoutAttributesForDecorationViewOfKind:(NSString_)decorationViewKind atIndexPath:(NSIndexPath _)indexPath
+
+     返回对应于indexPath的位置的装饰视图的布局属性，如果没有装饰视图可不重载
+
+ -(BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+
+    当边界发生改变时，是否应该刷新布局。如果YES则在边界变化（一般是scroll到其他地方）时，将重新计算需要的布局信息。
+</code></pre><p><strong>另外需要了解的是</strong>，在初始化一个UICollectionViewLayout实例后，会有一系列准备方法被自动调用，以保证layout实例的正确。</p>
+<pre><code>首先，-(void)prepareLayout将被调用，默认下该方法什么没做，但是在自己的子类实现中，一般在该方法中设定一些必要的layout的结构和初始需要的参数等。
+
+之后，-(CGSize) collectionViewContentSize将被调用，以确定collection应该占据的尺寸。注意这里的尺寸不是指可视部分的尺寸，
+而应该是所有内容所占的尺寸。collectionView的本质是一个scrollView，因此需要这个尺寸来配置滚动行为。
+
+接下来-(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect被调用，这个没什么值得多说的。初始的layout的外观将由该方法返回的UICollectionViewLayoutAttributes来决定。
+
+另外，在需要更新layout时，需要给当前layout发送 -invalidateLayout，该消息会立即返回，并且预约在下一个loop的时候刷新当前layout，这一点和UIView的setNeedsLayout方法十分类似。
+在-invalidateLayout后的下一个collectionView的刷新loop中，又会从prepareLayout开始，依次再调用-collectionViewContentSize和-layoutAttributesForElementsInRect来生成更新后的布局。
 </code></pre>
       
     </div>
@@ -272,18 +328,9 @@ object c中，重写allocWithZone方法，保证即使用户用 alloc方法直�
     
 <nav id="article-nav">
   
-    <a href="/2016/12/18/UICollectionView-使用一/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          UICollectionView - 使用一
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/11/27/UIAlertController-弹框/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">UIAlertController 弹框</div>
+    <a href="/2016/12/18/UICollectionView-使用一/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">UICollectionView - 使用一</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -318,7 +365,7 @@ object c中，重写allocWithZone方法，保证即使用户用 alloc方法直�
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="iOS开发中的几种设计模式介绍" data-title="iOS开发中的几种设计模式介绍" data-url="http://yoursite.com/2016/12/11/iOS开发中的几种设计模式介绍/"></div>
+	<div class="ds-thread" data-thread-key="UICollectionView-使用二" data-title="UICollectionView - 使用二" data-url="http://yoursite.com/2016/12/18/UICollectionView-使用二/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
