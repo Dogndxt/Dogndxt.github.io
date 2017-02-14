@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-18T11:47:40.000Z</updated>
+  <updated>2017-02-14T12:05:24.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关联ObjC</title>
+    <link href="http://yoursite.com/2017/02/14/%E5%85%B3%E8%81%94ObjC/"/>
+    <id>http://yoursite.com/2017/02/14/关联ObjC/</id>
+    <published>2017-02-14T11:06:41.000Z</published>
+    <updated>2017-02-14T12:05:24.000Z</updated>
+    
+    <content type="html">&lt;p&gt;关联(objc_setAssociatedObject、objc_getAssociatedObject、objc_removeAssociatedObjects）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;定义：关联是指把两个对象相互关联起来，使得其中的一个对象作为另外一个对象的一部分。
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;在类的定义之外为类增加额外的存储空间&quot;&gt;&lt;a href=&quot;#在类的定义之外为类增加额外的存储空间&quot; class=&quot;headerlink&quot; title=&quot;在类的定义之外为类增加额外的存储空间&quot;&gt;&lt;/a&gt;在类的定义之外为类增加额外的存储空间&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;使用关联，我们可以不用修改类的定义而为其对象增加存储空间。这在我们无法访问到类的源码的时候或者是考虑到二进制兼容性的时候是非常有用。
+
+关联是基于关键字的，因此，我们可以为任何对象增加任意多的关联，每个都使用不同的关键字即可。关联是可以保证被关联的对象在关联对象的整个生命周期都是可用的（在垃圾自动回收环境下也不会导致资源不可回收）。
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;创建关联&quot;&gt;&lt;a href=&quot;#创建关联&quot; class=&quot;headerlink&quot; title=&quot;创建关联&quot;&gt;&lt;/a&gt;创建关联&lt;/h4&gt;&lt;pre&gt;&lt;code&gt; 创建关联要使用到Objective-C的运行时函数：objc_setAssociatedObject 来把一个对象与另外一个对象进行关联。
+
+该函数需要四个参数：源对象，关键字，关联的对象和一个关联策略。
+
+ ■  关键字是一个void类型的指针。每一个关联的关键字必须是唯一的。通常都是会采用静态变量来作为关键字。
+ ■  关联策略表明了相关的对象是通过赋值，保留引用还是复制的方式进行关联的；还有这种关联是原子的还是非原子的。
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;获取相关联的对象&quot;&gt;&lt;a href=&quot;#获取相关联的对象&quot; class=&quot;headerlink&quot; title=&quot;获取相关联的对象&quot;&gt;&lt;/a&gt;获取相关联的对象&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;获取相关联的对象时使用Objective-C函数objc_getAssociatedObject。
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;断开关联&quot;&gt;&lt;a href=&quot;#断开关联&quot; class=&quot;headerlink&quot; title=&quot;断开关联&quot;&gt;&lt;/a&gt;断开关联&lt;/h4&gt;&lt;p&gt;断开关联是使用objc_setAssociatedObject函数，传入nil值即可。&lt;/p&gt;
+&lt;p&gt;使用函数objc_removeAssociatedObjects可以断开所有关联。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (_FDViewControllerWillAppearInjectBlock)fd_willAppearInjectBlock
+{
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setFd_willAppearInjectBlock:(_FDViewControllerWillAppearInjectBlock)block
+{
+    objc_setAssociatedObject(self, @selector(fd_willAppearInjectBlock), block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关联(objc_setAssociatedObject、objc_getAssociatedObject、objc_removeAssociatedObjects）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;定义：关联是指把两个对象相互关联起来，使得其中的一个对象作为另外一个对象的一部分。
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;在类的定义之外为类增加额外的存储空间&quot;&gt;&lt;a href=&quot;#在类的定义之外为类增加额外的存储空间&quot; class=&quot;headerlink&quot; title=&quot;在类的定义之外为类增加额外的存储空间&quot;&gt;&lt;/a&gt;在类的定义之外为类增加额外的存储空间&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;使用关联，我们可以不用修改类的定义而为其对象增加存储空间。这在我们无法访问到类的源码的时候或者是考虑到二进制兼容性的时候是非常有用。
+
+关联是基于关键字的，因此，我们可以为任何对象增加任意多的关联，每个都使用不同的关键字即可。关联是可以保证被关联的对象在关联对象的整个生命周期都是可用的（在垃圾自动回收环境下也不会导致资源不可回收）。
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>UICollectionView - 使用二</title>
@@ -1436,111 +1483,6 @@ public int getDayNumber(int year, int month) {
 &lt;li&gt;我们不需要重写我们的代码如果一个描述或者存储属性的方法改变。&lt;/li&gt;
 &lt;li&gt;存储方法常常实现重要行为是无论何时一个值被检索或者设置都会被重现。例如，设置方法频繁的实现内存管理代码并且通知其他对象当一个值被改变的时候。&lt;/li&gt;
 &lt;/ol&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>block的使用</title>
-    <link href="http://yoursite.com/2016/08/28/block%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://yoursite.com/2016/08/28/block的使用/</id>
-    <published>2016-08-28T11:40:33.000Z</published>
-    <updated>2016-08-28T11:42:30.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Block是一个C语言的特性，它就是C语言的函数指针，在使用中最多的就是进行函数回调或者事件传递，比如发送数据到服务器，等待服务器反馈是成功还是失败，此时block就派上用场了.&lt;/p&gt;
-&lt;h3 id=&quot;基本语法&quot;&gt;&lt;a href=&quot;#基本语法&quot; class=&quot;headerlink&quot; title=&quot;基本语法&quot;&gt;&lt;/a&gt;基本语法&lt;/h3&gt;&lt;h4 id=&quot;As-a-local-variable&quot;&gt;&lt;a href=&quot;#As-a-local-variable&quot; class=&quot;headerlink&quot; title=&quot;As a local variable:&quot;&gt;&lt;/a&gt;As a local variable:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;returnType (^blockName)(parameterTypes) = ^returnType(parameters) {...};
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h4 id=&quot;As-a-property&quot;&gt;&lt;a href=&quot;#As-a-property&quot; class=&quot;headerlink&quot; title=&quot;As a property:&quot;&gt;&lt;/a&gt;As a property:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;@property (nonatomic, copy, nullability) returnType (^blockName)(parameterTypes);
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;As-a-method-parameter&quot;&gt;&lt;a href=&quot;#As-a-method-parameter&quot; class=&quot;headerlink&quot; title=&quot;As a method parameter:&quot;&gt;&lt;/a&gt;As a method parameter:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;- (void)someMethodThatTakesABlock:(returnType (^nullability)(parameterTypes))blockName;
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;As-an-argument-to-a-method-call&quot;&gt;&lt;a href=&quot;#As-an-argument-to-a-method-call&quot; class=&quot;headerlink&quot; title=&quot;As an argument to a method call:&quot;&gt;&lt;/a&gt;As an argument to a method call:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;[someObject someMethodThatTakesABlock:^returnType (parameters) {...}];
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;As-a-typedef&quot;&gt;&lt;a href=&quot;#As-a-typedef&quot; class=&quot;headerlink&quot; title=&quot;As a typedef:&quot;&gt;&lt;/a&gt;As a typedef:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;typedef returnType (^TypeName)(parameterTypes);
-TypeName blockName = ^returnType(parameters) {...};
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;代码示例&quot;&gt;&lt;a href=&quot;#代码示例&quot; class=&quot;headerlink&quot; title=&quot;代码示例&quot;&gt;&lt;/a&gt;代码示例&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-@interface ViewController ()
-
-@property (nonatomic, assign) void (^block)(NSString *);
-
-@end
-
-typedef void (^block)(NSString *);
-typedef NSString *(^block2)(NSString *);
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    int (^num)(int) = ^(int a) {
-
-        return a * 6;
-    };
-    NSLog(@&amp;quot;%d&amp;quot;, num(5));
-
-    block b = ^(NSString *string) {
-
-        NSLog(@&amp;quot;%@&amp;quot;, string);
-    };
-    b(@&amp;quot;4677646974&amp;quot;);
-
-    block2 b2 = ^(NSString *string) {
-        NSLog(@&amp;quot;%@&amp;quot;, string);
-        return string;
-    };
-    NSLog(@&amp;quot;%@&amp;quot;, b2(@&amp;quot;456&amp;quot;));
-
-    [self methodsBlock:^(NSString *block3) {
-
-        NSLog(@&amp;quot;%@&amp;quot;, block3);
-    }];
-
-    [self methodsBlock2:^NSString *(NSString *block4) {
-
-        NSLog(@&amp;quot;%@&amp;quot;, block4);
-        return @&amp;quot;1&amp;quot;;
-    }];
-    NSLog(@&amp;quot;%@&amp;quot;, [self methodsBlock3:^NSString *(NSString *block5) {
-        NSLog(@&amp;quot;%@&amp;quot;, block5);
-        return @&amp;quot;2&amp;quot;;
-    }]);
-
-    int (^num2)(int, int, int, int, int, int, int) = ^(int a, int b, int c, int d, int e, int f, int g) {
-
-        return a * b * c * d * e * f * g;
-    };
-    NSLog(@&amp;quot;num2 = %d&amp;quot;, num2(10, 2, 5, 1, 45, 4, 4));
-
-
-}
-
-- (void)methodsBlock:(void(^)(NSString *))block3 {
-
-    block3(@&amp;quot;block3&amp;quot;);
-}
-
-
-- (void)methodsBlock2:(NSString *(^)(NSString *))block4 {
-
-    block4(@&amp;quot;block4&amp;quot;);
-    NSLog(@&amp;quot;%@&amp;quot;, block4(@&amp;quot;block4&amp;quot;));
-}
-
-
-- (NSString *)methodsBlock3:(NSString *(^ __nullable)(NSString *))block5 {
-
-    block5(@&amp;quot;block5&amp;quot;);
-    NSLog(@&amp;quot;block5 = %@&amp;quot;, block5(@&amp;quot;block5&amp;quot;));
-    return @&amp;quot;block5&amp;quot;;
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Block是一个C语言的特性，它就是C语言的函数指针，在使用中最多的就是进行函数回调或者事件传递，比如发送数据到服务器，等待服务器反馈是成功还是失败，此时block就派上用场了.&lt;/p&gt;
-&lt;h3 id=&quot;基本语法&quot;&gt;&lt;a href=&quot;#基本语法&quot; class=&quot;headerlink&quot; title=&quot;基本语法&quot;&gt;&lt;/a&gt;基本语法&lt;/h3&gt;&lt;h4 id=&quot;As-a-local-variable&quot;&gt;&lt;a href=&quot;#As-a-local-variable&quot; class=&quot;headerlink&quot; title=&quot;As a local variable:&quot;&gt;&lt;/a&gt;As a local variable:&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;returnType (^blockName)(parameterTypes) = ^returnType(parameters) {...};
-&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     

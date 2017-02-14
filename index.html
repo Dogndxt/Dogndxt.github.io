@@ -192,6 +192,67 @@
 
       <div class="body-wrap">
   
+    <article id="post-关联ObjC" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/14/关联ObjC/" class="article-date">
+  	<time datetime="2017-02-14T11:06:41.000Z" itemprop="datePublished">2017-02-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/14/关联ObjC/">关联ObjC</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关联(objc_setAssociatedObject、objc_getAssociatedObject、objc_removeAssociatedObjects）</p>
+<pre><code>定义：关联是指把两个对象相互关联起来，使得其中的一个对象作为另外一个对象的一部分。
+</code></pre><h4 id="在类的定义之外为类增加额外的存储空间"><a href="#在类的定义之外为类增加额外的存储空间" class="headerlink" title="在类的定义之外为类增加额外的存储空间"></a>在类的定义之外为类增加额外的存储空间</h4><pre><code>使用关联，我们可以不用修改类的定义而为其对象增加存储空间。这在我们无法访问到类的源码的时候或者是考虑到二进制兼容性的时候是非常有用。
+
+关联是基于关键字的，因此，我们可以为任何对象增加任意多的关联，每个都使用不同的关键字即可。关联是可以保证被关联的对象在关联对象的整个生命周期都是可用的（在垃圾自动回收环境下也不会导致资源不可回收）。
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/02/14/关联ObjC/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-UICollectionView-使用二" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -639,84 +700,9 @@ longPressed.delegate = self;
 
 
   
-    <article id="post-iOS特别知识点总结六" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/20/iOS特别知识点总结六/" class="article-date">
-  	<time datetime="2016-10-20T14:04:41.000Z" itemprop="datePublished">2016-10-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/20/iOS特别知识点总结六/">iOS特别知识点总结六</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>//判断内容是否全部为空格  yes 全部为空格  no 不是</p>
-<pre><code>- (BOOL)isEmpty:(NSString *) str {
-
-    if (!str) {
-        return true;
-    } else {
-        //A character set containing only the whitespace characters space (U+0020) and tab (U+0009) and the newline and nextline characters (U+000A–U+000D, U+0085).
-        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-
-        //Returns a new string made by removing from both ends of the receiver characters contained in a given character set.
-        NSString *trimedString = [str stringByTrimmingCharactersInSet:set];
-
-        if ([trimedString length] == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/10/20/iOS特别知识点总结六/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
@@ -724,7 +710,7 @@ longPressed.delegate = self;
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 第欧根尼的小桶
+    		&copy; 2017 第欧根尼的小桶
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
