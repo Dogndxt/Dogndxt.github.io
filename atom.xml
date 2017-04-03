@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-14T12:05:24.000Z</updated>
+  <updated>2017-04-03T02:28:58.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,167 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS特别技能点总结5</title>
+    <link href="http://yoursite.com/2017/04/03/iOS%E7%89%B9%E5%88%AB%E6%8A%80%E8%83%BD%E7%82%B9%E6%80%BB%E7%BB%935/"/>
+    <id>http://yoursite.com/2017/04/03/iOS特别技能点总结5/</id>
+    <published>2017-04-03T02:25:40.000Z</published>
+    <updated>2017-04-03T02:28:58.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;字典转为Json字符串&quot;&gt;&lt;a href=&quot;#字典转为Json字符串&quot; class=&quot;headerlink&quot; title=&quot;字典转为Json字符串&quot;&gt;&lt;/a&gt;字典转为Json字符串&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;  //字典转为Json字符串
++(NSString *)dictionaryToJson:(NSDictionary *)dic
+{
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&amp;amp;error];
+    re
+    turn [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;iOS-隐藏顶部状态栏方式&quot;&gt;&lt;a href=&quot;#iOS-隐藏顶部状态栏方式&quot; class=&quot;headerlink&quot; title=&quot;iOS_隐藏顶部状态栏方式&quot;&gt;&lt;/a&gt;iOS_隐藏顶部状态栏方式&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;Storyboard
+
+界面上选中UIViewController,最右边Simulated Metrics找到 Status Bar 设定成 None
+
+ViewController
+
+iOS 6通过[UIApplication sharedApplication] 取得app的单例，然后调用setStatusBarHidden方法隐藏 Status Bar。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;生成-n-位随机数&quot;&gt;&lt;a href=&quot;#生成-n-位随机数&quot; class=&quot;headerlink&quot; title=&quot;生成 n 位随机数&quot;&gt;&lt;/a&gt;生成 n 位随机数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSString *string = [[NSString alloc]init];
+for (int i = 0; i &amp;lt; 32; i++) {
+    int number = arc4random() % 36;
+    if (number &amp;lt; 10) {
+        int figure = arc4random() % 10;
+       NSString *tempString = [NSString stringWithFormat:@&amp;quot;%d&amp;quot;, figure];
+        string = [string stringByAppendingString:tempString];
+    }else {
+        int figure = (arc4random() % 26) + 97;
+        char character = figure;
+         NSString *tempString = [NSString stringWithFormat:@&amp;quot;%c&amp;quot;, character];
+        string = [string stringByAppendingString:tempString];
+    }
+}
+NSLog(@&amp;quot;%@&amp;quot;, string);
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取-UDID&quot;&gt;&lt;a href=&quot;#获取-UDID&quot; class=&quot;headerlink&quot; title=&quot;获取 UDID&quot;&gt;&lt;/a&gt;获取 UDID&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSString *_String = [[NSUUID UUID] UUIDString];//随机字符串
+NSLog(@&amp;quot;%@&amp;quot;,_String);
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;大数据存储单位介绍-TB、PB、EB、ZB、YB有多大&quot;&gt;&lt;a href=&quot;#大数据存储单位介绍-TB、PB、EB、ZB、YB有多大&quot; class=&quot;headerlink&quot; title=&quot;大数据存储单位介绍(TB、PB、EB、ZB、YB有多大)&quot;&gt;&lt;/a&gt;大数据存储单位介绍(TB、PB、EB、ZB、YB有多大)&lt;/h3&gt;&lt;p&gt; 　　Byte字节，计算机信息的一种基本单位，也就是信息的存储单元。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1Byte = 8 Bit 
+
+1 KB = 1,024 Bytes　 
+
+1 MB = 1,024 KB = 1,048,576 Bytes　 
+
+1 GB = 1,024 MB = 1,048,576 KB = 1,073,741,824 Bytes 
+
+1 TB = 1,024 GB = 1,048,576 MB = 1,073,741,824 KB = 1,099,511,627,776 Bytes 
+
+1 PB = 1,024 TB = 1,048,576 GB =1,125,899,906,842,624 Bytes 
+
+1 EB = 1,024 PB = 1,048,576 TB = 1,152,921,504,606,846,976 Bytes 
+
+1 ZB = 1,024 EB = 1,180,591,620,717,411,303,424 Bytes 
+
+1 YB = 1,024 ZB = 1,208,925,819,614,629,174,706,176 Bytes 
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;XCode调试技巧之EXC-BAD-ACCESS中BUG解决&quot;&gt;&lt;a href=&quot;#XCode调试技巧之EXC-BAD-ACCESS中BUG解决&quot; class=&quot;headerlink&quot; title=&quot;XCode调试技巧之EXC_BAD_ACCESS中BUG解决&quot;&gt;&lt;/a&gt;XCode调试技巧之EXC_BAD_ACCESS中BUG解决&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1、通过编辑Edit Scheme，选择Diagnostics，勾选Enable Zombie Objects &amp;amp; Malloc Stack（注意、调试完毕后必须取消勾选，因为Zombile模式不会释放内存，很危险）
+
+2、重新run你的程序，reproduce crash流程，控制台会输出如下log:
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;iOS断言-NSAssert的使用&quot;&gt;&lt;a href=&quot;#iOS断言-NSAssert的使用&quot; class=&quot;headerlink&quot; title=&quot;iOS断言 NSAssert的使用&quot;&gt;&lt;/a&gt;iOS断言 NSAssert的使用&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;在程序设计中，断言（assertion）是一种放在程序中的一阶逻辑（如一个结果为真或是假的逻辑判断式），
+目的是为了标示与验证程序开发者预期的结果－当程序运行到断言的位置时，对应的断言应该为真。若断言不为真时，程序会中止运行，并给出错误消息。
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;字典转为Json字符串&quot;&gt;&lt;a href=&quot;#字典转为Json字符串&quot; class=&quot;headerlink&quot; title=&quot;字典转为Json字符串&quot;&gt;&lt;/a&gt;字典转为Json字符串&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;  //字典转为Json字符串
++(NSString *)dictionaryToJson:(NSDictionary *)dic
+{
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&amp;amp;error];
+    re
+    turn [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>加密算法和网络</title>
+    <link href="http://yoursite.com/2017/04/03/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%92%8C%E7%BD%91%E7%BB%9C/"/>
+    <id>http://yoursite.com/2017/04/03/加密算法和网络/</id>
+    <published>2017-04-03T02:18:46.000Z</published>
+    <updated>2017-04-03T02:23:19.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;堵塞”-Logjam&quot;&gt;&lt;a href=&quot;#堵塞”-Logjam&quot; class=&quot;headerlink&quot; title=&quot;堵塞”(Logjam)&quot;&gt;&lt;/a&gt;堵塞”(Logjam)&lt;/h3&gt;&lt;p&gt;堵塞”(Logjam)漏洞威胁许多网页服务器和邮件服务器，影响所有主流浏览器以及支持512位迪菲-赫尔曼(Diffie-Hellman)密钥交换协议的服务器。而且，美国国家安全局(NSA)很可能就是利用这个漏洞破解VPN、HTTPS和SSH等协议，以访问相关网络流量的。&lt;/p&gt;
+&lt;h3 id=&quot;Diffie-Hellman&quot;&gt;&lt;a href=&quot;#Diffie-Hellman&quot; class=&quot;headerlink&quot; title=&quot;Diffie-Hellman&quot;&gt;&lt;/a&gt;Diffie-Hellman&lt;/h3&gt;&lt;p&gt;Diffie-Hellman:一种确保共享KEY安全穿越不安全网络的方法，它是OAKLEY的一个组成部分。Whitefield与Martin Hellman在1976年提出了一个奇妙的密钥交换协议，称为Diffie-Hellman密钥交换协议/算法(Diffie-Hellman Key Exchange/Agreement Algorithm).这个机制的巧妙在于需要安全通信的双方可以用这个方法确定对称密钥。然后可以用这个密钥进行加密和解密。但是注意，这个密钥交换协议/算法只能用于密钥的交换，而不能进行消息的加密和解密。双方确定要用的密钥后，要使用其他对称密钥操作加密算法实际加密和解密消息。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;Oakley算法&quot;&gt;&lt;a href=&quot;#Oakley算法&quot; class=&quot;headerlink&quot; title=&quot;Oakley算法&quot;&gt;&lt;/a&gt;Oakley算法&lt;/h3&gt;&lt;p&gt;Oakley算法是对Diffie-Hellman密钥交换算法的优化，它保留了后者的优点，同时克服了其弱点. Oakley算法具有五个重要特征： 它采用称为cookie程序的机制来对抗阻塞攻击. 它使得双方能够协商一个全局参数集合. 它使用了现时来保证抵抗重演攻击. 它能够交换Diffie-Hellman公开密钥. 它对Diffie-Hellman交换进行鉴别以对抗中间人的攻击.&lt;/p&gt;
+&lt;h3 id=&quot;清除本地网络请求数据&quot;&gt;&lt;a href=&quot;#清除本地网络请求数据&quot; class=&quot;headerlink&quot; title=&quot;清除本地网络请求数据&quot;&gt;&lt;/a&gt;清除本地网络请求数据&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;   // 清除本地数据请求缓存
+ NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:0];
+[NSURLCache setSharedURLCache:sharedCache];
+
+ // http://www.jb51.net/article/73573.htm
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;iOS-Https协议-自签证书访问数据&quot;&gt;&lt;a href=&quot;#iOS-Https协议-自签证书访问数据&quot; class=&quot;headerlink&quot; title=&quot;iOS Https协议 自签证书访问数据&quot;&gt;&lt;/a&gt;iOS Https协议 自签证书访问数据&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;http://www.jianshu.com/p/ec61e5ab6fbb
+http://note.youdao.com/share/?id=f2c11b7d4c12d5d219ca2a42ac367584&amp;amp;type=note#/
+
+demo ： https://github.com/fenglongteng/AfnHttpsSSLDemo
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;SocketRocket——符合标准的Objective-C-WebSocket客户端类库&quot;&gt;&lt;a href=&quot;#SocketRocket——符合标准的Objective-C-WebSocket客户端类库&quot; class=&quot;headerlink&quot; title=&quot;SocketRocket——符合标准的Objective-C WebSocket客户端类库&quot;&gt;&lt;/a&gt;SocketRocket——符合标准的Objective-C WebSocket客户端类库&lt;/h3&gt;&lt;p&gt;SocketRocket是一个WebSocket客户端，它采用现代Objective-C语言编写。SocketRocket遵循最新的WebSocket规范RFC 6455文件、支持WSS，同时，它也使用CFStream和NSStream。&lt;/p&gt;
+&lt;p&gt;开发者表示，这也就意味着SocketRocket在没有任何外部依赖下也支持iOS 4.x系统（应该也可以运行于OS X）不需要任何UI包依赖。SocketRocket使用Automatic Reference Counting代码简单化，Grand Central Dispatch的背景合理化。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  特性：
+       1、支持TLS(wss)；
+       2、使用NSStream/CFNetworking；
+       3、使用ARC；
+       4、并行的架构，大多数的工作都是在后台的工作者队列中完成；
+       5、基于Delegate。
+
+Github托管地址：https://github.com/square/SocketRocket
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;堵塞”-Logjam&quot;&gt;&lt;a href=&quot;#堵塞”-Logjam&quot; class=&quot;headerlink&quot; title=&quot;堵塞”(Logjam)&quot;&gt;&lt;/a&gt;堵塞”(Logjam)&lt;/h3&gt;&lt;p&gt;堵塞”(Logjam)漏洞威胁许多网页服务器和邮件服务器，影响所有主流浏览器以及支持512位迪菲-赫尔曼(Diffie-Hellman)密钥交换协议的服务器。而且，美国国家安全局(NSA)很可能就是利用这个漏洞破解VPN、HTTPS和SSH等协议，以访问相关网络流量的。&lt;/p&gt;
+&lt;h3 id=&quot;Diffie-Hellman&quot;&gt;&lt;a href=&quot;#Diffie-Hellman&quot; class=&quot;headerlink&quot; title=&quot;Diffie-Hellman&quot;&gt;&lt;/a&gt;Diffie-Hellman&lt;/h3&gt;&lt;p&gt;Diffie-Hellman:一种确保共享KEY安全穿越不安全网络的方法，它是OAKLEY的一个组成部分。Whitefield与Martin Hellman在1976年提出了一个奇妙的密钥交换协议，称为Diffie-Hellman密钥交换协议/算法(Diffie-Hellman Key Exchange/Agreement Algorithm).这个机制的巧妙在于需要安全通信的双方可以用这个方法确定对称密钥。然后可以用这个密钥进行加密和解密。但是注意，这个密钥交换协议/算法只能用于密钥的交换，而不能进行消息的加密和解密。双方确定要用的密钥后，要使用其他对称密钥操作加密算法实际加密和解密消息。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 本地文件路径</title>
+    <link href="http://yoursite.com/2017/04/03/iOS-%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84/"/>
+    <id>http://yoursite.com/2017/04/03/iOS-本地文件路径/</id>
+    <published>2017-04-03T02:12:37.000Z</published>
+    <updated>2017-04-03T02:16:14.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;一、本地文件存储位置&quot;&gt;&lt;a href=&quot;#一、本地文件存储位置&quot; class=&quot;headerlink&quot; title=&quot;一、本地文件存储位置&quot;&gt;&lt;/a&gt;一、本地文件存储位置&lt;/h3&gt;&lt;p&gt;1、Documents 目录：您应该将所有的应用程序数据文件写入到这个目录下。这个目录用于存储用户数据或其它应该定期备份的信息。&lt;/p&gt;
+&lt;p&gt;2、AppName.app 目录：这是应用程序的程序包目录，包含应用程序的本身。由于应用程序必须经过签名，所以您在运行时不能对这个目录中的内容进行修改，否则可能会使应用程序无法启动。&lt;/p&gt;
+&lt;p&gt;3、Library 目录：这个目录下有两个子目录：Caches 和 Preferences&lt;/p&gt;
+&lt;p&gt;Preferences 目录：包含应用程序的偏好设置文件。您不应该直接创建偏好设置文件，而是应该使用NSUserDefaults类来取得和设置应用程序的偏好.&lt;br&gt;Caches 目录：用于存放应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息。&lt;/p&gt;
+&lt;p&gt;4、tmp 目录：这个目录用于存放临时文件，保存应用程序再次启动过程中不需要的信息。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;二、获得文件保存路径&quot;&gt;&lt;a href=&quot;#二、获得文件保存路径&quot; class=&quot;headerlink&quot; title=&quot;二、获得文件保存路径&quot;&gt;&lt;/a&gt;二、获得文件保存路径&lt;/h3&gt;&lt;p&gt; 1.”应用程序包”: 这里面存放的是应用程序的源文件，包括资源文件和可执行文件。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString *path = [[NSBundle mainBundle] bundlePath];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 2.Documents: 最常用的目录，iTunes同步该应用时会同步此文件夹中的内容，适合存储重要数据。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 3.Library/Caches: iTunes不会同步此文件夹，适合存储体积大，不需要备份的非重要数据。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString *path = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 4.tmp: iTunes不会同步此文件夹，系统可能在应用没运行时就删除该目录下的文件，所以此目录适合保存应用中的一些临时文件，用完就删除。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString *path = NSTemporaryDirectory();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 5.Library/Preferences: iTunes同步该应用时会同步此文件夹中的内容，通常保存应用的设置信息&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;一、本地文件存储位置&quot;&gt;&lt;a href=&quot;#一、本地文件存储位置&quot; class=&quot;headerlink&quot; title=&quot;一、本地文件存储位置&quot;&gt;&lt;/a&gt;一、本地文件存储位置&lt;/h3&gt;&lt;p&gt;1、Documents 目录：您应该将所有的应用程序数据文件写入到这个目录下。这个目录用于存储用户数据或其它应该定期备份的信息。&lt;/p&gt;
+&lt;p&gt;2、AppName.app 目录：这是应用程序的程序包目录，包含应用程序的本身。由于应用程序必须经过签名，所以您在运行时不能对这个目录中的内容进行修改，否则可能会使应用程序无法启动。&lt;/p&gt;
+&lt;p&gt;3、Library 目录：这个目录下有两个子目录：Caches 和 Preferences&lt;/p&gt;
+&lt;p&gt;Preferences 目录：包含应用程序的偏好设置文件。您不应该直接创建偏好设置文件，而是应该使用NSUserDefaults类来取得和设置应用程序的偏好.&lt;br&gt;Caches 目录：用于存放应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息。&lt;/p&gt;
+&lt;p&gt;4、tmp 目录：这个目录用于存放临时文件，保存应用程序再次启动过程中不需要的信息。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>关联ObjC</title>
@@ -1203,286 +1364,6 @@ CGRect CGRectApplyAffineTransform(CGRect rect, CGAffineTransform t) ： 某个Re
     _demoView.transform = CGAffineTransformMake(1.0, 0, 0, 1.0, 20, 20);
 }];
 &lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>property在声明中可以指定的属性</title>
-    <link href="http://yoursite.com/2016/09/11/property%E5%9C%A8%E5%A3%B0%E6%98%8E%E4%B8%AD%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%AE%9A%E7%9A%84%E5%B1%9E%E6%80%A7/"/>
-    <id>http://yoursite.com/2016/09/11/property在声明中可以指定的属性/</id>
-    <published>2016-09-11T14:18:58.000Z</published>
-    <updated>2016-09-11T14:34:54.000Z</updated>
-    
-    <content type="html">&lt;p&gt;assign, retain, strong, weak, unsafe_unretained, copy &lt;/p&gt;
-&lt;p&gt;这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。&lt;/p&gt;
-&lt;h3 id=&quot;Non-ARC&quot;&gt;&lt;a href=&quot;#Non-ARC&quot; class=&quot;headerlink&quot; title=&quot;Non-ARC&quot;&gt;&lt;/a&gt;Non-ARC&lt;/h3&gt;&lt;p&gt;从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十分建议在可能的情况下通过accessor方法来操纵property，而不是操纵它对应的实例变量。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h4 id=&quot;assign&quot;&gt;&lt;a href=&quot;#assign&quot; class=&quot;headerlink&quot; title=&quot;assign&quot;&gt;&lt;/a&gt;assign&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;在Non-ARC内存管理模式下，assign是一个property的默认属性，无论这个property代表一个简单数据类型，还是一个指向对象的指针
-也就是说：
-
-@property (nonatomic) NSNumber *count;
-等价于：
-
-@property (nonatomic, assign) NSNumber *count;
-
-assign主要应用于代表简单数据类型的property，比如int，float等。
-如果这个用assign属性修饰的property代表一个指向对象的指针，那么当这个指针指向某个对象时，这个对象的引用计数不应该被改变。
-也就是说，用assign属性修饰的property，不应该持有一个对象。
-因为这个property不持有对象，所以它所指向的对象很可能已经在别处被释放了。这时它就有可能成为一枚悬垂指针，访问它指向的内存地址时，可能会发生意想不到的状况。
-
-
-retain
-
-retain不能修饰用来代表简单数据类型的property，否则编译器会报错：
-
-@property (nonatomic, retain) int num;//编译器报错：Property with &amp;apos;retain (or strong)&amp;apos; attribute must be of object type
-如果一个property被retain修饰，这代表着这个property应该持有它所指向的对象。
-官方文档中展示了一个被retain修饰的property：
-
-@property (nonatomic, retain) NSNumber *count;
-
-编译器可能为它实现的accessor方法：
-
-- (NSNumber *)count {
-    return _count;
-}
-- (void)setCount:(NSNumber *)newCount {
-    [newCount retain];
-    [_count release];
-    // Make the new assignment.
-    _count = newCount;
-}
-
-注意，考虑到newCount和_count可能指向同一个对象，所以在setter方法中，必须首先调用retain，以防这个对象被释放。
-
-
- copy
-
-copy也不能修饰用来代表简单数据类型的property，否则编译器会报错：
-
-    @property (nonatomic, copy) int num;//编译器报错：Property with &amp;apos;copy&amp;apos; attribute must be of object type
-
-如果一个property被copy修饰，那么赋值到这个property的对象，应该是原有对象的一份拷贝。
-只有实现了NSCopying协议，并且实现了其中的copyWithZone:方法的对象才能被拷贝。
-但是并不是所有的拷贝都产生了新的对象，有些类在实现copyWithZone:方法时，有着它们自己的考虑。比如NSString：
-
-    @property (nonatomic, copy) NSString *myString;
-    NSString *string = [[NSString alloc] initWithString:@&amp;quot;Hello&amp;quot;];
-    self.myString = string;
-    NSLog(@&amp;quot;%d&amp;quot;, string == _myString);//输出1
-
-在这里，property的指针和原先的指针指向的是同一个地址。
-
-unsafe_unretained
-
-人认为unsafe_unretained与assign是等价的。
-
-
-strong
-
-个人认为strong与retain是等价的。
-官方文档中有这样的示例代码：
-
-// The following declaration is a synonym for: @property(retain) MyClass *myObject;
-@property(strong) MyClass *myObject;
-
-表示了strong和retain是同义词。
-
-
-weak
-
-Non-ARC内存管理模式下无法使用weak来修饰一个property，编译器会报错。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;ARC&quot;&gt;&lt;a href=&quot;#ARC&quot; class=&quot;headerlink&quot; title=&quot;ARC&quot;&gt;&lt;/a&gt;ARC&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;ARC有效时，对象类型的变量将有所有权修饰符来修饰。一共有以下四种所有权修饰符：
-
-__strong 修饰符
-__weak 修饰符
-__unsafe_unretained 修饰符
-__autoreleasing 修饰符
-
-四种修饰符的具体意思，就不在这里解释了(´･_･`)
-
-编译器在为一个property合成实例变量时，也会使用所有权修饰符来修饰这个实例变量。根据property属性的不同，用来修饰实例变量的所有权修饰符也不尽相同。
-
-
-strong
-
-在ARC内存管理模式下，strong是一个代表对象类型的property的默认属性，并且它不能修饰用来代表简单数据类型的property。
-编译器在合成实例变量时，将使用__strong修饰符。
-如果另外自定义了用其他修饰符修饰的实例变量，编译器会报错。可以用这个方法来验证property的各个属性对应的实例变量的所有权修饰符。
-
-@interface ViewController ()
-{
-    __weak NSObject *_obj;//编译器报错：Existing instance variable &amp;apos;_obj&amp;apos; for strong property &amp;apos;obj&amp;apos; may not be weak
-}
-
-@property (nonatomic, strong) NSObject *obj;
-
-@end
-
-
-weak
-
-weak也不能修饰用来代表简单数据类型的property。
-编译器将为weak修饰的property生成带__weak所有权修饰符的实例变量。
-
-copy
-
-copy也不能修饰用来代表简单数据类型的property。
-编译器将为copy修饰的property生成带__strong所有权修饰符的实例变量。
-编译器自动合成的setter方法会调用对象的copyWithZone:方法。虽然第三方程序员可以自定义setter方法，但是为了程序的可读性，
-也应该在其中执行拷贝的逻辑。
-
-retain
-
-和Non-ARC的理由一样，个人认为retain和strong是等价的。
-
-unsafe_unretained
-
-编译器将为unsafe_unretained修饰的property生成带__unsafe_unretained所有权修饰符的实例变量。
-与weak和strong不同的是，unsafe_unretained也可以修饰代表简单数据类型的property。
-
-assign
-
-个人认为assign和unsafe_unretained等价。
-assign在ARC内存管理模式下，仍然是代表简单数据类型的property的默认属性。
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;assign, retain, strong, weak, unsafe_unretained, copy &lt;/p&gt;
-&lt;p&gt;这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。&lt;/p&gt;
-&lt;h3 id=&quot;Non-ARC&quot;&gt;&lt;a href=&quot;#Non-ARC&quot; class=&quot;headerlink&quot; title=&quot;Non-ARC&quot;&gt;&lt;/a&gt;Non-ARC&lt;/h3&gt;&lt;p&gt;从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十分建议在可能的情况下通过accessor方法来操纵property，而不是操纵它对应的实例变量。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>代理设计模式</title>
-    <link href="http://yoursite.com/2016/08/28/%E4%BB%A3%E7%90%86%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/08/28/代理设计模式/</id>
-    <published>2016-08-28T11:56:17.000Z</published>
-    <updated>2016-08-28T12:00:01.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;代理设计模式&quot;&gt;&lt;a href=&quot;#代理设计模式&quot; class=&quot;headerlink&quot; title=&quot;代理设计模式&quot;&gt;&lt;/a&gt;代理设计模式&lt;/h3&gt;&lt;p&gt;代理delegate就是委托另一个对象来帮忙完成一件事情&lt;/p&gt;
-&lt;p&gt;为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了 MVC 设计模式，项目小还好，随着功能的扩展，我们就会发现越写越难写；还有一种情况，就是这件事情做不到，只能委托给其他对象来做了.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;例子&quot;&gt;&lt;a href=&quot;#例子&quot; class=&quot;headerlink&quot; title=&quot;例子&quot;&gt;&lt;/a&gt;例子&lt;/h3&gt;&lt;p&gt;场景描述如下：TableView 上面有多个 CustomTableViewCell，cell上面显示的是文字信息和一个详情Button，点击button以后push到一个新的页面。为什么说这个场景用到了代理delegate？因为button是在自定义的CustomTableViewCell上面，而cell没有能力实现push的功能，因为push到新页面的代码是这样的，&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[self.navigationController pushViewController...];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;所以这时候 CustomTableViewCell 就要委托它所在的 Controller 去做这件事情了。&lt;/p&gt;
-&lt;h3 id=&quot;代码使用&quot;&gt;&lt;a href=&quot;#代码使用&quot; class=&quot;headerlink&quot; title=&quot;代码使用&quot;&gt;&lt;/a&gt;代码使用&lt;/h3&gt;&lt;p&gt;1.在任意的一个头文件里面编写委托的协议&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@protocol CustomCellDelegate &amp;lt;NSObject&amp;gt;
-
- - (void)pushToNewPage;
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.在想要发出这份委托的头文件添加&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface CustomTableViewCell : UITableViewCell
-
-@property(nonatomic, assign) id&amp;lt;CustomCellDelegate&amp;gt; delegate;
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.在委托者的 .m 文件的某个需要调用协议方法的方法中&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)btnClicked:(UIButton *)btn {
-
-    if (self.delegate &amp;amp;&amp;amp; [self.delegaterespondsToSelector:@selector(pushToNewPage)]) {
-
-      [self.delegate pushToNewPage];
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;4.在受到委托申请的类的头部中添加&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface ViewController ()&amp;lt;CustomCellDelegate&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;5.在然后是委托申请的类中实现CustomCellDelegate协议中的pushToNewPage方法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)pushToNewPage {
-
-    DetailViewController*detailVC = [[DetailViewController alloc] init];
-    [self.navigationController pushViewController:detailVC animated:YES];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;6.最后设置CumtomTableViewCell对象cell的delegate&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//下面代码很关键
-cell.delegate = self;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;总结：委托的协议可以写在任何的头文件中，代理设计模式的六个步骤缺一不可。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;代理设计模式&quot;&gt;&lt;a href=&quot;#代理设计模式&quot; class=&quot;headerlink&quot; title=&quot;代理设计模式&quot;&gt;&lt;/a&gt;代理设计模式&lt;/h3&gt;&lt;p&gt;代理delegate就是委托另一个对象来帮忙完成一件事情&lt;/p&gt;
-&lt;p&gt;为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了 MVC 设计模式，项目小还好，随着功能的扩展，我们就会发现越写越难写；还有一种情况，就是这件事情做不到，只能委托给其他对象来做了.&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ios技能点总结和存取方法</title>
-    <link href="http://yoursite.com/2016/08/28/ios%E6%8A%80%E8%83%BD%E7%82%B9%E6%80%BB%E7%BB%93%E5%92%8C%E5%AD%98%E5%8F%96%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2016/08/28/ios技能点总结和存取方法/</id>
-    <published>2016-08-28T11:45:40.000Z</published>
-    <updated>2016-08-28T11:52:38.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot;&gt;&lt;a href=&quot;#存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot; class=&quot;headerlink&quot; title=&quot;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot;&gt;&lt;/a&gt;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&lt;/h3&gt;&lt;p&gt;在Cocoa的术语中，一个检索对象属性值的方法提及为getter方法，或者”getter;”，一个改变对象属性值的方法提及为setter方法，或者“setter.”这些方法通常成对建立，提供获得或者设置对象属性值的API。&lt;/p&gt;
-&lt;p&gt;我们应该使用存储方法而不是直接存储状态数据因为他们提供了一个抽象的层。下面是存储方法所提供的两个好处：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;我们不需要重写我们的代码如果一个描述或者存储属性的方法改变。&lt;/li&gt;
-&lt;li&gt;存储方法常常实现重要行为是无论何时一个值被检索或者设置都会被重现。例如，设置方法频繁的实现内存管理代码并且通知其他对象当一个值被改变的时候。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;命名规则&quot;&gt;&lt;a href=&quot;#命名规则&quot; class=&quot;headerlink&quot; title=&quot;命名规则&quot;&gt;&lt;/a&gt;命名规则&lt;/h3&gt;&lt;p&gt;给出一个属性的类型type和称呼name，我们应该通过下面的格式，典型的实现存储方法：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;-(type)name;
--(void)setName:(type)newName;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;有个例外是属性为Boolean值。getter方法名字应该是isName。例如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;-(BOOL)isHidden;
--(void)setHidden:(BOOL)newHidden;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这种命名惯例很重要因为在Cocoa中的很多其他的功能都依赖它，特别的key-value coding。Cocoa不使用getName因为以get开始的方法表明方法返回引用类型的值。&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;(&lt;em&gt;w&lt;/em&gt;) 报错：__NSCFString containsString:]: unrecognized selector sent to instance 0x7f876b79e160&lt;/p&gt;
-&lt;p&gt; 原因：因为该属性提前释放了。&lt;/p&gt;
-&lt;p&gt;(&lt;em&gt;w&lt;/em&gt;) 报错：This application is modifying the autolayout engine from a background thread&lt;/p&gt;
-&lt;p&gt;原因：把需要更新UI的放在的主线程就好了。（通过打印 [NSThreadcurrentThread],就可以知道当前不是在主线程;&lt;/p&gt;
-&lt;p&gt; NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:@”value1”, @”key1”, @”value2”, @”key2”, nil];&lt;/p&gt;
-&lt;p&gt;(&lt;em&gt;w&lt;/em&gt;) Dealloc 时取 weak self 时崩溃  （&lt;a href=&quot;http://blog.csdn.net/kaihaodir/article/details/51586616）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/kaihaodir/article/details/51586616）&lt;/a&gt;&lt;br&gt;    先上引起崩溃的代码：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)dealloc
-{
-    __weak __typeof(self)weak_self = self;
-    NSLog(@&amp;quot;%@&amp;quot;, weak_self);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;说明不允许在 dealloc 的时候取 weak self.&lt;/p&gt;
-&lt;h3 id=&quot;获取当前年份和月份和天数&quot;&gt;&lt;a href=&quot;#获取当前年份和月份和天数&quot; class=&quot;headerlink&quot; title=&quot;获取当前年份和月份和天数&quot;&gt;&lt;/a&gt;获取当前年份和月份和天数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;NSCalendar *calendar = [NSCalendar currentCalendar];
-unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-NSDateComponents *components = [calendar components:unitFlags fromDate:[NSDate date]];
-NSInteger iCurYear = [components year];  //当前的年份
-NSInteger iCurMonth = [components month];  //当前的月份
-NSInteger iCurDay = [components day];  // 当前的号数
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;根据传入的年份和月份获得该月份的天数&quot;&gt;&lt;a href=&quot;#根据传入的年份和月份获得该月份的天数&quot; class=&quot;headerlink&quot; title=&quot;根据传入的年份和月份获得该月份的天数&quot;&gt;&lt;/a&gt;根据传入的年份和月份获得该月份的天数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;/**  
- * 根据传入的年份和月份获得该月份的天数  
- *   
- * @param year  
- *            年份-正整数  
- * @param month  
- *            月份-正整数  
- * @return 返回天数  
- */    
-public int getDayNumber(int year, int month) {    
-    int days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };    
-    if (2 == month &amp;amp;&amp;amp; 0 == (year % 4) &amp;amp;&amp;amp; (0 != (year % 100) || 0 == (year % 400))) {    
-        days[1] = 29;    
-    }    
-    return (days[month - 1]);    
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot;&gt;&lt;a href=&quot;#存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot; class=&quot;headerlink&quot; title=&quot;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&quot;&gt;&lt;/a&gt;存储方法是一个可以获得或者设置一个对象的属性值的实例方法&lt;/h3&gt;&lt;p&gt;在Cocoa的术语中，一个检索对象属性值的方法提及为getter方法，或者”getter;”，一个改变对象属性值的方法提及为setter方法，或者“setter.”这些方法通常成对建立，提供获得或者设置对象属性值的API。&lt;/p&gt;
-&lt;p&gt;我们应该使用存储方法而不是直接存储状态数据因为他们提供了一个抽象的层。下面是存储方法所提供的两个好处：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;我们不需要重写我们的代码如果一个描述或者存储属性的方法改变。&lt;/li&gt;
-&lt;li&gt;存储方法常常实现重要行为是无论何时一个值被检索或者设置都会被重现。例如，设置方法频繁的实现内存管理代码并且通知其他对象当一个值被改变的时候。&lt;/li&gt;
-&lt;/ol&gt;
     
     </summary>
     

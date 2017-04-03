@@ -77,7 +77,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -191,6 +191,187 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-iOS特别技能点总结5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/03/iOS特别技能点总结5/" class="article-date">
+  	<time datetime="2017-04-03T02:25:40.000Z" itemprop="datePublished">2017-04-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/03/iOS特别技能点总结5/">iOS特别技能点总结5</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="字典转为Json字符串"><a href="#字典转为Json字符串" class="headerlink" title="字典转为Json字符串"></a>字典转为Json字符串</h3><pre><code>  //字典转为Json字符串
++(NSString *)dictionaryToJson:(NSDictionary *)dic
+{
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&amp;error];
+    re
+    turn [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/04/03/iOS特别技能点总结5/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-加密算法和网络" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/03/加密算法和网络/" class="article-date">
+  	<time datetime="2017-04-03T02:18:46.000Z" itemprop="datePublished">2017-04-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/03/加密算法和网络/">加密算法和网络</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="堵塞”-Logjam"><a href="#堵塞”-Logjam" class="headerlink" title="堵塞”(Logjam)"></a>堵塞”(Logjam)</h3><p>堵塞”(Logjam)漏洞威胁许多网页服务器和邮件服务器，影响所有主流浏览器以及支持512位迪菲-赫尔曼(Diffie-Hellman)密钥交换协议的服务器。而且，美国国家安全局(NSA)很可能就是利用这个漏洞破解VPN、HTTPS和SSH等协议，以访问相关网络流量的。</p>
+<h3 id="Diffie-Hellman"><a href="#Diffie-Hellman" class="headerlink" title="Diffie-Hellman"></a>Diffie-Hellman</h3><p>Diffie-Hellman:一种确保共享KEY安全穿越不安全网络的方法，它是OAKLEY的一个组成部分。Whitefield与Martin Hellman在1976年提出了一个奇妙的密钥交换协议，称为Diffie-Hellman密钥交换协议/算法(Diffie-Hellman Key Exchange/Agreement Algorithm).这个机制的巧妙在于需要安全通信的双方可以用这个方法确定对称密钥。然后可以用这个密钥进行加密和解密。但是注意，这个密钥交换协议/算法只能用于密钥的交换，而不能进行消息的加密和解密。双方确定要用的密钥后，要使用其他对称密钥操作加密算法实际加密和解密消息。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/04/03/加密算法和网络/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-iOS-本地文件路径" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/03/iOS-本地文件路径/" class="article-date">
+  	<time datetime="2017-04-03T02:12:37.000Z" itemprop="datePublished">2017-04-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/03/iOS-本地文件路径/">iOS 本地文件路径</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、本地文件存储位置"><a href="#一、本地文件存储位置" class="headerlink" title="一、本地文件存储位置"></a>一、本地文件存储位置</h3><p>1、Documents 目录：您应该将所有的应用程序数据文件写入到这个目录下。这个目录用于存储用户数据或其它应该定期备份的信息。</p>
+<p>2、AppName.app 目录：这是应用程序的程序包目录，包含应用程序的本身。由于应用程序必须经过签名，所以您在运行时不能对这个目录中的内容进行修改，否则可能会使应用程序无法启动。</p>
+<p>3、Library 目录：这个目录下有两个子目录：Caches 和 Preferences</p>
+<p>Preferences 目录：包含应用程序的偏好设置文件。您不应该直接创建偏好设置文件，而是应该使用NSUserDefaults类来取得和设置应用程序的偏好.<br>Caches 目录：用于存放应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息。</p>
+<p>4、tmp 目录：这个目录用于存放临时文件，保存应用程序再次启动过程中不需要的信息。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/04/03/iOS-本地文件路径/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-关联ObjC" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -492,196 +673,6 @@ UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@&quot;确定&quot; sty
       
         <p class="article-more-link">
           <a  href="/2016/11/27/UIAlertController-弹框/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-UIWebView-实现长按保存图片功能" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/22/UIWebView-实现长按保存图片功能/" class="article-date">
-  	<time datetime="2016-11-22T12:50:24.000Z" itemprop="datePublished">2016-11-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/22/UIWebView-实现长按保存图片功能/">UIWebView 实现长按保存图片功能</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>拿到需求之后分析了一下，其实主要功能点就是如何才能通过手指按压位置获取到相应的图片资源。</p>
-<p>首先是给UiWebView加一个长按手势 :</p>
-<pre><code>UILongPressGestureRecognizer* longPressed = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
-longPressed.delegate = self;
-[self.webView addGestureRecognizer:longPressed];
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/11/22/UIWebView-实现长按保存图片功能/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-YYModel字典转模型的几种详细用法" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/14/YYModel字典转模型的几种详细用法/" class="article-date">
-  	<time datetime="2016-11-14T11:47:06.000Z" itemprop="datePublished">2016-11-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/14/YYModel字典转模型的几种详细用法/">YYModel字典转模型的几种详细用法</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="常用的几个方法"><a href="#常用的几个方法" class="headerlink" title="常用的几个方法"></a>常用的几个方法</h4><p>json转模型</p>
-<pre><code>+ (instancetype)yy_modelWithJSON:(id)json;
-</code></pre><p>模型转字符串</p>
-<pre><code>- (NSString *)yy_modelToJSONString 
-</code></pre><p>字典转模型</p>
-<pre><code>+ (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary ;
-</code></pre><p> 声明数组、字典或者集合里的元素类型时要重写</p>
-<pre><code>+ (nullable NSDictionary&lt;NSString *, id&gt; *)modelContainerPropertyGenericClass；
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/11/14/YYModel字典转模型的几种详细用法/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-layoutSubviews-总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/27/layoutSubviews-总结/" class="article-date">
-  	<time datetime="2016-10-27T11:23:57.000Z" itemprop="datePublished">2016-10-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/27/layoutSubviews-总结/">layoutSubviews 总结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="ios-layout机制相关方法"><a href="#ios-layout机制相关方法" class="headerlink" title="ios layout机制相关方法"></a>ios layout机制相关方法</h3><pre><code>- (CGSize)sizeThatFits:(CGSize)size
-- (void)sizeToFit
-——————-
-- (void)layoutSubviews
-- (void)layoutIfNeeded
-- (void)setNeedsLayout
-——————–
-- (void)setNeedsDisplay
-- (void)drawRect
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/10/27/layoutSubviews-总结/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
