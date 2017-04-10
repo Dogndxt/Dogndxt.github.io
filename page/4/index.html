@@ -77,7 +77,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 13.33px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［iOS］/" style="font-size: 16.67px;">［iOS］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［定时器］/" style="font-size: 10px;">［定时器］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a> <a href="/tags/［类的魔法］/" style="font-size: 10px;">［类的魔法］</a>
+						<a href="/tags/2017，请多多指教！/" style="font-size: 10px;">2017，请多多指教！</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 13.33px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［iOS］/" style="font-size: 16.67px;">［iOS］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［定时器］/" style="font-size: 10px;">［定时器］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a> <a href="/tags/［类的魔法］/" style="font-size: 10px;">［类的魔法］</a>
 					</div>
 				</section>
 				
@@ -191,6 +191,368 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-利用-AFNetworking-监听网络状态" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/22/利用-AFNetworking-监听网络状态/" class="article-date">
+  	<time datetime="2016-09-22T14:33:42.000Z" itemprop="datePublished">2016-09-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/22/利用-AFNetworking-监听网络状态/">利用 AFNetworking 监听网络状态</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-创建网络监听者管理者对象"><a href="#1-创建网络监听者管理者对象" class="headerlink" title="1.创建网络监听者管理者对象"></a>1.创建网络监听者管理者对象</h3><pre><code>AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+</code></pre><h3 id="2-设置监听"><a href="#2-设置监听" class="headerlink" title="2.设置监听"></a>2.设置监听</h3><p>1)网络状态</p>
+<pre><code>//显然是枚举值
+typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
+    AFNetworkReachabilityStatusUnknown          = -1,//未识别的网络
+    AFNetworkReachabilityStatusNotReachable     = 0,//不可达的网络
+    AFNetworkReachabilityStatusReachableViaWWAN = 1,//2G,3G,4G...
+    AFNetworkReachabilityStatusReachableViaWiFi = 2,//wifi网络
+    }
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/22/利用-AFNetworking-监听网络状态/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-仿射变换-CGAffineTransform-使用小结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/" class="article-date">
+  	<time datetime="2016-09-22T14:28:02.000Z" itemprop="datePublished">2016-09-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/">仿射变换(CGAffineTransform)使用小结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、理论基础"><a href="#一、理论基础" class="headerlink" title="一、理论基础"></a>一、理论基础</h3><p>在几何上定义为两个向量空间之间的一个仿射变换或者仿射映射由一个线性变换(运用一次函数进行的变换)接上一个平移组成。</p>
+<p>CGAffineTransform简单分析（<a href="http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）">http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）</a></p>
+<h3 id="二、射变换的种类"><a href="#二、射变换的种类" class="headerlink" title="二、射变换的种类"></a>二、射变换的种类</h3><p>1.自定义变换</p>
+<pre><code>_demoView.transform = CGAffineTransformIdentity;
+[UIView animateWithDuration:1.5f animations:^{
+    _demoView.transform = CGAffineTransformMake(1.0, 0, 0, 1.0, 20, 20);
+}];
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/22/仿射变换-CGAffineTransform-使用小结/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-property在声明中可以指定的属性" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/11/property在声明中可以指定的属性/" class="article-date">
+  	<time datetime="2016-09-11T14:18:58.000Z" itemprop="datePublished">2016-09-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/11/property在声明中可以指定的属性/">property在声明中可以指定的属性</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>assign, retain, strong, weak, unsafe_unretained, copy </p>
+<p>这些都是一个property在声明中可以指定的属性，且都与内存管理有关。下面会从Non-ARC和ARC两种情况讨论一下这些属性的意义。</p>
+<h3 id="Non-ARC"><a href="#Non-ARC" class="headerlink" title="Non-ARC"></a>Non-ARC</h3><p>从官方文档的描述上看，Non-ARC的内存管理模式下，编译器会为带有不同属性的property自动生成对应的accessor方法。并且苹果十分建议在可能的情况下通过accessor方法来操纵property，而不是操纵它对应的实例变量。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/11/property在声明中可以指定的属性/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-代理设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/28/代理设计模式/" class="article-date">
+  	<time datetime="2016-08-28T11:56:17.000Z" itemprop="datePublished">2016-08-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/28/代理设计模式/">代理设计模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="代理设计模式"><a href="#代理设计模式" class="headerlink" title="代理设计模式"></a>代理设计模式</h3><p>代理delegate就是委托另一个对象来帮忙完成一件事情</p>
+<p>为什么要委托别人来做呢，这其实是MVC设计模式中的模块分工问题，例如 View 对象它只负责显示界面，而不需要进行数据的管理，数据的管理和逻辑是 Controller 的责任，所以此时 View 就应该将这个功能委托给 Controller 去实现，当然你作为码农强行让 View 处理数据逻辑的任务，也不是不行，只是这就违背了 MVC 设计模式，项目小还好，随着功能的扩展，我们就会发现越写越难写；还有一种情况，就是这件事情做不到，只能委托给其他对象来做了.</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/28/代理设计模式/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-ios技能点总结和存取方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/28/ios技能点总结和存取方法/" class="article-date">
+  	<time datetime="2016-08-28T11:45:40.000Z" itemprop="datePublished">2016-08-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/28/ios技能点总结和存取方法/">ios技能点总结和存取方法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="存储方法是一个可以获得或者设置一个对象的属性值的实例方法"><a href="#存储方法是一个可以获得或者设置一个对象的属性值的实例方法" class="headerlink" title="存储方法是一个可以获得或者设置一个对象的属性值的实例方法"></a>存储方法是一个可以获得或者设置一个对象的属性值的实例方法</h3><p>在Cocoa的术语中，一个检索对象属性值的方法提及为getter方法，或者”getter;”，一个改变对象属性值的方法提及为setter方法，或者“setter.”这些方法通常成对建立，提供获得或者设置对象属性值的API。</p>
+<p>我们应该使用存储方法而不是直接存储状态数据因为他们提供了一个抽象的层。下面是存储方法所提供的两个好处：</p>
+<ol>
+<li>我们不需要重写我们的代码如果一个描述或者存储属性的方法改变。</li>
+<li>存储方法常常实现重要行为是无论何时一个值被检索或者设置都会被重现。例如，设置方法频繁的实现内存管理代码并且通知其他对象当一个值被改变的时候。</li>
+</ol>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/28/ios技能点总结和存取方法/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-block的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/28/block的使用/" class="article-date">
+  	<time datetime="2016-08-28T11:40:33.000Z" itemprop="datePublished">2016-08-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/28/block的使用/">block的使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Block是一个C语言的特性，它就是C语言的函数指针，在使用中最多的就是进行函数回调或者事件传递，比如发送数据到服务器，等待服务器反馈是成功还是失败，此时block就派上用场了.</p>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h4 id="As-a-local-variable"><a href="#As-a-local-variable" class="headerlink" title="As a local variable:"></a>As a local variable:</h4><pre><code>returnType (^blockName)(parameterTypes) = ^returnType(parameters) {...};
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/28/block的使用/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-系统定位" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -306,361 +668,9 @@
 
 
   
-    <article id="post-通知iOS" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/13/通知iOS/" class="article-date">
-  	<time datetime="2016-08-13T11:07:36.000Z" itemprop="datePublished">2016-08-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/13/通知iOS/">通知iOS</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="发送通知-（在程序任何一个地方都可以发送通知）"><a href="#发送通知-（在程序任何一个地方都可以发送通知）" class="headerlink" title="发送通知 （在程序任何一个地方都可以发送通知）"></a>发送通知 （在程序任何一个地方都可以发送通知）</h3><pre><code>- (void)getNotofocation {
-    //发出通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:@&quot;A类通知&quot; object:self userInfo:nil];
-}
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/13/通知iOS/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-控制器初始化方法" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/13/控制器初始化方法/" class="article-date">
-  	<time datetime="2016-08-13T11:03:07.000Z" itemprop="datePublished">2016-08-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/13/控制器初始化方法/">控制器初始化方法</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="控制器初始化方法"><a href="#控制器初始化方法" class="headerlink" title="控制器初始化方法"></a>控制器初始化方法</h3><h4 id="viewWillAppear"><a href="#viewWillAppear" class="headerlink" title="viewWillAppear"></a>viewWillAppear</h4><p>视图即将可见时调用。默认情况下不执行任何操作。 Called when the view is about to made visible. Default does nothing</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/13/控制器初始化方法/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-响应者" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/07/响应者/" class="article-date">
-  	<time datetime="2016-08-07T11:25:04.000Z" itemprop="datePublished">2016-08-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/07/响应者/">响应者</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="响应者对象（Response-object）"><a href="#响应者对象（Response-object）" class="headerlink" title="响应者对象（Response object）"></a>响应者对象（Response object）</h3><p>响应者对象就是可以响应事件并对事件作出处理。在iOS中，存在UIResponder类，它定义了响应者对象的所有方法。UIApplication、UIView等类都继承了UIResponder类，UIWindow和UIKit中的控件因为继承了UIView，所以也间接继承了UIResponder类，这些类的实例都可以当作响应者<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/07/响应者/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-定时器用法总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/07/定时器用法总结/" class="article-date">
-  	<time datetime="2016-08-07T11:18:19.000Z" itemprop="datePublished">2016-08-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/07/定时器用法总结/">定时器用法总结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>NSTimer在IOS开发中会经常用到，尤其是小型游戏，然而对于初学者时常会注意不到其中的内存释放问题，将其基本用法总结如下：</p>
-<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法 1"></a>方法 1</h3><pre><code>NSInvocation *invo = [NSInvocation invocationWithMethodSignature:[[self class] instanceMethodSignatureForSelector:@selector(f)]];
-[invo setTarget:self];
-[invo setSelector:@selector(myLog)];
-time = [NSTimer timerWithTimeInterval:1 invocation:invo repeats:YES];
-[time fire];
-[[NSRunLoop mainRunLoop] addTimer:time forMode:NSDefaultRunLoopMode];
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/07/定时器用法总结/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Objective-C-中实现多线程" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/07/Objective-C-中实现多线程/" class="article-date">
-  	<time datetime="2016-08-07T11:13:29.000Z" itemprop="datePublished">2016-08-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/07/Objective-C-中实现多线程/">Objective-C 中实现多线程</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在多核 CPU 时代，由于硬件上就支持多线程技术，就可以让多个线程真正同时地运行。如果任务能够被拆分，各个子任务就能并行地在 CPU 上运行，这就能显著加快运行速度。</p>
-<h3 id="performSelectors"><a href="#performSelectors" class="headerlink" title="performSelectors"></a>performSelectors</h3><p> NSObject 提供了以 performSelector 为前缀的一系列方法。它们可以让用户在指定线程中，或者立即，或者延迟执行某个方法调用。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/07/Objective-C-中实现多线程/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS特别技能点总结4" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/07/iOS特别技能点总结4/" class="article-date">
-  	<time datetime="2016-08-07T11:06:12.000Z" itemprop="datePublished">2016-08-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/07/iOS特别技能点总结4/">iOS特别技能点总结4</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="iOS－获取的NSDate-date时间与实际相差8个小时解决方案"><a href="#iOS－获取的NSDate-date时间与实际相差8个小时解决方案" class="headerlink" title="iOS－获取的NSDate date时间与实际相差8个小时解决方案"></a>iOS－获取的NSDate date时间与实际相差8个小时解决方案</h3><pre><code>NSDate *date = [NSDate date];
-NSTimeZone *zone = [NSTimeZone systemTimeZone];
-NSInteger interval = [zone secondsFromGMTForDate: date];
-NSDate *localeDate = [date  dateByAddingTimeInterval: interval]; 
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/07/iOS特别技能点总结4/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 </div>

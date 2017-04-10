@@ -77,7 +77,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 13.33px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［iOS］/" style="font-size: 16.67px;">［iOS］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［定时器］/" style="font-size: 10px;">［定时器］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a> <a href="/tags/［类的魔法］/" style="font-size: 10px;">［类的魔法］</a>
+						<a href="/tags/2017，请多多指教！/" style="font-size: 10px;">2017，请多多指教！</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 13.33px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［iOS］/" style="font-size: 16.67px;">［iOS］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［定时器］/" style="font-size: 10px;">［定时器］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a> <a href="/tags/［类的魔法］/" style="font-size: 10px;">［类的魔法］</a>
 					</div>
 				</section>
 				
@@ -191,6 +191,366 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-iOS-使用Cycript进行运行时分析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/10/iOS-使用Cycript进行运行时分析/" class="article-date">
+  	<time datetime="2017-04-10T12:14:50.000Z" itemprop="datePublished">2017-04-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/10/iOS-使用Cycript进行运行时分析/">iOS 使用Cycript进行运行时分析</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="获得进程-PID"><a href="#获得进程-PID" class="headerlink" title="获得进程 PID"></a>获得进程 PID</h3><p>在越狱设备中开启某个项目，并切回到越狱设备的终端，找到项目的进程编号 PID。</p>
+<pre><code> ps aux | grep &quot;项目名&quot;
+
+＊ mobile    3098   0.0  2.6   636116  25480   ??  Ss    3:51PM   0:02.18 /Applications/AutoGetRedPacket.app/AutoGetRedPacket
+＊ root      3140   0.0  0.0   525864    200 s000  R+    4:17PM   0:00.01 grep AutoGetRedPacket
+</code></pre><p>  找到 mobile 对应的 PID 949，之后利用 Cycript 进行运行时分析</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/04/10/iOS-使用Cycript进行运行时分析/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-AFNetWorking是如何进行数据缓存的-之AFImageCache-NSURLCache-详解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/10/AFNetWorking是如何进行数据缓存的-之AFImageCache-NSURLCache-详解/" class="article-date">
+  	<time datetime="2017-04-10T12:10:19.000Z" itemprop="datePublished">2017-04-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/10/AFNetWorking是如何进行数据缓存的-之AFImageCache-NSURLCache-详解/">AFNetWorking是如何进行数据缓存的--之AFImageCache &amp; NSURLCache 详解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="AFAutoPurgingImageCache-图片缓存类"><a href="#AFAutoPurgingImageCache-图片缓存类" class="headerlink" title="AFAutoPurgingImageCache 图片缓存类"></a>AFAutoPurgingImageCache 图片缓存类</h3><pre><code>缓存机制: 这个类通过 
+@property (nonatomic, strong) NSMutableDictionary &lt;NSString* , AFCachedImage*&gt; *cachedImages;
+
+这个字典属性进行图片数据的存储。每一张图片对于唯一的一个标示字符串，如果是请求链接则将链接作为键值。添加图片的时候会计算图片的大小，进行存储空间的控制，超过初始化的大小进行时间排序，久的图片的删除，或者收到内存警告的时候，则清除所有的图片。
+</code></pre><h5 id="AFImageDownloader-图片下载类"><a href="#AFImageDownloader-图片下载类" class="headerlink" title="AFImageDownloader 图片下载类"></a>AFImageDownloader 图片下载类</h5><h3 id="清除本地请求数据的缓存"><a href="#清除本地请求数据的缓存" class="headerlink" title="清除本地请求数据的缓存"></a>清除本地请求数据的缓存</h3><p>可以禁用NSURLCache，只需要将内存和磁盘空间设置为0就行了.</p>
+<pre><code>NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0
+                                                        diskCapacity:0
+                                                            diskPath:nil];
+[NSURLCache setSharedURLCache:sharedCache];
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Charles-从入门到精通" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/10/Charles-从入门到精通/" class="article-date">
+  	<time datetime="2017-04-10T12:06:46.000Z" itemprop="datePublished">2017-04-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/10/Charles-从入门到精通/">Charles 从入门到精通</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Charles 是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。<br>Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。<br>除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。（<a href="http://blog.devtang.com/2015/11/14/charles-introduction/）">http://blog.devtang.com/2015/11/14/charles-introduction/）</a></p>
+<pre><code>Charles 主要的功能包括：
+
+1. 截取 Http 和 Https 网络封包。
+2. 支持重发网络请求，方便后端调试。
+3. 支持修改网络请求参数。
+4. 支持网络请求的截获并动态修改。
+5. 支持模拟慢速网络。
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/04/10/Charles-从入门到精通/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-反编译工具" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/10/反编译工具/" class="article-date">
+  	<time datetime="2017-04-10T12:02:31.000Z" itemprop="datePublished">2017-04-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/10/反编译工具/">反编译工具</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="WinDbg"><a href="#WinDbg" class="headerlink" title="WinDbg"></a>WinDbg</h4><p> WinDbg是微软发布的一款相当优秀的源码级(source-level)调试工具，可以用于Kernel模式调试和用户模式调试，还可以调试Dump文件。</p>
+<h4 id="OllyDbg"><a href="#OllyDbg" class="headerlink" title="OllyDbg"></a>OllyDbg</h4><p>OLLYDBG是一个新的动态追踪工具，将IDA与SoftICE结合起来的思想，Ring 3级调试器，非常容易上手，己代替SoftICE成为当今最为流行的调试解密工具了。同时还支持插件扩展功能，是目前最强大的调试工具。</p>
+<h4 id="Immunity-Debugger"><a href="#Immunity-Debugger" class="headerlink" title="Immunity Debugger"></a>Immunity Debugger</h4><p>Immunity Debugger软件专门用于加速漏洞利用程序的开发，辅助漏洞挖掘以及恶意软件分析。它具备一个完整的图形用户界面，同时还配备了迄今为止最为强的python安全工具库。它巧妙的将动态调试功能与一个强大的静态分析引擎融合于一体，它还附带了一套高度可定制的纯python图形算法，可用于帮助我们绘制出直观的函数体控制流以及函数中的各个基本块。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/04/10/反编译工具/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-指纹识别" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/10/指纹识别/" class="article-date">
+  	<time datetime="2017-04-10T11:58:09.000Z" itemprop="datePublished">2017-04-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/10/指纹识别/">指纹识别</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><p>指纹识别功能是 iphone 5S之后推出的, SDK是 iOS 8.0 推出!<br>推出指纹识别功能的目的,是为了简化移动支付环节,占领移动支付市场. 同时可以作为需要较高级别保护用户隐私的 APP 的登录检验方式。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/04/10/指纹识别/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2017-展望未来，拥抱变化" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/03/2017-展望未来，拥抱变化/" class="article-date">
+  	<time datetime="2017-04-03T02:36:25.000Z" itemprop="datePublished">2017-04-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/03/2017-展望未来，拥抱变化/">2017, 展望未来，拥抱变化</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>2016 已经远去，不留一点痕迹，自从去年搭建这个博客之后，到今天，总共发布的博客数量也有 80+ 了，其它的因为还不知道要不要发布的博客有四五十篇了。怎么说呢，在搭建好这个博客之后，感觉自己有了其它人没办法随意进出的小岛了吧。一个属于我自己的世界，我可以在这里“恣意妄为”，完全不顾外界的评价。在这过去的 一年的时光里，发生了很多的事情，也成长了很多，对未来的路程也越来越清晰了。过往的经历也终将成为我未来前进的动力，在我无助想退堂鼓的时候，也能不断地鞭策的我。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2017，请多多指教！/">2017，请多多指教！</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/04/03/2017-展望未来，拥抱变化/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-iOS特别技能点总结5" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -313,387 +673,9 @@
 
 
   
-    <article id="post-iOS-本地文件路径" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/03/iOS-本地文件路径/" class="article-date">
-  	<time datetime="2017-04-03T02:12:37.000Z" itemprop="datePublished">2017-04-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/03/iOS-本地文件路径/">iOS 本地文件路径</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、本地文件存储位置"><a href="#一、本地文件存储位置" class="headerlink" title="一、本地文件存储位置"></a>一、本地文件存储位置</h3><p>1、Documents 目录：您应该将所有的应用程序数据文件写入到这个目录下。这个目录用于存储用户数据或其它应该定期备份的信息。</p>
-<p>2、AppName.app 目录：这是应用程序的程序包目录，包含应用程序的本身。由于应用程序必须经过签名，所以您在运行时不能对这个目录中的内容进行修改，否则可能会使应用程序无法启动。</p>
-<p>3、Library 目录：这个目录下有两个子目录：Caches 和 Preferences</p>
-<p>Preferences 目录：包含应用程序的偏好设置文件。您不应该直接创建偏好设置文件，而是应该使用NSUserDefaults类来取得和设置应用程序的偏好.<br>Caches 目录：用于存放应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息。</p>
-<p>4、tmp 目录：这个目录用于存放临时文件，保存应用程序再次启动过程中不需要的信息。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/04/03/iOS-本地文件路径/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-关联ObjC" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/02/14/关联ObjC/" class="article-date">
-  	<time datetime="2017-02-14T11:06:41.000Z" itemprop="datePublished">2017-02-14</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/14/关联ObjC/">关联ObjC</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关联(objc_setAssociatedObject、objc_getAssociatedObject、objc_removeAssociatedObjects）</p>
-<pre><code>定义：关联是指把两个对象相互关联起来，使得其中的一个对象作为另外一个对象的一部分。
-</code></pre><h4 id="在类的定义之外为类增加额外的存储空间"><a href="#在类的定义之外为类增加额外的存储空间" class="headerlink" title="在类的定义之外为类增加额外的存储空间"></a>在类的定义之外为类增加额外的存储空间</h4><pre><code>使用关联，我们可以不用修改类的定义而为其对象增加存储空间。这在我们无法访问到类的源码的时候或者是考虑到二进制兼容性的时候是非常有用。
-
-关联是基于关键字的，因此，我们可以为任何对象增加任意多的关联，每个都使用不同的关键字即可。关联是可以保证被关联的对象在关联对象的整个生命周期都是可用的（在垃圾自动回收环境下也不会导致资源不可回收）。
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/02/14/关联ObjC/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-UICollectionView-使用二" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/18/UICollectionView-使用二/" class="article-date">
-  	<time datetime="2016-12-18T11:43:22.000Z" itemprop="datePublished">2016-12-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/18/UICollectionView-使用二/">UICollectionView - 使用二</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="UICollectionViewLayout"><a href="#UICollectionViewLayout" class="headerlink" title="UICollectionViewLayout"></a>UICollectionViewLayout</h3><p>终于到UICollectionView的精髓了…这也是UICollectionView和UITableView最大的不同。<br>UICollectionViewLayout可以说是UICollectionView的大脑和中枢，它负责了将各个cell、Supplementary View和Decoration Views进行组织，为它们设定各自的属性，包括但不限于：</p>
-<pre><code>    位置
-    尺寸
-    透明度
-    层级关系
-    形状
-    等等等等…
-
-Layout决定了UICollectionView是如何显示在界面上的。
-在展示之前，一般需要生成合适的UICollectionViewLayout子类对象，并将其赋予CollectionView的collectionViewLayout属性。
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/12/18/UICollectionView-使用二/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-UICollectionView-使用一" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/18/UICollectionView-使用一/" class="article-date">
-  	<time datetime="2016-12-18T11:39:38.000Z" itemprop="datePublished">2016-12-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/18/UICollectionView-使用一/">UICollectionView - 使用一</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是UICollectionView"><a href="#什么是UICollectionView" class="headerlink" title="什么是UICollectionView"></a>什么是UICollectionView</h3><p>UICollectionView是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView(请一定注意这是UICollectionView的最最简单的形式)。</p>
-<p>最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。标准的UICollectionView包含三个部分，它们都是UIView的子类：</p>
-<pre><code>＊  Cells 用于展示内容的主体，对于不同的cell可以指定不同尺寸和不同的内容 
-＊  Supplementary Views 追加视图 如果你对UITableView比较熟悉的话，可以理解为每个Section的Header或者Footer，用来标记每个section的view
-＊  Decoration Views 装饰视图 这是每个section的背景，
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/12/18/UICollectionView-使用一/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS开发中的几种设计模式介绍" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/11/iOS开发中的几种设计模式介绍/" class="article-date">
-  	<time datetime="2016-12-11T13:02:50.000Z" itemprop="datePublished">2016-12-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/11/iOS开发中的几种设计模式介绍/">iOS开发中的几种设计模式介绍</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：</p>
-<h4 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h4><p>应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。<br>优势：解耦合<br>敏捷原则：开放-封闭原则</p>
-<pre><code>实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
-列表row个数delegate
-自定义的delegate
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/12/11/iOS开发中的几种设计模式介绍/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-UIAlertController-弹框" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/27/UIAlertController-弹框/" class="article-date">
-  	<time datetime="2016-11-27T13:15:28.000Z" itemprop="datePublished">2016-11-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/27/UIAlertController-弹框/">UIAlertController 弹框</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一. 标准的Alert样式</p>
-<pre><code>//UIAlertController风格：UIAlertControllerStyleAlert
-UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&quot;主标题&quot; message:@&quot;提示文字&quot;preferredStyle:UIAlertControllerStyleAlert ];
-
-//添加取消到UIAlertController中
-UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleDefault handler:nil];
-[alertController addAction:cancelAction];
-
-//添加确定到UIAlertController中
-UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@&quot;确定&quot; style:UIAlertActionStyleDefault handler:nil];
-[alertController addAction:OKAction];
-
-[self presentViewController:alertController animated:YES completion:nil]
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/11/27/UIAlertController-弹框/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>

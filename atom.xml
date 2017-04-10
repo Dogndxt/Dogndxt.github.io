@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-03T02:28:58.000Z</updated>
+  <updated>2017-04-10T12:15:45.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,270 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS 使用Cycript进行运行时分析</title>
+    <link href="http://yoursite.com/2017/04/10/iOS-%E4%BD%BF%E7%94%A8Cycript%E8%BF%9B%E8%A1%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%88%86%E6%9E%90/"/>
+    <id>http://yoursite.com/2017/04/10/iOS-使用Cycript进行运行时分析/</id>
+    <published>2017-04-10T12:14:50.000Z</published>
+    <updated>2017-04-10T12:15:45.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;获得进程-PID&quot;&gt;&lt;a href=&quot;#获得进程-PID&quot; class=&quot;headerlink&quot; title=&quot;获得进程 PID&quot;&gt;&lt;/a&gt;获得进程 PID&lt;/h3&gt;&lt;p&gt;在越狱设备中开启某个项目，并切回到越狱设备的终端，找到项目的进程编号 PID。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; ps aux | grep &amp;quot;项目名&amp;quot;
+
+＊ mobile    3098   0.0  2.6   636116  25480   ??  Ss    3:51PM   0:02.18 /Applications/AutoGetRedPacket.app/AutoGetRedPacket
+＊ root      3140   0.0  0.0   525864    200 s000  R+    4:17PM   0:00.01 grep AutoGetRedPacket
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  找到 mobile 对应的 PID 949，之后利用 Cycript 进行运行时分析&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;使用-Cycript&quot;&gt;&lt;a href=&quot;#使用-Cycript&quot; class=&quot;headerlink&quot; title=&quot;使用 Cycript&quot;&gt;&lt;/a&gt;使用 Cycript&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;cycript -p PID   执行之后进入相应的进程
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;使用Cycript有如下好处：&quot;&gt;&lt;a href=&quot;#使用Cycript有如下好处：&quot; class=&quot;headerlink&quot; title=&quot;使用Cycript有如下好处：&quot;&gt;&lt;/a&gt;使用Cycript有如下好处：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1. 我们能够挂钩正在运行的进程，并且找出正被使用的类信息，例如view controllers，内部和第3方库，甚至程序的delegate的名称。
+2. 对于一个特定的类，例如View Controller, App delegate或者任何其他的类，我们能够得到所有被使用的方法名称。
+3. 我们能够得到所有实例变量的名称和在程序运行的任意时刻实例变量的值。
+4. 我们能够在运行时修改实例变量的值。
+5. 我们能够执行Method Swizzling，例如替换一个特定方法的实现。
+6. 我们可以在运行时调用任意方法，即使这个方法目前并不在应用的实际代码当中。
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;Cycript高级技巧   &lt;a href=&quot;http://www.jianshu.com/p/fbb824c285d0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.jianshu.com/p/fbb824c285d0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Cycript Tricks   &lt;a href=&quot;http://iphonedevwiki.net/index.php/Cycript_Tricks&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://iphonedevwiki.net/index.php/Cycript_Tricks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;获得进程-PID&quot;&gt;&lt;a href=&quot;#获得进程-PID&quot; class=&quot;headerlink&quot; title=&quot;获得进程 PID&quot;&gt;&lt;/a&gt;获得进程 PID&lt;/h3&gt;&lt;p&gt;在越狱设备中开启某个项目，并切回到越狱设备的终端，找到项目的进程编号 PID。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; ps aux | grep &amp;quot;项目名&amp;quot;
+
+＊ mobile    3098   0.0  2.6   636116  25480   ??  Ss    3:51PM   0:02.18 /Applications/AutoGetRedPacket.app/AutoGetRedPacket
+＊ root      3140   0.0  0.0   525864    200 s000  R+    4:17PM   0:00.01 grep AutoGetRedPacket
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  找到 mobile 对应的 PID 949，之后利用 Cycript 进行运行时分析&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>AFNetWorking是如何进行数据缓存的--之AFImageCache &amp; NSURLCache 详解</title>
+    <link href="http://yoursite.com/2017/04/10/AFNetWorking%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E7%9A%84-%E4%B9%8BAFImageCache-NSURLCache-%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://yoursite.com/2017/04/10/AFNetWorking是如何进行数据缓存的-之AFImageCache-NSURLCache-详解/</id>
+    <published>2017-04-10T12:10:19.000Z</published>
+    <updated>2017-04-10T12:11:29.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;AFAutoPurgingImageCache-图片缓存类&quot;&gt;&lt;a href=&quot;#AFAutoPurgingImageCache-图片缓存类&quot; class=&quot;headerlink&quot; title=&quot;AFAutoPurgingImageCache 图片缓存类&quot;&gt;&lt;/a&gt;AFAutoPurgingImageCache 图片缓存类&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;缓存机制: 这个类通过 
+@property (nonatomic, strong) NSMutableDictionary &amp;lt;NSString* , AFCachedImage*&amp;gt; *cachedImages;
+
+这个字典属性进行图片数据的存储。每一张图片对于唯一的一个标示字符串，如果是请求链接则将链接作为键值。添加图片的时候会计算图片的大小，进行存储空间的控制，超过初始化的大小进行时间排序，久的图片的删除，或者收到内存警告的时候，则清除所有的图片。
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&quot;AFImageDownloader-图片下载类&quot;&gt;&lt;a href=&quot;#AFImageDownloader-图片下载类&quot; class=&quot;headerlink&quot; title=&quot;AFImageDownloader 图片下载类&quot;&gt;&lt;/a&gt;AFImageDownloader 图片下载类&lt;/h5&gt;&lt;h3 id=&quot;清除本地请求数据的缓存&quot;&gt;&lt;a href=&quot;#清除本地请求数据的缓存&quot; class=&quot;headerlink&quot; title=&quot;清除本地请求数据的缓存&quot;&gt;&lt;/a&gt;清除本地请求数据的缓存&lt;/h3&gt;&lt;p&gt;可以禁用NSURLCache，只需要将内存和磁盘空间设置为0就行了.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0
+                                                        diskCapacity:0
+                                                            diskPath:nil];
+[NSURLCache setSharedURLCache:sharedCache];
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;AFAutoPurgingImageCache-图片缓存类&quot;&gt;&lt;a href=&quot;#AFAutoPurgingImageCache-图片缓存类&quot; class=&quot;headerlink&quot; title=&quot;AFAutoPurgingImageCache 图片缓存类&quot;&gt;&lt;/a
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Charles 从入门到精通</title>
+    <link href="http://yoursite.com/2017/04/10/Charles-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/"/>
+    <id>http://yoursite.com/2017/04/10/Charles-从入门到精通/</id>
+    <published>2017-04-10T12:06:46.000Z</published>
+    <updated>2017-04-10T12:16:24.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Charles 是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。&lt;br&gt;Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。&lt;br&gt;除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。（&lt;a href=&quot;http://blog.devtang.com/2015/11/14/charles-introduction/）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.devtang.com/2015/11/14/charles-introduction/）&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Charles 主要的功能包括：
+
+1. 截取 Http 和 Https 网络封包。
+2. 支持重发网络请求，方便后端调试。
+3. 支持修改网络请求参数。
+4. 支持网络请求的截获并动态修改。
+5. 支持模拟慢速网络。
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;安装-Charles&quot;&gt;&lt;a href=&quot;#安装-Charles&quot; class=&quot;headerlink&quot; title=&quot;安装 Charles&quot;&gt;&lt;/a&gt;安装 Charles&lt;/h3&gt;&lt;p&gt;去 Charles 的官方网站（&lt;a href=&quot;http://www.charlesproxy.com）下载最新版的&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.charlesproxy.com）下载最新版的&lt;/a&gt; Charles 安装包，是一个 dmg 后缀的文件。打开后将 Charles 拖到 Application 目录下即完成安装。&lt;/p&gt;
+&lt;h3 id=&quot;将-Charles-设置成系统代理&quot;&gt;&lt;a href=&quot;#将-Charles-设置成系统代理&quot; class=&quot;headerlink&quot; title=&quot;将 Charles 设置成系统代理&quot;&gt;&lt;/a&gt;将 Charles 设置成系统代理&lt;/h3&gt;&lt;p&gt;启动 Charles 后，第一次 Charles 会请求你给它设置系统代理的权限。你可以输入登录密码授予 Charles 该权限。你也可以忽略该请求，然后在需要将 Charles 设置成系统代理时，选择菜单中的 “Proxy” -&amp;gt; “Mac OS X Proxy” 来将 Charles 设置成系统代理。&lt;/p&gt;
+&lt;h3 id=&quot;Charles-主界面介绍&quot;&gt;&lt;a href=&quot;#Charles-主界面介绍&quot; class=&quot;headerlink&quot; title=&quot;Charles 主界面介绍&quot;&gt;&lt;/a&gt;Charles 主界面介绍&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;Charles 主要提供两种查看封包的视图，分别名为 “Structure” 和 “Sequence”。
+
+    1. Structure 视图将网络请求按访问的域名分类。
+    2. Sequence 视图将网络请求按访问的时间排序。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;过滤网络请求&quot;&gt;&lt;a href=&quot;#过滤网络请求&quot; class=&quot;headerlink&quot; title=&quot;过滤网络请求&quot;&gt;&lt;/a&gt;过滤网络请求&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;方法一：在主界面的中部的 Filter 栏中填入需要过滤出来的关键字。例如我们的服务器的地址是：http://yuantiku.com , 那么只需要在 Filter 栏中填入 yuantiku 即可。
+
+方法二：在 Charles 的菜单栏选择 “Proxy”-&amp;gt;”Recording Settings”，然后选择 Include 栏，选择添加一个项目，然后填入需要监控的协议，主机地址，端口号。这样就可以只截取目标网站的封包了。
+
+方法三：在想过滤的网络请求上右击，选择 “Focus”，之后在 Filter 一栏勾选上 Focussed 一项
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;截取-iPhone-上的网络封包&quot;&gt;&lt;a href=&quot;#截取-iPhone-上的网络封包&quot; class=&quot;headerlink&quot; title=&quot;截取 iPhone 上的网络封包&quot;&gt;&lt;/a&gt;截取 iPhone 上的网络封包&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Charles 上的设置&lt;/p&gt;
+&lt;p&gt;要截取 iPhone 上的网络请求，我们首先需要将 Charles 的代理功能打开。在 Charles 的菜单栏上选择 “Proxy”-&amp;gt;”Proxy Settings”，填入代理端口 8888，并且勾上 “Enable transparent HTTP proxying” 就完成了在 Charles 上的设置。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;iPhone 上的设置&lt;/p&gt;
+&lt;p&gt;首先我们需要获取 Charles 运行所在电脑的 IP 地址，Charles 的顶部菜单的 “Help”-&amp;gt;”Local IP Address”，即可在弹出的对话框中看到 IP 地址。&lt;/p&gt;
+&lt;p&gt;然后在 iPhone 的 “ 设置 “-&amp;gt;” 无线局域网 “ 中，可以看到当前连接的 wifi 名，通过点击右边的详情键，可以看到当前连接上的 wifi 的详细信息，包括 IP 地址，子网掩码等信息。在其最底部有「HTTP 代理」一项，我们将其切换成手动，然后填上 Charles 运行所在的电脑的 IP，以及端口号 8888。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;截取-Https-通讯信息&quot;&gt;&lt;a href=&quot;#截取-Https-通讯信息&quot; class=&quot;headerlink&quot; title=&quot;截取 Https 通讯信息&quot;&gt;&lt;/a&gt;截取 Https 通讯信息&lt;/h3&gt;&lt;p&gt;通过网络上的方法设置之后没有成功获取到 https 的数据，暂时搁置。&lt;/p&gt;
+&lt;h3 id=&quot;模拟慢速网络&quot;&gt;&lt;a href=&quot;#模拟慢速网络&quot; class=&quot;headerlink&quot; title=&quot;模拟慢速网络&quot;&gt;&lt;/a&gt;模拟慢速网络&lt;/h3&gt;&lt;p&gt;在 Charles 的菜单上，选择 “Proxy”-&amp;gt;”Throttle Setting” 项，在之后弹出的对话框中，我们可以勾选上 “Enable Throttling”，并且可以设置 Throttle Preset 的类型&lt;/p&gt;
+&lt;h3 id=&quot;修改网络请求内容&quot;&gt;&lt;a href=&quot;#修改网络请求内容&quot; class=&quot;headerlink&quot; title=&quot;修改网络请求内容&quot;&gt;&lt;/a&gt;修改网络请求内容&lt;/h3&gt;&lt;p&gt;Charles 可以方便地提供网络请求的修改和重发功能。只需要在以往的网络请求上点击右键，选择 “Edit”，即可创建一个可编辑的网络请求。 &lt;/p&gt;
+&lt;p&gt;我们可以修改该请求的任何信息，包括 URL 地址、端口、参数等，之后点击 “Execute” 即可发送该修改后的网络请求（如下图所示）。Charles 支持我们多次修改和发送该请求，这对于我们和服务器端调试接口非常方便。&lt;/p&gt;
+&lt;h3 id=&quot;给服务器做压力测试&quot;&gt;&lt;a href=&quot;#给服务器做压力测试&quot; class=&quot;headerlink&quot; title=&quot;给服务器做压力测试&quot;&gt;&lt;/a&gt;给服务器做压力测试&lt;/h3&gt;&lt;p&gt;我们可以使用 Charles 的 Repeat 功能来简单地测试服务器的并发处理能力，方法如下。我们在想打压的网络请求上（POST 或 GET 请求均可）右击，然后选择 「Repeat Advanced」菜单项&lt;/p&gt;
+&lt;h3 id=&quot;修改服务器返回内容&quot;&gt;&lt;a href=&quot;#修改服务器返回内容&quot; class=&quot;headerlink&quot; title=&quot;修改服务器返回内容&quot;&gt;&lt;/a&gt;修改服务器返回内容&lt;/h3&gt;&lt;p&gt;有些时候我们想让服务器返回一些指定的内容，方便我们调试一些特殊情况。例如列表页面为空的情况，数据异常的情况，部分耗时的网络请求超时的情况等。如果没有 Charles，要服务器配合构造相应的数据显得会比较麻烦。这个时候，使用 Charles 相关的功能就可以满足我们的需求。&lt;/p&gt;
+&lt;p&gt;根据具体的需求，Charles 提供了 Map 功能、 Rewrite 功能以及 Breakpoints 功能，都可以达到修改服务器返回内容的目的。这三者在功能上的差异是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    1. Map 功能适合长期地将某一些请求重定向到另一个网络地址或本地文件。
+    2. Rewrite 功能适合对网络请求进行一些正则替换。
+    3. Breakpoints 功能适合做一些临时性的修改。
+
+
+1. Map 功能
+
+  Charles 的 Map 功能分 Map Remote 和 Map Local 两种，顾名思义，Map Remote 是将指定的网络请求重定向到另一个网址请求地址，Map Local 是将指定的网络请求重定向到本地文件。
+  在 Charles 的菜单中，选择 “Tools”-&amp;gt;”Map Remote” 或 “Map Local” 即可进入到相应功能的设置页面。
+  对于 Map Remote 功能，我们需要分别填写网络重定向的源地址和目的地址，对于不需要限制的条件，可以留空。下图是一个示例，我将所有 ytk1.yuanku.ws（测试服务器）的请求重定向到了 www.yuantiku.com（线上服务器）。
+  对于 Map Local 功能，我们需要填写的重定向的源地址和本地的目标文件。对于有一些复杂的网络请求结果，我们可以先使用 Charles 提供的 “Save Response…” 功能，将请求结果保存到本地，然后稍加修改，成为我们的目标映射文件。
+
+
+2. Rewrite 功能
+
+  Rewrite 功能功能适合对某一类网络请求进行一些正则替换，以达到修改结果的目的。
+  例如，我们的客户端有一个 API 请求是获得用户昵称，而我当前的昵称是 “tangqiaoboy”，如下所示：
+  我们想试着直接修改网络返回值，将 tangqiaoboy 换成成 iosboy。于是我们启用 Rewrite 功能，然后设置如下的规则：
+  完成设置之后，我们就可以从 Charles 中看到，之后的 API 获得的昵称被自动 Rewrite 成了 iosboy
+
+
+3. Breakpoints 功能
+
+  上面提供的 Rewrite 功能最适合做批量和长期的替换，但是很多时候，我们只是想临时修改一次网络请求结果，这个时候，使用 Rewrite 功能虽然也可以达到目的，但是过于麻烦，对于临时性的修改，我们最好使用 Breakpoints 功能。
+  Breakpoints 功能类似我们在 Xcode 中设置的断点一样，当指定的网络请求发生时，Charles 会截获该请求，这个时候，我们可以在 Charles 中临时修改网络请求的返回内容。
+  下图是我们临时修改获取用户信息的 API，将用户的昵称进行了更改，修改完成后点击 “Execute” 则可以让网络请求继续进行。
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Charles 是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。&lt;br&gt;Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。&lt;br&gt;除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。（&lt;a href=&quot;http://blog.devtang.com/2015/11/14/charles-introduction/）&quot;&gt;http://blog.devtang.com/2015/11/14/charles-introduction/）&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Charles 主要的功能包括：
+
+1. 截取 Http 和 Https 网络封包。
+2. 支持重发网络请求，方便后端调试。
+3. 支持修改网络请求参数。
+4. 支持网络请求的截获并动态修改。
+5. 支持模拟慢速网络。
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>反编译工具</title>
+    <link href="http://yoursite.com/2017/04/10/%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/"/>
+    <id>http://yoursite.com/2017/04/10/反编译工具/</id>
+    <published>2017-04-10T12:02:31.000Z</published>
+    <updated>2017-04-10T12:05:23.000Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;WinDbg&quot;&gt;&lt;a href=&quot;#WinDbg&quot; class=&quot;headerlink&quot; title=&quot;WinDbg&quot;&gt;&lt;/a&gt;WinDbg&lt;/h4&gt;&lt;p&gt; WinDbg是微软发布的一款相当优秀的源码级(source-level)调试工具，可以用于Kernel模式调试和用户模式调试，还可以调试Dump文件。&lt;/p&gt;
+&lt;h4 id=&quot;OllyDbg&quot;&gt;&lt;a href=&quot;#OllyDbg&quot; class=&quot;headerlink&quot; title=&quot;OllyDbg&quot;&gt;&lt;/a&gt;OllyDbg&lt;/h4&gt;&lt;p&gt;OLLYDBG是一个新的动态追踪工具，将IDA与SoftICE结合起来的思想，Ring 3级调试器，非常容易上手，己代替SoftICE成为当今最为流行的调试解密工具了。同时还支持插件扩展功能，是目前最强大的调试工具。&lt;/p&gt;
+&lt;h4 id=&quot;Immunity-Debugger&quot;&gt;&lt;a href=&quot;#Immunity-Debugger&quot; class=&quot;headerlink&quot; title=&quot;Immunity Debugger&quot;&gt;&lt;/a&gt;Immunity Debugger&lt;/h4&gt;&lt;p&gt;Immunity Debugger软件专门用于加速漏洞利用程序的开发，辅助漏洞挖掘以及恶意软件分析。它具备一个完整的图形用户界面，同时还配备了迄今为止最为强的python安全工具库。它巧妙的将动态调试功能与一个强大的静态分析引擎融合于一体，它还附带了一套高度可定制的纯python图形算法，可用于帮助我们绘制出直观的函数体控制流以及函数中的各个基本块。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;PEiD&quot;&gt;&lt;a href=&quot;#PEiD&quot; class=&quot;headerlink&quot; title=&quot;PEiD&quot;&gt;&lt;/a&gt;PEiD&lt;/h4&gt;&lt;p&gt;PEiD(PE Identifier)是一款著名的查壳工具，其功能强大，几乎可以侦测出所有的壳，其数量已超过470 种PE 文档 的加壳类型和签名。&lt;/p&gt;
+&lt;h4 id=&quot;ILSpy&quot;&gt;&lt;a href=&quot;#ILSpy&quot; class=&quot;headerlink&quot; title=&quot;ILSpy&quot;&gt;&lt;/a&gt;ILSpy&lt;/h4&gt;&lt;p&gt;ILSpy 是一个开源的.NET反编译工具，简洁强大易用是它的特征。在绝大多数情况下，它都能很好的完成你对未知程序集内部代码的探索。&lt;/p&gt;
+&lt;h4 id=&quot;Metasploit&quot;&gt;&lt;a href=&quot;#Metasploit&quot; class=&quot;headerlink&quot; title=&quot;Metasploit&quot;&gt;&lt;/a&gt;Metasploit&lt;/h4&gt;&lt;p&gt;Metasploit是一款开源的安全漏洞检测工具，可以帮助安全和IT专业人士识别安全性问题，验证漏洞的缓解措施，并管理专家驱动的安全性进行评估，提供真正的安全风险情报。这些功能包括智能开发，代码审计，Web应用程序扫描，社会工程。团队合作，在Metasploit和综合报告提出了他们的发现。&lt;/p&gt;
+&lt;h4 id=&quot;Putty&quot;&gt;&lt;a href=&quot;#Putty&quot; class=&quot;headerlink&quot; title=&quot;Putty&quot;&gt;&lt;/a&gt;Putty&lt;/h4&gt;&lt;p&gt;PuTTY是一个Telnet、SSH、rlogin、纯TCP以及串行接口连接软件。较早的版本仅支持Windows平台，在最近的版本中开始支持各类Unix平台，并打算移植至Mac OS X上。除了官方版本外，有许多第三方的团体或个人将PuTTY移植到其他平台上，像是以Symbian为基础的移动电话。PuTTY为一开放源代码软件，主要由Simon Tatham维护，使用MIT licence授权。随着Linux在服务器端应用的普及，Linux系统管理越来越依赖于远程。在各种远程登录工具中，Putty是出色的工具之一。Putty是一个免费的、Windows x86平台下的Telnet、SSH和rlogin客户端，但是功能丝毫不逊色于商业的Telnet类工具。目前最新的版本为 0.68 latest release&lt;/p&gt;
+&lt;h4 id=&quot;WinSCP&quot;&gt;&lt;a href=&quot;#WinSCP&quot; class=&quot;headerlink&quot; title=&quot;WinSCP&quot;&gt;&lt;/a&gt;WinSCP&lt;/h4&gt;&lt;p&gt;WinSCP是一个Windows环境下使用SSH的开源图形化SFTP客户端。同时支持SCP协议。它的主要功能就是在本地与远程计算机间安全的复制文件&lt;/p&gt;
+&lt;h4 id=&quot;C32Asm&quot;&gt;&lt;a href=&quot;#C32Asm&quot; class=&quot;headerlink&quot; title=&quot;C32Asm&quot;&gt;&lt;/a&gt;C32Asm&lt;/h4&gt;&lt;p&gt;c32asm 的确是款非常好用的反汇编程序，小编测试后发现它的功能已强于winhex 16、W32Dasm，具有反汇编模式和十六进制编辑模式，能跟踪exe文件的断点，也可直接修改软件内部代码。&lt;/p&gt;
+&lt;h4 id=&quot;010Editor&quot;&gt;&lt;a href=&quot;#010Editor&quot; class=&quot;headerlink&quot; title=&quot;010Editor&quot;&gt;&lt;/a&gt;010Editor&lt;/h4&gt;&lt;p&gt; SweetScape 010 Editor是一个全新的十六进位文件编辑器，它有别於传统的十六进位编辑器在於它可用’范本’来解析二进位文件, 从而让你读懂和编辑它. 它还可用来比较一切可视的二进位文件.&lt;/p&gt;
+&lt;h4 id=&quot;SysinternalsSuite&quot;&gt;&lt;a href=&quot;#SysinternalsSuite&quot; class=&quot;headerlink&quot; title=&quot;SysinternalsSuite&quot;&gt;&lt;/a&gt;SysinternalsSuite&lt;/h4&gt;&lt;p&gt;sysinternals 的网站创立于1996年由Mark russinovich和布赖科格斯韦尔主办其先进的系统工具和技术资料·微软于2006年7月收购sysinternals公司 . 不管你是一个IT高级工作者还是一个开发者，你都会发现sysinternals工具可以帮助您管理、故障分析和诊断你的Windows系统和应用程序· 如果您有关于如何使用这些工具的问题，请访问sysinternals论坛从其他用户和我们的团队获取解答和帮助&lt;/p&gt;
+&lt;h4 id=&quot;PCHunter&quot;&gt;&lt;a href=&quot;#PCHunter&quot; class=&quot;headerlink&quot; title=&quot;PCHunter&quot;&gt;&lt;/a&gt;PCHunter&lt;/h4&gt;&lt;p&gt; 基于XueTr源码重新开发而来，应该超越了XueTr。&lt;/p&gt;
+&lt;h4 id=&quot;InnoExtractor&quot;&gt;&lt;a href=&quot;#InnoExtractor&quot; class=&quot;headerlink&quot; title=&quot;InnoExtractor&quot;&gt;&lt;/a&gt;InnoExtractor&lt;/h4&gt;&lt;p&gt; 使用InnoExtractor能够提取Inno制作的安装包中的文件，直接浏览安装程序的内部文件结构。&lt;br&gt; InnoExtractor(Inno解包工具)能够反编译安装文件的CompiledCode.bin，支持文件拖放、支持输入密码提取、文件查找、支持Unicode等。&lt;/p&gt;
+&lt;h4 id=&quot;ApkTool&quot;&gt;&lt;a href=&quot;#ApkTool&quot; class=&quot;headerlink&quot; title=&quot;ApkTool&quot;&gt;&lt;/a&gt;ApkTool&lt;/h4&gt;&lt;p&gt; APKTool是GOOGLE提供的APK编译工具，能够反编译及回编译apk，同时安装反编译系统apk所需要的framework-res框架，清理上次反编译文件夹等功能。需要java支持&lt;/p&gt;
+&lt;h4 id=&quot;JD-GUI&quot;&gt;&lt;a href=&quot;#JD-GUI&quot; class=&quot;headerlink&quot; title=&quot;JD-GUI&quot;&gt;&lt;/a&gt;JD-GUI&lt;/h4&gt;&lt;p&gt;JD分为JD-GUI、JD-Eclipse两种运行方式，JD-GUI是以单独的程序的方式运行，JD-Eclipse则是以一个Eclipse插件的方式运行。&lt;/p&gt;
+&lt;h4 id=&quot;dex2jar&quot;&gt;&lt;a href=&quot;#dex2jar&quot; class=&quot;headerlink&quot; title=&quot;dex2jar&quot;&gt;&lt;/a&gt;dex2jar&lt;/h4&gt;&lt;p&gt;反编译安卓的软件&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;WinDbg&quot;&gt;&lt;a href=&quot;#WinDbg&quot; class=&quot;headerlink&quot; title=&quot;WinDbg&quot;&gt;&lt;/a&gt;WinDbg&lt;/h4&gt;&lt;p&gt; WinDbg是微软发布的一款相当优秀的源码级(source-level)调试工具，可以用于Kernel模式调试和用户模式调试，还可以调试Dump文件。&lt;/p&gt;
+&lt;h4 id=&quot;OllyDbg&quot;&gt;&lt;a href=&quot;#OllyDbg&quot; class=&quot;headerlink&quot; title=&quot;OllyDbg&quot;&gt;&lt;/a&gt;OllyDbg&lt;/h4&gt;&lt;p&gt;OLLYDBG是一个新的动态追踪工具，将IDA与SoftICE结合起来的思想，Ring 3级调试器，非常容易上手，己代替SoftICE成为当今最为流行的调试解密工具了。同时还支持插件扩展功能，是目前最强大的调试工具。&lt;/p&gt;
+&lt;h4 id=&quot;Immunity-Debugger&quot;&gt;&lt;a href=&quot;#Immunity-Debugger&quot; class=&quot;headerlink&quot; title=&quot;Immunity Debugger&quot;&gt;&lt;/a&gt;Immunity Debugger&lt;/h4&gt;&lt;p&gt;Immunity Debugger软件专门用于加速漏洞利用程序的开发，辅助漏洞挖掘以及恶意软件分析。它具备一个完整的图形用户界面，同时还配备了迄今为止最为强的python安全工具库。它巧妙的将动态调试功能与一个强大的静态分析引擎融合于一体，它还附带了一套高度可定制的纯python图形算法，可用于帮助我们绘制出直观的函数体控制流以及函数中的各个基本块。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>指纹识别</title>
+    <link href="http://yoursite.com/2017/04/10/%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB/"/>
+    <id>http://yoursite.com/2017/04/10/指纹识别/</id>
+    <published>2017-04-10T11:58:09.000Z</published>
+    <updated>2017-04-10T12:01:53.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;简单介绍&quot;&gt;&lt;a href=&quot;#简单介绍&quot; class=&quot;headerlink&quot; title=&quot;简单介绍&quot;&gt;&lt;/a&gt;简单介绍&lt;/h3&gt;&lt;p&gt;指纹识别功能是 iphone 5S之后推出的, SDK是 iOS 8.0 推出!&lt;br&gt;推出指纹识别功能的目的,是为了简化移动支付环节,占领移动支付市场. 同时可以作为需要较高级别保护用户隐私的 APP 的登录检验方式。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;例子&quot;&gt;&lt;a href=&quot;#例子&quot; class=&quot;headerlink&quot; title=&quot;例子&quot;&gt;&lt;/a&gt;例子&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;/**
+ 指纹识别
+ */
+- (void)localAuthentication {
+    float version = [UIDevice currentDevice].systemVersion.floatValue;
+
+    if (version &amp;lt; 8.0) {
+        NSLog(@&amp;quot;系统版本太低,请升级至最新系统&amp;quot;);
+        return;
+    }
+
+    LAContext *laCtx = [[LAContext alloc] init];
+    if (![laCtx canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
+        NSLog(@&amp;quot;该设备不支持指纹识别功能&amp;quot;);
+        return;
+    }
+    [laCtx evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@&amp;quot;指纹登陆&amp;quot; reply:^(BOOL success, NSError * _Nullable error) {
+        if (success) {
+            NSLog(@&amp;quot;指纹识别成功!&amp;quot;);
+        } else {
+            NSLog(@&amp;quot;指纹识别错误,请再次尝试&amp;quot;);
+        }
+    }];
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;简单介绍&quot;&gt;&lt;a href=&quot;#简单介绍&quot; class=&quot;headerlink&quot; title=&quot;简单介绍&quot;&gt;&lt;/a&gt;简单介绍&lt;/h3&gt;&lt;p&gt;指纹识别功能是 iphone 5S之后推出的, SDK是 iOS 8.0 推出!&lt;br&gt;推出指纹识别功能的目的,是为了简化移动支付环节,占领移动支付市场. 同时可以作为需要较高级别保护用户隐私的 APP 的登录检验方式。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2017, 展望未来，拥抱变化</title>
+    <link href="http://yoursite.com/2017/04/03/2017-%E5%B1%95%E6%9C%9B%E6%9C%AA%E6%9D%A5%EF%BC%8C%E6%8B%A5%E6%8A%B1%E5%8F%98%E5%8C%96/"/>
+    <id>http://yoursite.com/2017/04/03/2017-展望未来，拥抱变化/</id>
+    <published>2017-04-03T02:36:25.000Z</published>
+    <updated>2017-04-03T03:29:07.000Z</updated>
+    
+    <content type="html">&lt;p&gt;2016 已经远去，不留一点痕迹，自从去年搭建这个博客之后，到今天，总共发布的博客数量也有 80+ 了，其它的因为还不知道要不要发布的博客有四五十篇了。怎么说呢，在搭建好这个博客之后，感觉自己有了其它人没办法随意进出的小岛了吧。一个属于我自己的世界，我可以在这里“恣意妄为”，完全不顾外界的评价。在这过去的 一年的时光里，发生了很多的事情，也成长了很多，对未来的路程也越来越清晰了。过往的经历也终将成为我未来前进的动力，在我无助想退堂鼓的时候，也能不断地鞭策的我。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;去年定了计划也大都完成了，除了框架的开发，因为工作繁忙，没有太多的时间进行研究，导致写出来的框架便没有太大的技术水准，不过其它的也都达到了，这倒是值得欣慰的地方。&lt;/p&gt;
+&lt;p&gt;去年毕业前夕的时候在闲闪公司工作了三个多月，然后因为各种原因后面就离开了，拿到毕业证书之后就到了现在的公司（千夏软件科技）工作。对闲闪这家公司不想做什么评价，如果非要做评价的话，那绝对足够我在“你会因为什么原因离开这家公司？”这个问题厦门洋洋洒洒写个千百个字的，至于现在的公司，从我进来的那天到如今，公司经历了翻天覆地的变化了，从我刚进入只要负责一个项目，到同时做 2，3，4。。。最多同时负责 8 个项目在历程发展，直到最近因为公司发展原因才又降回 2 个项目。这里面有痛苦也有收获吧。大量的累积了项目经验，以一种非人的速度成长。&lt;/p&gt;
+&lt;p&gt;不过这个情况在一个月前有了改善，现在只要好好专心做元翔专车项目了。这个项目应该会走的比较远的，毕竟项目的背后有个有钱的爸爸。我也从对技术的宽度变成了深度拓展，开始提高产品的质量。因为元翔进行了安全检测，也有了机会进行项目安全研究，同时敲开了逆向工程的大门，有点兴奋，逆向工程我可是筹备了一年多的时间，之前因为时间和自身能力一直没有深入学习，只是停留在了表面。机不可失，顺着这个起点，一周前开始了逆向工程的学习。慢慢地，对代码，框架的架构的能力和认识，也会跟着提升。&lt;/p&gt;
+&lt;p&gt;前路漫漫，不知道未来还会遇到什么样的困难与机会。到时候我能解决那些困难么 ？ 亦或者我能把握好一闪而过的机会让自己更上一层么？ 不好说。谁知道呢，但是现在提高自己的能力总是不会错的，加油吧！！！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2016 已经远去，不留一点痕迹，自从去年搭建这个博客之后，到今天，总共发布的博客数量也有 80+ 了，其它的因为还不知道要不要发布的博客有四五十篇了。怎么说呢，在搭建好这个博客之后，感觉自己有了其它人没办法随意进出的小岛了吧。一个属于我自己的世界，我可以在这里“恣意妄为”，完全不顾外界的评价。在这过去的 一年的时光里，发生了很多的事情，也成长了很多，对未来的路程也越来越清晰了。过往的经历也终将成为我未来前进的动力，在我无助想退堂鼓的时候，也能不断地鞭策的我。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="2017，请多多指教！" scheme="http://yoursite.com/tags/2017%EF%BC%8C%E8%AF%B7%E5%A4%9A%E5%A4%9A%E6%8C%87%E6%95%99%EF%BC%81/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS特别技能点总结5</title>
@@ -1029,340 +1293,6 @@ self.longGesture = longPressGesture;
 UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCellHandle:)];
 self.longGesture = longPressGesture;
 [self addGestureRecognizer:longPressGesture];
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>iOS开发之旅之懒加载</title>
-    <link href="http://yoursite.com/2016/10/18/iOS%E5%BC%80%E5%8F%91%E4%B9%8B%E6%97%85%E4%B9%8B%E6%87%92%E5%8A%A0%E8%BD%BD/"/>
-    <id>http://yoursite.com/2016/10/18/iOS开发之旅之懒加载/</id>
-    <published>2016-10-18T14:54:55.000Z</published>
-    <updated>2016-10-18T14:56:00.000Z</updated>
-    
-    <content type="html">&lt;p&gt;懒加载定义：延时加载，即当对象需要用到的时候再去加载。其实就是所谓的重写对象的get方法,当系统或者开发者调用对象的get方法时，再去加载对象。&lt;/p&gt;
-&lt;p&gt;需要注意：重写get方法时，先判断对象当前是否为空，为空的话再去实例化对象&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (NSArray *)shopData {
-
-    if (!_shopData) {
-        _shopData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&amp;quot;shop&amp;quot; ofType:@&amp;quot;plist&amp;quot;]];
-    }
-    return _shopData;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;懒加载的优点&lt;/p&gt;
-&lt;p&gt;1）不需将对象的实例化写到viewDidLoad，可以简化代码，增强代码的可读性&lt;br&gt;2）对象的实例化在 getter 方法中，各司其职，降低耦合性&lt;br&gt;3）对系统的内存占用率会减小&lt;/p&gt;
-&lt;p&gt;总结：懒加载即用到时方去加载对象&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;懒加载定义：延时加载，即当对象需要用到的时候再去加载。其实就是所谓的重写对象的get方法,当系统或者开发者调用对象的get方法时，再去加载对象。&lt;/p&gt;
-&lt;p&gt;需要注意：重写get方法时，先判断对象当前是否为空，为空的话再去实例化对象&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (NSArray *)shopData {
-
-    if (!_shopData) {
-        _shopData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&amp;quot;shop&amp;quot; ofType:@&amp;quot;plist&amp;quot;]];
-    }
-    return _shopData;
-}
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>initWithFrame方法的理解</title>
-    <link href="http://yoursite.com/2016/09/28/initWithFrame%E6%96%B9%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3/"/>
-    <id>http://yoursite.com/2016/09/28/initWithFrame方法的理解/</id>
-    <published>2016-09-28T11:33:37.000Z</published>
-    <updated>2016-09-28T11:36:38.000Z</updated>
-    
-    <content type="html">&lt;h4 id=&quot;initWithFrame方法是什么？&quot;&gt;&lt;a href=&quot;#initWithFrame方法是什么？&quot; class=&quot;headerlink&quot; title=&quot;initWithFrame方法是什么？&quot;&gt;&lt;/a&gt;initWithFrame方法是什么？&lt;/h4&gt;&lt;p&gt;initWithFrame方法用来初始化并返回一个新的视图对象,根据指定的CGRect（尺寸）。&lt;/p&gt;
-&lt;h4 id=&quot;什么时候用initWithFrame方法？&quot;&gt;&lt;a href=&quot;#什么时候用initWithFrame方法？&quot; class=&quot;headerlink&quot; title=&quot;什么时候用initWithFrame方法？&quot;&gt;&lt;/a&gt;什么时候用initWithFrame方法？&lt;/h4&gt;&lt;p&gt;简单的说，我们用编程方式申明，创建UIView对象时，使用initWithFrame方法。&lt;br&gt;在此，我们必须搞清楚，两种方式来进行初始化UIView。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h4 id=&quot;1-使用-Interface-Builder-方式&quot;&gt;&lt;a href=&quot;#1-使用-Interface-Builder-方式&quot; class=&quot;headerlink&quot; title=&quot;1) 使用 Interface Builder 方式&quot;&gt;&lt;/a&gt;1) 使用 Interface Builder 方式&lt;/h4&gt;&lt;p&gt; 这种方式，就是使用nib文件。通常我们说的“拖控件” 的方式。&lt;/p&gt;
-&lt;p&gt;实际编程中，我们如果用Interface Builder 方式创建了UIView对象。（也就是，用拖控件的方式）&lt;br&gt;那么，initWithFrame方法方法是不会被调用的。因为nib文件已经知道如何初始化该View。（因为，我们在拖该view的时候，就定义好了长、宽、背景等属性）。&lt;br&gt;这时候，会调用initWithCoder方法，我们可以用initWithCoder方法来重新定义我们在nib中已经设置的各项属性。&lt;/p&gt;
-&lt;h4 id=&quot;2-使用编程方式&quot;&gt;&lt;a href=&quot;#2-使用编程方式&quot; class=&quot;headerlink&quot; title=&quot;2) 使用编程方式&quot;&gt;&lt;/a&gt;2) 使用编程方式&lt;/h4&gt;&lt;p&gt;实际编程中，我们使用编程方式下，来创建一个UIView或者创建UIView的子类。这时候，将调用initWithFrame方法，来实例化UIView。&lt;br&gt;特别注意，如果在子类中重载initWithFrame方法，必须先调用父类的initWithFrame方法。在对自定义的UIView子类进行初始化操作。&lt;br&gt;比如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (id)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];// 先调用父类的initWithFrame方法
-    if (self) {
-
-        // 再自定义该类（UIView子类）的初始化操作。
-        _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-        [_scrollView setFrame:CGRectMake(0, 0, 320, 480)];
-        _scrollView.contentSize = CGSizeMake(320*3, 480);
-
-        [self addSubview:_scrollView];
-    }
-    return self;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;那么，用Interface-Builder-方式创建的nib文件是什么？&quot;&gt;&lt;a href=&quot;#那么，用Interface-Builder-方式创建的nib文件是什么？&quot; class=&quot;headerlink&quot; title=&quot;那么，用Interface Builder 方式创建的nib文件是什么？&quot;&gt;&lt;/a&gt;那么，用Interface Builder 方式创建的nib文件是什么？&lt;/h4&gt;&lt;p&gt;对于应用程序，资源是一种数据文件，伴随可程序执行程序的一种数据文件。（可以理解为可执行程序的，一种不可缺少的组陈部分）。&lt;br&gt;资源文件，是一种可移动的，由适合的工具编写的一种特殊的代码。&lt;br&gt;如：plish文件，txt文件，图像，视频等文件。都可以被xCode识别和引用。&lt;/p&gt;
-&lt;p&gt;一个应用程序可以包含多种形式的资源文件。&lt;/p&gt;
-&lt;p&gt;当然，nib文件也不例外，仅仅是一种资源文件。&lt;br&gt;通过Interface Builder 方式，可以创建nib文件，存储应用程序的UI对象。供应用程序来读取。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;initWithFrame方法是什么？&quot;&gt;&lt;a href=&quot;#initWithFrame方法是什么？&quot; class=&quot;headerlink&quot; title=&quot;initWithFrame方法是什么？&quot;&gt;&lt;/a&gt;initWithFrame方法是什么？&lt;/h4&gt;&lt;p&gt;initWithFrame方法用来初始化并返回一个新的视图对象,根据指定的CGRect（尺寸）。&lt;/p&gt;
-&lt;h4 id=&quot;什么时候用initWithFrame方法？&quot;&gt;&lt;a href=&quot;#什么时候用initWithFrame方法？&quot; class=&quot;headerlink&quot; title=&quot;什么时候用initWithFrame方法？&quot;&gt;&lt;/a&gt;什么时候用initWithFrame方法？&lt;/h4&gt;&lt;p&gt;简单的说，我们用编程方式申明，创建UIView对象时，使用initWithFrame方法。&lt;br&gt;在此，我们必须搞清楚，两种方式来进行初始化UIView。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title> NSString 字符串处理</title>
-    <link href="http://yoursite.com/2016/09/22/NSString-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/"/>
-    <id>http://yoursite.com/2016/09/22/NSString-字符串处理/</id>
-    <published>2016-09-22T14:39:16.000Z</published>
-    <updated>2016-09-22T14:40:10.000Z</updated>
-    
-    <content type="html">&lt;p&gt;iphone NSString 字符串处理：截取字符串、匹配字符串、分隔字符串    &lt;/p&gt;
-&lt;p&gt;1.截取字符串&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSString*string = @&amp;quot;sdfsfsfsAdfsdf&amp;quot;;
-string = [string substringToIndex:7];//截取掉下标7之后的字符串
-NSLog(@&amp;quot;截取的值为：%@&amp;quot;,string);
-[string substringFromIndex:2];//截取掉下标2之前的字符串
-NSLog(@&amp;quot;截取的值为：%@&amp;quot;,string);
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;2.匹配字符串&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSString*string = @&amp;quot;sdfsfsfsAdfsdf&amp;quot;;
-NSRange range = [stringrangeOfString:@&amp;quot;f&amp;quot;];//匹配得到的下标
-NSLog(@&amp;quot;rang:%@&amp;quot;,NSStringFromRange(range));
-string = [string substringWithRange:range];//截取范围类的字符串
-NSLog(@&amp;quot;截取的值为：%@&amp;quot;,string);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.分隔字符串&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSString *string = @&amp;quot;sdfsfsfsAdfsdf&amp;quot;;
-NSArray *array = [string componentsSeparatedByString:@&amp;quot;A&amp;quot;]; //从字符A中分隔成2个元素的数组
-NSLog(@&amp;quot;array:%@&amp;quot;,array); //结果是adfsfsfs和dfsdf
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;iphone NSString 字符串处理：截取字符串、匹配字符串、分隔字符串    &lt;/p&gt;
-&lt;p&gt;1.截取字符串&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSString*string = @&amp;quot;sdfsfsfsAdfsdf&amp;quot;;
-string = [string substringToIndex:7];//截取掉下标7之后的字符串
-NSLog(@&amp;quot;截取的值为：%@&amp;quot;,string);
-[string substringFromIndex:2];//截取掉下标2之前的字符串
-NSLog(@&amp;quot;截取的值为：%@&amp;quot;,string);
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>UISlide属性</title>
-    <link href="http://yoursite.com/2016/09/22/UISlide%E5%B1%9E%E6%80%A7/"/>
-    <id>http://yoursite.com/2016/09/22/UISlide属性/</id>
-    <published>2016-09-22T14:39:02.000Z</published>
-    <updated>2016-09-22T14:43:35.000Z</updated>
-    
-    <content type="html">&lt;p&gt;1.minimumValue &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;当值可以改变时，滑块可以滑动到最小位置的值，默认为0.0
-
-_slider.minimumValue = 10.0;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.maximumValue &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;当值可以改变时，滑块可以滑动到最大位置的值，默认为1.0
-
-_slider.maximumValue = 100.0;
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;3.continuous &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;如果设置YES，在拖动滑块的任何时候，滑块的值都会改变。默认设置为YES
-
-[_slider setContinuous:NO]; // 在滑块滑动结束时才获取滑块的值
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;4.minimumValueImage &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;滑块条最小值处设置的图片，默认为nil
-
-_slider.minimumValueImage = [UIImage imageNamed:@&amp;quot;003.png&amp;quot;];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;5.maximumValueImage&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;滑块条最大值处设置的图片,默认为nil
-
-_slider.maximumValueImage = [UIImage imageNamed:@&amp;quot;002.png&amp;quot;];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;6.minimumTrackTintColor :&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;小于滑块当前值滑块条的颜色，默认为蓝色
-
-_slider.minimumTrackTintColor = [UIColor redColor];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;7.maximumTrackTintColor:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;大于滑块当前值滑块条的颜色，默认为白色
-
-_slider.maximumTrackTintColor = [UIColor greenColor];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;8.thumbTintColor :&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;当前滑块的颜色，默认为白色
-
-_slider.thumbTintColor = [UIColor yellowColor];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;9.currentMaximumTrackImage &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;滑块条最大值处设置的图片
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;10.currentMinimumTrackImage &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;滑块条最小值处设置的图片
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;11.currentThumbImage&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;当前滑块的图片
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1.minimumValue &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;当值可以改变时，滑块可以滑动到最小位置的值，默认为0.0
-
-_slider.minimumValue = 10.0;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.maximumValue &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;当值可以改变时，滑块可以滑动到最大位置的值，默认为1.0
-
-_slider.maximumValue = 100.0;
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>利用 AFNetworking 监听网络状态</title>
-    <link href="http://yoursite.com/2016/09/22/%E5%88%A9%E7%94%A8-AFNetworking-%E7%9B%91%E5%90%AC%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81/"/>
-    <id>http://yoursite.com/2016/09/22/利用-AFNetworking-监听网络状态/</id>
-    <published>2016-09-22T14:33:42.000Z</published>
-    <updated>2016-09-22T14:37:46.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;1-创建网络监听者管理者对象&quot;&gt;&lt;a href=&quot;#1-创建网络监听者管理者对象&quot; class=&quot;headerlink&quot; title=&quot;1.创建网络监听者管理者对象&quot;&gt;&lt;/a&gt;1.创建网络监听者管理者对象&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;2-设置监听&quot;&gt;&lt;a href=&quot;#2-设置监听&quot; class=&quot;headerlink&quot; title=&quot;2.设置监听&quot;&gt;&lt;/a&gt;2.设置监听&lt;/h3&gt;&lt;p&gt;1)网络状态&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//显然是枚举值
-typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
-    AFNetworkReachabilityStatusUnknown          = -1,//未识别的网络
-    AFNetworkReachabilityStatusNotReachable     = 0,//不可达的网络
-    AFNetworkReachabilityStatusReachableViaWWAN = 1,//2G,3G,4G...
-    AFNetworkReachabilityStatusReachableViaWiFi = 2,//wifi网络
-    }
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;2)设置网络监听&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-    switch (status) {
-        case AFNetworkReachabilityStatusUnknown:
-            NSLog(@&amp;quot;未识别的网络&amp;quot;);
-            break;
-
-        case AFNetworkReachabilityStatusNotReachable:
-            NSLog(@&amp;quot;不可达的网络(未连接)&amp;quot;);
-            break;
-
-        case AFNetworkReachabilityStatusReachableViaWWAN:
-            NSLog(@&amp;quot;2G,3G,4G...的网络&amp;quot;);
-            break;
-
-        case AFNetworkReachabilityStatusReachableViaWiFi:
-            NSLog(@&amp;quot;wifi的网络&amp;quot;);
-            break;
-        default:
-            break;
-    }
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;3-开始监听&quot;&gt;&lt;a href=&quot;#3-开始监听&quot; class=&quot;headerlink&quot; title=&quot;3.开始监听&quot;&gt;&lt;/a&gt;3.开始监听&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[manager startMonitoring];
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1-创建网络监听者管理者对象&quot;&gt;&lt;a href=&quot;#1-创建网络监听者管理者对象&quot; class=&quot;headerlink&quot; title=&quot;1.创建网络监听者管理者对象&quot;&gt;&lt;/a&gt;1.创建网络监听者管理者对象&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;2-设置监听&quot;&gt;&lt;a href=&quot;#2-设置监听&quot; class=&quot;headerlink&quot; title=&quot;2.设置监听&quot;&gt;&lt;/a&gt;2.设置监听&lt;/h3&gt;&lt;p&gt;1)网络状态&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//显然是枚举值
-typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
-    AFNetworkReachabilityStatusUnknown          = -1,//未识别的网络
-    AFNetworkReachabilityStatusNotReachable     = 0,//不可达的网络
-    AFNetworkReachabilityStatusReachableViaWWAN = 1,//2G,3G,4G...
-    AFNetworkReachabilityStatusReachableViaWiFi = 2,//wifi网络
-    }
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>仿射变换(CGAffineTransform)使用小结</title>
-    <link href="http://yoursite.com/2016/09/22/%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2-CGAffineTransform-%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%BB%93/"/>
-    <id>http://yoursite.com/2016/09/22/仿射变换-CGAffineTransform-使用小结/</id>
-    <published>2016-09-22T14:28:02.000Z</published>
-    <updated>2016-09-22T14:32:43.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;一、理论基础&quot;&gt;&lt;a href=&quot;#一、理论基础&quot; class=&quot;headerlink&quot; title=&quot;一、理论基础&quot;&gt;&lt;/a&gt;一、理论基础&lt;/h3&gt;&lt;p&gt;在几何上定义为两个向量空间之间的一个仿射变换或者仿射映射由一个线性变换(运用一次函数进行的变换)接上一个平移组成。&lt;/p&gt;
-&lt;p&gt;CGAffineTransform简单分析（&lt;a href=&quot;http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;二、射变换的种类&quot;&gt;&lt;a href=&quot;#二、射变换的种类&quot; class=&quot;headerlink&quot; title=&quot;二、射变换的种类&quot;&gt;&lt;/a&gt;二、射变换的种类&lt;/h3&gt;&lt;p&gt;1.自定义变换&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
-[UIView animateWithDuration:1.5f animations:^{
-    _demoView.transform = CGAffineTransformMake(1.0, 0, 0, 1.0, 20, 20);
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;2.平移&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; x &amp;gt; 0 右边  x &amp;lt; 0 左边
- y &amp;gt; 0 下边  y &amp;lt; 0 上边 
- _demoView.transform = CGAffineTransformIdentity;
-[UIView animateWithDuration:1.5f animations:^{
-    _demoView.transform = CGAffineTransformMakeTranslation(100, -50);
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.缩放      x 轴缩放 ， y 轴缩放&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
-[UIView animateWithDuration:1.5f animations:^{
-    _demoView.transform = CGAffineTransformMakeScale(2, 0.5);
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;4.旋转     angle &amp;gt; 0 顺时针 ， angle &amp;lt; 0逆时针&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
-[UIView animateWithDuration:1.5f animations:^{
-   _demoView.transform = CGAffineTransformMakeRotation(20);
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;5.旋转 ＋ 平移 &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
-[UIView animateWithDuration:1.5f animations:^{
-    _demoView.transform = CGAffineTransformMakeRotation(20);
-}];
-[UIView animateWithDuration:1.5f animations:^{
-    _demoView.transform = CGAffineTransformTranslate(_demoView.transform, 150, 150);
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;6.旋转 ＋ 缩放&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
-[UIView animateWithDuration:1.5f animations:^{
-    _demoView.transform = CGAffineTransformMakeRotation(20);
-    //        NSLog(@&amp;quot;%d&amp;quot;, CGAffineTransformIsIdentity(_demoView.transform));
-}];
-[UIView animateWithDuration:1.5f animations:^{
-    _demoView.transform = CGAffineTransformScale(_demoView.transform, 0.5, 2);
-    //        NSLog(@&amp;quot;%d&amp;quot;, CGAffineTransformIsIdentity(_demoView.transform));
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;7.相反 （逆旋转，逆移动等）&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
-[UIView animateWithDuration:1.5f animations:^{
-    _demoView.transform = CGAffineTransformInvert(CGAffineTransformMakeRotation(20));
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;8.合并多个变换&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
-[UIView animateWithDuration:1.5f animations:^{
-    _demoView.transform = CGAffineTransformConcat(CGAffineTransformMakeRotation(20), CGAffineTransformScale(_demoView.transform, 0.5, 2));
-    NSLog(@&amp;quot;%d&amp;quot;, CGAffineTransformEqualToTransform(CGAffineTransformMakeRotation(20), CGAffineTransformScale(_demoView.transform, 0.5, 2)));
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;三、补充&quot;&gt;&lt;a href=&quot;#三、补充&quot; class=&quot;headerlink&quot; title=&quot;三、补充&quot;&gt;&lt;/a&gt;三、补充&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;CGAffineTransformIdentity ： 单位矩阵变换，一般用于仿射变换的初始化或者还原。
-CGAffineTransformEqualToTransform(CGAffineTransform t1, CGAffineTransform t2) ： 判断两个变换矩阵是否相等
-CGAffineTransformConcat(CGAffineTransform t1, CGAffineTransform t2) ： 得到两个矩阵相加后得到的最终矩阵
-CGPoint CGPointApplyAffineTransform(CGPoint point, CGAffineTransform t) ： 某点通过矩阵变换之后的点
-CGSize CGSizeApplyAffineTransform(CGSize size, CGAffineTransform t) ： 某个size通过矩阵变换之后的size
-CGRect CGRectApplyAffineTransform(CGRect rect, CGAffineTransform t) ： 某个Rect通过矩阵变换之后的区域
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;一、理论基础&quot;&gt;&lt;a href=&quot;#一、理论基础&quot; class=&quot;headerlink&quot; title=&quot;一、理论基础&quot;&gt;&lt;/a&gt;一、理论基础&lt;/h3&gt;&lt;p&gt;在几何上定义为两个向量空间之间的一个仿射变换或者仿射映射由一个线性变换(运用一次函数进行的变换)接上一个平移组成。&lt;/p&gt;
-&lt;p&gt;CGAffineTransform简单分析（&lt;a href=&quot;http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）&quot;&gt;http://xummer26.com/blog/CGAffineTransform-simple-analysis.html）&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;二、射变换的种类&quot;&gt;&lt;a href=&quot;#二、射变换的种类&quot; class=&quot;headerlink&quot; title=&quot;二、射变换的种类&quot;&gt;&lt;/a&gt;二、射变换的种类&lt;/h3&gt;&lt;p&gt;1.自定义变换&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;_demoView.transform = CGAffineTransformIdentity;
-[UIView animateWithDuration:1.5f animations:^{
-    _demoView.transform = CGAffineTransformMake(1.0, 0, 0, 1.0, 20, 20);
-}];
 &lt;/code&gt;&lt;/pre&gt;
     
     </summary>

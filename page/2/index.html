@@ -77,7 +77,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 13.33px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［iOS］/" style="font-size: 16.67px;">［iOS］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［定时器］/" style="font-size: 10px;">［定时器］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a> <a href="/tags/［类的魔法］/" style="font-size: 10px;">［类的魔法］</a>
+						<a href="/tags/2017，请多多指教！/" style="font-size: 10px;">2017，请多多指教！</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/iOS-成长之路/" style="font-size: 10px;">iOS 成长之路</a> <a href="/tags/informal/" style="font-size: 10px;">informal</a> <a href="/tags/nil/" style="font-size: 10px;">nil</a> <a href="/tags/sb/" style="font-size: 10px;">sb</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/日期，时间/" style="font-size: 13.33px;">日期，时间</a> <a href="/tags/枚举/" style="font-size: 10px;">枚举</a> <a href="/tags/［NSURL］/" style="font-size: 10px;">［NSURL］</a> <a href="/tags/［coreText］/" style="font-size: 10px;">［coreText］</a> <a href="/tags/［http-报文］/" style="font-size: 10px;">［http 报文］</a> <a href="/tags/［iOS］/" style="font-size: 16.67px;">［iOS］</a> <a href="/tags/［你好，请多多指教～］/" style="font-size: 10px;">［你好，请多多指教～］</a> <a href="/tags/［博客］/" style="font-size: 10px;">［博客］</a> <a href="/tags/［定时器］/" style="font-size: 10px;">［定时器］</a> <a href="/tags/［数据请求］/" style="font-size: 10px;">［数据请求］</a> <a href="/tags/［数据］/" style="font-size: 10px;">［数据］</a> <a href="/tags/［类的魔法］/" style="font-size: 10px;">［类的魔法］</a>
 					</div>
 				</section>
 				
@@ -191,6 +191,384 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-iOS-本地文件路径" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/03/iOS-本地文件路径/" class="article-date">
+  	<time datetime="2017-04-03T02:12:37.000Z" itemprop="datePublished">2017-04-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/03/iOS-本地文件路径/">iOS 本地文件路径</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、本地文件存储位置"><a href="#一、本地文件存储位置" class="headerlink" title="一、本地文件存储位置"></a>一、本地文件存储位置</h3><p>1、Documents 目录：您应该将所有的应用程序数据文件写入到这个目录下。这个目录用于存储用户数据或其它应该定期备份的信息。</p>
+<p>2、AppName.app 目录：这是应用程序的程序包目录，包含应用程序的本身。由于应用程序必须经过签名，所以您在运行时不能对这个目录中的内容进行修改，否则可能会使应用程序无法启动。</p>
+<p>3、Library 目录：这个目录下有两个子目录：Caches 和 Preferences</p>
+<p>Preferences 目录：包含应用程序的偏好设置文件。您不应该直接创建偏好设置文件，而是应该使用NSUserDefaults类来取得和设置应用程序的偏好.<br>Caches 目录：用于存放应用程序专用的支持文件，保存应用程序再次启动过程中需要的信息。</p>
+<p>4、tmp 目录：这个目录用于存放临时文件，保存应用程序再次启动过程中不需要的信息。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/04/03/iOS-本地文件路径/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-关联ObjC" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/14/关联ObjC/" class="article-date">
+  	<time datetime="2017-02-14T11:06:41.000Z" itemprop="datePublished">2017-02-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/14/关联ObjC/">关联ObjC</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关联(objc_setAssociatedObject、objc_getAssociatedObject、objc_removeAssociatedObjects）</p>
+<pre><code>定义：关联是指把两个对象相互关联起来，使得其中的一个对象作为另外一个对象的一部分。
+</code></pre><h4 id="在类的定义之外为类增加额外的存储空间"><a href="#在类的定义之外为类增加额外的存储空间" class="headerlink" title="在类的定义之外为类增加额外的存储空间"></a>在类的定义之外为类增加额外的存储空间</h4><pre><code>使用关联，我们可以不用修改类的定义而为其对象增加存储空间。这在我们无法访问到类的源码的时候或者是考虑到二进制兼容性的时候是非常有用。
+
+关联是基于关键字的，因此，我们可以为任何对象增加任意多的关联，每个都使用不同的关键字即可。关联是可以保证被关联的对象在关联对象的整个生命周期都是可用的（在垃圾自动回收环境下也不会导致资源不可回收）。
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/02/14/关联ObjC/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-UICollectionView-使用二" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/18/UICollectionView-使用二/" class="article-date">
+  	<time datetime="2016-12-18T11:43:22.000Z" itemprop="datePublished">2016-12-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/18/UICollectionView-使用二/">UICollectionView - 使用二</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="UICollectionViewLayout"><a href="#UICollectionViewLayout" class="headerlink" title="UICollectionViewLayout"></a>UICollectionViewLayout</h3><p>终于到UICollectionView的精髓了…这也是UICollectionView和UITableView最大的不同。<br>UICollectionViewLayout可以说是UICollectionView的大脑和中枢，它负责了将各个cell、Supplementary View和Decoration Views进行组织，为它们设定各自的属性，包括但不限于：</p>
+<pre><code>    位置
+    尺寸
+    透明度
+    层级关系
+    形状
+    等等等等…
+
+Layout决定了UICollectionView是如何显示在界面上的。
+在展示之前，一般需要生成合适的UICollectionViewLayout子类对象，并将其赋予CollectionView的collectionViewLayout属性。
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/12/18/UICollectionView-使用二/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-UICollectionView-使用一" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/18/UICollectionView-使用一/" class="article-date">
+  	<time datetime="2016-12-18T11:39:38.000Z" itemprop="datePublished">2016-12-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/18/UICollectionView-使用一/">UICollectionView - 使用一</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是UICollectionView"><a href="#什么是UICollectionView" class="headerlink" title="什么是UICollectionView"></a>什么是UICollectionView</h3><p>UICollectionView是一种新的数据展示方式，简单来说可以把他理解成多列的UITableView(请一定注意这是UICollectionView的最最简单的形式)。</p>
+<p>最简单的UICollectionView就是一个GridView，可以以多列的方式将数据进行展示。标准的UICollectionView包含三个部分，它们都是UIView的子类：</p>
+<pre><code>＊  Cells 用于展示内容的主体，对于不同的cell可以指定不同尺寸和不同的内容 
+＊  Supplementary Views 追加视图 如果你对UITableView比较熟悉的话，可以理解为每个Section的Header或者Footer，用来标记每个section的view
+＊  Decoration Views 装饰视图 这是每个section的背景，
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/12/18/UICollectionView-使用一/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-iOS开发中的几种设计模式介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/11/iOS开发中的几种设计模式介绍/" class="article-date">
+  	<time datetime="2016-12-11T13:02:50.000Z" itemprop="datePublished">2016-12-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/11/iOS开发中的几种设计模式介绍/">iOS开发中的几种设计模式介绍</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>iOS 开发学习中，经常使用的几种开发模式，现在进行简单的总结和探讨：</p>
+<h4 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h4><p>应用场景：当一个类的某些功能需要由别的类来实现，但是又不确定具体会是哪个类实现。<br>优势：解耦合<br>敏捷原则：开放-封闭原则</p>
+<pre><code>实例：tableview的 数据源delegate，通过和protocol的配合，完成委托诉求。
+列表row个数delegate
+自定义的delegate
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/12/11/iOS开发中的几种设计模式介绍/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-UIAlertController-弹框" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/27/UIAlertController-弹框/" class="article-date">
+  	<time datetime="2016-11-27T13:15:28.000Z" itemprop="datePublished">2016-11-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/27/UIAlertController-弹框/">UIAlertController 弹框</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一. 标准的Alert样式</p>
+<pre><code>//UIAlertController风格：UIAlertControllerStyleAlert
+UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@&quot;主标题&quot; message:@&quot;提示文字&quot;preferredStyle:UIAlertControllerStyleAlert ];
+
+//添加取消到UIAlertController中
+UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleDefault handler:nil];
+[alertController addAction:cancelAction];
+
+//添加确定到UIAlertController中
+UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@&quot;确定&quot; style:UIAlertActionStyleDefault handler:nil];
+[alertController addAction:OKAction];
+
+[self presentViewController:alertController animated:YES completion:nil]
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/11/27/UIAlertController-弹框/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-UIWebView-实现长按保存图片功能" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -317,395 +695,9 @@ longPressed.delegate = self;
 
 
   
-    <article id="post-layoutSubviews-总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/27/layoutSubviews-总结/" class="article-date">
-  	<time datetime="2016-10-27T11:23:57.000Z" itemprop="datePublished">2016-10-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/27/layoutSubviews-总结/">layoutSubviews 总结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="ios-layout机制相关方法"><a href="#ios-layout机制相关方法" class="headerlink" title="ios layout机制相关方法"></a>ios layout机制相关方法</h3><pre><code>- (CGSize)sizeThatFits:(CGSize)size
-- (void)sizeToFit
-——————-
-- (void)layoutSubviews
-- (void)layoutIfNeeded
-- (void)setNeedsLayout
-——————–
-- (void)setNeedsDisplay
-- (void)drawRect
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/10/27/layoutSubviews-总结/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS特别知识点总结六" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/20/iOS特别知识点总结六/" class="article-date">
-  	<time datetime="2016-10-20T14:04:41.000Z" itemprop="datePublished">2016-10-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/20/iOS特别知识点总结六/">iOS特别知识点总结六</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>//判断内容是否全部为空格  yes 全部为空格  no 不是</p>
-<pre><code>- (BOOL)isEmpty:(NSString *) str {
-
-    if (!str) {
-        return true;
-    } else {
-        //A character set containing only the whitespace characters space (U+0020) and tab (U+0009) and the newline and nextline characters (U+000A–U+000D, U+0085).
-        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-
-        //Returns a new string made by removing from both ends of the receiver characters contained in a given character set.
-        NSString *trimedString = [str stringByTrimmingCharactersInSet:set];
-
-        if ([trimedString length] == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/10/20/iOS特别知识点总结六/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS开发之顶部状态栏statusBar颜色变化小结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/" class="article-date">
-  	<time datetime="2016-10-20T14:01:28.000Z" itemprop="datePublished">2016-10-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/">iOS开发之顶部状态栏statusBar颜色变化小结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>iOS开发之顶部状态栏statusBar颜色变化小结</p>
-<p>1.单个视图View没有导航控制器包装的情况下</p>
-<p>(1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化</p>
-<pre><code>a. General 中的 Status Bar Style   --&gt;  Light
-
-b. plist 中增加 Status Bar Style   --&gt;  UIStatusBarStyleLightContent
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS开发使用系统的拷贝剪切功能" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/19/iOS开发使用系统的拷贝剪切功能/" class="article-date">
-  	<time datetime="2016-10-19T11:15:58.000Z" itemprop="datePublished">2016-10-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/19/iOS开发使用系统的拷贝剪切功能/">iOS开发使用系统的拷贝剪切功能</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>自定义(这里主要是改掉系统拷贝的名字为复制) <a href="http://www.jianshu.com/p/557530bcd417">http://www.jianshu.com/p/557530bcd417</a></p>
-<p>1)添加手势</p>
-<pre><code>//在自定义cell中的init方法加入
-UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCellHandle:)];
-self.longGesture = longPressGesture;
-[self addGestureRecognizer:longPressGesture];
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/10/19/iOS开发使用系统的拷贝剪切功能/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS开发之旅之懒加载" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/18/iOS开发之旅之懒加载/" class="article-date">
-  	<time datetime="2016-10-18T14:54:55.000Z" itemprop="datePublished">2016-10-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/18/iOS开发之旅之懒加载/">iOS开发之旅之懒加载</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>懒加载定义：延时加载，即当对象需要用到的时候再去加载。其实就是所谓的重写对象的get方法,当系统或者开发者调用对象的get方法时，再去加载对象。</p>
-<p>需要注意：重写get方法时，先判断对象当前是否为空，为空的话再去实例化对象</p>
-<pre><code>- (NSArray *)shopData {
-
-    if (!_shopData) {
-        _shopData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&quot;shop&quot; ofType:@&quot;plist&quot;]];
-    }
-    return _shopData;
-}
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/10/18/iOS开发之旅之懒加载/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-initWithFrame方法的理解" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/28/initWithFrame方法的理解/" class="article-date">
-  	<time datetime="2016-09-28T11:33:37.000Z" itemprop="datePublished">2016-09-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/28/initWithFrame方法的理解/">initWithFrame方法的理解</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="initWithFrame方法是什么？"><a href="#initWithFrame方法是什么？" class="headerlink" title="initWithFrame方法是什么？"></a>initWithFrame方法是什么？</h4><p>initWithFrame方法用来初始化并返回一个新的视图对象,根据指定的CGRect（尺寸）。</p>
-<h4 id="什么时候用initWithFrame方法？"><a href="#什么时候用initWithFrame方法？" class="headerlink" title="什么时候用initWithFrame方法？"></a>什么时候用initWithFrame方法？</h4><p>简单的说，我们用编程方式申明，创建UIView对象时，使用initWithFrame方法。<br>在此，我们必须搞清楚，两种方式来进行初始化UIView。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/09/28/initWithFrame方法的理解/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </div>
