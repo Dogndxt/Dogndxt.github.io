@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-10T12:15:45.000Z</updated>
+  <updated>2017-05-06T03:59:10.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,79 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS 项目的整体替换</title>
+    <link href="http://yoursite.com/2017/05/06/iOS-%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%95%B4%E4%BD%93%E6%9B%BF%E6%8D%A2/"/>
+    <id>http://yoursite.com/2017/05/06/iOS-项目的整体替换/</id>
+    <published>2017-05-06T03:58:47.000Z</published>
+    <updated>2017-05-06T03:59:10.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;iOS更改app项目的名字&quot;&gt;&lt;a href=&quot;#iOS更改app项目的名字&quot; class=&quot;headerlink&quot; title=&quot;iOS更改app项目的名字&quot;&gt;&lt;/a&gt;iOS更改app项目的名字&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;修改工程文件的名字&lt;/li&gt;
+&lt;li&gt;新建一个新的 sehemes （替换旧的那个）&lt;/li&gt;
+&lt;li&gt;修改文件的路径 （打开包内容内的所有旧路径）&lt;/li&gt;
+&lt;li&gt;修改文件内所有旧工程的名称&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;iOS更改app项目的名字&quot;&gt;&lt;a href=&quot;#iOS更改app项目的名字&quot; class=&quot;headerlink&quot; title=&quot;iOS更改app项目的名字&quot;&gt;&lt;/a&gt;iOS更改app项目的名字&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;修改工程文件的名字&lt;/li&gt;
+&lt;li&gt;新
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 控件显示网页代码</title>
+    <link href="http://yoursite.com/2017/05/06/iOS-%E6%8E%A7%E4%BB%B6%E6%98%BE%E7%A4%BA%E7%BD%91%E9%A1%B5%E4%BB%A3%E7%A0%81/"/>
+    <id>http://yoursite.com/2017/05/06/iOS-控件显示网页代码/</id>
+    <published>2017-05-06T03:53:15.000Z</published>
+    <updated>2017-05-06T03:55:57.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;UITextView-UIWebView-直接显示html代码&quot;&gt;&lt;a href=&quot;#UITextView-UIWebView-直接显示html代码&quot; class=&quot;headerlink&quot; title=&quot;UITextView,UIWebView 直接显示html代码&quot;&gt;&lt;/a&gt;UITextView,UIWebView 直接显示html代码&lt;/h3&gt;&lt;h4 id=&quot;方法-1&quot;&gt;&lt;a href=&quot;#方法-1&quot; class=&quot;headerlink&quot; title=&quot;方法 1&quot;&gt;&lt;/a&gt;方法 1&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;////获取html到NSString
+NSURL *url = [NSURL URLWithString:@&amp;quot;http://www.xtox.net/product/detail.action?product.id=11&amp;quot;];
+NSString *strHtml = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+////显示到UIWebView
+[self.m_web loadHTMLString:strHtml baseURL:nil];
+/////显示到UITextView
+[self.m_TextView setContentToHTMLString:strHtml];
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;方法-2&quot;&gt;&lt;a href=&quot;#方法-2&quot; class=&quot;headerlink&quot; title=&quot;方法 2&quot;&gt;&lt;/a&gt;方法 2&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;//对图片大小进行处理，适应屏幕宽度
+NSString *newString = [htmlStr stringByReplacingOccurrencesOfString:@&amp;quot;&amp;lt;img&amp;quot; withString:[NSString stringWithFormat:@&amp;quot;&amp;lt;img width=\&amp;quot;%f\&amp;quot;&amp;quot;,kScreenWidth - 10]];
+
+NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[newString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+
+textView.attributedText = attributedString;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;UILabel-的网页代码显示&quot;&gt;&lt;a href=&quot;#UILabel-的网页代码显示&quot; class=&quot;headerlink&quot; title=&quot;UILabel 的网页代码显示&quot;&gt;&lt;/a&gt;UILabel 的网页代码显示&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;// ios 7.0以后才能使用
+NSData *data = [model.html dataUsingEncoding:NSUnicodeStringEncoding];
+NSDictionary *options = @{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType};
+NSAttributedString *html = [[NSAttributedString alloc]initWithData:data
+                                                            options:options
+                                                 documentAttributes:nil
+                                                              error:nil];
+self.htmlLabel.attributedText = html;
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;UITextView-UIWebView-直接显示html代码&quot;&gt;&lt;a href=&quot;#UITextView-UIWebView-直接显示html代码&quot; class=&quot;headerlink&quot; title=&quot;UITextView,UIWebView 直接显示html代码&quot;&gt;&lt;/a&gt;UITextView,UIWebView 直接显示html代码&lt;/h3&gt;&lt;h4 id=&quot;方法-1&quot;&gt;&lt;a href=&quot;#方法-1&quot; class=&quot;headerlink&quot; title=&quot;方法 1&quot;&gt;&lt;/a&gt;方法 1&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;////获取html到NSString
+NSURL *url = [NSURL URLWithString:@&amp;quot;http://www.xtox.net/product/detail.action?product.id=11&amp;quot;];
+NSString *strHtml = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+////显示到UIWebView
+[self.m_web loadHTMLString:strHtml baseURL:nil];
+/////显示到UITextView
+[self.m_TextView setContentToHTMLString:strHtml];
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS 使用Cycript进行运行时分析</title>
@@ -88,7 +161,7 @@
     <link href="http://yoursite.com/2017/04/10/Charles-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/"/>
     <id>http://yoursite.com/2017/04/10/Charles-从入门到精通/</id>
     <published>2017-04-10T12:06:46.000Z</published>
-    <updated>2017-04-10T12:16:24.000Z</updated>
+    <updated>2017-04-10T12:24:07.000Z</updated>
     
     <content type="html">&lt;p&gt;Charles 是在 Mac 下常用的网络封包截取工具，在做移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。&lt;br&gt;Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。&lt;br&gt;除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。（&lt;a href=&quot;http://blog.devtang.com/2015/11/14/charles-introduction/）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.devtang.com/2015/11/14/charles-introduction/）&lt;/a&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Charles 主要的功能包括：
@@ -103,57 +176,30 @@
 &lt;h3 id=&quot;将-Charles-设置成系统代理&quot;&gt;&lt;a href=&quot;#将-Charles-设置成系统代理&quot; class=&quot;headerlink&quot; title=&quot;将 Charles 设置成系统代理&quot;&gt;&lt;/a&gt;将 Charles 设置成系统代理&lt;/h3&gt;&lt;p&gt;启动 Charles 后，第一次 Charles 会请求你给它设置系统代理的权限。你可以输入登录密码授予 Charles 该权限。你也可以忽略该请求，然后在需要将 Charles 设置成系统代理时，选择菜单中的 “Proxy” -&amp;gt; “Mac OS X Proxy” 来将 Charles 设置成系统代理。&lt;/p&gt;
 &lt;h3 id=&quot;Charles-主界面介绍&quot;&gt;&lt;a href=&quot;#Charles-主界面介绍&quot; class=&quot;headerlink&quot; title=&quot;Charles 主界面介绍&quot;&gt;&lt;/a&gt;Charles 主界面介绍&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;Charles 主要提供两种查看封包的视图，分别名为 “Structure” 和 “Sequence”。
 
-    1. Structure 视图将网络请求按访问的域名分类。
-    2. Sequence 视图将网络请求按访问的时间排序。
+1. Structure 视图将网络请求按访问的域名分类。
+2. Sequence 视图将网络请求按访问的时间排序。
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;过滤网络请求&quot;&gt;&lt;a href=&quot;#过滤网络请求&quot; class=&quot;headerlink&quot; title=&quot;过滤网络请求&quot;&gt;&lt;/a&gt;过滤网络请求&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;方法一：在主界面的中部的 Filter 栏中填入需要过滤出来的关键字。例如我们的服务器的地址是：http://yuantiku.com , 那么只需要在 Filter 栏中填入 yuantiku 即可。
-
 方法二：在 Charles 的菜单栏选择 “Proxy”-&amp;gt;”Recording Settings”，然后选择 Include 栏，选择添加一个项目，然后填入需要监控的协议，主机地址，端口号。这样就可以只截取目标网站的封包了。
-
 方法三：在想过滤的网络请求上右击，选择 “Focus”，之后在 Filter 一栏勾选上 Focussed 一项
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;截取-iPhone-上的网络封包&quot;&gt;&lt;a href=&quot;#截取-iPhone-上的网络封包&quot; class=&quot;headerlink&quot; title=&quot;截取 iPhone 上的网络封包&quot;&gt;&lt;/a&gt;截取 iPhone 上的网络封包&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Charles 上的设置&lt;/p&gt;
-&lt;p&gt;要截取 iPhone 上的网络请求，我们首先需要将 Charles 的代理功能打开。在 Charles 的菜单栏上选择 “Proxy”-&amp;gt;”Proxy Settings”，填入代理端口 8888，并且勾上 “Enable transparent HTTP proxying” 就完成了在 Charles 上的设置。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;iPhone 上的设置&lt;/p&gt;
-&lt;p&gt;首先我们需要获取 Charles 运行所在电脑的 IP 地址，Charles 的顶部菜单的 “Help”-&amp;gt;”Local IP Address”，即可在弹出的对话框中看到 IP 地址。&lt;/p&gt;
-&lt;p&gt;然后在 iPhone 的 “ 设置 “-&amp;gt;” 无线局域网 “ 中，可以看到当前连接的 wifi 名，通过点击右边的详情键，可以看到当前连接上的 wifi 的详细信息，包括 IP 地址，子网掩码等信息。在其最底部有「HTTP 代理」一项，我们将其切换成手动，然后填上 Charles 运行所在的电脑的 IP，以及端口号 8888。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;截取-Https-通讯信息&quot;&gt;&lt;a href=&quot;#截取-Https-通讯信息&quot; class=&quot;headerlink&quot; title=&quot;截取 Https 通讯信息&quot;&gt;&lt;/a&gt;截取 Https 通讯信息&lt;/h3&gt;&lt;p&gt;通过网络上的方法设置之后没有成功获取到 https 的数据，暂时搁置。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;截取-iPhone-上的网络封包&quot;&gt;&lt;a href=&quot;#截取-iPhone-上的网络封包&quot; class=&quot;headerlink&quot; title=&quot;截取 iPhone 上的网络封包&quot;&gt;&lt;/a&gt;截取 iPhone 上的网络封包&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1. Charles 上的设置
+
+  要截取 iPhone 上的网络请求，我们首先需要将 Charles 的代理功能打开。在 Charles 的菜单栏上选择 “Proxy”-&amp;gt;”Proxy Settings”，填入代理端口 8888，
+  并且勾上 “Enable transparent HTTP proxying” 就完成了在 Charles 上的设置。
+
+2. iPhone 上的设置
+
+  首先我们需要获取 Charles 运行所在电脑的 IP 地址，Charles 的顶部菜单的 “Help”-&amp;gt;”Local IP Address”，即可在弹出的对话框中看到 IP 地址。
+  然后在 iPhone 的 “ 设置 “-&amp;gt;” 无线局域网 “ 中，可以看到当前连接的 wifi 名，通过点击右边的详情键，可以看到当前连接上的 wifi 的详细信息，
+  包括 IP 地址，子网掩码等信息。在其最底部有「HTTP 代理」一项，我们将其切换成手动，然后填上 Charles 运行所在的电脑的 IP，以及端口号 8888。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;截取-Https-通讯信息&quot;&gt;&lt;a href=&quot;#截取-Https-通讯信息&quot; class=&quot;headerlink&quot; title=&quot;截取 Https 通讯信息&quot;&gt;&lt;/a&gt;截取 Https 通讯信息&lt;/h3&gt;&lt;p&gt;通过网络上的方法设置之后没有成功获取到 https 的数据，暂时搁置。&lt;/p&gt;
 &lt;h3 id=&quot;模拟慢速网络&quot;&gt;&lt;a href=&quot;#模拟慢速网络&quot; class=&quot;headerlink&quot; title=&quot;模拟慢速网络&quot;&gt;&lt;/a&gt;模拟慢速网络&lt;/h3&gt;&lt;p&gt;在 Charles 的菜单上，选择 “Proxy”-&amp;gt;”Throttle Setting” 项，在之后弹出的对话框中，我们可以勾选上 “Enable Throttling”，并且可以设置 Throttle Preset 的类型&lt;/p&gt;
-&lt;h3 id=&quot;修改网络请求内容&quot;&gt;&lt;a href=&quot;#修改网络请求内容&quot; class=&quot;headerlink&quot; title=&quot;修改网络请求内容&quot;&gt;&lt;/a&gt;修改网络请求内容&lt;/h3&gt;&lt;p&gt;Charles 可以方便地提供网络请求的修改和重发功能。只需要在以往的网络请求上点击右键，选择 “Edit”，即可创建一个可编辑的网络请求。 &lt;/p&gt;
-&lt;p&gt;我们可以修改该请求的任何信息，包括 URL 地址、端口、参数等，之后点击 “Execute” 即可发送该修改后的网络请求（如下图所示）。Charles 支持我们多次修改和发送该请求，这对于我们和服务器端调试接口非常方便。&lt;/p&gt;
+&lt;h3 id=&quot;修改网络请求内容&quot;&gt;&lt;a href=&quot;#修改网络请求内容&quot; class=&quot;headerlink&quot; title=&quot;修改网络请求内容&quot;&gt;&lt;/a&gt;修改网络请求内容&lt;/h3&gt;&lt;p&gt;Charles 可以方便地提供网络请求的修改和重发功能。只需要在以往的网络请求上点击右键，选择 “Edit”，即可创建一个可编辑的网络请求。&lt;br&gt;我们可以修改该请求的任何信息，包括 URL 地址、端口、参数等，之后点击 “Execute” 即可发送该修改后的网络请求。Charles 支持我们多次修改和发送该请求，这对于我们和服务器端调试接口非常方便。&lt;/p&gt;
 &lt;h3 id=&quot;给服务器做压力测试&quot;&gt;&lt;a href=&quot;#给服务器做压力测试&quot; class=&quot;headerlink&quot; title=&quot;给服务器做压力测试&quot;&gt;&lt;/a&gt;给服务器做压力测试&lt;/h3&gt;&lt;p&gt;我们可以使用 Charles 的 Repeat 功能来简单地测试服务器的并发处理能力，方法如下。我们在想打压的网络请求上（POST 或 GET 请求均可）右击，然后选择 「Repeat Advanced」菜单项&lt;/p&gt;
 &lt;h3 id=&quot;修改服务器返回内容&quot;&gt;&lt;a href=&quot;#修改服务器返回内容&quot; class=&quot;headerlink&quot; title=&quot;修改服务器返回内容&quot;&gt;&lt;/a&gt;修改服务器返回内容&lt;/h3&gt;&lt;p&gt;有些时候我们想让服务器返回一些指定的内容，方便我们调试一些特殊情况。例如列表页面为空的情况，数据异常的情况，部分耗时的网络请求超时的情况等。如果没有 Charles，要服务器配合构造相应的数据显得会比较麻烦。这个时候，使用 Charles 相关的功能就可以满足我们的需求。&lt;/p&gt;
 &lt;p&gt;根据具体的需求，Charles 提供了 Map 功能、 Rewrite 功能以及 Breakpoints 功能，都可以达到修改服务器返回内容的目的。这三者在功能上的差异是：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    1. Map 功能适合长期地将某一些请求重定向到另一个网络地址或本地文件。
-    2. Rewrite 功能适合对网络请求进行一些正则替换。
-    3. Breakpoints 功能适合做一些临时性的修改。
-
-
-1. Map 功能
-
-  Charles 的 Map 功能分 Map Remote 和 Map Local 两种，顾名思义，Map Remote 是将指定的网络请求重定向到另一个网址请求地址，Map Local 是将指定的网络请求重定向到本地文件。
-  在 Charles 的菜单中，选择 “Tools”-&amp;gt;”Map Remote” 或 “Map Local” 即可进入到相应功能的设置页面。
-  对于 Map Remote 功能，我们需要分别填写网络重定向的源地址和目的地址，对于不需要限制的条件，可以留空。下图是一个示例，我将所有 ytk1.yuanku.ws（测试服务器）的请求重定向到了 www.yuantiku.com（线上服务器）。
-  对于 Map Local 功能，我们需要填写的重定向的源地址和本地的目标文件。对于有一些复杂的网络请求结果，我们可以先使用 Charles 提供的 “Save Response…” 功能，将请求结果保存到本地，然后稍加修改，成为我们的目标映射文件。
-
-
-2. Rewrite 功能
-
-  Rewrite 功能功能适合对某一类网络请求进行一些正则替换，以达到修改结果的目的。
-  例如，我们的客户端有一个 API 请求是获得用户昵称，而我当前的昵称是 “tangqiaoboy”，如下所示：
-  我们想试着直接修改网络返回值，将 tangqiaoboy 换成成 iosboy。于是我们启用 Rewrite 功能，然后设置如下的规则：
-  完成设置之后，我们就可以从 Charles 中看到，之后的 API 获得的昵称被自动 Rewrite 成了 iosboy
-
-
-3. Breakpoints 功能
-
-  上面提供的 Rewrite 功能最适合做批量和长期的替换，但是很多时候，我们只是想临时修改一次网络请求结果，这个时候，使用 Rewrite 功能虽然也可以达到目的，但是过于麻烦，对于临时性的修改，我们最好使用 Breakpoints 功能。
-  Breakpoints 功能类似我们在 Xcode 中设置的断点一样，当指定的网络请求发生时，Charles 会截获该请求，这个时候，我们可以在 Charles 中临时修改网络请求的返回内容。
-  下图是我们临时修改获取用户信息的 API，将用户的昵称进行了更改，修改完成后点击 “Execute” 则可以让网络请求继续进行。
+&lt;pre&gt;&lt;code&gt;1. Map 功能适合长期地将某一些请求重定向到另一个网络地址或本地文件。
+2. Rewrite 功能适合对网络请求进行一些正则替换。
+3. Breakpoints 功能适合做一些临时性的修改。
 &lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
@@ -1173,126 +1219,6 @@ longPressed.delegate = self;
         }
     }
 }
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>iOS开发之顶部状态栏statusBar颜色变化小结</title>
-    <link href="http://yoursite.com/2016/10/20/iOS%E5%BC%80%E5%8F%91%E4%B9%8B%E9%A1%B6%E9%83%A8%E7%8A%B6%E6%80%81%E6%A0%8FstatusBar%E9%A2%9C%E8%89%B2%E5%8F%98%E5%8C%96%E5%B0%8F%E7%BB%93/"/>
-    <id>http://yoursite.com/2016/10/20/iOS开发之顶部状态栏statusBar颜色变化小结/</id>
-    <published>2016-10-20T14:01:28.000Z</published>
-    <updated>2016-10-20T14:03:50.000Z</updated>
-    
-    <content type="html">&lt;p&gt;iOS开发之顶部状态栏statusBar颜色变化小结&lt;/p&gt;
-&lt;p&gt;1.单个视图View没有导航控制器包装的情况下&lt;/p&gt;
-&lt;p&gt;(1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;a. General 中的 Status Bar Style   --&amp;gt;  Light
-
-b. plist 中增加 Status Bar Style   --&amp;gt;  UIStatusBarStyleLightContent
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;(2).设置启动状态栏颜色改变(白色)，视图中的状态栏也变成白色(保持上面的设置)，有两种设置方式：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;a. 在Info.plist里面添加一行View controller-based status bar appearance ＝ NO 即可
-
-b.在视图控制器中添加代码
-
-  - (UIStatusBarStyle)preferredStatusBarStyle {
-
-    return UIStatusBarStyleLightContent;
-  }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;(3).设置视图中状态栏的颜色为白色，启动程序时的状态栏为默认颜色(黑色)，没有做1.中的任何设置情况下，在控制器.m文件中添加如下代码(即2.-&amp;gt;b.)&lt;/p&gt;
-&lt;p&gt;2.视图作为导航控制器的根控制器的情况下&lt;/p&gt;
-&lt;p&gt;(1) .设置启动画面的状态栏为白色，视图中的状态栏为默认(黑色)，如1.-&amp;gt;1.中的设置即可，&lt;/p&gt;
-&lt;p&gt;(2) .设置启动画面和视图中的状态栏颜色都为白色(保持2.-&amp;gt;1.中的设置)，方式同样有两种：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;a.在Info.plist里面添加一行View controller-based status bar appearance ＝ NO 即可
-
-
-b.此时如果单单在视图控制器.m文件中添加如下代码是不够的，
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-同时需要在导航控制器.m文件中添加下面的代码才能达到效果(careful)
-
-- (UIViewController *)childViewControllerForStatusBarStyle{
-    return self.topViewController;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;(3).只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认(黑色)，把Info.plist文件中的 Status bar style = UIStatusBarStyleLightContent设置去掉，保持2.-&amp;gt;2.-&amp;gt;b.中的代码设置即可&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;iOS开发之顶部状态栏statusBar颜色变化小结&lt;/p&gt;
-&lt;p&gt;1.单个视图View没有导航控制器包装的情况下&lt;/p&gt;
-&lt;p&gt;(1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;a. General 中的 Status Bar Style   --&amp;gt;  Light
-
-b. plist 中增加 Status Bar Style   --&amp;gt;  UIStatusBarStyleLightContent
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>iOS开发使用系统的拷贝剪切功能</title>
-    <link href="http://yoursite.com/2016/10/19/iOS%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8B%B7%E8%B4%9D%E5%89%AA%E5%88%87%E5%8A%9F%E8%83%BD/"/>
-    <id>http://yoursite.com/2016/10/19/iOS开发使用系统的拷贝剪切功能/</id>
-    <published>2016-10-19T11:15:58.000Z</published>
-    <updated>2016-10-19T11:19:30.000Z</updated>
-    
-    <content type="html">&lt;p&gt;自定义(这里主要是改掉系统拷贝的名字为复制) &lt;a href=&quot;http://www.jianshu.com/p/557530bcd417&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.jianshu.com/p/557530bcd417&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;1)添加手势&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//在自定义cell中的init方法加入
-UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCellHandle:)];
-self.longGesture = longPressGesture;
-[self addGestureRecognizer:longPressGesture];
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;2）响应事件&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//并加上几个方法
--(void)longPressCellHandle:(UILongPressGestureRecognizer *)gesture {
-
-    [self becomeFirstResponder];
-    UIMenuController *menuController = [UIMenuController sharedMenuController];
-    UIMenuItem *copyItem = [[UIMenuItem alloc] initWithTitle:@&amp;quot;复制&amp;quot; action:@selector(menuCopyBtnPressed:)];
-    menuController.menuItems = @[copyItem];
-    [menuController setTargetRect:gesture.view.frame inView:gesture.view.superview];
-    [menuController setMenuVisible:YES animated:YES];
-    [UIMenuController sharedMenuController].menuItems=nil;
-}
-
-// 将要复制的内容复制到系统的剪贴板
-- (void)menuCopyBtnPressed:(UIMenuItem *)menuItem {
-    //  通用的粘贴板
-    [UIPasteboard generalPasteboard].string = self.messageLab.text;
-}
-
-- (BOOL)canBecomeFirstResponder {
-
-    return YES;
-}
-
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-
-    if (action == @selector(menuCopyBtnPressed:)) {
-        return YES;
-    }
-    return NO;
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;自定义(这里主要是改掉系统拷贝的名字为复制) &lt;a href=&quot;http://www.jianshu.com/p/557530bcd417&quot;&gt;http://www.jianshu.com/p/557530bcd417&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;1)添加手势&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//在自定义cell中的init方法加入
-UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCellHandle:)];
-self.longGesture = longPressGesture;
-[self addGestureRecognizer:longPressGesture];
 &lt;/code&gt;&lt;/pre&gt;
     
     </summary>

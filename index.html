@@ -192,6 +192,127 @@
 
       <div class="body-wrap">
   
+    <article id="post-iOS-项目的整体替换" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/05/06/iOS-项目的整体替换/" class="article-date">
+  	<time datetime="2017-05-06T03:58:47.000Z" itemprop="datePublished">2017-05-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/06/iOS-项目的整体替换/">iOS 项目的整体替换</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="iOS更改app项目的名字"><a href="#iOS更改app项目的名字" class="headerlink" title="iOS更改app项目的名字"></a>iOS更改app项目的名字</h3><ol>
+<li>修改工程文件的名字</li>
+<li>新建一个新的 sehemes （替换旧的那个）</li>
+<li>修改文件的路径 （打开包内容内的所有旧路径）</li>
+<li>修改文件内所有旧工程的名称</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-iOS-控件显示网页代码" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/05/06/iOS-控件显示网页代码/" class="article-date">
+  	<time datetime="2017-05-06T03:53:15.000Z" itemprop="datePublished">2017-05-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/06/iOS-控件显示网页代码/">iOS 控件显示网页代码</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="UITextView-UIWebView-直接显示html代码"><a href="#UITextView-UIWebView-直接显示html代码" class="headerlink" title="UITextView,UIWebView 直接显示html代码"></a>UITextView,UIWebView 直接显示html代码</h3><h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法 1"></a>方法 1</h4><pre><code>////获取html到NSString
+NSURL *url = [NSURL URLWithString:@&quot;http://www.xtox.net/product/detail.action?product.id=11&quot;];
+NSString *strHtml = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+////显示到UIWebView
+[self.m_web loadHTMLString:strHtml baseURL:nil];
+/////显示到UITextView
+[self.m_TextView setContentToHTMLString:strHtml];
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/05/06/iOS-控件显示网页代码/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-iOS-使用Cycript进行运行时分析" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -534,127 +655,6 @@
       
         <p class="article-more-link">
           <a  href="/2017/04/03/2017-展望未来，拥抱变化/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS特别技能点总结5" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/03/iOS特别技能点总结5/" class="article-date">
-  	<time datetime="2017-04-03T02:25:40.000Z" itemprop="datePublished">2017-04-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/03/iOS特别技能点总结5/">iOS特别技能点总结5</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="字典转为Json字符串"><a href="#字典转为Json字符串" class="headerlink" title="字典转为Json字符串"></a>字典转为Json字符串</h3><pre><code>  //字典转为Json字符串
-+(NSString *)dictionaryToJson:(NSDictionary *)dic
-{
-    NSError *error = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&amp;error];
-    re
-    turn [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-}
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/04/03/iOS特别技能点总结5/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-加密算法和网络" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/03/加密算法和网络/" class="article-date">
-  	<time datetime="2017-04-03T02:18:46.000Z" itemprop="datePublished">2017-04-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/03/加密算法和网络/">加密算法和网络</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="堵塞”-Logjam"><a href="#堵塞”-Logjam" class="headerlink" title="堵塞”(Logjam)"></a>堵塞”(Logjam)</h3><p>堵塞”(Logjam)漏洞威胁许多网页服务器和邮件服务器，影响所有主流浏览器以及支持512位迪菲-赫尔曼(Diffie-Hellman)密钥交换协议的服务器。而且，美国国家安全局(NSA)很可能就是利用这个漏洞破解VPN、HTTPS和SSH等协议，以访问相关网络流量的。</p>
-<h3 id="Diffie-Hellman"><a href="#Diffie-Hellman" class="headerlink" title="Diffie-Hellman"></a>Diffie-Hellman</h3><p>Diffie-Hellman:一种确保共享KEY安全穿越不安全网络的方法，它是OAKLEY的一个组成部分。Whitefield与Martin Hellman在1976年提出了一个奇妙的密钥交换协议，称为Diffie-Hellman密钥交换协议/算法(Diffie-Hellman Key Exchange/Agreement Algorithm).这个机制的巧妙在于需要安全通信的双方可以用这个方法确定对称密钥。然后可以用这个密钥进行加密和解密。但是注意，这个密钥交换协议/算法只能用于密钥的交换，而不能进行消息的加密和解密。双方确定要用的密钥后，要使用其他对称密钥操作加密算法实际加密和解密消息。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/04/03/加密算法和网络/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

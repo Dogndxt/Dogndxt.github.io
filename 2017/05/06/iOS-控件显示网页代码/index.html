@@ -4,17 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2017 | 第欧根尼的小桶</title>
+  <title>iOS 控件显示网页代码 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第欧根尼的小桶">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="UITextView,UIWebView 直接显示html代码方法 1////获取html到NSString
+NSURL *url = [NSURL URLWithString:@&amp;quot;http://www.xtox.net/product/detail.action?product.id=11&amp;quot;];
+NSString *strHtml = [NSString stringWith">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 控件显示网页代码">
+<meta property="og:url" content="http://yoursite.com/2017/05/06/iOS-控件显示网页代码/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description">
+<meta property="og:description" content="UITextView,UIWebView 直接显示html代码方法 1////获取html到NSString
+NSURL *url = [NSURL URLWithString:@&amp;quot;http://www.xtox.net/product/detail.action?product.id=11&amp;quot;];
+NSString *strHtml = [NSString stringWith">
+<meta property="og:updated_time" content="2017-05-06T03:55:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第欧根尼的小桶">
-<meta name="twitter:description">
+<meta name="twitter:title" content="iOS 控件显示网页代码">
+<meta name="twitter:description" content="UITextView,UIWebView 直接显示html代码方法 1////获取html到NSString
+NSURL *url = [NSURL URLWithString:@&amp;quot;http://www.xtox.net/product/detail.action?product.id=11&amp;quot;];
+NSString *strHtml = [NSString stringWith">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -190,246 +197,135 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-iOS-控件显示网页代码" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2017/05/06/iOS-控件显示网页代码/" class="article-date">
+  	<time datetime="2017-05-06T03:53:15.000Z" itemprop="datePublished">2017-05-06</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS 控件显示网页代码
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/06/iOS-项目的整体替换/" class="archive-article-date">
-  	<time datetime="2017-05-06T03:58:47.000Z" itemprop="datePublished">5月 6</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/06/iOS-项目的整体替换/">iOS 项目的整体替换</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="UITextView-UIWebView-直接显示html代码"><a href="#UITextView-UIWebView-直接显示html代码" class="headerlink" title="UITextView,UIWebView 直接显示html代码"></a>UITextView,UIWebView 直接显示html代码</h3><h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法 1"></a>方法 1</h4><pre><code>////获取html到NSString
+NSURL *url = [NSURL URLWithString:@&quot;http://www.xtox.net/product/detail.action?product.id=11&quot;];
+NSString *strHtml = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+////显示到UIWebView
+[self.m_web loadHTMLString:strHtml baseURL:nil];
+/////显示到UITextView
+[self.m_TextView setContentToHTMLString:strHtml];
+</code></pre><a id="more"></a>
+<h4 id="方法-2"><a href="#方法-2" class="headerlink" title="方法 2"></a>方法 2</h4><pre><code>//对图片大小进行处理，适应屏幕宽度
+NSString *newString = [htmlStr stringByReplacingOccurrencesOfString:@&quot;&lt;img&quot; withString:[NSString stringWithFormat:@&quot;&lt;img width=\&quot;%f\&quot;&quot;,kScreenWidth - 10]];
 
-        <div class="article-info info-on-right">
-          
-          
+NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[newString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+textView.attributedText = attributedString;
+</code></pre><h3 id="UILabel-的网页代码显示"><a href="#UILabel-的网页代码显示" class="headerlink" title="UILabel 的网页代码显示"></a>UILabel 的网页代码显示</h3><pre><code>// ios 7.0以后才能使用
+NSData *data = [model.html dataUsingEncoding:NSUnicodeStringEncoding];
+NSDictionary *options = @{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType};
+NSAttributedString *html = [[NSAttributedString alloc]initWithData:data
+                                                            options:options
+                                                 documentAttributes:nil
+                                                              error:nil];
+self.htmlLabel.attributedText = html;
+</code></pre>
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/06/iOS-项目的整体替换/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          iOS 项目的整体替换
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/10/iOS-使用Cycript进行运行时分析/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS 使用Cycript进行运行时分析</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/06/iOS-控件显示网页代码/" class="archive-article-date">
-  	<time datetime="2017-05-06T03:53:15.000Z" itemprop="datePublished">5月 6</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/06/iOS-控件显示网页代码/">iOS 控件显示网页代码</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/iOS-使用Cycript进行运行时分析/" class="archive-article-date">
-  	<time datetime="2017-04-10T12:14:50.000Z" itemprop="datePublished">4月 10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/iOS-使用Cycript进行运行时分析/">iOS 使用Cycript进行运行时分析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/AFNetWorking是如何进行数据缓存的-之AFImageCache-NSURLCache-详解/" class="archive-article-date">
-  	<time datetime="2017-04-10T12:10:19.000Z" itemprop="datePublished">4月 10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/AFNetWorking是如何进行数据缓存的-之AFImageCache-NSURLCache-详解/">AFNetWorking是如何进行数据缓存的--之AFImageCache &amp; NSURLCache 详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/Charles-从入门到精通/" class="archive-article-date">
-  	<time datetime="2017-04-10T12:06:46.000Z" itemprop="datePublished">4月 10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/Charles-从入门到精通/">Charles 从入门到精通</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/反编译工具/" class="archive-article-date">
-  	<time datetime="2017-04-10T12:02:31.000Z" itemprop="datePublished">4月 10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/反编译工具/">反编译工具</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/指纹识别/" class="archive-article-date">
-  	<time datetime="2017-04-10T11:58:09.000Z" itemprop="datePublished">4月 10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/指纹识别/">指纹识别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/03/2017-展望未来，拥抱变化/" class="archive-article-date">
-  	<time datetime="2017-04-03T02:36:25.000Z" itemprop="datePublished">4月 3</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/03/2017-展望未来，拥抱变化/">2017, 展望未来，拥抱变化</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2017，请多多指教！/">2017，请多多指教！</a></li></ul>
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
-  
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS-控件显示网页代码" data-title="iOS 控件显示网页代码" data-url="http://yoursite.com/2017/05/06/iOS-控件显示网页代码/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dogndxt"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -455,8 +351,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

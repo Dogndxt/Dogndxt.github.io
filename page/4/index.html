@@ -192,6 +192,133 @@
 
       <div class="body-wrap">
   
+    <article id="post-NSString-字符串处理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/22/NSString-字符串处理/" class="article-date">
+  	<time datetime="2016-09-22T14:39:16.000Z" itemprop="datePublished">2016-09-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/22/NSString-字符串处理/"> NSString 字符串处理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>iphone NSString 字符串处理：截取字符串、匹配字符串、分隔字符串    </p>
+<p>1.截取字符串</p>
+<pre><code>NSString*string = @&quot;sdfsfsfsAdfsdf&quot;;
+string = [string substringToIndex:7];//截取掉下标7之后的字符串
+NSLog(@&quot;截取的值为：%@&quot;,string);
+[string substringFromIndex:2];//截取掉下标2之前的字符串
+NSLog(@&quot;截取的值为：%@&quot;,string);
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/22/NSString-字符串处理/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-UISlide属性" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/22/UISlide属性/" class="article-date">
+  	<time datetime="2016-09-22T14:39:02.000Z" itemprop="datePublished">2016-09-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/22/UISlide属性/">UISlide属性</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.minimumValue </p>
+<pre><code>当值可以改变时，滑块可以滑动到最小位置的值，默认为0.0
+
+_slider.minimumValue = 10.0;
+</code></pre><p>2.maximumValue </p>
+<pre><code>当值可以改变时，滑块可以滑动到最大位置的值，默认为1.0
+
+_slider.maximumValue = 100.0;
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/22/UISlide属性/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-利用-AFNetworking-监听网络状态" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -536,120 +663,6 @@ typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
       
         <p class="article-more-link">
           <a  href="/2016/08/28/block的使用/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-系统定位" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/28/系统定位/" class="article-date">
-  	<time datetime="2016-08-28T11:35:47.000Z" itemprop="datePublished">2016-08-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/28/系统定位/"> 系统定位</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先导入CoreLocation.framework，然后再引入头文件#import</p>
-<h3 id="定义属性"><a href="#定义属性" class="headerlink" title="定义属性"></a>定义属性</h3><pre><code>@property (nonatomic , strong)CLLocationManager *locationManager;
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/28/系统定位/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-initWithNibName-和-loadNibNamed-的区别和联系" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/" class="article-date">
-  	<time datetime="2016-08-13T11:13:03.000Z" itemprop="datePublished">2016-08-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/"> initWithNibName 和 loadNibNamed 的区别和联系</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><p> 可以使用此方法加载用户界面（xib文件）到我们的代码中，这样，可以通过操作这个加载进来的（xib）对象，来操作xib文件内容。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/13/initWithNibName-和-loadNibNamed-的区别和联系/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

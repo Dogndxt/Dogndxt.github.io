@@ -192,6 +192,128 @@
 
       <div class="body-wrap">
   
+    <article id="post-继承自NSObject的不常用又很有用的函数－-函数调用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/" class="article-date">
+  	<time datetime="2016-04-14T13:20:13.000Z" itemprop="datePublished">2016-04-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/"> 继承自NSObject的不常用又很有用的函数－ 函数调用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  Objective-C是一门动态语言，一个函数是由一个selector(SEL)，和一个implement(IML)组成的。Selector相当于门牌号，而Implement才是真正的住户（函数实现）。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/14/继承自NSObject的不常用又很有用的函数－-函数调用/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-继承自NSObject的不常用又很有用的函数load-和-initialize" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/14/继承自NSObject的不常用又很有用的函数load-和-initialize/" class="article-date">
+  	<time datetime="2016-04-14T13:17:18.000Z" itemprop="datePublished">2016-04-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/14/继承自NSObject的不常用又很有用的函数load-和-initialize/"> 继承自NSObject的不常用又很有用的函数load 和 initialize</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="初始化阶段-－－-load-函数"><a href="#初始化阶段-－－-load-函数" class="headerlink" title="初始化阶段 －－ load 函数"></a>初始化阶段 －－ load 函数</h3><p> +(void)load</p>
+<p>当类被引用进程序的时候会执行这个函数。</p>
+<p>在一个程序开始运行之前（在main函数开始执行之前）,在库开始被程序加载，load函数就会开始被执行。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/14/继承自NSObject的不常用又很有用的函数load-和-initialize/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-定时器NSTimer" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -548,134 +670,6 @@ fileURLWith...
       
         <p class="article-more-link">
           <a  href="/2016/03/31/Objective-C的警告/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-NS-Enum-NS-Options" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/31/NS-Enum-NS-Options/" class="article-date">
-  	<time datetime="2016-03-31T11:37:57.000Z" itemprop="datePublished">2016-03-31</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/31/NS-Enum-NS-Options/">NS_Enum &amp; NS_Options</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一个专业的 Objective-C 工程师应该在面向对象和面向过程范式间优雅地切换，同时能够掌握<br>二者的优势。</p>
-<p>例子：<br>    typedef NS_ENUM(NSInteger, UITableViewCellStyle) {         </p>
-<pre><code>  UITableViewCellStyleDefault,
-  UITableViewCellStyleValue1,
-  UITableViewCellStyleValue2,
-  UITableViewCellStyleSubtitle
-};
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/枚举/">枚举</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/31/NS-Enum-NS-Options/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016年了，要毕业了QAQ" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/28/2016年了，要毕业了QAQ/" class="article-date">
-  	<time datetime="2016-03-28T12:28:42.000Z" itemprop="datePublished">2016-03-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/28/2016年了，要毕业了QAQ/">2016年了，要毕业了QAQ</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2016年，今年好像又有奥运会了，回想起三年前的那个夏天懵懵懂懂地来到了现在的母校。第一学期过的是那么的开心的，感觉自己的大学好大，里面的女生都好漂亮的，毕竟是师范类院校。在这个大学里面认识了很多人，也尝遍了很多人情事故。记得大学里面很流行的一种风俗，说什么朋友才是陪伴你一生的，其他奖学金，预备党员什么的，学生干部什么的其实都不重要。可是也许我比较另类吧，当了三年的学生干部，也拿了三年的奖学金，所幸也有几个还算好的朋友。</p>
-<p>一年之际在于春，既然如此顺便展望一下我的未来吧！
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/［你好，请多多指教～］/">［你好，请多多指教～］</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/28/2016年了，要毕业了QAQ/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
