@@ -6,34 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>UIGeometry_总结 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###UIGeometry 中具有 7 中基本的数据类型
-点：（平面 X 和 Y）
+  <meta name="description" content="UIGeometry 中具有 7 中基本的数据类型点：（平面 X 和 Y）
 向量：（空间的 dX 和 dY）
 面积: (平面的 W 和 H)
-空间：（平面中的点(x, y) + 面积(w, h)）
-转换: struct CGAffineTransform {    CGFloat a, b, c, d;    CGFloat tx, ty;};
-插入面积: 指定插入的面积，可以从负值开始s">
+空间：（平面中的点(x, y) + 面积(w, h)）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UIGeometry_总结">
 <meta property="og:url" content="http://yoursite.com/2017/06/04/UIGeometry-总结/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="###UIGeometry 中具有 7 中基本的数据类型
-点：（平面 X 和 Y）
+<meta property="og:description" content="UIGeometry 中具有 7 中基本的数据类型点：（平面 X 和 Y）
 向量：（空间的 dX 和 dY）
 面积: (平面的 W 和 H)
-空间：（平面中的点(x, y) + 面积(w, h)）
-转换: struct CGAffineTransform {    CGFloat a, b, c, d;    CGFloat tx, ty;};
-插入面积: 指定插入的面积，可以从负值开始s">
-<meta property="og:updated_time" content="2017-06-04T07:00:50.000Z">
+空间：（平面中的点(x, y) + 面积(w, h)）">
+<meta property="og:updated_time" content="2017-06-04T07:07:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIGeometry_总结">
-<meta name="twitter:description" content="###UIGeometry 中具有 7 中基本的数据类型
-点：（平面 X 和 Y）
+<meta name="twitter:description" content="UIGeometry 中具有 7 中基本的数据类型点：（平面 X 和 Y）
 向量：（空间的 dX 和 dY）
 面积: (平面的 W 和 H)
-空间：（平面中的点(x, y) + 面积(w, h)）
-转换: struct CGAffineTransform {    CGFloat a, b, c, d;    CGFloat tx, ty;};
-插入面积: 指定插入的面积，可以从负值开始s">
+空间：（平面中的点(x, y) + 面积(w, h)）">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -242,19 +233,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###UIGeometry 中具有 7 中基本的数据类型</p>
-<p>点：（平面 X 和 Y）</p>
+        <h3 id="UIGeometry-中具有-7-中基本的数据类型"><a href="#UIGeometry-中具有-7-中基本的数据类型" class="headerlink" title="UIGeometry 中具有 7 中基本的数据类型"></a>UIGeometry 中具有 7 中基本的数据类型</h3><p>点：（平面 X 和 Y）</p>
 <p>向量：（空间的 dX 和 dY）</p>
 <p>面积: (平面的 W 和 H)</p>
 <p>空间：（平面中的点(x, y) + 面积(w, h)）</p>
-<p>转换: struct CGAffineTransform {<br>    CGFloat a, b, c, d;<br>    CGFloat tx, ty;<br>};</p>
-<p>插入面积: 指定插入的面积，可以从负值开始<br>struct UIEdgeInsets {</p>
-<pre><code>CGFloat top, left, bottom, right;  
-</code></pre><p>} UIEdgeInsets;</p>
-<p>界面偏移: 向四面八方移动<br>struct UIOffset {</p>
-<pre><code>CGFloat horizontal, vertical; 
-</code></pre><p>} UIOffset;</p>
-
+<a id="more"></a>
+<p>转换:</p>
+<pre><code>struct CGAffineTransform {
+    CGFloat a, b, c, d;
+    CGFloat tx, ty;
+};
+</code></pre><p>插入面积: 指定插入的面积，可以从负值开始</p>
+<pre><code>struct UIEdgeInsets {
+    CGFloat top, left, bottom, right;  
+} UIEdgeInsets;
+</code></pre><p>界面偏移: 向四面八方移动</p>
+<pre><code>struct UIOffset {
+    CGFloat horizontal, vertical; 
+} UIOffset;
+</code></pre>
       
     </div>
     
