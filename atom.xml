@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-06T03:59:10.000Z</updated>
+  <updated>2017-06-04T07:00:50.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UIGeometry_总结</title>
+    <link href="http://yoursite.com/2017/06/04/UIGeometry-%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2017/06/04/UIGeometry-总结/</id>
+    <published>2017-06-04T06:59:35.000Z</published>
+    <updated>2017-06-04T07:00:50.000Z</updated>
+    
+    <content type="html">&lt;p&gt;###UIGeometry 中具有 7 中基本的数据类型&lt;/p&gt;
+&lt;p&gt;点：（平面 X 和 Y）&lt;/p&gt;
+&lt;p&gt;向量：（空间的 dX 和 dY）&lt;/p&gt;
+&lt;p&gt;面积: (平面的 W 和 H)&lt;/p&gt;
+&lt;p&gt;空间：（平面中的点(x, y) + 面积(w, h)）&lt;/p&gt;
+&lt;p&gt;转换: struct CGAffineTransform {&lt;br&gt;    CGFloat a, b, c, d;&lt;br&gt;    CGFloat tx, ty;&lt;br&gt;};&lt;/p&gt;
+&lt;p&gt;插入面积: 指定插入的面积，可以从负值开始&lt;br&gt;struct UIEdgeInsets {&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CGFloat top, left, bottom, right;  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;} UIEdgeInsets;&lt;/p&gt;
+&lt;p&gt;界面偏移: 向四面八方移动&lt;br&gt;struct UIOffset {&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CGFloat horizontal, vertical; 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;} UIOffset;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###UIGeometry 中具有 7 中基本的数据类型&lt;/p&gt;
+&lt;p&gt;点：（平面 X 和 Y）&lt;/p&gt;
+&lt;p&gt;向量：（空间的 dX 和 dY）&lt;/p&gt;
+&lt;p&gt;面积: (平面的 W 和 H)&lt;/p&gt;
+&lt;p&gt;空间：（平面中的点(x, y) + 面积(w, h)）&lt;/p&gt;
+&lt;p
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS 项目的整体替换</title>
@@ -1126,99 +1161,6 @@ longPressed.delegate = self;
 ——————–
 - (void)setNeedsDisplay
 - (void)drawRect
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>iOS特别知识点总结六</title>
-    <link href="http://yoursite.com/2016/10/20/iOS%E7%89%B9%E5%88%AB%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93%E5%85%AD/"/>
-    <id>http://yoursite.com/2016/10/20/iOS特别知识点总结六/</id>
-    <published>2016-10-20T14:04:41.000Z</published>
-    <updated>2016-10-20T14:06:04.000Z</updated>
-    
-    <content type="html">&lt;p&gt;//判断内容是否全部为空格  yes 全部为空格  no 不是&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (BOOL)isEmpty:(NSString *) str {
-
-    if (!str) {
-        return true;
-    } else {
-        //A character set containing only the whitespace characters space (U+0020) and tab (U+0009) and the newline and nextline characters (U+000A–U+000D, U+0085).
-        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-
-        //Returns a new string made by removing from both ends of the receiver characters contained in a given character set.
-        NSString *trimedString = [str stringByTrimmingCharactersInSet:set];
-
-        if ([trimedString length] == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;UITabBarController&quot;&gt;&lt;a href=&quot;#UITabBarController&quot; class=&quot;headerlink&quot; title=&quot;UITabBarController&quot;&gt;&lt;/a&gt;UITabBarController&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//1.创建Window
- self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
- self.window.backgroundColor = [UIColor whiteColor];
-
- //a.初始化一个tabBar控制器
- UITabBarController *tb=[[UITabBarController alloc]init];
- //设置控制器为Window的根控制器
- self.window.rootViewController=tb;
-
- //b.创建子控制器
- UIViewController *c1=[[UIViewController alloc]init];
- c1.view.backgroundColor=[UIColor grayColor];
- c1.view.backgroundColor=[UIColor greenColor];
- c1.tabBarItem.title=@&amp;quot;消息&amp;quot;;
- c1.tabBarItem.image=[UIImage imageNamed:@&amp;quot;tab_recent_nor&amp;quot;];
- c1.tabBarItem.badgeValue=@&amp;quot;123&amp;quot;;
-
- UIViewController *c2=[[UIViewController alloc]init];
- c2.view.backgroundColor=[UIColor brownColor];
- c2.tabBarItem.title=@&amp;quot;联系人&amp;quot;;
- c2.tabBarItem.image=[UIImage imageNamed:@&amp;quot;tab_buddy_nor&amp;quot;];
-
- UIViewController *c3=[[UIViewController alloc]init];
- c3.tabBarItem.title=@&amp;quot;动态&amp;quot;;
- c3.tabBarItem.image=[UIImage imageNamed:@&amp;quot;tab_qworld_nor&amp;quot;];
-
- UIViewController *c4=[[UIViewController alloc]init];
- c4.tabBarItem.title=@&amp;quot;设置&amp;quot;;
- c4.tabBarItem.image=[UIImage imageNamed:@&amp;quot;tab_me_nor&amp;quot;]; 
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;weak-typeof-self-weakSelf-self&quot;&gt;&lt;a href=&quot;#weak-typeof-self-weakSelf-self&quot; class=&quot;headerlink&quot; title=&quot;_weak typeof(self) weakSelf = self;&quot;&gt;&lt;/a&gt;_weak typeof(self) weakSelf = self;&lt;/h3&gt;&lt;p&gt;内存管理原则&lt;br&gt;1、默认strong，可选weak。strong下不管成员变量还是property，每次使用指针指向一个对象，等于自动调用retain(), 并对旧对象调用release(),所以设为nil等于release。&lt;br&gt;2、只要某个对象被任一strong指针指向，那么它将不会被销毁，否则立即释放，不用等runloop结束。所有strong指针变量不需要在dealloc中手动设为nil，iOS会自动处理，debug可以看到全部被置为nil，最先声明的变量最后调用dealloc释放。&lt;/p&gt;
-&lt;p&gt;3、官方建议IBOutlet加上__weak，实际上不用加也会自动释放；&lt;/p&gt;
-&lt;p&gt;4、优先使用私有成员变量，除非需要公开属性才用property。&lt;/p&gt;
-&lt;p&gt;5、避免循环引用，否则手动设置nil释放。&lt;/p&gt;
-&lt;p&gt;6、block方法常用声明：@property (copy) void(^MyBlock)(void); 如果超出当前作用域之后仍然继续使用block，那么最好使用copy关键字，拷贝到堆区，防止栈区变量销毁。&lt;/p&gt;
-&lt;p&gt;7、创建block匿名函数之前一般需要对self进行weak化，否则造成循环引用无法释放controller:&lt;/p&gt;
-&lt;p&gt; &lt;strong&gt;weak MyController *weakSelf = self 或者 &lt;/strong&gt;weak __typeof(self) weakSelf = self;&lt;br&gt;执行block方法体的时候也可以转换为强引用之后再使用：MyController* strongSelf = weakSelf; if (!strongSelf) { return; }&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;//判断内容是否全部为空格  yes 全部为空格  no 不是&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (BOOL)isEmpty:(NSString *) str {
-
-    if (!str) {
-        return true;
-    } else {
-        //A character set containing only the whitespace characters space (U+0020) and tab (U+0009) and the newline and nextline characters (U+000A–U+000D, U+0085).
-        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-
-        //Returns a new string made by removing from both ends of the receiver characters contained in a given character set.
-        NSString *trimedString = [str stringByTrimmingCharactersInSet:set];
-
-        if ([trimedString length] == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
 &lt;/code&gt;&lt;/pre&gt;
     
     </summary>

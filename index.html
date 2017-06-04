@@ -192,6 +192,70 @@
 
       <div class="body-wrap">
   
+    <article id="post-UIGeometry-总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/04/UIGeometry-总结/" class="article-date">
+  	<time datetime="2017-06-04T06:59:35.000Z" itemprop="datePublished">2017-06-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/04/UIGeometry-总结/">UIGeometry_总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###UIGeometry 中具有 7 中基本的数据类型</p>
+<p>点：（平面 X 和 Y）</p>
+<p>向量：（空间的 dX 和 dY）</p>
+<p>面积: (平面的 W 和 H)</p>
+<p>空间：（平面中的点(x, y) + 面积(w, h)）</p>
+<p>转换: struct CGAffineTransform {<br>    CGFloat a, b, c, d;<br>    CGFloat tx, ty;<br>};</p>
+<p>插入面积: 指定插入的面积，可以从负值开始<br>struct UIEdgeInsets {</p>
+<pre><code>CGFloat top, left, bottom, right;  
+</code></pre><p>} UIEdgeInsets;</p>
+<p>界面偏移: 向四面八方移动<br>struct UIOffset {</p>
+<pre><code>CGFloat horizontal, vertical; 
+</code></pre><p>} UIOffset;</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-iOS-项目的整体替换" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -595,66 +659,6 @@ NSString *strHtml = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringE
       
         <p class="article-more-link">
           <a  href="/2017/04/10/指纹识别/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2017-展望未来，拥抱变化" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/03/2017-展望未来，拥抱变化/" class="article-date">
-  	<time datetime="2017-04-03T02:36:25.000Z" itemprop="datePublished">2017-04-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/03/2017-展望未来，拥抱变化/">2017, 展望未来，拥抱变化</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2016 已经远去，不留一点痕迹，自从去年搭建这个博客之后，到今天，总共发布的博客数量也有 80+ 了，其它的因为还不知道要不要发布的博客有四五十篇了。怎么说呢，在搭建好这个博客之后，感觉自己有了其它人没办法随意进出的小岛了吧。一个属于我自己的世界，我可以在这里“恣意妄为”，完全不顾外界的评价。在这过去的 一年的时光里，发生了很多的事情，也成长了很多，对未来的路程也越来越清晰了。过往的经历也终将成为我未来前进的动力，在我无助想退堂鼓的时候，也能不断地鞭策的我。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2017，请多多指教！/">2017，请多多指教！</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/04/03/2017-展望未来，拥抱变化/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

@@ -192,6 +192,64 @@
 
       <div class="body-wrap">
   
+    <article id="post-block的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/28/block的使用/" class="article-date">
+  	<time datetime="2016-08-28T11:40:33.000Z" itemprop="datePublished">2016-08-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/28/block的使用/">block的使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Block是一个C语言的特性，它就是C语言的函数指针，在使用中最多的就是进行函数回调或者事件传递，比如发送数据到服务器，等待服务器反馈是成功还是失败，此时block就派上用场了.</p>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h4 id="As-a-local-variable"><a href="#As-a-local-variable" class="headerlink" title="As a local variable:"></a>As a local variable:</h4><pre><code>returnType (^blockName)(parameterTypes) = ^returnType(parameters) {...};
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/28/block的使用/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-系统定位" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -580,66 +638,6 @@ time = [NSTimer timerWithTimeInterval:1 invocation:invo repeats:YES];
       
         <p class="article-more-link">
           <a  href="/2016/08/07/Objective-C-中实现多线程/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS特别技能点总结4" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/07/iOS特别技能点总结4/" class="article-date">
-  	<time datetime="2016-08-07T11:06:12.000Z" itemprop="datePublished">2016-08-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/07/iOS特别技能点总结4/">iOS特别技能点总结4</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="iOS－获取的NSDate-date时间与实际相差8个小时解决方案"><a href="#iOS－获取的NSDate-date时间与实际相差8个小时解决方案" class="headerlink" title="iOS－获取的NSDate date时间与实际相差8个小时解决方案"></a>iOS－获取的NSDate date时间与实际相差8个小时解决方案</h3><pre><code>NSDate *date = [NSDate date];
-NSTimeZone *zone = [NSTimeZone systemTimeZone];
-NSInteger interval = [zone secondsFromGMTForDate: date];
-NSDate *localeDate = [date  dateByAddingTimeInterval: interval]; 
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/07/iOS特别技能点总结4/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
