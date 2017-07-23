@@ -4,27 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>UIGeometry_总结 | 第欧根尼的小桶</title>
+  <title>iOS 数据传输和本地存储安全 | 第欧根尼的小桶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="UIGeometry 中具有 7 中基本的数据类型点：（平面 X 和 Y）
-向量：（空间的 dX 和 dY）
-面积: (平面的 W 和 H)
-空间：（平面中的点(x, y) + 面积(w, h)）">
+  <meta name="description" content="众所周知APPLE的iOS是封闭的，每个app有着沙盒路径，正规发布途径也只有唯一的APPStore, 但是市场上越狱手机和强大的抓包工具依然时时刻刻威胁着App 的安全，而且随着项目慢慢积累用户，用户的隐私和数据安全越来越重要，危险遍布于开发的各个阶段，同时对安全的重视程度也间接体现了一个开发者的能力和意识。本文针对项目数据传输和本地存储着两块，将开发过程中涉及到和安全相关的问题都记录下来，作为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UIGeometry_总结">
-<meta property="og:url" content="http://yoursite.com/2017/06/04/UIGeometry-总结/index.html">
+<meta property="og:title" content="iOS 数据传输和本地存储安全">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/iOS-数据传输和本地存储安全/index.html">
 <meta property="og:site_name" content="第欧根尼的小桶">
-<meta property="og:description" content="UIGeometry 中具有 7 中基本的数据类型点：（平面 X 和 Y）
-向量：（空间的 dX 和 dY）
-面积: (平面的 W 和 H)
-空间：（平面中的点(x, y) + 面积(w, h)）">
-<meta property="og:updated_time" content="2017-06-04T07:07:42.000Z">
+<meta property="og:description" content="众所周知APPLE的iOS是封闭的，每个app有着沙盒路径，正规发布途径也只有唯一的APPStore, 但是市场上越狱手机和强大的抓包工具依然时时刻刻威胁着App 的安全，而且随着项目慢慢积累用户，用户的隐私和数据安全越来越重要，危险遍布于开发的各个阶段，同时对安全的重视程度也间接体现了一个开发者的能力和意识。本文针对项目数据传输和本地存储着两块，将开发过程中涉及到和安全相关的问题都记录下来，作为">
+<meta property="og:updated_time" content="2017-07-23T11:52:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UIGeometry_总结">
-<meta name="twitter:description" content="UIGeometry 中具有 7 中基本的数据类型点：（平面 X 和 Y）
-向量：（空间的 dX 和 dY）
-面积: (平面的 W 和 H)
-空间：（平面中的点(x, y) + 面积(w, h)）">
+<meta name="twitter:title" content="iOS 数据传输和本地存储安全">
+<meta name="twitter:description" content="众所周知APPLE的iOS是封闭的，每个app有着沙盒路径，正规发布途径也只有唯一的APPStore, 但是市场上越狱手机和强大的抓包工具依然时时刻刻威胁着App 的安全，而且随着项目慢慢积累用户，用户的隐私和数据安全越来越重要，危险遍布于开发的各个阶段，同时对安全的重视程度也间接体现了一个开发者的能力和意识。本文针对项目数据传输和本地存储着两块，将开发过程中涉及到和安全相关的问题都记录下来，作为">
   
     <link rel="alternative" href="/atom.xml" title="第欧根尼的小桶" type="application/atom+xml">
   
@@ -200,11 +191,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-UIGeometry-总结" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-iOS-数据传输和本地存储安全" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/06/04/UIGeometry-总结/" class="article-date">
-  	<time datetime="2017-06-04T06:59:35.000Z" itemprop="datePublished">2017-06-04</time>
+      <a href="/2017/07/23/iOS-数据传输和本地存储安全/" class="article-date">
+  	<time datetime="2017-07-23T11:49:58.000Z" itemprop="datePublished">2017-07-23</time>
 </a>
     </div>
   
@@ -217,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      UIGeometry_总结
+      iOS 数据传输和本地存储安全
     </h1>
   
 
@@ -233,24 +224,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="UIGeometry-中具有-7-中基本的数据类型"><a href="#UIGeometry-中具有-7-中基本的数据类型" class="headerlink" title="UIGeometry 中具有 7 中基本的数据类型"></a>UIGeometry 中具有 7 中基本的数据类型</h3><p>点：（平面 X 和 Y）</p>
-<p>向量：（空间的 dX 和 dY）</p>
-<p>面积: (平面的 W 和 H)</p>
-<p>空间：（平面中的点(x, y) + 面积(w, h)）</p>
-<a id="more"></a>
-<p>转换:</p>
-<pre><code>struct CGAffineTransform {
-    CGFloat a, b, c, d;
-    CGFloat tx, ty;
-};
-</code></pre><p>插入面积: 指定插入的面积，可以从负值开始</p>
-<pre><code>struct UIEdgeInsets {
-    CGFloat top, left, bottom, right;  
-} UIEdgeInsets;
-</code></pre><p>界面偏移: 向四面八方移动</p>
-<pre><code>struct UIOffset {
-    CGFloat horizontal, vertical; 
-} UIOffset;
+        <p>众所周知APPLE的iOS是封闭的，每个app有着沙盒路径，正规发布途径也只有唯一的APPStore, 但是市场上越狱手机和强大的抓包工具依然时时刻刻威胁着App 的安全，而且随着项目慢慢积累用户，用户的隐私和数据安全越来越重要，危险遍布于开发的各个阶段，同时对安全的重视程度也间接体现了一个开发者的能力和意识。本文针对项目数据传输和本地存储着两块，将开发过程中涉及到和安全相关的问题都记录下来，作为积累。<br><a id="more"></a></p>
+<h3 id="数据安全传输"><a href="#数据安全传输" class="headerlink" title="数据安全传输"></a>数据安全传输</h3><ol>
+<li>关键字段加密</li>
+</ol>
+<p>在iOS开发过程中，抓包是常见的必备技能之一。我们可以使用抓包利器Charles 或者使用 Fidder 进行抓包，在应用进行发送请求的时候，如果没有对数据和关键信息进行加密的话，那么恭喜你，你的数据在网上裸奔了，与此同时要是有人想获取你的隐私简直再容易不过了，而且还可以篡改你的请求，让你原本准备充值 1 元的账户，生生变成 100元，甚至更多。</p>
+<p>所以我们需要在请求数据或者服务端返回数据的时候需要进行数据的加密，目前加密的方法主要有：<br>         RSA － 非对称加密<br>         DES － 对称加密<br>         AES － 对称加密</p>
+<p>使用 RSA 加密是最安全的，但加解密的时候也相应需要较多的时间，所以建议一般加密的接口敏感数据使用 DES 或者 AES 就足够了。</p>
+<pre><code>RSA_DES_AES加密demo  https://github.com/Dogndxt/AES-and-DES
+</code></pre><ol>
+<li>HTTPS 协议传输</li>
+</ol>
+<p>自苹果宣布2017年1月1日开始强制使用https以来，htpps慢慢成为大家讨论的对象之一，不是说此前https没有出现，只是这一决策让得开发者始料未及， 虽然在2016年底，苹果突然宣布无限期推迟这个计划，不过随着网络世界的日益发达，将自己开发的产品从 http 升级到 https 已经是势在必行了， 最近在项目中已经将 https 应用其中，在这里记录下来，以帮助其他开发者快速接入 https 。</p>
+<pre><code>iOS https 协议 配置 http://note.youdao.com/share/?id=f2c11b7d4c12d5d219ca2a42ac367584&amp;type=note#/
+</code></pre><h3 id="本地存储加密"><a href="#本地存储加密" class="headerlink" title="本地存储加密"></a>本地存储加密</h3><ol>
+<li>配置文件</li>
+</ol>
+<p>为了存储必要的数据在本地，一般情况下使用NSUserDefaults 或者使用数据库的方式。由于在越狱的手机上，用户可以访问到该项目的私有文件夹，并且可以拿到 plist 和 db 文件，那么如果明文存储敏感数据的话，那么就可以轻易获取，危害用户的信息隐私，解决的办法在于，需要将这些信息进行加密之后再存储，虽然这样不能完全防止被破解，但是这样总是提高了黑客的破解代价了。</p>
+<p>具体的加密可以参照关键字段加密介绍的 RSA，DES 和 AES 加密算法。</p>
+<ol>
+<li>NSLog 打印内容缓存</li>
+</ol>
+<p>为了清晰的看到接口返回的数据，或者为了定位每一步调用，相关参数的变化，有很多程序员会使用 NSLog 将数据和参数的值进行打印，而且一些第三方框架也会进行数据打印，这些数据在程序运行之后会在沙盒内的 /Library/Caches 下进行缓存。建议有打印数据需求的开发者将 NSLog 进行封装：</p>
+<pre><code> //------------------------打印日志-----------------------------
+//DEBUG  模式下打印日志,当前行
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@&quot;%s [Line %d] &quot; fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define DLog(...)
+#endif
+
+#ifdef DEBUG
+#   define QXDLog(fmt, ...) NSLog((@&quot;-------------- \n %s [Line %d] \n------------&quot; fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+
+#define QXDAFNErrorLog(error) NSLog((@&quot;-------------- \n %s [Line %d] \n \n %@-------------\n&quot;), __PRETTY_FUNCTION__, __LINE__, [[NSString alloc] initWithData:error.userInfo[@&quot;com.alamofire.serialization.response.error.data&quot;] encoding:NSUTF8StringEncoding]);
+#else
+#   define QXDLog(...)
+#   define QXDAFNErrorLog(error)
+#endif
+</code></pre><ol>
+<li>SQLite数据库文件</li>
+</ol>
+<p>打开程序目录/Library/Caches/项目bundle ID/下的cache.db文件, 会发现这个 db 文件对每个接口的请求返回数据进行了存储，当然包括以下敏感的数据，例如：用户登录完成之后后台返回的用户信息数据，用户 Token ….</p>
+<p>而这些缓存对我们都是没有用的，这个时候可以使用限制程序缓存的方式，让这些缓存消失；</p>
+<pre><code>// 清除本地数据请求缓存
+NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:0];
+[NSURLCache setSharedURLCache:sharedCache];
 </code></pre>
       
     </div>
@@ -260,18 +279,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/07/23/iOS-数据传输和本地存储安全/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS 数据传输和本地存储安全
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/06/iOS-项目的整体替换/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iOS 项目的整体替换</div>
+    <a href="/2017/06/04/UIGeometry-总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">UIGeometry_总结</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -306,7 +316,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="UIGeometry-总结" data-title="UIGeometry_总结" data-url="http://yoursite.com/2017/06/04/UIGeometry-总结/"></div>
+	<div class="ds-thread" data-thread-key="iOS-数据传输和本地存储安全" data-title="iOS 数据传输和本地存储安全" data-url="http://yoursite.com/2017/07/23/iOS-数据传输和本地存储安全/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
